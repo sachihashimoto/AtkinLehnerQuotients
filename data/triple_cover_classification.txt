@@ -1,0 +1,64 @@
+Complete classification of degree-3 covers of X_0(N)* (N squarefree).
+Reproduce with:  magma -b scripts/classify_triple_covers.m
+Pinned against the paper's table by tests/test_triple_cover_table.m
+
+deg(pi_f) = delta_f * prod_{l | N/d} (l + 1 + a_l(f)) = 3, where f is a
+newform of level d | N with rational coefficients and all Atkin-Lehner
+eigenvalues +1, C := im(c) subset E_f(Q)[2] is the AL translation subgroup,
+and delta_f = |C| * deg(phi_d) / 2^omega(d).  The cover lands on
+E^C_f = E_f/C, which differs from E_f exactly when |C| > 1.
+'factors' lists (l, l + 1 + a_l(f)) for each l | N/d; each row satisfies
+3 = delta * product of those factors.
+
+  N      d      E^C_f    E_f      |C|  delta  factors                 g
+  154    77     77a1     77a1     1    1      (2,3)                   2
+  154    154    154a1    154a1    1    3      -                       2
+  285    57     57a1     57a1     1    1      (5,3)                   2
+  285    285    285b1    285b1    1    3      -                       2
+  286    143    143a1    143a1    1    1      (2,3)                   2
+  286    286    286c1    286c1    1    3      -                       2
+  185    185    185c2    185c1    2    3      -                       3
+  246    123    123b1    123b1    1    1      (2,3)                   3
+  249    83     83a1     83a1     1    1      (3,3)                   3
+  258    258    258a1    258a1    1    3      -                       3
+  282    141    141d1    141d1    1    1      (2,3)                   3
+  290    58     58a1     58a1     1    1      (5,3)                   3
+  310    155    155c1    155c1    1    1      (2,3)                   3
+  318    318    318c1    318c1    1    3      -                       3
+  429    143    143a1    143a1    1    1      (3,3)                   3
+  430    430    430a1    430a1    1    3      -                       3
+  455    91     91a1     91a1     1    1      (5,3)                   3
+  462    77     77a1     77a1     1    1      (2,3)(3,1)              3
+  201    201    201a1    201a1    1    3      -                       4
+  202    101    101a1    101a1    1    1      (2,3)                   4
+  214    214    214b1    214b1    1    3      -                       4
+  219    219    219a1    219a1    1    3      -                       4
+  254    254    254c1    254c1    1    3      -                       4
+  262    131    131a1    131a1    1    1      (2,3)                   4
+  262    262    262b1    262b1    1    3      -                       4
+  267    89     89a1     89a1     1    1      (3,3)                   4
+  305    61     61a1     61a1     1    1      (5,3)                   4
+  354    118    118a1    118a1    1    1      (3,3)                   4
+  395    79     79a1     79a1     1    1      (5,3)                   4
+  399    57     57a1     57a1     1    1      (7,3)                   4
+  426    142    142b1    142b1    1    1      (3,3)                   4
+  434    434    434a1    434a1    1    3      -                       4
+  570    57     57a1     57a1     1    1      (2,1)(5,3)              4
+  570    190    190b1    190b1    1    1      (3,3)                   4
+  237    79     79a1     79a1     1    1      (3,3)                   5
+  393    131    131a1    131a1    1    1      (3,3)                   5
+  402    201    201a1    201a1    1    3      (2,1)                   5
+  438    219    219a1    219a1    1    3      (2,1)                   5
+  465    155    155c1    155c1    1    1      (3,3)                   5
+  574    574    574a1    574a1    1    3      -                       5
+  798    57     57a1     57a1     1    1      (2,1)(7,3)              5
+  910    91     91a1     91a1     1    1      (2,1)(5,3)              5
+  163    163    163a1    163a1    1    3      -                       6
+  269    269    269a1    269a1    1    3      -                       6
+  274    274    274c1    274c1    1    3      -                       6
+  291    291    291c1    291c1    1    3      -                       6
+  590    118    118a1    118a1    1    1      (5,3)                   6
+  870    58     58a1     58a1     1    1      (3,1)(5,3)              7
+
+48 covers on 35 distinct curves over 43 distinct levels; maximum genus 7.
+

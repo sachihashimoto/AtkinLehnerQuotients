@@ -1,0 +1,41 @@
+Loading "src/AtkinLehner.m"
+Loading "QuadraticPoints/models_and_maps.m"
+Loading "src/cm_points.m"
+Loading "src/cm_orders.m"
+Loading "src/star_quotients.m"
+Loading "src/modelsX0Nstar.m"
+Loading "src/star_model_cache.m"
+Loading "src/star_degree.m"
+Loading "src/cm_numerics.m"
+Loading "src/classify_covers.m"
+Loading "src/fields_of_definition.m"
+Loading "src/labeling.m"
+Loading "src/point_search.m"
+Loading "tests/assertions.m"
+
+=== recomputing the classification (full sweep) ===
+== sweeping 667 candidate levels ==
+  ... 50/667 levels, 0 covers so far
+  ... 100/667 levels, 3 covers so far
+  ... 150/667 levels, 12 covers so far
+  ... 200/667 levels, 28 covers so far
+  ... 250/667 levels, 33 covers so far
+  ... 300/667 levels, 41 covers so far
+  ... 350/667 levels, 44 covers so far
+  ... 400/667 levels, 45 covers so far
+  ... 450/667 levels, 45 covers so far
+  ... 500/667 levels, 48 covers so far
+  ... 550/667 levels, 48 covers so far
+  ... 600/667 levels, 48 covers so far
+  ... 650/667 levels, 48 covers so far
+sweep done (19.920 s)
+
+=== 1. the table is exactly the classification ===
+
+=== 2. each row satisfies the degree formula ===
+
+=== 3. E^C_f differs from E_f only at 185 ===
+
+=== 4. the committed output file agrees ===
+test_triple_cover_table: 11 assertions, all passed
+@@TEST_RESULT@@ PASS

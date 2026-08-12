@@ -1,0 +1,550 @@
+Loading "src/AtkinLehner.m"
+Loading "QuadraticPoints/models_and_maps.m"
+Loading "src/cm_points.m"
+Loading "src/cm_orders.m"
+Loading "src/star_quotients.m"
+Loading "src/modelsX0Nstar.m"
+Loading "src/star_model_cache.m"
+Loading "src/star_degree.m"
+Loading "src/cm_numerics.m"
+Loading "src/classify_covers.m"
+Loading "src/fields_of_definition.m"
+Loading "src/labeling.m"
+Loading "src/point_search.m"
+Loading "tests/assertions.m"
+
+=== LabelAndAnalyze regression test for N=310 ===
+found CM point at discriminant -15
+found CM point at discriminant -60
+found CM point at discriminant -24
+found CM point at discriminant -340
+found CM point at discriminant -520
+found CM point at discriminant -120
+  disc = -60 -> rats[2] -> (0 : 0 : 1) (CM)
+  disc = -24 -> rats[4] -> (0 : 1 : 0) (CM)
+  disc = -120 -> rats[6] -> (1 : 1/2 : 1) (CM)
+  disc = -340 -> rats[8] -> (2 : 1 : 1) (CM)
+  disc = -15 -> rats[5] -> (2 : 2 : 1) (CM)
+  disc = -520 -> rats[7] -> (2 : -1/2 : 1) (CM)
+  Cusp -> rats[3]
+Labelled 7 CM+cusp, 1 exceptional
+  exceptional: rats[1] = (6 : -2 : 1)
+Computing degree 2 CM points
+Done.
+Planes found: 7 (0 with algebraic CM match)
+  exc=rats[1]: z[2] + 2*z[3]=0  comps=[ 1, 1, 2 ]  CM={ cusp }  matched=false
+    exact rational points on plane: [ (6 : -2 : 1), (1 : 0 : 0) ]
+  exc=rats[1]: z[1] + 2*z[2] - 2*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -120 }  matched=false
+    exact rational points on plane: [ (6 : -2 : 1), (1 : 1/2 : 1) ]
+  exc=rats[1]: z[1] + z[2] - 4*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -15 }  matched=false
+    exact rational points on plane: [ (6 : -2 : 1), (2 : 2 : 1) ]
+  exc=rats[1]: 3*z[1] + 8*z[2] - 2*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -520 }  matched=false
+    exact rational points on plane: [ (6 : -2 : 1), (2 : -1/2 : 1) ]
+  exc=rats[1]: z[1] + 3*z[2]=0  comps=[ 1, 1, 2 ]  CM={ -60 }  matched=false
+    exact rational points on plane: [ (6 : -2 : 1), (0 : 0 : 1) ]
+  exc=rats[1]: z[1] - 6*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -24 }  matched=false
+    exact rational points on plane: [ (6 : -2 : 1), (0 : 1 : 0) ]
+  exc=rats[1]: 3*z[1] + 4*z[2] - 10*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -340 }  matched=false
+    exact rational points on plane: [ (6 : -2 : 1), (2 : 1 : 1) ]
+All exceptional points geometrically covered: true
+All exceptional points CM-confirmed: false
+
+=== LabelAndAnalyze regression test for N=329 (7*47) ===
+found CM point at discriminant -19
+found CM point at discriminant -91
+found CM point at discriminant -35
+  disc = -91 -> rats[5] -> (1 : 1 : 0) (CM)
+  disc = -35 -> rats[4] -> (0 : -1 : 1) (CM)
+  disc = -19 -> rats[2] -> (0 : 1 : 0) (CM)
+  Cusp -> rats[3]
+Labelled 4 CM+cusp, 1 exceptional
+  exceptional: rats[1] = (-1/4 : -1/2 : 1)
+Computing degree 2 CM points
+Done.
+Planes found: 4 (0 with algebraic CM match)
+  exc=rats[1]: 4*z[1] + z[3]=0  comps=[ 1, 1, 2 ]  CM={ -19 }  matched=false
+    exact rational points on plane: [ (-1/4 : -1/2 : 1), (0 : 1 : 0) ]
+  exc=rats[1]: 2*z[2] + z[3]=0  comps=[ 1, 1, 2 ]  CM={ cusp }  matched=false
+    exact rational points on plane: [ (-1/4 : -1/2 : 1), (1 : 0 : 0) ]
+  exc=rats[1]: 2*z[1] + z[2] + z[3]=0  comps=[ 1, 1, 2 ]  CM={ -35 }  matched=false
+    exact rational points on plane: [ (-1/4 : -1/2 : 1), (0 : -1 : 1) ]
+  exc=rats[1]: 4*z[1] - 4*z[2] - z[3]=0  comps=[ 1, 1, 2 ]  CM={ -91 }  matched=false
+    exact rational points on plane: [ (-1/4 : -1/2 : 1), (1 : 1 : 0) ]
+All exceptional points geometrically covered: true
+All exceptional points CM-confirmed: false
+
+=== LabelAndAnalyze regression test for N=137 ===
+found CM point at discriminant -19
+found CM point at discriminant -4
+found CM point at discriminant -7
+found CM point at discriminant -8
+found CM point at discriminant -11
+found CM point at discriminant -28
+found CM point at discriminant -16
+  disc = -4 -> rats[5] -> (3 : 2 : 2 : 1) (CM)
+  disc = -11 -> rats[7] -> (1 : 1 : 0 : 1) (CM)
+  disc = -7 -> rats[9] -> (2 : 1 : 1 : 0) (CM)
+  disc = -8 -> rats[1] -> (0 : 1 : 0 : 0) (CM)
+  disc = -19 -> rats[2] -> (3 : 2 : 1 : 1) (CM)
+  disc = -16 -> rats[4] -> (1 : 2 : 0 : 1) (CM)
+  disc = -28 -> rats[3] -> (0 : 1 : 1 : 0) (CM)
+  Cusp -> rats[6]
+Labelled 8 CM+cusp, 1 exceptional
+  exceptional: rats[8] = (-1/8 : 3/4 : -1/2 : 1)
+Computing degree 2 CM points
+Done.
+Planes found: 7 (0 with algebraic CM match)
+  exc=rats[8]: 4*z[1] - 9*z[3] - 4*z[4]=0  comps=[ 1, 1, 1, 1, 2 ]  CM={ -16, -11, -8 }  matched=false
+    exact rational points on plane: [ (0 : 1 : 0 : 0), (1 : 2 : 0 : 1), (1 : 1 : 0 : 1), (-1/8 : 3/4 : -1/2 : 1) ]
+  exc=rats[8]: 2*z[2] - z[3] - 2*z[4]=0  comps=[ 1, 1, 1, 1, 2 ]  CM={ -11, -4, cusp }  matched=false
+    exact rational points on plane: [ (3 : 2 : 2 : 1), (1 : 0 : 0 : 0), (1 : 1 : 0 : 1), (-1/8 : 3/4 : -1/2 : 1) ]
+  exc=rats[8]: 4*z[2] - 4*z[3] - 5*z[4]=0  comps=[ 1, 1, 1, 1, 2 ]  CM={ -28, -7, cusp }  matched=false
+    exact rational points on plane: [ (0 : 1 : 1 : 0), (1 : 0 : 0 : 0), (-1/8 : 3/4 : -1/2 : 1), (2 : 1 : 1 : 0) ]
+  exc=rats[8]: 2*z[1] + z[2] - 5*z[3] - 3*z[4]=0  comps=[ 1, 1, 1, 1, 2 ]  CM={ -19, -11, -7 }  matched=false
+    exact rational points on plane: [ (3 : 2 : 1 : 1), (1 : 1 : 0 : 1), (-1/8 : 3/4 : -1/2 : 1), (2 : 1 : 1 : 0) ]
+  exc=rats[8]: 2*z[1] - 5*z[2] + 4*z[4]=0  comps=[ 1, 1, 2, 2 ]  CM={ -19, -4 }  matched=false
+    exact rational points on plane: [ (3 : 2 : 1 : 1), (3 : 2 : 2 : 1), (-1/8 : 3/4 : -1/2 : 1) ]
+  exc=rats[8]: 2*z[1] - 3*z[2] - z[3] + 2*z[4]=0  comps=[ 1, 1, 2, 2 ]  CM={ -7, -4 }  matched=false
+    exact rational points on plane: [ (3 : 2 : 2 : 1), (-1/8 : 3/4 : -1/2 : 1), (2 : 1 : 1 : 0) ]
+  exc=rats[8]: 2*z[3] + z[4]=0  comps=[ 1, 1, 2, 2 ]  CM={ -8, cusp }  matched=false
+    exact rational points on plane: [ (0 : 1 : 0 : 0), (1 : 0 : 0 : 0), (-1/8 : 3/4 : -1/2 : 1) ]
+All exceptional points geometrically covered: true
+All exceptional points CM-confirmed: false
+
+=== LabelAndAnalyze regression test for N=311 ===
+found CM point at discriminant -19
+found CM point at discriminant -43
+found CM point at discriminant -11
+  disc = -11 -> rats[2] -> (1 : 1 : 0 : 1) (CM)
+  disc = -43 -> rats[1] -> (0 : 0 : 0 : 1) (CM)
+  disc = -19 -> rats[3] -> (1 : 0 : 1 : 0) (CM)
+  Cusp -> rats[4]
+Labelled 4 CM+cusp, 1 exceptional
+  exceptional: rats[5] = (8 : 4 : 2 : 1)
+Computing degree 2 CM points
+Done.
+Planes found: 1 (1 with algebraic CM match)
+  exc=rats[5]: -z[1] + z[2] + z[3] + 2*z[4]=0  comps=[ 1, 1, 2, 2 ]  CM={ -232, -123, -19 }  matched=true
+    source_discs={ -232 }  confirmed_source_discs={ -232 }
+    exact rational points on plane: [ (1 : 0 : 1 : 0), (8 : 4 : 2 : 1) ]
+    confirmed component matches (component_idx, disc): [* <1, -232>, <2, -123> *]
+All exceptional points geometrically covered: true
+All exceptional points CM-confirmed: true
+
+=== MatchRationalCMPoints regression test for N=399 (3*7*19) ===
+found CM point at discriminant -3
+found CM point at discriminant -27
+found CM point at discriminant -12
+found CM point at discriminant -48
+found CM point at discriminant -147
+found CM point at discriminant -75
+found CM point at discriminant -483
+found CM point at discriminant -1995
+  disc = -147 -> rats[10] -> (0 : 1 : 1/2 : 1) (CM)
+  disc = -12 -> rats[4] -> (1/2 : 1 : -1/2 : 1) (CM)
+  disc = -27 -> rats[5] -> (0 : 1 : 1 : 1) (CM)
+  disc = -483 -> rats[8] -> (-2 : 2 : 1 : 0) (CM)
+  disc = -75 -> rats[7] -> (1 : 3/2 : 1 : 1) (CM)
+  disc = -1995 -> rats[6] -> (3 : 1 : 2 : 1) (CM)
+  disc = -48 -> rats[1] -> (-1 : 0 : 1 : 0) (CM)
+  disc = -3 -> rats[2] -> (21/166 : 167/83 : -29/166 : 1) (CM)
+
+=== retry_precision_failures integration test for N=399 ===
+found CM point at discriminant -3
+found CM point at discriminant -27
+found CM point at discriminant -12
+found CM point at discriminant -48
+found CM point at discriminant -147
+found CM point at discriminant -75
+found CM point at discriminant -483
+found CM point at discriminant -1995
+Actual points: [ (-1 : 0 : 1 : 0), (21/166 : 167/83 : -29/166 : 1), (1 : 0 : 0 : 0), (1/2 : 1 : -1/2 : 1), (0 : 1 : 1 : 1), (3 : 1 : 2 : 1), (1 : 3/2 : 1 : 1), (-2 : 2 : 1 : 0), (5 : -3/2 : 1 : 0), (0 : 1 : 1/2 : 1) ]
+Special points: 9
+
+=== LabelAndAnalyze for N=399 ===
+  disc = -147 -> rats[10] -> (0 : 1 : 1/2 : 1) (CM)
+  disc = -12 -> rats[4] -> (1/2 : 1 : -1/2 : 1) (CM)
+  disc = -27 -> rats[5] -> (0 : 1 : 1 : 1) (CM)
+  disc = -483 -> rats[8] -> (-2 : 2 : 1 : 0) (CM)
+  disc = -75 -> rats[7] -> (1 : 3/2 : 1 : 1) (CM)
+  disc = -1995 -> rats[6] -> (3 : 1 : 2 : 1) (CM)
+  disc = -48 -> rats[1] -> (-1 : 0 : 1 : 0) (CM)
+  D=-3: half-length series disagrees with full-length series, not converged at this eval_prec
+WARNING: CM matching failed for N=399: D=-3: evaluation not converged at this eval_prec (half-length series disagrees; needs higher eval_prec)
+
+=== Retrying N=399 with eval_prec=7000 ===
+  disc = -147 -> rats[10] -> (0 : 1 : 1/2 : 1) (CM)
+  disc = -12 -> rats[4] -> (1/2 : 1 : -1/2 : 1) (CM)
+  disc = -27 -> rats[5] -> (0 : 1 : 1 : 1) (CM)
+  disc = -483 -> rats[8] -> (-2 : 2 : 1 : 0) (CM)
+  disc = -75 -> rats[7] -> (1 : 3/2 : 1 : 1) (CM)
+  disc = -1995 -> rats[6] -> (3 : 1 : 2 : 1) (CM)
+  disc = -48 -> rats[1] -> (-1 : 0 : 1 : 0) (CM)
+  disc = -3 -> rats[2] -> (21/166 : 167/83 : -29/166 : 1) (CM)
+  Cusp -> rats[3]
+Labelled 9 CM+cusp, 1 exceptional
+  exceptional: rats[9] = (5 : -3/2 : 1 : 0)
+Computing degree 2 CM points
+Done.
+Planes found: 3 (0 with algebraic CM match)
+  exc=rats[9]: 4*z[2] + 6*z[3] - 7*z[4]=0  comps=[ 1, 1, 1, 1, 2 ]  CM={ -147, -3, cusp }  matched=false
+    exact rational points on plane: [ (21/166 : 167/83 : -29/166 : 1), (1 : 0 : 0 : 0), (5 : -3/2 : 1 : 0), (0 : 1 : 1/2 : 1) ]
+  exc=rats[9]: z[1] + 4*z[2] + z[3] - 8*z[4]=0  comps=[ 1, 1, 2, 2 ]  CM={ -75, -48, -3 }  matched=false
+    exact rational points on plane: [ (-1 : 0 : 1 : 0), (21/166 : 167/83 : -29/166 : 1), (1 : 3/2 : 1 : 1), (5 : -3/2 : 1 : 0) ]
+  exc=rats[9]: z[1] + 2*z[2] - 2*z[3] - z[4]=0  comps=[ 1, 1, 1, 1, 2 ]  CM={ -1995, -483, -147 }  matched=false
+    exact rational points on plane: [ (3 : 1 : 2 : 1), (-2 : 2 : 1 : 0), (5 : -3/2 : 1 : 0), (0 : 1 : 1/2 : 1) ]
+All exceptional points geometrically covered: true
+All exceptional points CM-confirmed: false
+
+=== Unit test: EvaluateAtCM derivative weighting for D=-4 ===
+  disc = -4 -> rats[5] -> (3 : 2 : 2 : 1) (CM)
+  disc = -11 -> rats[7] -> (1 : 1 : 0 : 1) (CM)
+  disc = -7 -> rats[9] -> (2 : 1 : 1 : 0) (CM)
+  disc = -8 -> rats[1] -> (0 : 1 : 0 : 0) (CM)
+  disc = -19 -> rats[2] -> (3 : 2 : 1 : 1) (CM)
+  disc = -16 -> rats[4] -> (1 : 2 : 0 : 1) (CM)
+  disc = -28 -> rats[3] -> (0 : 1 : 1 : 0) (CM)
+
+=== LabelAndAnalyze_hyperelliptic regression test for N=158 (2*79) ===
+found CM point at discriminant -7
+found CM point at discriminant -28
+found CM point at discriminant -12
+found CM point at discriminant -232
+found CM point at discriminant -148
+found CM point at discriminant -24
+  disc = -148 -> rats[6], (2 : 1 : 1), (CM hyperelliptic)
+  disc = -24 -> rats[4], (0 : 1 : 1), (CM hyperelliptic)
+  disc = -232 -> rats[5], (2 : -1 : 1), (CM hyperelliptic)
+  disc = -7 -> rats[2], (1 : 1 : 0) (CM hyperelliptic, WPS infinity)
+  disc = -12 -> rats[3], (0 : -1 : 1), (CM hyperelliptic)
+  disc = -28 -> rats[8], (1 : 1 : 2), (CM hyperelliptic)
+  Cusp -> rats[1] (1 : -1 : 0)
+Labelled 7 CM+cusp, 1 exceptional
+  exceptional: rats[7] = (1 : -1 : 2)
+Involution pairs found: 1
+  rats[7] = (1 : -1 : 2) is hyperelliptic involution of rats[8] (CM disc { -28 })
+All exceptional points explained: true
+
+=== BoostFsPrec test for N=158 ===
+
+=== retry_precision_failures hyperelliptic dispatch for N=158 ===
+
+=== Retrying N=158 with eval_prec=3000 ===
+  (hyperelliptic genus-2 path)
+  disc = -148 -> rats[6], (2 : 1 : 1), (CM hyperelliptic)
+  disc = -24 -> rats[4], (0 : 1 : 1), (CM hyperelliptic)
+  disc = -232 -> rats[5], (2 : -1 : 1), (CM hyperelliptic)
+  disc = -7 -> rats[2], (1 : 1 : 0) (CM hyperelliptic, WPS infinity)
+  disc = -12 -> rats[3], (0 : -1 : 1), (CM hyperelliptic)
+  disc = -28 -> rats[8], (1 : 1 : 2), (CM hyperelliptic)
+  Cusp -> rats[1] (1 : -1 : 0)
+Labelled 7 CM+cusp, 1 exceptional
+  exceptional: rats[7] = (1 : -1 : 2)
+Involution pairs found: 1
+  rats[7] = (1 : -1 : 2) is hyperelliptic involution of rats[8] (CM disc { -28 })
+All exceptional points explained: true
+
+=== LabelAndAnalyze_hyperelliptic elliptic-CM test for N=106 (2*53) ===
+found CM point at discriminant -4
+found CM point at discriminant -7
+found CM point at discriminant -28
+found CM point at discriminant -16
+found CM point at discriminant -52
+found CM point at discriminant -100
+found CM point at discriminant -148
+found CM point at discriminant -24
+found CM point at discriminant -36
+found CM point at discriminant -40
+  disc = -148 -> rats[4], (-1 : 4 : 1), (CM hyperelliptic)
+  disc = -28 -> rats[12], (1 : 5 : 2), (CM hyperelliptic)
+  disc = -16 -> rats[6], (0 : 1 : 1), (CM hyperelliptic)
+  disc = -4 -> rats[10], (2 : 5 : 1) (CM hyperelliptic, elliptic order 4)
+  disc = -36 -> rats[3], (-1 : -4 : 1), (CM hyperelliptic)
+  disc = -7 -> rats[2], (1 : 1 : 0) (CM hyperelliptic, WPS infinity)
+  disc = -52 -> rats[8], (1 : 2 : 1), (CM hyperelliptic)
+  disc = -24 -> rats[7], (1 : -2 : 1), (CM hyperelliptic)
+  disc = -100 -> rats[9], (2 : -5 : 1), (CM hyperelliptic)
+  disc = -40 -> rats[5], (0 : -1 : 1), (CM hyperelliptic)
+  Cusp -> rats[1] (1 : -1 : 0)
+Labelled 11 CM+cusp, 1 exceptional
+  exceptional: rats[11] = (1 : -5 : 2)
+Involution pairs found: 1
+  rats[11] = (1 : -5 : 2) is hyperelliptic involution of rats[12] (CM disc { -28 })
+All exceptional points explained: true
+
+=== LabelAndAnalyze_hyperelliptic regression test for N=107 ===
+found CM point at discriminant -7
+found CM point at discriminant -8
+found CM point at discriminant -43
+found CM point at discriminant -28
+found CM point at discriminant -67
+  disc = -67 -> rats[5], (2 : -1 : 1), (CM hyperelliptic)
+  disc = -7 -> rats[3], (0 : -1 : 1), (CM hyperelliptic)
+  disc = -43 -> rats[4], (0 : 1 : 1), (CM hyperelliptic)
+  disc = -8 -> rats[2], (1 : 1 : 0) (CM hyperelliptic, WPS infinity)
+  disc = -28 -> rats[6], (2 : 1 : 1), (CM hyperelliptic)
+  Cusp -> rats[1] (1 : -1 : 0)
+Labelled 6 CM+cusp, 0 exceptional
+
+=== LabelAndAnalyze_hyperelliptic involution test for N=103 ===
+found CM point at discriminant -3
+found CM point at discriminant -43
+found CM point at discriminant -27
+found CM point at discriminant -11
+found CM point at discriminant -12
+found CM point at discriminant -67
+  disc = -3 -> rats[8], (3 : 19 : 1) (CM hyperelliptic, elliptic order 3)
+  disc = -67 -> rats[2], (1 : 1 : 0) (CM hyperelliptic, WPS infinity)
+  disc = -11 -> rats[6], (1 : 1 : 1), (CM hyperelliptic)
+  disc = -43 -> rats[3], (0 : -1 : 1), (CM hyperelliptic)
+  disc = -12 -> rats[5], (1 : -1 : 1), (CM hyperelliptic)
+  disc = -27 -> rats[4], (0 : 1 : 1), (CM hyperelliptic)
+  Cusp -> rats[1] (1 : -1 : 0)
+Labelled 7 CM+cusp, 1 exceptional
+  exceptional: rats[7] = (3 : -19 : 1)
+Involution pairs found: 1
+  rats[7] = (3 : -19 : 1) is hyperelliptic involution of rats[8] (CM disc { -3 })
+All exceptional points explained: true
+
+=== LabelAndAnalyze_hyperelliptic involution test for N=209 (11*19) ===
+found CM point at discriminant -19
+found CM point at discriminant -8
+found CM point at discriminant -88
+found CM point at discriminant -627
+  disc = -88 -> rats[4], (0 : 2 : 1), (CM hyperelliptic)
+  disc = -627 -> rats[6], (-1 : 19 : 2), (CM hyperelliptic)
+  disc = -8 -> rats[2], (1 : 1 : 0) (CM hyperelliptic, WPS infinity)
+  disc = -19 -> rats[3], (0 : -2 : 1) (CM hyperelliptic, elliptic order 2)
+  Cusp -> rats[1] (1 : -1 : 0)
+Labelled 5 CM+cusp, 1 exceptional
+  exceptional: rats[5] = (-1 : -19 : 2)
+Involution pairs found: 1
+  rats[5] = (-1 : -19 : 2) is hyperelliptic involution of rats[6] (CM disc { -627 })
+All exceptional points explained: true
+
+=== LabelAndAnalyze_hyperelliptic exc-exc pair test for N=129 ===
+found CM point at discriminant -3
+found CM point at discriminant -8
+found CM point at discriminant -27
+found CM point at discriminant -12
+found CM point at discriminant -48
+found CM point at discriminant -51
+found CM point at discriminant -147
+found CM point at discriminant -75
+found CM point at discriminant -123
+  disc = -3 -> rats[11], (-7 : -383 : 5) (CM hyperelliptic, elliptic order 6)
+  disc = -123 -> rats[3], (-1 : -3 : 1), (CM hyperelliptic)
+  disc = -12 -> rats[8], (1 : 1 : 1) (CM hyperelliptic, elliptic order 2)
+  disc = -8 -> rats[6], (0 : 2 : 1), (CM hyperelliptic)
+  disc = -75 -> rats[2], (1 : 1 : 0) (CM hyperelliptic, WPS infinity)
+  disc = -51 -> rats[9], (1 : -3 : 2), (CM hyperelliptic)
+  disc = -27 -> rats[7], (1 : -1 : 1), (CM hyperelliptic)
+  disc = -48 -> rats[4], (-1 : 3 : 1), (CM hyperelliptic)
+  disc = -147 -> rats[5], (0 : -2 : 1), (CM hyperelliptic)
+  Cusp -> rats[1] (1 : -1 : 0)
+Labelled 10 CM+cusp, 4 exceptional
+  exceptional: rats[10] = (1 : 3 : 2)
+  exceptional: rats[12] = (-7 : 383 : 5)
+  exceptional: rats[13] = (7 : -383 : 12)
+  exceptional: rats[14] = (7 : 383 : 12)
+Involution pairs found: 2
+  rats[10] = (1 : 3 : 2) is hyperelliptic involution of rats[9] (CM disc { -51 })
+  rats[12] = (-7 : 383 : 5) is hyperelliptic involution of rats[11] (CM disc { -3 })
+All exceptional points explained: false
+
+=== Order-2 elliptic CM regression tests for N=330 ===
+found CM point at discriminant -24
+found CM point at discriminant -84
+found CM point at discriminant -120
+found CM point at discriminant -420
+found CM point at discriminant -1320
+found CM point at discriminant -660
+  disc = -24 -> rats[3], (-1 : -2 : 1) (CM hyperelliptic, elliptic order 2)
+  disc = -1320 -> rats[7], (7/8 : -3497/1024 : 1) (CM hyperelliptic, elliptic order 2)
+  disc = -120 -> rats[2], (1 : 1/2 : 0) (CM hyperelliptic, WPS infinity)
+  disc = -420 -> rats[5], (0 : -3/2 : 1), (CM hyperelliptic)
+  disc = -660 -> rats[4], (-1 : 2 : 1) (CM hyperelliptic, elliptic order 2)
+  disc = -84 -> rats[6], (0 : 3/2 : 1), (CM hyperelliptic)
+  Cusp -> rats[1] (1 : -1/2 : 0)
+Labelled 7 CM+cusp, 1 exceptional
+  exceptional: rats[8] = (7/8 : 3497/1024 : 1)
+Involution pairs found: 1
+  rats[8] = (7/8 : 3497/1024 : 1) is hyperelliptic involution of rats[7] (CM disc { -1320 })
+All exceptional points explained: true
+
+=== Order-2 elliptic CM regression test for N=93 (D=-12) ===
+found CM point at discriminant -3
+found CM point at discriminant -27
+found CM point at discriminant -11
+found CM point at discriminant -12
+found CM point at discriminant -48
+found CM point at discriminant -15
+found CM point at discriminant -60
+found CM point at discriminant -147
+found CM point at discriminant -24
+found CM point at discriminant -75
+found CM point at discriminant -123
+  disc = -11 -> rats[7], (1 : -1 : 1), (CM hyperelliptic)
+  disc = -147 -> rats[9], (2 : -3 : 1), (CM hyperelliptic)
+  disc = -12 -> rats[2], (1 : 1 : 0) (CM hyperelliptic, WPS infinity)
+  disc = -27 -> rats[8], (1 : 1 : 1), (CM hyperelliptic)
+  disc = -60 -> rats[5], (0 : -3 : 1), (CM hyperelliptic)
+  disc = -15 -> rats[10], (2 : 3 : 1), (CM hyperelliptic)
+  disc = -75 -> rats[4], (-1 : 3 : 1), (CM hyperelliptic)
+  disc = -123 -> rats[3], (-1 : -3 : 1), (CM hyperelliptic)
+  disc = -48 -> rats[11], (3 : -9 : 2), (CM hyperelliptic)
+  disc = -3 -> rats[13], (1 : -143 : 4) (CM hyperelliptic, elliptic order 6)
+  disc = -24 -> rats[6], (0 : 3 : 1), (CM hyperelliptic)
+  Cusp -> rats[1] (1 : -1 : 0)
+Labelled 12 CM+cusp, 2 exceptional
+  exceptional: rats[12] = (3 : 9 : 2)
+  exceptional: rats[14] = (1 : 143 : 4)
+Involution pairs found: 2
+  rats[12] = (3 : 9 : 2) is hyperelliptic involution of rats[11] (CM disc { -48 })
+  rats[14] = (1 : 143 : 4) is hyperelliptic involution of rats[13] (CM disc { -3 })
+All exceptional points explained: true
+
+=== Order-2 elliptic CM regression test for N=161 (D=-7) ===
+found CM point at discriminant -19
+found CM point at discriminant -7
+found CM point at discriminant -28
+found CM point at discriminant -91
+found CM point at discriminant -112
+found CM point at discriminant -115
+found CM point at discriminant -483
+  disc = -91 -> rats[3], (-1 : -7 : 1), (CM hyperelliptic)
+  disc = -112 -> rats[8], (-1 : 35 : 2), (CM hyperelliptic)
+  disc = -7 -> rats[2], (1 : 1 : 0) (CM hyperelliptic, WPS infinity)
+  disc = -483 -> rats[4], (-1 : 7 : 1), (CM hyperelliptic)
+  disc = -19 -> rats[6], (1 : 1 : 1), (CM hyperelliptic)
+  disc = -115 -> rats[5], (1 : -1 : 1), (CM hyperelliptic)
+  disc = -28 -> rats[9], (-1 : -209 : 4) (CM hyperelliptic, elliptic order 2)
+  Cusp -> rats[1] (1 : -1 : 0)
+Labelled 8 CM+cusp, 2 exceptional
+  exceptional: rats[7] = (-1 : -35 : 2)
+  exceptional: rats[10] = (-1 : 209 : 4)
+Involution pairs found: 2
+  rats[7] = (-1 : -35 : 2) is hyperelliptic involution of rats[8] (CM disc { -112 })
+  rats[10] = (-1 : 209 : 4) is hyperelliptic involution of rats[9] (CM disc { -28 })
+All exceptional points explained: true
+
+=== Order-2 elliptic CM regression test for N=166 (D=-8) ===
+found CM point at discriminant -8
+found CM point at discriminant -88
+found CM point at discriminant -52
+found CM point at discriminant -232
+found CM point at discriminant -20
+found CM point at discriminant -24
+found CM point at discriminant -72
+  disc = -24 -> rats[6], (1 : 2 : 1), (CM hyperelliptic)
+  disc = -232 -> rats[7], (-3 : -10 : 1), (CM hyperelliptic)
+  disc = -88 -> rats[5], (1 : -2 : 1), (CM hyperelliptic)
+  disc = -8 -> rats[2], (1 : 1 : 0) (CM hyperelliptic, WPS infinity)
+  disc = -20 -> rats[4], (0 : 1 : 1), (CM hyperelliptic)
+  disc = -72 -> rats[9], (-1 : -10 : 3), (CM hyperelliptic)
+  disc = -52 -> rats[3], (0 : -1 : 1), (CM hyperelliptic)
+  Cusp -> rats[1] (1 : -1 : 0)
+Labelled 8 CM+cusp, 2 exceptional
+  exceptional: rats[8] = (-3 : 10 : 1)
+  exceptional: rats[10] = (-1 : 10 : 3)
+Involution pairs found: 2
+  rats[8] = (-3 : 10 : 1) is hyperelliptic involution of rats[7] (CM disc { -232 })
+  rats[10] = (-1 : 10 : 3) is hyperelliptic involution of rats[9] (CM disc { -72 })
+All exceptional points explained: true
+
+=== Order-2 elliptic CM regression test for N=165 (D=-11) ===
+found CM point at discriminant -11
+found CM point at discriminant -51
+found CM point at discriminant -99
+found CM point at discriminant -24
+found CM point at discriminant -35
+found CM point at discriminant -435
+found CM point at discriminant -120
+found CM point at discriminant -195
+found CM point at discriminant -1320
+found CM point at discriminant -1155
+  disc = -11 -> rats[2], (1 : 1 : 0) (CM hyperelliptic, WPS infinity)
+  disc = -435 -> rats[6], (2 : -5 : 1), (CM hyperelliptic)
+  disc = -120 -> rats[9], (-1 : 15 : 2), (CM hyperelliptic)
+  disc = -195 -> rats[3], (0 : -3 : 1), (CM hyperelliptic)
+  disc = -35 -> rats[7], (2 : 5 : 1), (CM hyperelliptic)
+  disc = -1320 -> rats[13], (5 : -99 : 2), (CM hyperelliptic)
+  disc = -51 -> rats[4], (0 : 3 : 1), (CM hyperelliptic)
+  disc = -1155 -> rats[10], (-3 : 0 : 1), (CM hyperelliptic)
+  disc = -24 -> rats[5], (1 : 0 : 1), (CM hyperelliptic)
+  disc = -99 -> rats[11], (2 : -55 : 3), (CM hyperelliptic)
+  Cusp -> rats[1] (1 : -1 : 0)
+Labelled 11 CM+cusp, 3 exceptional
+  exceptional: rats[8] = (-1 : -15 : 2)
+  exceptional: rats[12] = (2 : 55 : 3)
+  exceptional: rats[14] = (5 : 99 : 2)
+Involution pairs found: 3
+  rats[8] = (-1 : -15 : 2) is hyperelliptic involution of rats[9] (CM disc { -120 })
+  rats[12] = (2 : 55 : 3) is hyperelliptic involution of rats[11] (CM disc { -99 })
+  rats[14] = (5 : 99 : 2) is hyperelliptic involution of rats[13] (CM disc { -1320 })
+All exceptional points explained: true
+
+=== Cusp identification regression test (N=230, 285, 330) ===
+found CM point at discriminant -15
+found CM point at discriminant -60
+found CM point at discriminant -20
+found CM point at discriminant -40
+found CM point at discriminant -180
+found CM point at discriminant -520
+found CM point at discriminant -120
+found CM point at discriminant -1380
+  disc = -60 -> rats[7], (-2 : -5/2 : 1), (CM hyperelliptic)
+  disc = -1380 -> rats[8], (-2 : 5/2 : 1), (CM hyperelliptic)
+  disc = -180 -> rats[10], (3 : 35/2 : 1), (CM hyperelliptic)
+  disc = -120 -> rats[6], (1 : 5/2 : 1), (CM hyperelliptic)
+  disc = -40 -> rats[2], (1 : 1/2 : 0) (CM hyperelliptic, WPS infinity)
+  disc = -15 -> rats[4], (0 : 1/2 : 1), (CM hyperelliptic)
+  disc = -20 -> rats[3], (0 : -1/2 : 1) (CM hyperelliptic, elliptic order 2)
+  disc = -520 -> rats[5], (1 : -5/2 : 1), (CM hyperelliptic)
+  Cusp -> rats[1] (1 : -1/2 : 0)
+Labelled 9 CM+cusp, 1 exceptional
+  exceptional: rats[9] = (3 : -35/2 : 1)
+Involution pairs found: 1
+  rats[9] = (3 : -35/2 : 1) is hyperelliptic involution of rats[10] (CM disc { -180 })
+All exceptional points explained: true
+found CM point at discriminant -51
+found CM point at discriminant -15
+found CM point at discriminant -60
+found CM point at discriminant -75
+found CM point at discriminant -240
+found CM point at discriminant -1995
+  disc = -60 -> rats[4], (-1 : 2 : 1) (CM hyperelliptic, elliptic order 2)
+  disc = -240 -> rats[7], (3 : 12 : 1), (CM hyperelliptic)
+  disc = -75 -> rats[5], (0 : 0 : 1), (CM hyperelliptic)
+  disc = -51 -> rats[2], (1 : 1/2 : 0) (CM hyperelliptic, WPS infinity)
+  disc = -15 -> rats[3], (-1 : -2 : 1) (CM hyperelliptic, elliptic order 2)
+  disc = -1995 -> rats[9], (-3/2 : 57/16 : 1), (CM hyperelliptic)
+  Cusp -> rats[1] (1 : -1/2 : 0)
+Labelled 7 CM+cusp, 2 exceptional
+  exceptional: rats[6] = (3 : -12 : 1)
+  exceptional: rats[8] = (-3/2 : -57/16 : 1)
+Involution pairs found: 2
+  rats[6] = (3 : -12 : 1) is hyperelliptic involution of rats[7] (CM disc { -240 })
+  rats[8] = (-3/2 : -57/16 : 1) is hyperelliptic involution of rats[9] (CM disc { -1995 })
+All exceptional points explained: true
+found CM point at discriminant -24
+found CM point at discriminant -84
+found CM point at discriminant -120
+found CM point at discriminant -420
+found CM point at discriminant -1320
+found CM point at discriminant -660
+  disc = -24 -> rats[3], (-1 : -2 : 1) (CM hyperelliptic, elliptic order 2)
+  disc = -1320 -> rats[7], (7/8 : -3497/1024 : 1) (CM hyperelliptic, elliptic order 2)
+  disc = -120 -> rats[2], (1 : 1/2 : 0) (CM hyperelliptic, WPS infinity)
+  disc = -420 -> rats[5], (0 : -3/2 : 1), (CM hyperelliptic)
+  disc = -660 -> rats[4], (-1 : 2 : 1) (CM hyperelliptic, elliptic order 2)
+  disc = -84 -> rats[6], (0 : 3/2 : 1), (CM hyperelliptic)
+  Cusp -> rats[1] (1 : -1/2 : 0)
+Labelled 7 CM+cusp, 1 exceptional
+  exceptional: rats[8] = (7/8 : 3497/1024 : 1)
+Involution pairs found: 1
+  rats[8] = (7/8 : 3497/1024 : 1) is hyperelliptic involution of rats[7] (CM disc { -1320 })
+All exceptional points explained: true
+
+test_find_examples: 93 assertions, all passed
+@@TEST_RESULT@@ PASS

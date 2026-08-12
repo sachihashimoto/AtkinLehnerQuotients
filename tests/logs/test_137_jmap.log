@@ -1,0 +1,82 @@
+Loading "src/triple_covers.m"
+Loading "src/AtkinLehner.m"
+Loading "QuadraticPoints/models_and_maps.m"
+Loading "src/cm_points.m"
+Loading "src/cm_orders.m"
+Loading "src/star_quotients.m"
+Loading "src/modelsX0Nstar.m"
+Loading "src/star_model_cache.m"
+Loading "src/star_degree.m"
+Loading "src/cm_numerics.m"
+Loading "src/classify_covers.m"
+Loading "src/fields_of_definition.m"
+Loading "src/labeling.m"
+Loading "src/point_search.m"
+Loading "tests/assertions.m"
+found CM point at discriminant -19
+found CM point at discriminant -4
+found CM point at discriminant -7
+found CM point at discriminant -8
+found CM point at discriminant -11
+found CM point at discriminant -28
+found CM point at discriminant -16
+Actual points: [ (0 : 1 : 0 : 0), (3 : 2 : 1 : 1), (0 : 1 : 1 : 0), (1 : 2 : 0 : 1), (3 : 2 : 2 : 1), (1 : 0 : 0 : 0), (1 : 1 : 0 : 1), (-1/8 : 3/4 : -1/2 : 1), (2 : 1 : 1 : 0) ]
+Special points: 8
+  disc = -4 -> rats[5] -> (3 : 2 : 2 : 1) (CM)
+  disc = -11 -> rats[7] -> (1 : 1 : 0 : 1) (CM)
+  disc = -7 -> rats[9] -> (2 : 1 : 1 : 0) (CM)
+  disc = -8 -> rats[1] -> (0 : 1 : 0 : 0) (CM)
+  disc = -19 -> rats[2] -> (3 : 2 : 1 : 1) (CM)
+  disc = -16 -> rats[4] -> (1 : 2 : 0 : 1) (CM)
+  disc = -28 -> rats[3] -> (0 : 1 : 1 : 0) (CM)
+Time: 1.020
+
+D=-32 component field: x^2 - 4*x + 2
+D=-32 points on the eqs_quos X_0(137)* model: [
+[
+2,
+1/2*(-comp_nfY.1 + 6),
+-comp_nfY.1 + 4,
+1
+],
+[
+2,
+1/2*(comp_nfY.1 + 2),
+comp_nfY.1,
+1
+]
+]
+
+[cache] loaded jmap for level 137
+
+HilbertClassPolynomial(-4) = x - 1728
+  D=-4 preimage j = 1728 : root of H_(-4) = true
+  D=-4 preimage j = 1728 : root of H_(-4) = true
+
+HilbertClassPolynomial(-11) = x + 32768
+  D=-11 preimage j = -32768 : root of H_(-11) = true
+  D=-11 preimage j = -32768 : root of H_(-11) = true
+
+HilbertClassPolynomial(-32) = x^2 - 52250000*x + 12167000000
+  D=-32 preimage j = -18473000*r1 + 26125000 : root of H_(-32) = true
+  D=-32 preimage j = -18473000*r1 + 26125000 : root of H_(-32) = true
+  D=-32 preimage j = -18473000*r2 + 26125000 : root of H_(-32) = true
+  D=-32 preimage j = -18473000*r2 + 26125000 : root of H_(-32) = true
+
+=== Exceptional point: preimage on X_0(137) and its j-invariant ===
+  field: Algebraically closed field with 2 variables over Rational Field
+Defining relations:
+[
+r2^2 + 31159/256,
+r1^2 + 31159/256
+]
+  j = -9281040308790916967443095886224534005155665/21778071482940061661655974875633165533184*r1 - 423554849102365349285527612080396097711989843/348449143727040986586495598010130648530944
+  field: Algebraically closed field with 2 variables over Rational Field
+Defining relations:
+[
+r2^2 + 31159/256,
+r1^2 + 31159/256
+]
+  j = -9281040308790916967443095886224534005155665/21778071482940061661655974875633165533184*r2 - 423554849102365349285527612080396097711989843/348449143727040986586495598010130648530944
+test_137_jmap: 23 assertions, all passed
+@@TEST_RESULT@@ PASS

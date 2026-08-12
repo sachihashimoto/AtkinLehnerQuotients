@@ -1,0 +1,18 @@
+Loading "src/cm_points.m"
+Loading "tests/assertions.m"
+
+=== Count matches NumberOfOptimalEmbeddings ===
+
+=== Every matrix is an optimal embedding ===
+
+=== Imprimitive fixed-point form does not imply non-optimal ===
+
+=== taus: upper half plane, descending Im (NON-strict) ===
+
+=== Local obstruction returns [], does not error ===
+
+=== Non-squarefree level raises a clear error ===
+
+=== Regression: the null-universe bug (7 of 16 conductor cases) ===
+test_cm_points: 67 assertions, all passed
+@@TEST_RESULT@@ PASS

@@ -1,0 +1,1383 @@
+Loading "src/AtkinLehner.m"
+Loading "QuadraticPoints/models_and_maps.m"
+Loading "src/cm_points.m"
+Loading "src/cm_orders.m"
+Loading "src/star_quotients.m"
+Loading "src/modelsX0Nstar.m"
+Loading "src/star_model_cache.m"
+Loading "src/star_degree.m"
+Loading "src/cm_numerics.m"
+Loading "src/classify_covers.m"
+Loading "src/fields_of_definition.m"
+Loading "src/labeling.m"
+Loading "src/point_search.m"
+Loading "tests/assertions.m"
+
+=== Genus 3: check_exceptional_X0Nstar(3) level set ===
+--------------------------------
+[ <97, 1> ]
+Genus: 3
+[cache] loaded 3000-term star forms for level 97
+found CM point at discriminant -3
+found CM point at discriminant -4
+found CM point at discriminant -8
+found CM point at discriminant -43
+found CM point at discriminant -27
+found CM point at discriminant -163
+found CM point at discriminant -11
+found CM point at discriminant -12
+found CM point at discriminant -16
+Actual points: [ (4 : 2 : 1), (1 : 1 : 1), (1 : 1 : 0), (2 : 1 : 1), (1 : 2 : 1), (6 : 5/2 : 1), (3 : 1 : 1), (1 : 0 : 1), (1 : 0 : 0), (0 : 1 : 0) ]
+Special points: 10
+--------------------------------
+[ <109, 1> ]
+Genus: 3
+[cache] loaded 3000-term star forms for level 109
+found CM point at discriminant -3
+found CM point at discriminant -4
+found CM point at discriminant -7
+found CM point at discriminant -43
+found CM point at discriminant -27
+found CM point at discriminant -28
+found CM point at discriminant -12
+found CM point at discriminant -16
+Actual points: [ (0 : 0 : 1), (1 : 3 : 1), (2 : 1 : 1), (0 : 1 : 1), (2 : 2 : 1), (3/2 : 5/2 : 1), (1 : 0 : 0), (1 : 1 : 1), (1 : 1 : 0) ]
+Special points: 9
+--------------------------------
+[ <113, 1> ]
+Genus: 3
+[cache] loaded 3000-term star forms for level 113
+found CM point at discriminant -4
+found CM point at discriminant -7
+found CM point at discriminant -8
+found CM point at discriminant -163
+found CM point at discriminant -11
+found CM point at discriminant -28
+found CM point at discriminant -16
+Actual points: [ (3 : 2 : 1), (6 : 3 : 1), (1 : 0 : 0), (0 : 1 : 0), (1 : 1/2 : 1), (1 : 0 : 1), (2 : 1 : 1), (1 : 1 : 0) ]
+Special points: 8
+--------------------------------
+[ <127, 1> ]
+Genus: 3
+[cache] loaded 3000-term star forms for level 127
+found CM point at discriminant -3
+found CM point at discriminant -7
+found CM point at discriminant -43
+found CM point at discriminant -27
+found CM point at discriminant -28
+found CM point at discriminant -12
+found CM point at discriminant -67
+Actual points: [ (4 : 2 : 1), (1 : 1 : 0), (5/2 : 3/2 : 1), (2 : 1 : 1), (1 : 0 : 1), (0 : 1 : 1), (1 : 0 : 0), (0 : 1 : 0) ]
+Special points: 8
+--------------------------------
+[ <139, 1> ]
+Genus: 3
+[cache] loaded 3000-term star forms for level 139
+found CM point at discriminant -19
+found CM point at discriminant -3
+found CM point at discriminant -8
+found CM point at discriminant -43
+found CM point at discriminant -27
+found CM point at discriminant -12
+Actual points: [ (1 : 1 : 1), (2 : 1 : 1), (0 : 0 : 1), (1 : 0 : 1), (0 : 1 : 1), (2 : -2 : 1), (1 : 0 : 0) ]
+Special points: 7
+--------------------------------
+[ <149, 1> ]
+Genus: 3
+[cache] loaded 3000-term star forms for level 149
+found CM point at discriminant -19
+found CM point at discriminant -4
+found CM point at discriminant -7
+found CM point at discriminant -28
+found CM point at discriminant -16
+found CM point at discriminant -67
+Actual points: [ (0 : 0 : 1), (1 : -1 : 1), (1 : 0 : 1), (3 : 2 : 1), (2 : 0 : 1), (1 : 0 : 0), (1 : 1 : 1) ]
+Special points: 7
+--------------------------------
+[ <151, 1> ]
+Genus: 3
+[cache] loaded 3000-term star forms for level 151
+found CM point at discriminant -3
+found CM point at discriminant -7
+found CM point at discriminant -27
+found CM point at discriminant -163
+found CM point at discriminant -28
+found CM point at discriminant -12
+found CM point at discriminant -67
+Actual points: [ (2 : 1 : 1), (1 : 2 : 1), (2 : 0 : 1), (-1 : -2 : 1), (4 : 2 : 1), (1 : 0 : 0), (0 : 1 : 0), (2 : 3/2 : 1) ]
+Special points: 8
+--------------------------------
+[ <2, 1>, <89, 1> ]
+Genus: 3
+[cache] loaded 3000-term star forms for level 178
+found CM point at discriminant -4
+found CM point at discriminant -8
+found CM point at discriminant -16
+found CM point at discriminant -88
+found CM point at discriminant -100
+found CM point at discriminant -20
+found CM point at discriminant -72
+found CM point at discriminant -36
+found CM point at discriminant -40
+Actual points: [ (0 : -1 : 1), (1 : 1 : 1), (1 : -2 : 1), (1/2 : -5/4 : 1), (3 : 0 : 1), (2 : 1 : 1), (0 : 0 : 1), (9/4 : 1/2 : 1), (1 : 0 : 1), (1 : 0 : 0), (0 : 1 : 0) ]
+Special points: 10
+Found 1 exceptional points on level [ 2, 89 ]
+--------------------------------
+[ <179, 1> ]
+Genus: 3
+[cache] loaded 3000-term star forms for level 179
+found CM point at discriminant -7
+found CM point at discriminant -8
+found CM point at discriminant -163
+found CM point at discriminant -11
+found CM point at discriminant -28
+Actual points: [ (1 : 2 : 1), (1 : 0 : 1), (1 : 0 : 0), (-1 : 3 : 1), (1 : 1 : 1), (0 : 1 : 0) ]
+Special points: 6
+--------------------------------
+[ <3, 1>, <61, 1> ]
+Genus: 3
+[cache] loaded 3000-term star forms for level 183
+found CM point at discriminant -3
+found CM point at discriminant -27
+found CM point at discriminant -12
+found CM point at discriminant -48
+found CM point at discriminant -15
+found CM point at discriminant -60
+found CM point at discriminant -147
+found CM point at discriminant -75
+found CM point at discriminant -123
+Actual points: [ (2 : 0 : 1), (0 : 0 : 1), (2 : 1 : 1), (0 : 1 : 1), (30 : 21 : 1), (1/2 : 0 : 1), (1 : 0 : 0), (0 : -1 : 1), (3/2 : 1 : 1), (0 : -2 : 1), (-20/9 : -7/3 : 1) ]
+Special points: 10
+Found 1 exceptional points on level [ 3, 61 ]
+--------------------------------
+[ <5, 1>, <37, 1> ]
+Genus: 3
+[cache] loaded 3000-term star forms for level 185
+found CM point at discriminant -4
+found CM point at discriminant -11
+found CM point at discriminant -16
+found CM point at discriminant -115
+found CM point at discriminant -40
+found CM point at discriminant -555
+Actual points: [ (2 : 1 : 1), (1 : 0 : 1), (5/2 : 1 : 1), (1 : 2 : 1), (0 : 1 : 1), (5/2 : -1 : 1), (1 : 0 : 0) ]
+Special points: 7
+--------------------------------
+[ <11, 1>, <17, 1> ]
+Genus: 3
+[cache] loaded 3000-term star forms for level 187
+found CM point at discriminant -19
+found CM point at discriminant -8
+found CM point at discriminant -43
+found CM point at discriminant -51
+found CM point at discriminant -187
+Actual points: [ (1 : 1 : 0), (-1 : 2 : 1), (0 : 0 : 1), (1 : -1/2 : 1), (1 : 0 : 0), (0 : 1 : 0) ]
+Special points: 6
+--------------------------------
+[ <2, 1>, <97, 1> ]
+Genus: 3
+[cache] loaded 3000-term star forms for level 194
+found CM point at discriminant -4
+found CM point at discriminant -8
+found CM point at discriminant -12
+found CM point at discriminant -16
+found CM point at discriminant -88
+found CM point at discriminant -100
+found CM point at discriminant -24
+found CM point at discriminant -72
+found CM point at discriminant -36
+Actual points: [ (2 : 0 : 1), (1 : 1 : 1), (1 : 1 : 0), (7/5 : -3/5 : 1), (0 : 0 : 1), (2 : -1 : 1), (1/2 : 1/2 : 1), (1 : 0 : 1), (1 : 0 : 0), (0 : 1 : 0) ]
+Special points: 10
+--------------------------------
+[ <7, 1>, <29, 1> ]
+Genus: 3
+[cache] loaded 3000-term star forms for level 203
+found CM point at discriminant -7
+found CM point at discriminant -28
+found CM point at discriminant -91
+found CM point at discriminant -112
+found CM point at discriminant -35
+Actual points: [ (3 : 1 : 1), (2 : 2 : 1), (1 : 0 : 1), (3 : 2 : 1), (5 : 4 : 1), (1 : 0 : 0) ]
+Special points: 6
+--------------------------------
+[ <7, 1>, <31, 1> ]
+Genus: 3
+[cache] loaded 3000-term star forms for level 217
+found CM point at discriminant -3
+found CM point at discriminant -27
+found CM point at discriminant -12
+found CM point at discriminant -91
+found CM point at discriminant -427
+Actual points: [ (8/3 : 1 : 1), (1 : 1 : 1), (7/5 : 1/5 : 1), (2 : 1/2 : 1), (1 : 0 : 0), (2 : 0 : 1) ]
+Special points: 6
+--------------------------------
+[ <239, 1> ]
+Genus: 3
+[cache] loaded 3000-term star forms for level 239
+found CM point at discriminant -19
+found CM point at discriminant -7
+found CM point at discriminant -43
+found CM point at discriminant -28
+Actual points: [ (1 : 0 : 1), (0 : -1 : 1), (1 : 0 : 0), (0 : 1 : 1), (1 : 1 : 1) ]
+Special points: 5
+--------------------------------
+[ <2, 1>, <3, 1>, <41, 1> ]
+Genus: 3
+[cache] loaded 3000-term star forms for level 246
+found CM point at discriminant -8
+found CM point at discriminant -20
+found CM point at discriminant -72
+found CM point at discriminant -36
+found CM point at discriminant -408
+found CM point at discriminant -84
+found CM point at discriminant -228
+found CM point at discriminant -168
+found CM point at discriminant -312
+found CM point at discriminant -132
+Actual points: [ (1/4 : 1/2 : 1), (1 : -1 : 1), (-1 : 1 : 1), (0 : 1 : 0), (1 : 0 : 0), (2 : 1 : 1), (1 : 1 : 1), (1 : 1/2 : 1), (0 : 1/2 : 1), (0 : 0 : 1), (-2 : 2 : 1), (0 : -1 : 1) ]
+Special points: 11
+Found 1 exceptional points on level [ 2, 3, 41 ]
+--------------------------------
+[ <3, 1>, <83, 1> ]
+Genus: 3
+[cache] loaded 3000-term star forms for level 249
+found CM point at discriminant -8
+found CM point at discriminant -267
+found CM point at discriminant -15
+found CM point at discriminant -60
+found CM point at discriminant -24
+Actual points: [ (1 : 1 : 1), (0 : 0 : 1), (2 : 2 : 1), (-1 : -1 : 1), (1 : 0 : 0), (0 : 1 : 0) ]
+Special points: 6
+--------------------------------
+[ <2, 1>, <3, 1>, <43, 1> ]
+Genus: 3
+[cache] loaded 3000-term star forms for level 258
+found CM point at discriminant -8
+found CM point at discriminant -12
+found CM point at discriminant -48
+found CM point at discriminant -20
+found CM point at discriminant -72
+found CM point at discriminant -168
+found CM point at discriminant -372
+found CM point at discriminant -708
+found CM point at discriminant -120
+found CM point at discriminant -132
+Actual points: [ (-1 : -1 : 1), (1 : -1 : 1), (1/2 : 1/2 : 1), (0 : 0 : 1), (-1 : 1 : 0), (1 : 0 : 0), (1 : 1 : 1), (2 : 1 : 0), (0 : -1/2 : 1), (2 : -1 : 1), (0 : 1 : 1) ]
+Special points: 11
+--------------------------------
+[ <2, 1>, <3, 1>, <47, 1> ]
+Genus: 3
+[cache] loaded 3000-term star forms for level 282
+found CM point at discriminant -15
+found CM point at discriminant -60
+found CM point at discriminant -20
+found CM point at discriminant -228
+found CM point at discriminant -372
+found CM point at discriminant -312
+found CM point at discriminant -120
+found CM point at discriminant -132
+Actual points: [ (2 : 0 : 1), (-1 : 2 : 1), (2 : 1 : 1), (0 : 2 : 1), (1 : 0 : 1), (1 : 0 : 0), (0 : -1 : 1), (-1 : 0 : 1), (3 : 2 : 1) ]
+Special points: 9
+--------------------------------
+[ <2, 1>, <5, 1>, <29, 1> ]
+Genus: 3
+[cache] loaded 3000-term star forms for level 290
+found CM point at discriminant -4
+found CM point at discriminant -16
+found CM point at discriminant -100
+found CM point at discriminant -20
+found CM point at discriminant -24
+found CM point at discriminant -36
+found CM point at discriminant -760
+found CM point at discriminant -180
+found CM point at discriminant -120
+Actual points: [ (2 : 0 : 1), (0 : -1 : 1), (-1 : -3 : 1), (0 : -2 : 1), (-2/9 : -5/3 : 1), (3 : 1 : 1), (0 : 0 : 1), (1 : 0 : 1), (5/3 : 2/9 : 1), (1 : 0 : 0), (0 : 1 : 0) ]
+Special points: 10
+Found 1 exceptional points on level [ 2, 5, 29 ]
+--------------------------------
+[ <5, 1>, <59, 1> ]
+Genus: 3
+[cache] loaded 3000-term star forms for level 295
+found CM point at discriminant -11
+found CM point at discriminant -235
+found CM point at discriminant -115
+found CM point at discriminant -40
+Actual points: [ (1/2 : -1/2 : 1), (0 : 0 : 1), (0 : 1 : 0), (1 : 0 : 0), (1 : 1 : 0) ]
+Special points: 5
+--------------------------------
+[ <3, 1>, <101, 1> ]
+Genus: 3
+[cache] loaded 3000-term star forms for level 303
+found CM point at discriminant -267
+found CM point at discriminant -24
+found CM point at discriminant -123
+Actual points: [ (0 : 0 : 1), (1 : -1 : 1), (1 : 0 : 0), (1 : 1 : 1) ]
+Special points: 4
+--------------------------------
+[ <2, 1>, <5, 1>, <31, 1> ]
+Genus: 3
+[cache] loaded 3000-term star forms for level 310
+found CM point at discriminant -15
+found CM point at discriminant -60
+found CM point at discriminant -24
+found CM point at discriminant -340
+found CM point at discriminant -520
+found CM point at discriminant -120
+Actual points: [ (6 : -2 : 1), (0 : 0 : 1), (1 : 0 : 0), (0 : 1 : 0), (2 : 2 : 1), (1 : 1/2 : 1), (2 : -1/2 : 1), (2 : 1 : 1) ]
+Special points: 7
+Found 1 exceptional points on level [ 2, 5, 31 ]
+--------------------------------
+[ <2, 1>, <3, 1>, <53, 1> ]
+Genus: 3
+[cache] loaded 3000-term star forms for level 318
+found CM point at discriminant -15
+found CM point at discriminant -60
+found CM point at discriminant -24
+found CM point at discriminant -36
+found CM point at discriminant -408
+found CM point at discriminant -228
+found CM point at discriminant -168
+found CM point at discriminant -372
+found CM point at discriminant -312
+Actual points: [ (2 : -8 : 1), (2 : 1 : 1), (0 : 0 : 1), (1 : 0 : 1), (0 : -1 : 1), (2 : 0 : 1), (-1 : -2 : 1), (1 : 0 : 0), (8 : -2 : 1), (0 : -2 : 1), (0 : 1 : 0) ]
+Special points: 10
+Found 1 exceptional points on level [ 2, 3, 53 ]
+--------------------------------
+[ <7, 1>, <47, 1> ]
+Genus: 3
+[cache] loaded 3000-term star forms for level 329
+found CM point at discriminant -19
+found CM point at discriminant -91
+found CM point at discriminant -35
+Actual points: [ (-1/4 : -1/2 : 1), (0 : 1 : 0), (1 : 0 : 0), (0 : -1 : 1), (1 : 1 : 0) ]
+Special points: 4
+Found 1 exceptional points on level [ 7, 47 ]
+--------------------------------
+[ <3, 1>, <11, 1>, <13, 1> ]
+Genus: 3
+[cache] loaded 3000-term star forms for level 429
+found CM point at discriminant -51
+found CM point at discriminant -627
+found CM point at discriminant -195
+found CM point at discriminant -3003
+Actual points: [ (0 : 0 : 1), (1 : -1 : 1), (4 : 2 : 1), (1 : 0 : 0), (3 : 1 : 1) ]
+Special points: 5
+--------------------------------
+[ <2, 1>, <5, 1>, <43, 1> ]
+Genus: 3
+[cache] loaded 3000-term star forms for level 430
+found CM point at discriminant -20
+found CM point at discriminant -340
+found CM point at discriminant -280
+found CM point at discriminant -760
+found CM point at discriminant -180
+found CM point at discriminant -120
+Actual points: [ (1 : -1/2 : 1), (-3 : -2 : 1), (-2 : 1 : 0), (1 : 0 : 1), (1 : 0 : 0), (1 : 1 : 1), (1 : 1 : 0), (3/4 : 1/2 : 1) ]
+Special points: 7
+Found 1 exceptional points on level [ 2, 5, 43 ]
+--------------------------------
+[ <5, 1>, <7, 1>, <13, 1> ]
+Genus: 3
+[cache] loaded 3000-term star forms for level 455
+found CM point at discriminant -91
+found CM point at discriminant -35
+found CM point at discriminant -40
+found CM point at discriminant -315
+found CM point at discriminant -595
+found CM point at discriminant -195
+Actual points: [ (0 : -1 : 1), (-1 : 1 : 0), (1/2 : -1/2 : 1), (-1 : -2/3 : 1), (3/4 : 1/2 : 1), (1 : 0 : 1), (1 : 0 : 0), (0 : 1 : 0) ]
+Special points: 7
+Found 1 exceptional points on level [ 5, 7, 13 ]
+--------------------------------
+[ <2, 1>, <3, 1>, <7, 1>, <11, 1> ]
+Genus: 3
+[cache] loaded 3000-term star forms for level 462
+found CM point at discriminant -24
+found CM point at discriminant -84
+found CM point at discriminant -132
+found CM point at discriminant -420
+found CM point at discriminant -1848
+Actual points: [ (1 : -1 : 1), (2 : 1 : 0), (-2 : 1 : 0), (1 : 0 : 1), (1 : 0 : 0), (51/11 : 24/11 : 1) ]
+Special points: 6
+--------------------------------
+[ <2, 1>, <3, 1>, <5, 1>, <17, 1> ]
+Genus: 3
+[cache] loaded 9000-term star forms for level 510
+found CM point at discriminant -15
+found CM point at discriminant -60
+found CM point at discriminant -36
+found CM point at discriminant -84
+found CM point at discriminant -240
+found CM point at discriminant -120
+Actual points: [ (4/3 : 5/3 : 1), (0 : 1/3 : 1), (8 : 3 : 1), (0 : 0 : 1), (1 : 0 : 0), (4 : -1 : 1), (2 : -1 : 1), (0 : 1 : 1) ]
+Special points: 7
+Found 1 exceptional points on level [ 2, 3, 5, 17 ]
+
+=== Genus 3: analyze_exceptional (max_class_num:=8, confirm_deg2:=true) ===
+
+=== LabelAndAnalyze for N=178 ===
+  disc = -4 -> rats[4] -> (1/2 : -5/4 : 1) (CM)
+  disc = -88 -> rats[7] -> (0 : 0 : 1) (CM)
+  disc = -36 -> rats[6] -> (2 : 1 : 1) (CM)
+  disc = -100 -> rats[5] -> (3 : 0 : 1) (CM)
+  disc = -8 -> rats[2] -> (1 : 1 : 1) (CM)
+  disc = -40 -> rats[1] -> (0 : -1 : 1) (CM)
+  disc = -20 -> rats[9] -> (1 : 0 : 1) (CM)
+  disc = -72 -> rats[3] -> (1 : -2 : 1) (CM)
+  disc = -16 -> rats[11] -> (0 : 1 : 0) (CM)
+  Cusp -> rats[10]
+Labelled 10 CM+cusp, 1 exceptional
+  exceptional: rats[8] = (9/4 : 1/2 : 1)
+Computing degree 2 CM points
+Done.
+Planes found: 10 (4 with algebraic CM match)
+  exc=rats[8]: 2*z[1] - z[2] - 4*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -136, -72 }  matched=true
+    exact rational points on plane: [ (1 : -2 : 1), (9/4 : 1/2 : 1) ]
+    confirmed component matches (component_idx, disc): [* <1, -136> *]
+  exc=rats[8]: 2*z[1] - 5*z[2] - 2*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -20 }  matched=false
+    exact rational points on plane: [ (9/4 : 1/2 : 1), (1 : 0 : 1) ]
+  exc=rats[8]: 2*z[1] + z[2] - 5*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -180, -36 }  matched=true
+    exact rational points on plane: [ (2 : 1 : 1), (9/4 : 1/2 : 1) ]
+    confirmed component matches (component_idx, disc): [* <1, -180> *]
+  exc=rats[8]: 2*z[1] - 3*z[2] - 3*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -388, -40 }  matched=true
+    exact rational points on plane: [ (0 : -1 : 1), (9/4 : 1/2 : 1) ]
+    confirmed component matches (component_idx, disc): [* <1, -388> *]
+  exc=rats[8]: 2*z[1] + 3*z[2] - 6*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -292, -100 }  matched=true
+    exact rational points on plane: [ (3 : 0 : 1), (9/4 : 1/2 : 1) ]
+    confirmed component matches (component_idx, disc): [* <1, -292> *]
+  exc=rats[8]: 2*z[1] - 9*z[2]=0  comps=[ 1, 1, 2 ]  CM={ -88 }  matched=false
+    exact rational points on plane: [ (0 : 0 : 1), (9/4 : 1/2 : 1) ]
+  exc=rats[8]: 2*z[1] + 5*z[2] - 7*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -8 }  matched=false
+    exact rational points on plane: [ (1 : 1 : 1), (9/4 : 1/2 : 1) ]
+  exc=rats[8]: 4*z[1] - 4*z[2] - 7*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -4 }  matched=false
+    exact rational points on plane: [ (1/2 : -5/4 : 1), (9/4 : 1/2 : 1) ]
+  exc=rats[8]: 4*z[1] - 9*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -16 }  matched=false
+    exact rational points on plane: [ (9/4 : 1/2 : 1), (0 : 1 : 0) ]
+  exc=rats[8]: 2*z[2] - z[3]=0  comps=[ 1, 1, 2 ]  CM={ cusp }  matched=false
+    exact rational points on plane: [ (9/4 : 1/2 : 1), (1 : 0 : 0) ]
+    inconclusive component matches (component_idx, disc): [* <1, -32>, <1, -64> *]
+    CM-inconclusive (raise precision): [ -64, -32 ]
+All exceptional points geometrically covered: true
+All exceptional points CM-confirmed: true
+
+=== LabelAndAnalyze for N=183 ===
+  disc = -3 -> rats[5] -> (30 : 21 : 1) (CM)
+  disc = -60 -> rats[9] -> (3/2 : 1 : 1) (CM)
+  disc = -123 -> rats[10] -> (0 : -2 : 1) (CM)
+  disc = -12 -> rats[3] -> (2 : 1 : 1) (CM)
+  disc = -75 -> rats[4] -> (0 : 1 : 1) (CM)
+  disc = -15 -> rats[6] -> (1/2 : 0 : 1) (CM)
+  disc = -27 -> rats[2] -> (0 : 0 : 1) (CM)
+  disc = -48 -> rats[8] -> (0 : -1 : 1) (CM)
+  disc = -147 -> rats[1] -> (2 : 0 : 1) (CM)
+  Cusp -> rats[7]
+Labelled 10 CM+cusp, 1 exceptional
+  exceptional: rats[11] = (-20/9 : -7/3 : 1)
+Computing degree 2 CM points
+Done.
+Planes found: 10 (2 with algebraic CM match)
+  exc=rats[11]: 15*z[1] - 19*z[2] - 11*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -12 }  matched=false
+    exact rational points on plane: [ (2 : 1 : 1), (-20/9 : -7/3 : 1) ]
+  exc=rats[11]: 60*z[1] - 67*z[2] - 23*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -60 }  matched=false
+    exact rational points on plane: [ (3/2 : 1 : 1), (-20/9 : -7/3 : 1) ]
+  exc=rats[11]: 6*z[1] - 7*z[2] - 3*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -15 }  matched=false
+    exact rational points on plane: [ (1/2 : 0 : 1), (-20/9 : -7/3 : 1) ]
+  exc=rats[11]: 21*z[1] - 38*z[2] - 42*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -147 }  matched=false
+    exact rational points on plane: [ (2 : 0 : 1), (-20/9 : -7/3 : 1) ]
+  exc=rats[11]: 21*z[1] - 29*z[2] - 21*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -3 }  matched=false
+    exact rational points on plane: [ (30 : 21 : 1), (-20/9 : -7/3 : 1) ]
+  exc=rats[11]: 3*z[2] + 7*z[3]=0  comps=[ 1, 1, 2 ]  CM={ cusp }  matched=false
+    exact rational points on plane: [ (1 : 0 : 0), (-20/9 : -7/3 : 1) ]
+  exc=rats[11]: 21*z[1] - 20*z[2]=0  comps=[ 1, 1, 2 ]  CM={ -27 }  matched=false
+    exact rational points on plane: [ (0 : 0 : 1), (-20/9 : -7/3 : 1) ]
+  exc=rats[11]: 3*z[1] - 2*z[2] + 2*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -483, -75 }  matched=true
+    exact rational points on plane: [ (0 : 1 : 1), (-20/9 : -7/3 : 1) ]
+    confirmed component matches (component_idx, disc): [* <1, -483> *]
+  exc=rats[11]: 3*z[1] - 5*z[2] - 5*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -408, -48 }  matched=true
+    exact rational points on plane: [ (0 : -1 : 1), (-20/9 : -7/3 : 1) ]
+    confirmed component matches (component_idx, disc): [* <1, -408> *]
+  exc=rats[11]: 3*z[1] - 20*z[2] - 40*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -123 }  matched=false
+    exact rational points on plane: [ (0 : -2 : 1), (-20/9 : -7/3 : 1) ]
+All exceptional points geometrically covered: true
+All exceptional points CM-confirmed: true
+
+=== LabelAndAnalyze for N=246 ===
+  disc = -132 -> rats[4] -> (0 : 1 : 0) (CM)
+  disc = -72 -> rats[9] -> (0 : 1/2 : 1) (CM)
+  disc = -408 -> rats[6] -> (2 : 1 : 1) (CM)
+  disc = -228 -> rats[3] -> (-1 : 1 : 1) (CM)
+  disc = -168 -> rats[2] -> (1 : -1 : 1) (CM)
+  disc = -20 -> rats[10] -> (0 : 0 : 1) (CM)
+  disc = -36 -> rats[7] -> (1 : 1 : 1) (CM)
+  disc = -8 -> rats[12] -> (0 : -1 : 1) (CM)
+  disc = -84 -> rats[8] -> (1 : 1/2 : 1) (CM)
+  disc = -312 -> rats[11] -> (-2 : 2 : 1) (CM)
+  Cusp -> rats[5]
+Labelled 11 CM+cusp, 1 exceptional
+  exceptional: rats[1] = (1/4 : 1/2 : 1)
+Computing degree 2 CM points
+Done.
+Planes found: 9 (3 with algebraic CM match)
+  exc=rats[1]: 2*z[2] - z[3]=0  comps=[ 1, 1, 1, 1 ]  CM={ -84, -72, cusp }  matched=false
+    exact rational points on plane: [ (1/4 : 1/2 : 1), (1 : 0 : 0), (1 : 1/2 : 1), (0 : 1/2 : 1) ]
+  exc=rats[1]: 2*z[1] + 5*z[2] - 3*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -228 }  matched=false
+    exact rational points on plane: [ (1/4 : 1/2 : 1), (-1 : 1 : 1) ]
+  exc=rats[1]: 2*z[1] - 7*z[2] + 3*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -408 }  matched=false
+    exact rational points on plane: [ (1/4 : 1/2 : 1), (2 : 1 : 1) ]
+  exc=rats[1]: 2*z[1] - 3*z[2] + z[3]=0  comps=[ 1, 1, 2 ]  CM={ -564, -36 }  matched=true
+    exact rational points on plane: [ (1/4 : 1/2 : 1), (1 : 1 : 1) ]
+    confirmed component matches (component_idx, disc): [* <1, -564> *]
+  exc=rats[1]: 2*z[1] + z[2] - z[3]=0  comps=[ 1, 1, 2 ]  CM={ -264, -168 }  matched=true
+    exact rational points on plane: [ (1/4 : 1/2 : 1), (1 : -1 : 1) ]
+    confirmed component matches (component_idx, disc): [* <1, -264> *]
+  exc=rats[1]: 4*z[1] - z[3]=0  comps=[ 1, 1, 2 ]  CM={ -132 }  matched=false
+    exact rational points on plane: [ (1/4 : 1/2 : 1), (0 : 1 : 0) ]
+  exc=rats[1]: 6*z[1] - z[2] - z[3]=0  comps=[ 1, 1, 2 ]  CM={ -8 }  matched=false
+    exact rational points on plane: [ (1/4 : 1/2 : 1), (0 : -1 : 1) ]
+  exc=rats[1]: 2*z[1] + 3*z[2] - 2*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -312 }  matched=false
+    exact rational points on plane: [ (1/4 : 1/2 : 1), (-2 : 2 : 1) ]
+  exc=rats[1]: 2*z[1] - z[2]=0  comps=[ 1, 1, 2 ]  CM={ -39, -20 }  matched=true
+    exact rational points on plane: [ (1/4 : 1/2 : 1), (0 : 0 : 1) ]
+    confirmed component matches (component_idx, disc): [* <1, -39> *]
+All exceptional points geometrically covered: true
+All exceptional points CM-confirmed: true
+
+=== LabelAndAnalyze for N=290 ===
+  disc = -24 -> rats[2] -> (0 : -1 : 1) (CM)
+  disc = -4 -> rats[9] -> (5/3 : 2/9 : 1) (CM)
+  disc = -180 -> rats[1] -> (2 : 0 : 1) (CM)
+  disc = -760 -> rats[6] -> (3 : 1 : 1) (CM)
+  disc = -36 -> rats[11] -> (0 : 1 : 0) (CM)
+  disc = -120 -> rats[7] -> (0 : 0 : 1) (CM)
+  disc = -100 -> rats[4] -> (0 : -2 : 1) (CM)
+  disc = -20 -> rats[3] -> (-1 : -3 : 1) (CM)
+  disc = -16 -> rats[8] -> (1 : 0 : 1) (CM)
+  Cusp -> rats[10]
+Labelled 10 CM+cusp, 1 exceptional
+  exceptional: rats[5] = (-2/9 : -5/3 : 1)
+Computing degree 2 CM points
+Done.
+Planes found: 10 (3 with algebraic CM match)
+  exc=rats[5]: 12*z[1] - 7*z[2] - 9*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -20 }  matched=false
+    exact rational points on plane: [ (-1 : -3 : 1), (-2/9 : -5/3 : 1) ]
+  exc=rats[5]: 9*z[1] - 9*z[2] - 13*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -4 }  matched=false
+    exact rational points on plane: [ (-2/9 : -5/3 : 1), (5/3 : 2/9 : 1) ]
+  exc=rats[5]: 24*z[1] - 29*z[2] - 43*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -760 }  matched=false
+    exact rational points on plane: [ (-2/9 : -5/3 : 1), (3 : 1 : 1) ]
+  exc=rats[5]: 3*z[1] - 4*z[2] - 6*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -1060, -180 }  matched=true
+    exact rational points on plane: [ (2 : 0 : 1), (-2/9 : -5/3 : 1) ]
+    confirmed component matches (component_idx, disc): [* <1, -1060> *]
+  exc=rats[5]: 15*z[1] - 2*z[2]=0  comps=[ 1, 1, 2 ]  CM={ -120 }  matched=false
+    exact rational points on plane: [ (-2/9 : -5/3 : 1), (0 : 0 : 1) ]
+  exc=rats[5]: 3*z[1] - z[2] - z[3]=0  comps=[ 1, 1, 2 ]  CM={ -64, -24 }  matched=true
+    exact rational points on plane: [ (0 : -1 : 1), (-2/9 : -5/3 : 1) ]
+    confirmed component matches (component_idx, disc): [* <1, -64> *]
+  exc=rats[5]: 3*z[1] + 2*z[2] + 4*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -1240, -100 }  matched=true
+    exact rational points on plane: [ (0 : -2 : 1), (-2/9 : -5/3 : 1) ]
+    confirmed component matches (component_idx, disc): [* <1, -1240> *]
+  exc=rats[5]: 9*z[1] + 2*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -36 }  matched=false
+    exact rational points on plane: [ (-2/9 : -5/3 : 1), (0 : 1 : 0) ]
+  exc=rats[5]: 15*z[1] - 11*z[2] - 15*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -16 }  matched=false
+    exact rational points on plane: [ (-2/9 : -5/3 : 1), (1 : 0 : 1) ]
+  exc=rats[5]: 3*z[2] + 5*z[3]=0  comps=[ 1, 1, 2 ]  CM={ cusp }  matched=false
+    exact rational points on plane: [ (-2/9 : -5/3 : 1), (1 : 0 : 0) ]
+All exceptional points geometrically covered: true
+All exceptional points CM-confirmed: true
+
+=== LabelAndAnalyze for N=310 ===
+  disc = -60 -> rats[2] -> (0 : 0 : 1) (CM)
+  disc = -24 -> rats[4] -> (0 : 1 : 0) (CM)
+  disc = -120 -> rats[6] -> (1 : 1/2 : 1) (CM)
+  disc = -340 -> rats[8] -> (2 : 1 : 1) (CM)
+  disc = -15 -> rats[5] -> (2 : 2 : 1) (CM)
+  disc = -520 -> rats[7] -> (2 : -1/2 : 1) (CM)
+  Cusp -> rats[3]
+Labelled 7 CM+cusp, 1 exceptional
+  exceptional: rats[1] = (6 : -2 : 1)
+Computing degree 2 CM points
+Done.
+Planes found: 7 (3 with algebraic CM match)
+  exc=rats[1]: z[2] + 2*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -55, cusp }  matched=true
+    exact rational points on plane: [ (6 : -2 : 1), (1 : 0 : 0) ]
+    confirmed component matches (component_idx, disc): [* <1, -55> *]
+  exc=rats[1]: z[1] + 2*z[2] - 2*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -136, -120 }  matched=true
+    exact rational points on plane: [ (6 : -2 : 1), (1 : 1/2 : 1) ]
+    confirmed component matches (component_idx, disc): [* <1, -136> *]
+  exc=rats[1]: z[1] + z[2] - 4*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -840, -15 }  matched=true
+    exact rational points on plane: [ (6 : -2 : 1), (2 : 2 : 1) ]
+    confirmed component matches (component_idx, disc): [* <1, -840> *]
+  exc=rats[1]: 3*z[1] + 8*z[2] - 2*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -520 }  matched=false
+    exact rational points on plane: [ (6 : -2 : 1), (2 : -1/2 : 1) ]
+  exc=rats[1]: z[1] + 3*z[2]=0  comps=[ 1, 1, 2 ]  CM={ -60 }  matched=false
+    exact rational points on plane: [ (6 : -2 : 1), (0 : 0 : 1) ]
+  exc=rats[1]: z[1] - 6*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -24 }  matched=false
+    exact rational points on plane: [ (6 : -2 : 1), (0 : 1 : 0) ]
+  exc=rats[1]: 3*z[1] + 4*z[2] - 10*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -340 }  matched=false
+    exact rational points on plane: [ (6 : -2 : 1), (2 : 1 : 1) ]
+All exceptional points geometrically covered: true
+All exceptional points CM-confirmed: true
+
+=== LabelAndAnalyze for N=318 ===
+  disc = -60 -> rats[4] -> (1 : 0 : 1) (CM)
+  disc = -24 -> rats[5] -> (0 : -1 : 1) (CM)
+  disc = -408 -> rats[1] -> (2 : -8 : 1) (CM)
+  disc = -36 -> rats[3] -> (0 : 0 : 1) (CM)
+  disc = -15 -> rats[7] -> (-1 : -2 : 1) (CM)
+  disc = -372 -> rats[2] -> (2 : 1 : 1) (CM)
+  disc = -228 -> rats[10] -> (0 : -2 : 1) (CM)
+  disc = -312 -> rats[6] -> (2 : 0 : 1) (CM)
+  disc = -168 -> rats[11] -> (0 : 1 : 0) (CM)
+  Cusp -> rats[8]
+Labelled 10 CM+cusp, 1 exceptional
+  exceptional: rats[9] = (8 : -2 : 1)
+Computing degree 2 CM points
+Done.
+Planes found: 8 (1 with algebraic CM match)
+  exc=rats[9]: z[2] + 2*z[3]=0  comps=[ 1, 1, 1, 1 ]  CM={ -228, -15, cusp }  matched=false
+    exact rational points on plane: [ (-1 : -2 : 1), (1 : 0 : 0), (8 : -2 : 1), (0 : -2 : 1) ]
+  exc=rats[9]: z[1] + 4*z[2]=0  comps=[ 1, 1, 2 ]  CM={ -36 }  matched=false
+    exact rational points on plane: [ (0 : 0 : 1), (8 : -2 : 1) ]
+  exc=rats[9]: z[1] + 3*z[2] - 2*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -312 }  matched=false
+    exact rational points on plane: [ (2 : 0 : 1), (8 : -2 : 1) ]
+    inconclusive component matches (component_idx, disc): [* <1, -600> *]
+    CM-inconclusive (raise precision): [ -600 ]
+  exc=rats[9]: z[1] - z[2] - 10*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -408 }  matched=false
+    exact rational points on plane: [ (2 : -8 : 1), (8 : -2 : 1) ]
+  exc=rats[9]: z[1] + 8*z[2] + 8*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -24 }  matched=false
+    exact rational points on plane: [ (0 : -1 : 1), (8 : -2 : 1) ]
+  exc=rats[9]: z[1] + 2*z[2] - 4*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -852, -372 }  matched=true
+    exact rational points on plane: [ (2 : 1 : 1), (8 : -2 : 1) ]
+    confirmed component matches (component_idx, disc): [* <1, -852> *]
+  exc=rats[9]: 2*z[1] + 7*z[2] - 2*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -60 }  matched=false
+    exact rational points on plane: [ (1 : 0 : 1), (8 : -2 : 1) ]
+  exc=rats[9]: z[1] - 8*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -168 }  matched=false
+    exact rational points on plane: [ (8 : -2 : 1), (0 : 1 : 0) ]
+All exceptional points geometrically covered: true
+All exceptional points CM-confirmed: true
+
+=== LabelAndAnalyze for N=329 ===
+  disc = -91 -> rats[5] -> (1 : 1 : 0) (CM)
+  disc = -35 -> rats[4] -> (0 : -1 : 1) (CM)
+  disc = -19 -> rats[2] -> (0 : 1 : 0) (CM)
+  Cusp -> rats[3]
+Labelled 4 CM+cusp, 1 exceptional
+  exceptional: rats[1] = (-1/4 : -1/2 : 1)
+Computing degree 2 CM points
+Done.
+Planes found: 4 (2 with algebraic CM match)
+  exc=rats[1]: 4*z[1] + z[3]=0  comps=[ 1, 1, 2 ]  CM={ -19 }  matched=false
+    exact rational points on plane: [ (-1/4 : -1/2 : 1), (0 : 1 : 0) ]
+  exc=rats[1]: 2*z[2] + z[3]=0  comps=[ 1, 1, 2 ]  CM={ -203, cusp }  matched=true
+    exact rational points on plane: [ (-1/4 : -1/2 : 1), (1 : 0 : 0) ]
+    confirmed component matches (component_idx, disc): [* <1, -203> *]
+  exc=rats[1]: 2*z[1] + z[2] + z[3]=0  comps=[ 1, 1, 2 ]  CM={ -52, -35 }  matched=true
+    exact rational points on plane: [ (-1/4 : -1/2 : 1), (0 : -1 : 1) ]
+    confirmed component matches (component_idx, disc): [* <1, -52> *]
+  exc=rats[1]: 4*z[1] - 4*z[2] - z[3]=0  comps=[ 1, 1, 2 ]  CM={ -91 }  matched=false
+    exact rational points on plane: [ (-1/4 : -1/2 : 1), (1 : 1 : 0) ]
+All exceptional points geometrically covered: true
+All exceptional points CM-confirmed: true
+
+=== LabelAndAnalyze for N=430 ===
+  disc = -760 -> rats[3] -> (-2 : 1 : 0) (CM)
+  disc = -180 -> rats[1] -> (1 : -1/2 : 1) (CM)
+  disc = -120 -> rats[4] -> (1 : 0 : 1) (CM)
+  disc = -340 -> rats[2] -> (-3 : -2 : 1) (CM)
+  disc = -20 -> rats[6] -> (1 : 1 : 1) (CM)
+  disc = -280 -> rats[7] -> (1 : 1 : 0) (CM)
+  Cusp -> rats[5]
+Labelled 7 CM+cusp, 1 exceptional
+  exceptional: rats[8] = (3/4 : 1/2 : 1)
+Computing degree 2 CM points
+Done.
+Planes found: 7 (2 with algebraic CM match)
+  exc=rats[8]: 8*z[1] + 2*z[2] - 7*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -180 }  matched=false
+    exact rational points on plane: [ (1 : -1/2 : 1), (3/4 : 1/2 : 1) ]
+  exc=rats[8]: 2*z[1] - 3*z[2]=0  comps=[ 1, 1, 2 ]  CM={ -340 }  matched=false
+    exact rational points on plane: [ (-3 : -2 : 1), (3/4 : 1/2 : 1) ]
+  exc=rats[8]: 4*z[1] + 8*z[2] - 7*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -760 }  matched=false
+    exact rational points on plane: [ (-2 : 1 : 0), (3/4 : 1/2 : 1) ]
+  exc=rats[8]: 2*z[1] + z[2] - 2*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -220, -120 }  matched=true
+    exact rational points on plane: [ (1 : 0 : 1), (3/4 : 1/2 : 1) ]
+    confirmed component matches (component_idx, disc): [* <1, -220> *]
+  exc=rats[8]: 4*z[1] - 4*z[2] - z[3]=0  comps=[ 1, 1, 2 ]  CM={ -280 }  matched=false
+    exact rational points on plane: [ (1 : 1 : 0), (3/4 : 1/2 : 1) ]
+  exc=rats[8]: 2*z[2] - z[3]=0  comps=[ 1, 1, 2 ]  CM={ cusp }  matched=false
+    exact rational points on plane: [ (1 : 0 : 0), (3/4 : 1/2 : 1) ]
+    inconclusive component matches (component_idx, disc): [* <1, -820> *]
+    CM-inconclusive (raise precision): [ -820 ]
+  exc=rats[8]: 2*z[1] - z[2] - z[3]=0  comps=[ 1, 1, 2 ]  CM={ -260, -20 }  matched=true
+    exact rational points on plane: [ (1 : 1 : 1), (3/4 : 1/2 : 1) ]
+    confirmed component matches (component_idx, disc): [* <1, -260> *]
+All exceptional points geometrically covered: true
+All exceptional points CM-confirmed: true
+
+=== LabelAndAnalyze for N=455 ===
+  disc = -91 -> rats[2] -> (-1 : 1 : 0) (CM)
+  disc = -35 -> rats[8] -> (0 : 1 : 0) (CM)
+  disc = -595 -> rats[6] -> (1 : 0 : 1) (CM)
+  disc = -40 -> rats[3] -> (1/2 : -1/2 : 1) (CM)
+  disc = -195 -> rats[1] -> (0 : -1 : 1) (CM)
+  disc = -315 -> rats[4] -> (-1 : -2/3 : 1) (CM)
+  Cusp -> rats[7]
+Labelled 7 CM+cusp, 1 exceptional
+  exceptional: rats[5] = (3/4 : 1/2 : 1)
+Computing degree 2 CM points
+Done.
+Planes found: 7 (2 with algebraic CM match)
+  exc=rats[5]: 2*z[1] - z[2] - z[3]=0  comps=[ 1, 1, 2 ]  CM={ -819, -195 }  matched=true
+    exact rational points on plane: [ (0 : -1 : 1), (3/4 : 1/2 : 1) ]
+    confirmed component matches (component_idx, disc): [* <1, -819> *]
+  exc=rats[5]: 4*z[1] + 4*z[2] - 5*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -91 }  matched=false
+    exact rational points on plane: [ (-1 : 1 : 0), (3/4 : 1/2 : 1) ]
+  exc=rats[5]: 8*z[1] - 2*z[2] - 5*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -40 }  matched=false
+    exact rational points on plane: [ (1/2 : -1/2 : 1), (3/4 : 1/2 : 1) ]
+  exc=rats[5]: 4*z[1] - 3*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -35 }  matched=false
+    exact rational points on plane: [ (3/4 : 1/2 : 1), (0 : 1 : 0) ]
+  exc=rats[5]: 2*z[1] - 3*z[2]=0  comps=[ 1, 1, 2 ]  CM={ -315 }  matched=false
+    exact rational points on plane: [ (-1 : -2/3 : 1), (3/4 : 1/2 : 1) ]
+  exc=rats[5]: 2*z[2] - z[3]=0  comps=[ 1, 1, 2 ]  CM={ cusp }  matched=false
+    exact rational points on plane: [ (3/4 : 1/2 : 1), (1 : 0 : 0) ]
+    inconclusive component matches (component_idx, disc): [* <1, -2275> *]
+    CM-inconclusive (raise precision): [ -2275 ]
+  exc=rats[5]: 2*z[1] + z[2] - 2*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -595, -259 }  matched=true
+    exact rational points on plane: [ (3/4 : 1/2 : 1), (1 : 0 : 1) ]
+    confirmed component matches (component_idx, disc): [* <1, -259> *]
+All exceptional points geometrically covered: true
+All exceptional points CM-confirmed: true
+
+=== LabelAndAnalyze for N=510 ===
+  disc = -60 -> rats[1] -> (4/3 : 5/3 : 1) (CM)
+  disc = -36 -> rats[8] -> (0 : 1 : 1) (CM)
+  disc = -120 -> rats[7] -> (2 : -1 : 1) (CM)
+  disc = -240 -> rats[2] -> (0 : 1/3 : 1) (CM)
+  disc = -15 -> rats[6] -> (4 : -1 : 1) (CM)
+  disc = -84 -> rats[4] -> (0 : 0 : 1) (CM)
+  Cusp -> rats[5]
+Labelled 7 CM+cusp, 1 exceptional
+  exceptional: rats[3] = (8 : 3 : 1)
+Computing degree 2 CM points
+Done.
+Planes found: 7 (1 with algebraic CM match)
+  exc=rats[3]: z[1] - 5*z[2] + 7*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -60 }  matched=false
+    exact rational points on plane: [ (4/3 : 5/3 : 1), (8 : 3 : 1) ]
+  exc=rats[3]: z[1] - 3*z[2] + z[3]=0  comps=[ 1, 1, 2 ]  CM={ -240 }  matched=false
+    exact rational points on plane: [ (0 : 1/3 : 1), (8 : 3 : 1) ]
+  exc=rats[3]: z[1] - 4*z[2] + 4*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -36 }  matched=false
+    exact rational points on plane: [ (8 : 3 : 1), (0 : 1 : 1) ]
+  exc=rats[3]: 3*z[1] - 8*z[2]=0  comps=[ 1, 1, 2 ]  CM={ -84 }  matched=false
+    exact rational points on plane: [ (8 : 3 : 1), (0 : 0 : 1) ]
+  exc=rats[3]: 2*z[1] - 3*z[2] - 7*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -120 }  matched=false
+    exact rational points on plane: [ (8 : 3 : 1), (2 : -1 : 1) ]
+  exc=rats[3]: z[2] - 3*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -480, cusp }  matched=true
+    exact rational points on plane: [ (8 : 3 : 1), (1 : 0 : 0) ]
+    confirmed component matches (component_idx, disc): [* <1, -480> *]
+  exc=rats[3]: z[1] - z[2] - 5*z[3]=0  comps=[ 1, 1, 2 ]  CM={ -15 }  matched=false
+    exact rational points on plane: [ (8 : 3 : 1), (4 : -1 : 1) ]
+All exceptional points geometrically covered: true
+All exceptional points CM-confirmed: true
+
+--- Reconstructed Table: Exceptional points for genus 3 ---
+Level  Factorization    Collinearity
+178    [ <2, 1>, <89, 1> ] -388, -40
+183    [ <3, 1>, <61, 1> ] -483, -75
+246    [ <2, 1>, <3, 1>, <41, 1> ] -264, -168
+290    [ <2, 1>, <5, 1>, <29, 1> ] -64, -24
+310    [ <2, 1>, <5, 1>, <31, 1> ] -55, cusp
+318    [ <2, 1>, <3, 1>, <53, 1> ] -852, -372
+329    [ <7, 1>, <47, 1> ] -52, -35
+430    [ <2, 1>, <5, 1>, <43, 1> ] -220, -120
+455    [ <5, 1>, <7, 1>, <13, 1> ] -819, -195
+510    [ <2, 1>, <3, 1>, <5, 1>, <17, 1> ] -480, cusp
+
+=== Genus 4: check_exceptional_X0Nstar(4) level set ===
+--------------------------------
+[ <137, 1> ]
+Genus: 4
+[cache] loaded 3000-term star forms for level 137
+found CM point at discriminant -19
+found CM point at discriminant -4
+found CM point at discriminant -7
+found CM point at discriminant -8
+found CM point at discriminant -11
+found CM point at discriminant -28
+found CM point at discriminant -16
+Actual points: [ (0 : 1 : 0 : 0), (3 : 2 : 1 : 1), (0 : 1 : 1 : 0), (1 : 2 : 0 : 1), (3 : 2 : 2 : 1), (1 : 0 : 0 : 0), (1 : 1 : 0 : 1), (-1/8 : 3/4 : -1/2 : 1), (2 : 1 : 1 : 0) ]
+Special points: 8
+Found 1 exceptional points on level [ 137 ]
+--------------------------------
+[ <173, 1> ]
+Genus: 4
+[cache] loaded 3000-term star forms for level 173
+found CM point at discriminant -4
+found CM point at discriminant -43
+found CM point at discriminant -163
+found CM point at discriminant -16
+found CM point at discriminant -67
+Actual points: [ (0 : 3 : -1 : 1), (2 : 3 : 1 : 1), (3 : 4 : 1 : 1), (1 : 0 : 0 : 0), (6 : 6 : 3/2 : 1), (0 : 0 : 1 : 0) ]
+Special points: 6
+--------------------------------
+[ <199, 1> ]
+Genus: 4
+[cache] loaded 3000-term star forms for level 199
+found CM point at discriminant -19
+found CM point at discriminant -3
+found CM point at discriminant -27
+found CM point at discriminant -163
+found CM point at discriminant -11
+found CM point at discriminant -12
+found CM point at discriminant -67
+Actual points: [ (0 : 1 : -1 : 1), (1 : 0 : 0 : 0), (0 : 0 : 1 : 0), (4 : 3 : 2 : 1), (2 : 2 : 1 : 1), (1 : 1 : 0 : 1), (0 : 4 : -1 : 1), (-2 : 3 : -1 : 1) ]
+Special points: 8
+--------------------------------
+[ <3, 1>, <67, 1> ]
+Genus: 4
+[cache] loaded 3000-term star forms for level 201
+found CM point at discriminant -3
+found CM point at discriminant -8
+found CM point at discriminant -27
+found CM point at discriminant -11
+found CM point at discriminant -12
+found CM point at discriminant -48
+found CM point at discriminant -51
+found CM point at discriminant -267
+found CM point at discriminant -147
+found CM point at discriminant -75
+Actual points: [ (0 : 1 : -2 : 1), (1 : 1 : 1 : 0), (0 : 1 : 1 : 1), (2 : 2 : 1 : 1), (1 : 0 : 0 : 0), (-6/7 : -1/7 : -4/21 : 1), (2 : 1 : 0 : 1), (1 : -1 : 1 : 0), (0 : 0 : 1 : 0), (1 : 1 : 0 : 1), (6 : -2 : 1 : 1) ]
+Special points: 11
+--------------------------------
+[ <2, 1>, <101, 1> ]
+Genus: 4
+[cache] loaded 3000-term star forms for level 202
+found CM point at discriminant -4
+found CM point at discriminant -16
+found CM point at discriminant -88
+found CM point at discriminant -52
+found CM point at discriminant -100
+found CM point at discriminant -232
+found CM point at discriminant -148
+found CM point at discriminant -20
+found CM point at discriminant -24
+found CM point at discriminant -36
+Actual points: [ (3 : 1 : 1 : 1), (2 : 1 : 1 : 0), (4 : 1 : 2 : 1), (-2 : 3 : -2 : 1), (3 : 1/2 : 1/2 : 1), (1 : 0 : 0 : 0), (2 : -1 : 1 : 0), (1 : 0 : 1 : 1), (3 : 0 : 1 : 1), (1 : 1 : 1 : 1), (10 : 4 : 4 : 1) ]
+Special points: 11
+--------------------------------
+[ <2, 1>, <107, 1> ]
+Genus: 4
+[cache] loaded 3000-term star forms for level 214
+found CM point at discriminant -7
+found CM point at discriminant -8
+found CM point at discriminant -28
+found CM point at discriminant -88
+found CM point at discriminant -232
+found CM point at discriminant -20
+found CM point at discriminant -24
+found CM point at discriminant -72
+Actual points: [ (0 : 1 : 0 : 0), (-1 : 1 : -1 : 1), (0 : 0 : -1 : 1), (1 : 0 : 0 : 0), (1 : -1 : 0 : 1), (1 : 1 : 0 : 1), (-2 : 2 : -1 : 1), (3 : 3 : 2 : 1), (1 : 1 : 1 : 1) ]
+Special points: 9
+--------------------------------
+[ <3, 1>, <73, 1> ]
+Genus: 4
+[cache] loaded 3000-term star forms for level 219
+found CM point at discriminant -3
+found CM point at discriminant -8
+found CM point at discriminant -27
+found CM point at discriminant -12
+found CM point at discriminant -48
+found CM point at discriminant -267
+found CM point at discriminant -147
+found CM point at discriminant -24
+found CM point at discriminant -75
+found CM point at discriminant -123
+Actual points: [ (3/2 : 1 : -1/2 : 1), (1 : 1 : 0 : 1), (1 : 0 : 0 : 0), (1/2 : 3/2 : 0 : 1), (0 : 1 : 1 : 1), (0 : 0 : 1 : 0), (11/10 : 1/2 : 4/15 : 1), (1 : 1 : 0 : 0), (1 : 0 : 1 : 0), (2 : 0 : 0 : 1), (6 : 4 : 4 : 1) ]
+Special points: 11
+--------------------------------
+[ <13, 1>, <19, 1> ]
+Genus: 4
+[cache] loaded 3000-term star forms for level 247
+found CM point at discriminant -3
+found CM point at discriminant -27
+found CM point at discriminant -12
+found CM point at discriminant -91
+Actual points: [ (-1 : 0 : 0 : 1), (0 : 0 : 1 : 0), (3 : -1 : 0 : 1), (1 : 0 : 0 : 0), (2 : 0 : -3/2 : 1) ]
+Special points: 5
+--------------------------------
+[ <251, 1> ]
+Genus: 4
+[cache] loaded 3000-term star forms for level 251
+found CM point at discriminant -19
+found CM point at discriminant -8
+found CM point at discriminant -43
+found CM point at discriminant -163
+found CM point at discriminant -11
+Actual points: [ (11 : 8 : 7 : 1), (1 : 1 : 1 : 0), (1 : 0 : 0 : 0), (0 : 0 : 1 : 0), (1 : 1 : 1 : 1), (1 : 0 : 1 : 1) ]
+Special points: 6
+--------------------------------
+[ <2, 1>, <127, 1> ]
+Genus: 4
+[cache] loaded 3000-term star forms for level 254
+found CM point at discriminant -7
+found CM point at discriminant -28
+found CM point at discriminant -12
+found CM point at discriminant -232
+found CM point at discriminant -20
+found CM point at discriminant -24
+found CM point at discriminant -40
+Actual points: [ (1 : 0 : 0 : 0), (3 : 2 : 3/2 : 1), (0 : -1 : 0 : 1), (1 : 0 : 1 : 0), (0 : 1 : 0 : 0), (0 : 0 : 1 : 0), (1 : 1 : 1 : 1), (2 : 1 : 2 : 1) ]
+Special points: 8
+--------------------------------
+[ <7, 1>, <37, 1> ]
+Genus: 4
+[cache] loaded 3000-term star forms for level 259
+found CM point at discriminant -3
+found CM point at discriminant -7
+found CM point at discriminant -27
+found CM point at discriminant -28
+found CM point at discriminant -12
+found CM point at discriminant -112
+Actual points: [ (2 : 2 : 0 : 1), (1 : 0 : 0 : 0), (10/3 : 0 : 8/3 : 1), (3/2 : 5/4 : 5/4 : 1), (2 : 3/2 : -1/2 : 1), (2 : 0 : 1 : 0), (2 : 1 : 1 : 0) ]
+Special points: 7
+--------------------------------
+[ <2, 1>, <131, 1> ]
+Genus: 4
+[cache] loaded 3000-term star forms for level 262
+found CM point at discriminant -8
+found CM point at discriminant -88
+found CM point at discriminant -148
+found CM point at discriminant -24
+found CM point at discriminant -72
+found CM point at discriminant -40
+Actual points: [ (1 : 0 : 0 : 0), (3/2 : 1 : 1/2 : 1), (1 : 0 : 1 : 0), (5 : 2 : 2 : 1), (3 : 1 : 1 : 1), (1 : 1 : 1 : 1), (3 : 1 : 2 : 1) ]
+Special points: 7
+--------------------------------
+[ <3, 1>, <89, 1> ]
+Genus: 4
+[cache] loaded 3000-term star forms for level 267
+found CM point at discriminant -8
+found CM point at discriminant -11
+found CM point at discriminant -267
+found CM point at discriminant -123
+Actual points: [ (1 : 1 : 1 : 0), (1 : 0 : 0 : 0), (-1/2 : 19/14 : -3/14 : 1), (0 : 1 : 0 : 1), (0 : 0 : 0 : 1) ]
+Special points: 5
+--------------------------------
+[ <3, 1>, <7, 1>, <13, 1> ]
+Genus: 4
+[cache] loaded 3000-term star forms for level 273
+found CM point at discriminant -3
+found CM point at discriminant -27
+found CM point at discriminant -12
+found CM point at discriminant -48
+found CM point at discriminant -147
+found CM point at discriminant -75
+found CM point at discriminant -35
+found CM point at discriminant -168
+found CM point at discriminant -195
+found CM point at discriminant -3003
+Actual points: [ (0 : 1 : -1 : 1), (1 : 1 : 1 : 0), (1 : 0 : 0 : 0), (-1 : -1 : 0 : 1), (0 : -1/2 : 1/2 : 1), (-1 : 1 : -2 : 1), (-9/2 : 31/10 : -13/10 : 1), (-1 : 2 : 0 : 1), (1 : 2 : 2 : 1), (2 : 1/2 : 0 : 1), (7/3 : 46/39 : 10/39 : 1) ]
+Special points: 11
+--------------------------------
+[ <5, 1>, <61, 1> ]
+Genus: 4
+[cache] loaded 3000-term star forms for level 305
+found CM point at discriminant -19
+found CM point at discriminant -4
+found CM point at discriminant -16
+found CM point at discriminant -15
+found CM point at discriminant -60
+found CM point at discriminant -235
+Actual points: [ (0 : 1 : 0 : 0), (2/3 : -1 : -2/3 : 1), (2 : 2 : 1 : 1), (0 : 0 : -1 : 1), (1 : 0 : 0 : 0), (0 : -1/2 : 0 : 1), (0 : 1 : 0 : 1) ]
+Special points: 7
+--------------------------------
+[ <311, 1> ]
+Genus: 4
+[cache] loaded 3000-term star forms for level 311
+found CM point at discriminant -19
+found CM point at discriminant -43
+found CM point at discriminant -11
+Actual points: [ (1 : 0 : 1 : 0), (0 : 0 : 0 : 1), (8 : 4 : 2 : 1), (1 : 1 : 0 : 1), (1 : 0 : 0 : 0) ]
+Special points: 4
+Found 1 exceptional points on level [ 311 ]
+--------------------------------
+[ <11, 1>, <29, 1> ]
+Genus: 4
+[cache] loaded 3000-term star forms for level 319
+found CM point at discriminant -7
+found CM point at discriminant -28
+found CM point at discriminant -88
+found CM point at discriminant -187
+Actual points: [ (0 : 1 : 0 : 1), (2 : 2 : 1 : 1), (1 : 0 : 0 : 0), (1 : 0 : 0 : 1), (-2 : 3 : -2 : 1) ]
+Special points: 5
+--------------------------------
+[ <3, 1>, <107, 1> ]
+Genus: 4
+[cache] loaded 3000-term star forms for level 321
+found CM point at discriminant -8
+found CM point at discriminant -51
+found CM point at discriminant -15
+found CM point at discriminant -60
+found CM point at discriminant -24
+Actual points: [ (0 : -1 : -1 : 1), (0 : 0 : 1 : 1), (1 : 0 : 0 : 0), (0 : 1 : 1 : 1), (0 : 0 : 1 : 0), (1 : 1 : 1 : 0) ]
+Special points: 6
+--------------------------------
+[ <2, 1>, <7, 1>, <23, 1> ]
+Genus: 4
+[cache] loaded 3000-term star forms for level 322
+found CM point at discriminant -7
+found CM point at discriminant -28
+found CM point at discriminant -20
+found CM point at discriminant -112
+found CM point at discriminant -40
+found CM point at discriminant -84
+found CM point at discriminant -168
+Actual points: [ (4/3 : 1/3 : 0 : 1), (1 : 1 : 0 : 1), (1 : 0 : 1 : 0), (-1/3 : 1 : -2/3 : 1), (0 : -1 : 0 : 1), (1/2 : 0 : -1/2 : 1), (2 : 1 : 4 : 1), (1 : 0 : 0 : 0) ]
+Special points: 8
+--------------------------------
+[ <2, 1>, <167, 1> ]
+Genus: 4
+[cache] loaded 3000-term star forms for level 334
+found CM point at discriminant -52
+found CM point at discriminant -148
+found CM point at discriminant -20
+found CM point at discriminant -40
+Actual points: [ (1 : 0 : 0 : 0), (0 : 0 : 1 : 0), (0 : 1 : 0 : 1), (1 : 1 : 1 : 1), (1 : -1 : -1 : 1) ]
+Special points: 5
+--------------------------------
+[ <5, 1>, <67, 1> ]
+Genus: 4
+[cache] loaded 3000-term star forms for level 335
+found CM point at discriminant -11
+found CM point at discriminant -235
+found CM point at discriminant -115
+Actual points: [ (1/2 : 1/2 : 0 : 1), (-2 : 3 : 0 : 1), (0 : 1 : 1 : 0), (1 : 0 : 0 : 0) ]
+Special points: 4
+--------------------------------
+[ <11, 1>, <31, 1> ]
+Genus: 4
+[cache] loaded 3000-term star forms for level 341
+found CM point at discriminant -43
+found CM point at discriminant -11
+found CM point at discriminant -88
+found CM point at discriminant -99
+found CM point at discriminant -403
+Actual points: [ (-1 : -1 : 1 : 0), (0 : -2 : 1 : 1), (0 : 1 : 1/2 : 1), (0 : 1 : 1 : 1), (2 : 2 : 1 : 0), (1 : 0 : 0 : 0) ]
+Special points: 6
+--------------------------------
+[ <3, 1>, <5, 1>, <23, 1> ]
+Genus: 4
+[cache] loaded 3000-term star forms for level 345
+found CM point at discriminant -11
+found CM point at discriminant -51
+found CM point at discriminant -15
+found CM point at discriminant -60
+found CM point at discriminant -435
+found CM point at discriminant -240
+found CM point at discriminant -120
+found CM point at discriminant -195
+Actual points: [ (0 : -3 : 1 : 1), (1 : 0 : 0 : 0), (0 : 0 : 0 : 1), (-1 : 1 : 0 : 1), (1 : 1 : 0 : 0), (0 : -1 : 1 : 0), (0 : 3/5 : -3/5 : 1), (0 : 1 : 1 : 1), (3/2 : -3/2 : 0 : 1) ]
+Special points: 9
+--------------------------------
+[ <2, 1>, <3, 1>, <59, 1> ]
+Genus: 4
+[cache] loaded 3000-term star forms for level 354
+found CM point at discriminant -8
+found CM point at discriminant -24
+found CM point at discriminant -72
+found CM point at discriminant -408
+found CM point at discriminant -168
+found CM point at discriminant -372
+found CM point at discriminant -708
+found CM point at discriminant -120
+found CM point at discriminant -132
+Actual points: [ (-1 : 2 : 0 : 1), (1 : 1 : 0 : 1), (1 : 0 : 0 : 0), (-1 : -1 : 0 : 1), (-7/3 : 74/39 : -40/39 : 1), (1/2 : -1/2 : 1/2 : 1), (1 : 0 : 0 : 1), (-1 : 1 : 2 : 1), (-1 : 1 : -1 : 1), (1 : 1 : 1 : 0) ]
+Special points: 10
+--------------------------------
+[ <5, 1>, <71, 1> ]
+Genus: 4
+[cache] loaded 3000-term star forms for level 355
+found CM point at discriminant -11
+found CM point at discriminant -235
+found CM point at discriminant -115
+found CM point at discriminant -35
+Actual points: [ (-1 : 0 : 1 : 1), (0 : 0 : 0 : 1), (1 : 1 : 0 : 1), (1 : 0 : 0 : 0), (0 : 0 : 1 : 0) ]
+Special points: 5
+--------------------------------
+[ <2, 1>, <3, 1>, <61, 1> ]
+Genus: 4
+[cache] loaded 3000-term star forms for level 366
+found CM point at discriminant -12
+found CM point at discriminant -48
+found CM point at discriminant -15
+found CM point at discriminant -60
+found CM point at discriminant -20
+found CM point at discriminant -36
+found CM point at discriminant -408
+found CM point at discriminant -228
+found CM point at discriminant -168
+Actual points: [ (2 : 1 : 2 : 1), (0 : 1 : 1 : 0), (1 : 0 : 0 : 0), (0 : 0 : 0 : 1), (1 : 0 : -1 : 1), (2 : 2 : 2 : 1), (-1 : 2 : -1 : 1), (0 : 0 : 1 : 0), (2 : -1 : 1 : 0), (0 : 1 : 0 : 1) ]
+Special points: 10
+--------------------------------
+[ <2, 1>, <5, 1>, <37, 1> ]
+Genus: 4
+[cache] loaded 3000-term star forms for level 370
+found CM point at discriminant -4
+found CM point at discriminant -16
+found CM point at discriminant -100
+found CM point at discriminant -36
+found CM point at discriminant -40
+found CM point at discriminant -340
+found CM point at discriminant -280
+found CM point at discriminant -120
+Actual points: [ (0 : -1 : -2 : 1), (2/3 : 1/3 : 0 : 1), (0 : -1 : 0 : 1), (-2 : 3 : 0 : 1), (0 : 0 : -1 : 1), (1 : 0 : 1 : 0), (-2 : 1 : -2 : 1), (1 : 0 : 0 : 0), (25 : 9 : 3 : 1), (-16/15 : -7/3 : -2/5 : 1) ]
+Special points: 9
+Found 1 exceptional points on level [ 2, 5, 37 ]
+--------------------------------
+[ <2, 1>, <11, 1>, <17, 1> ]
+Genus: 4
+[cache] loaded 3000-term star forms for level 374
+found CM point at discriminant -8
+found CM point at discriminant -52
+found CM point at discriminant -72
+found CM point at discriminant -340
+found CM point at discriminant -1012
+found CM point at discriminant -132
+Actual points: [ (1 : 0 : 0 : 0), (1 : 0 : 1 : 0), (1 : 1 : 1 : 1), (4 : 2 : 5/2 : 1), (0 : -1/2 : 1 : 0), (0 : -2 : 1 : 0), (5 : 19/7 : 15/7 : 1) ]
+Special points: 7
+--------------------------------
+[ <5, 1>, <7, 1>, <11, 1> ]
+Genus: 4
+[cache] loaded 3000-term star forms for level 385
+found CM point at discriminant -19
+found CM point at discriminant -35
+found CM point at discriminant -40
+found CM point at discriminant -315
+found CM point at discriminant -1155
+Actual points: [ (1 : 0 : 0 : 0), (1/2 : 1/2 : 1 : 0), (0 : 0 : 0 : 1), (-1 : 4/3 : -1/3 : 1), (1 : 1 : 0 : 1), (9/5 : 9/5 : 3/5 : 1) ]
+Special points: 6
+--------------------------------
+[ <5, 1>, <79, 1> ]
+Genus: 4
+[cache] loaded 3000-term star forms for level 395
+found CM point at discriminant -15
+found CM point at discriminant -60
+found CM point at discriminant -235
+found CM point at discriminant -35
+Actual points: [ (1 : 1 : 1 : 1), (0 : 0 : 1 : 0), (1 : 0 : 0 : 0), (-1 : 2 : -1 : 1), (1 : 1 : 1/2 : 1) ]
+Special points: 5
+--------------------------------
+[ <3, 1>, <7, 1>, <19, 1> ]
+Genus: 4
+[cache] loaded 7000-term star forms for level 399
+found CM point at discriminant -3
+found CM point at discriminant -27
+found CM point at discriminant -12
+found CM point at discriminant -48
+found CM point at discriminant -147
+found CM point at discriminant -75
+found CM point at discriminant -483
+found CM point at discriminant -1995
+Actual points: [ (-1 : 0 : 1 : 0), (21/166 : 167/83 : -29/166 : 1), (1 : 0 : 0 : 0), (1/2 : 1 : -1/2 : 1), (0 : 1 : 1 : 1), (3 : 1 : 2 : 1), (1 : 3/2 : 1 : 1), (-2 : 2 : 1 : 0), (5 : -3/2 : 1 : 0), (0 : 1 : 1/2 : 1) ]
+Special points: 9
+Found 1 exceptional points on level [ 3, 7, 19 ]
+--------------------------------
+[ <2, 1>, <3, 1>, <71, 1> ]
+Genus: 4
+[cache] loaded 3000-term star forms for level 426
+found CM point at discriminant -408
+found CM point at discriminant -84
+found CM point at discriminant -168
+found CM point at discriminant -372
+found CM point at discriminant -708
+found CM point at discriminant -312
+found CM point at discriminant -132
+Actual points: [ (1 : 1/3 : -1/3 : 1), (0 : 0 : 0 : 1), (1 : 1 : 0 : 1), (1 : 0 : 0 : 0), (1/3 : -1/3 : 0 : 1), (3 : 3 : 2 : 1), (0 : -1 : 1 : 0), (-2 : 4/3 : -4/3 : 1) ]
+Special points: 8
+--------------------------------
+[ <2, 1>, <7, 1>, <31, 1> ]
+Genus: 4
+[cache] loaded 3000-term star forms for level 434
+found CM point at discriminant -12
+found CM point at discriminant -52
+found CM point at discriminant -24
+found CM point at discriminant -84
+found CM point at discriminant -168
+Actual points: [ (-1 : -1 : -1 : 1), (0 : 0 : 0 : 1), (0 : 0 : -1 : 1), (0 : 1 : 1 : 0), (1 : 0 : 0 : 0), (0 : 0 : 1 : 0) ]
+Special points: 6
+--------------------------------
+[ <3, 1>, <7, 1>, <23, 1> ]
+Genus: 4
+[cache] loaded 3000-term star forms for level 483
+found CM point at discriminant -483
+found CM point at discriminant -168
+Actual points: [ (5/2 : 0 : 3/2 : 1), (1 : 0 : 0 : 0), (2 : 1 : 2 : 1) ]
+Special points: 3
+--------------------------------
+[ <2, 1>, <3, 1>, <7, 1>, <13, 1> ]
+Genus: 4
+[cache] loaded 3000-term star forms for level 546
+found CM point at discriminant -12
+found CM point at discriminant -48
+found CM point at discriminant -168
+found CM point at discriminant -420
+found CM point at discriminant -1092
+found CM point at discriminant -5460
+Actual points: [ (2 : 3 : 3 : 1), (-3/2 : 5/4 : -1/2 : 1), (-1 : 0 : 0 : 1), (-1/2 : 3/4 : -1/4 : 1), (2 : 1 : 1 : 0), (1 : 0 : 0 : 0), (1 : 0 : 2 : 1) ]
+Special points: 7
+--------------------------------
+[ <2, 1>, <3, 1>, <5, 1>, <19, 1> ]
+Genus: 4
+[cache] loaded 3000-term star forms for level 570
+found CM point at discriminant -15
+found CM point at discriminant -60
+found CM point at discriminant -84
+found CM point at discriminant -240
+found CM point at discriminant -420
+found CM point at discriminant -1380
+found CM point at discriminant -660
+Actual points: [ (1/3 : -1/3 : -1/3 : 1), (-1/3 : 1/3 : -2/3 : 1), (1 : 0 : 0 : 0), (3 : 2 : 1 : 1), (-1/2 : -1/2 : -1 : 1), (-3/2 : 1/2 : 1 : 1), (-1 : -1 : -1 : 1), (1/2 : -1/2 : 1 : 0) ]
+Special points: 8
+
+=== Genus 4: analyze_exceptional (max_class_num:=8, confirm_deg2:=true) ===
+
+=== LabelAndAnalyze for N=137 ===
+  disc = -4 -> rats[5] -> (3 : 2 : 2 : 1) (CM)
+  disc = -11 -> rats[7] -> (1 : 1 : 0 : 1) (CM)
+  disc = -7 -> rats[9] -> (2 : 1 : 1 : 0) (CM)
+  disc = -8 -> rats[1] -> (0 : 1 : 0 : 0) (CM)
+  disc = -19 -> rats[2] -> (3 : 2 : 1 : 1) (CM)
+  disc = -16 -> rats[4] -> (1 : 2 : 0 : 1) (CM)
+  disc = -28 -> rats[3] -> (0 : 1 : 1 : 0) (CM)
+  Cusp -> rats[6]
+Labelled 8 CM+cusp, 1 exceptional
+  exceptional: rats[8] = (-1/8 : 3/4 : -1/2 : 1)
+Computing degree 2 CM points
+Done.
+  AlgebraicDeg2Matches: component 1 has 1 exact points (expected 2), marking field-matching discs inconclusive
+  AlgebraicDeg2Matches: component 1 has 1 exact points (expected 2), marking field-matching discs inconclusive
+  AlgebraicDeg2Matches: component 2 has 1 exact points (expected 2), marking field-matching discs inconclusive
+Planes found: 7 (5 with algebraic CM match)
+  exc=rats[8]: 4*z[1] - 9*z[3] - 4*z[4]=0  comps=[ 1, 1, 1, 1, 2 ]  CM={ -16, -11, -8 }  matched=false
+    exact rational points on plane: [ (0 : 1 : 0 : 0), (1 : 2 : 0 : 1), (1 : 1 : 0 : 1), (-1/8 : 3/4 : -1/2 : 1) ]
+  exc=rats[8]: 2*z[2] - z[3] - 2*z[4]=0  comps=[ 1, 1, 1, 1, 2 ]  CM={ -32, -11, -4, cusp }  matched=true
+    exact rational points on plane: [ (3 : 2 : 2 : 1), (1 : 0 : 0 : 0), (1 : 1 : 0 : 1), (-1/8 : 3/4 : -1/2 : 1) ]
+    confirmed component matches (component_idx, disc): [* <1, -32> *]
+  exc=rats[8]: 4*z[2] - 4*z[3] - 5*z[4]=0  comps=[ 1, 1, 1, 1, 2 ]  CM={ -28, -7, cusp }  matched=false
+    exact rational points on plane: [ (0 : 1 : 1 : 0), (1 : 0 : 0 : 0), (-1/8 : 3/4 : -1/2 : 1), (2 : 1 : 1 : 0) ]
+  exc=rats[8]: 2*z[1] + z[2] - 5*z[3] - 3*z[4]=0  comps=[ 1, 1, 1, 1, 2 ]  CM={ -112, -19, -11, -7 }  matched=true
+    exact rational points on plane: [ (3 : 2 : 1 : 1), (1 : 1 : 0 : 1), (-1/8 : 3/4 : -1/2 : 1), (2 : 1 : 1 : 0) ]
+    confirmed component matches (component_idx, disc): [* <1, -112> *]
+  exc=rats[8]: 2*z[1] - 5*z[2] + 4*z[4]=0  comps=[ 1, 1, 2, 2 ]  CM={ -427, -19, -4 }  matched=true
+    exact rational points on plane: [ (3 : 2 : 1 : 1), (3 : 2 : 2 : 1), (-1/8 : 3/4 : -1/2 : 1) ]
+    confirmed component matches (component_idx, disc): [* <2, -427> *]
+  exc=rats[8]: 2*z[1] - 3*z[2] - z[3] + 2*z[4]=0  comps=[ 1, 1, 2, 2 ]  CM={ -72, -7, -4 }  matched=true
+    exact rational points on plane: [ (3 : 2 : 2 : 1), (-1/8 : 3/4 : -1/2 : 1), (2 : 1 : 1 : 0) ]
+    confirmed component matches (component_idx, disc): [* <2, -72> *]
+  exc=rats[8]: 2*z[3] + z[4]=0  comps=[ 1, 1, 2, 2 ]  CM={ -112, -8, cusp }  matched=true
+    exact rational points on plane: [ (0 : 1 : 0 : 0), (1 : 0 : 0 : 0), (-1/8 : 3/4 : -1/2 : 1) ]
+    confirmed component matches (component_idx, disc): [* <1, -112> *]
+All exceptional points geometrically covered: true
+All exceptional points CM-confirmed: true
+
+=== LabelAndAnalyze for N=311 ===
+  disc = -11 -> rats[4] -> (1 : 1 : 0 : 1) (CM)
+  disc = -43 -> rats[2] -> (0 : 0 : 0 : 1) (CM)
+  disc = -19 -> rats[1] -> (1 : 0 : 1 : 0) (CM)
+  Cusp -> rats[5]
+Labelled 4 CM+cusp, 1 exceptional
+  exceptional: rats[3] = (8 : 4 : 2 : 1)
+Computing degree 2 CM points
+Done.
+Planes found: 1 (1 with algebraic CM match)
+  exc=rats[3]: -z[1] + z[2] + z[3] + 2*z[4]=0  comps=[ 1, 1, 2, 2 ]  CM={ -232, -123, -19 }  matched=true
+    source_discs={ -232 }  confirmed_source_discs={ -232 }
+    exact rational points on plane: [ (1 : 0 : 1 : 0), (8 : 4 : 2 : 1) ]
+    confirmed component matches (component_idx, disc): [* <1, -232>, <2, -123> *]
+All exceptional points geometrically covered: true
+All exceptional points CM-confirmed: true
+
+=== LabelAndAnalyze for N=370 ===
+  disc = -4 -> rats[10] -> (-16/15 : -7/3 : -2/5 : 1) (CM)
+  disc = -36 -> rats[2] -> (2/3 : 1/3 : 0 : 1) (CM)
+  disc = -120 -> rats[3] -> (0 : -1 : 0 : 1) (CM)
+  disc = -100 -> rats[6] -> (1 : 0 : 1 : 0) (CM)
+  disc = -40 -> rats[5] -> (0 : 0 : -1 : 1) (CM)
+  disc = -340 -> rats[4] -> (-2 : 3 : 0 : 1) (CM)
+  disc = -16 -> rats[1] -> (0 : -1 : -2 : 1) (CM)
+  disc = -280 -> rats[7] -> (-2 : 1 : -2 : 1) (CM)
+  Cusp -> rats[8]
+Labelled 9 CM+cusp, 1 exceptional
+  exceptional: rats[9] = (25 : 9 : 3 : 1)
+Computing degree 2 CM points
+Done.
+Planes found: 5 (1 with algebraic CM match)
+  exc=rats[9]: z[2] - 2*z[3] - 3*z[4]=0  comps=[ 1, 1, 1, 1, 2 ]  CM={ -340, -260, -16, cusp }  matched=true
+    exact rational points on plane: [ (0 : -1 : -2 : 1), (-2 : 3 : 0 : 1), (1 : 0 : 0 : 0), (25 : 9 : 3 : 1) ]
+    confirmed component matches (component_idx, disc): [* <1, -260> *]
+  exc=rats[9]: 13*z[1] - 17*z[2] - 43*z[3] - 43*z[4]=0  comps=[ 1, 1, 1, 1, 2 ]  CM={ -280, -40, -4 }  matched=false
+    exact rational points on plane: [ (0 : 0 : -1 : 1), (-2 : 1 : -2 : 1), (25 : 9 : 3 : 1), (-16/15 : -7/3 : -2/5 : 1) ]
+  exc=rats[9]: 3*z[2] - 10*z[3] + 3*z[4]=0  comps=[ 1, 1, 1, 1, 2 ]  CM={ -120, -4, cusp }  matched=false
+    exact rational points on plane: [ (0 : -1 : 0 : 1), (1 : 0 : 0 : 0), (25 : 9 : 3 : 1), (-16/15 : -7/3 : -2/5 : 1) ]
+  exc=rats[9]: z[1] - 2*z[2] - z[3] - 4*z[4]=0  comps=[ 1, 1, 1, 1, 2 ]  CM={ -100, -16, -4 }  matched=false
+    exact rational points on plane: [ (0 : -1 : -2 : 1), (1 : 0 : 1 : 0), (25 : 9 : 3 : 1), (-16/15 : -7/3 : -2/5 : 1) ]
+  exc=rats[9]: z[1] + z[2] - 11*z[3] - z[4]=0  comps=[ 1, 1, 1, 1, 2 ]  CM={ -340, -36, -4 }  matched=false
+    exact rational points on plane: [ (2/3 : 1/3 : 0 : 1), (-2 : 3 : 0 : 1), (25 : 9 : 3 : 1), (-16/15 : -7/3 : -2/5 : 1) ]
+All exceptional points geometrically covered: true
+All exceptional points CM-confirmed: true
+
+=== LabelAndAnalyze for N=399 ===
+  disc = -147 -> rats[10] -> (0 : 1 : 1/2 : 1) (CM)
+  disc = -12 -> rats[4] -> (1/2 : 1 : -1/2 : 1) (CM)
+  disc = -27 -> rats[5] -> (0 : 1 : 1 : 1) (CM)
+  disc = -483 -> rats[8] -> (-2 : 2 : 1 : 0) (CM)
+  disc = -75 -> rats[7] -> (1 : 3/2 : 1 : 1) (CM)
+  disc = -1995 -> rats[6] -> (3 : 1 : 2 : 1) (CM)
+  disc = -48 -> rats[1] -> (-1 : 0 : 1 : 0) (CM)
+  D=-3: half-length series disagrees with full-length series, not converged at this eval_prec
+WARNING: CM matching failed for N=399: D=-3: evaluation not converged at this eval_prec (half-length series disagrees; needs higher eval_prec)
+
+=== Retrying N=399 fresh at eval_prec=7000 (UseCache := false) ===
+found CM point at discriminant -3
+found CM point at discriminant -27
+found CM point at discriminant -12
+found CM point at discriminant -48
+found CM point at discriminant -147
+found CM point at discriminant -75
+found CM point at discriminant -483
+found CM point at discriminant -1995
+Actual points: [ (-1 : 0 : 1 : 0), (21/166 : 167/83 : -29/166 : 1), (1 : 0 : 0 : 0), (1/2 : 1 : -1/2 : 1), (0 : 1 : 1 : 1), (3 : 1 : 2 : 1), (1 : 3/2 : 1 : 1), (-2 : 2 : 1 : 0), (5 : -3/2 : 1 : 0), (0 : 1 : 1/2 : 1) ]
+Special points: 9
+
+=== LabelAndAnalyze for N=399 ===
+  disc = -147 -> rats[10] -> (0 : 1 : 1/2 : 1) (CM)
+  disc = -12 -> rats[4] -> (1/2 : 1 : -1/2 : 1) (CM)
+  disc = -27 -> rats[5] -> (0 : 1 : 1 : 1) (CM)
+  disc = -483 -> rats[8] -> (-2 : 2 : 1 : 0) (CM)
+  disc = -75 -> rats[7] -> (1 : 3/2 : 1 : 1) (CM)
+  disc = -1995 -> rats[6] -> (3 : 1 : 2 : 1) (CM)
+  disc = -48 -> rats[1] -> (-1 : 0 : 1 : 0) (CM)
+  disc = -3 -> rats[2] -> (21/166 : 167/83 : -29/166 : 1) (CM)
+  Cusp -> rats[3]
+Labelled 9 CM+cusp, 1 exceptional
+  exceptional: rats[9] = (5 : -3/2 : 1 : 0)
+Computing degree 2 CM points
+Done.
+  AlgebraicDeg2Matches: component 1 has 1 exact points (expected 2), marking field-matching discs inconclusive
+  AlgebraicDeg2Matches: component 2 has 1 exact points (expected 2), marking field-matching discs inconclusive
+Planes found: 3 (1 with algebraic CM match)
+  exc=rats[9]: 4*z[2] + 6*z[3] - 7*z[4]=0  comps=[ 1, 1, 1, 1, 2 ]  CM={ -147, -3, cusp }  matched=false
+    exact rational points on plane: [ (21/166 : 167/83 : -29/166 : 1), (1 : 0 : 0 : 0), (5 : -3/2 : 1 : 0), (0 : 1 : 1/2 : 1) ]
+  exc=rats[9]: z[1] + 4*z[2] + z[3] - 8*z[4]=0  comps=[ 1, 1, 2, 2 ]  CM={ -75, -48, -3 }  matched=false
+    exact rational points on plane: [ (-1 : 0 : 1 : 0), (21/166 : 167/83 : -29/166 : 1), (1 : 3/2 : 1 : 1), (5 : -3/2 : 1 : 0) ]
+  exc=rats[9]: z[1] + 2*z[2] - 2*z[3] - z[4]=0  comps=[ 1, 1, 1, 1, 2 ]  CM={ -1995, -483, -147, -84 }  matched=true
+    exact rational points on plane: [ (3 : 1 : 2 : 1), (-2 : 2 : 1 : 0), (5 : -3/2 : 1 : 0), (0 : 1 : 1/2 : 1) ]
+    confirmed component matches (component_idx, disc): [* <1, -84> *]
+All exceptional points geometrically covered: true
+All exceptional points CM-confirmed: true
+
+--- Reconstructed Table: Exceptional points for genus 4 ---
+Level  Collinearity
+137    -32, -11, -4, cusp
+311    -232, -123, -19
+370    -340, -260, -16, cusp
+399    -1995, -483, -147, -84
+
+test_exceptional_tables: 16 assertions, all passed
+@@TEST_RESULT@@ PASS

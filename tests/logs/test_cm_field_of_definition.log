@@ -1,0 +1,20 @@
+Loading "src/AtkinLehner.m"
+Loading "QuadraticPoints/models_and_maps.m"
+Loading "src/cm_points.m"
+Loading "src/cm_orders.m"
+Loading "src/star_quotients.m"
+Loading "src/modelsX0Nstar.m"
+Loading "src/star_model_cache.m"
+Loading "src/star_degree.m"
+Loading "src/cm_numerics.m"
+Loading "src/classify_covers.m"
+Loading "src/fields_of_definition.m"
+Loading "src/labeling.m"
+Loading "src/point_search.m"
+Loading "tests/assertions.m"
+
+=== FieldsOfDefinitionOfCMPoint: fields agree with the reference ===
+
+=== degree is single-valued and agrees with the fast degree function ===
+test_cm_field_of_definition: 78 assertions, all passed
+@@TEST_RESULT@@ PASS

@@ -1,0 +1,73 @@
+Loading "src/AtkinLehner.m"
+Loading "QuadraticPoints/models_and_maps.m"
+Loading "src/cm_points.m"
+Loading "src/cm_orders.m"
+Loading "src/star_quotients.m"
+Loading "src/modelsX0Nstar.m"
+Loading "src/star_model_cache.m"
+Loading "src/star_degree.m"
+Loading "src/cm_numerics.m"
+Loading "src/classify_covers.m"
+Loading "src/fields_of_definition.m"
+Loading "src/labeling.m"
+Loading "src/point_search.m"
+Loading "tests/assertions.m"
+found CM point at discriminant -19
+found CM point at discriminant -4
+found CM point at discriminant -7
+found CM point at discriminant -8
+found CM point at discriminant -11
+found CM point at discriminant -28
+found CM point at discriminant -16
+Actual points: [ (0 : 1 : 0 : 0), (3 : 2 : 1 : 1), (0 : 1 : 1 : 0), (1 : 2 : 0 : 1), (3 : 2 : 2 : 1), (1 : 0 : 0 : 0), (1 : 1 : 0 : 1), (-1/8 : 3/4 : -1/2 : 1), (2 : 1 : 1 : 0) ]
+Special points: 8
+
+N = 137
+Genus = 4
+Number of rational points = 9
+Rational CM discriminants: [ -28, -19, -16, -11, -8, -7, -4 ]
+  disc = -4 -> rats[5] -> (3 : 2 : 2 : 1) (CM)
+  disc = -11 -> rats[7] -> (1 : 1 : 0 : 1) (CM)
+  disc = -7 -> rats[9] -> (2 : 1 : 1 : 0) (CM)
+  disc = -8 -> rats[1] -> (0 : 1 : 0 : 0) (CM)
+  disc = -19 -> rats[2] -> (3 : 2 : 1 : 1) (CM)
+  disc = -16 -> rats[4] -> (1 : 2 : 0 : 1) (CM)
+  disc = -28 -> rats[3] -> (0 : 1 : 1 : 0) (CM)
+
+Cusp D=0 -> rats[6] = (1 : 0 : 0 : 0)
+
+Exceptional point -> rats[8] = (-1/8 : 3/4 : -1/2 : 1)
+
+Rational target points:
+  D=-4 -> rats[5] = (3 : 2 : 2 : 1)
+  D=0 -> rats[6] = (1 : 0 : 0 : 0)
+  D=-11 -> rats[7] = (1 : 1 : 0 : 1)
+
+Exact plane through D=-11, D=-4, and the cusp:
+  primitive coefficients: [ 0, 2, -1, -2 ]
+  plane equation: 2*z[2] - z[3] - 2*z[4] = 0
+  intersection component degrees: [ 1, 1, 1, 1, 2 ]
+  rational CM/cusp labels on plane: [ -11, -4, 0 ]
+
+Converged orbit IDs for D=-32: [ 1, 2 ]
+  orbit pair (1,2): max residual=7.8828939982375846136698987807912067814091487792424982833680449801115087130091061101016981860627491283127675828366236719044973115701366348304611595017293161883609692107730777501484692882338576490152628E-29, tolerance=1.0036969987880705883999192489673109723039933165210267920510111590399264072881728872800986926936941776893560816907792740571995523553332371338538353864197349353893579639157979646897123950817533729352431E-11, observed error=1.0036969987880705883999192489673109723039933165210267920510111590399264072881728872800986926936941776893560816907792740571995523553332371338538353864197349353893579639157979646897123950817533729352431E-14
+Preliminary result: D=-32 has 1 conjugate pair(s) passing both independent runs.
+[* <1, 2, 7.8828939982375846136698987807912067814091487792424982833680449801115087130091061101016981860627491283127675828366236719044973115701366348304611595017293161883609692107730777501484692882338576490152628E-29, 1.0036969987880705883999192489673109723039933165210267920510111590399264072881728872800986926936941776893560816907792740571995523553332371338538353864197349353893579639157979646897123950817533729352431E-11> *]
+
+Component records for D=-32:
+[* <1, -32, "confirmed"> *]
+All confirmed degree-2 discriminants on the plane: [ -32 ]
+All inconclusive degree-2 discriminants on the plane: []
+
+============================================================
+CONFIRMED:
+  The exact plane 2*z[2] - z[3] - 2*z[4] = 0 contains:
+    - the rational CM point D=-11;
+    - the rational CM point D=-4;
+    - the cusp D=0;
+    - the exceptional point rats[8];
+    - the degree-2 CM point D=-32.
+  Confirmed component record(s): [* <1, -32, "confirmed"> *]
+============================================================
+test_137_plane: 8 assertions, all passed
+@@TEST_RESULT@@ PASS

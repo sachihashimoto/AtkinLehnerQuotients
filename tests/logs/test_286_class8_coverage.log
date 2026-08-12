@@ -1,0 +1,23 @@
+Loading "src/AtkinLehner.m"
+Loading "QuadraticPoints/models_and_maps.m"
+Loading "src/cm_points.m"
+Loading "src/cm_orders.m"
+Loading "src/star_quotients.m"
+Loading "src/modelsX0Nstar.m"
+Loading "src/star_model_cache.m"
+Loading "src/star_degree.m"
+Loading "src/cm_numerics.m"
+Loading "src/classify_covers.m"
+Loading "src/fields_of_definition.m"
+Loading "src/labeling.m"
+Loading "src/point_search.m"
+Loading "tests/assertions.m"
+
+=== RationalCMDiscs class-8 coverage test for N=286 (2*11*13) ===
+found CM point at discriminant -88
+found CM point at discriminant -52
+found CM point at discriminant -40
+RationalCMDiscs(286) returned 3 disc(s): [ -88, -52, -40 ]
+Candidates checked (f_cond=1, N_R_primes={}, opt_emb>0): 0
+test_286_class8_coverage: 6 assertions, all passed
+@@TEST_RESULT@@ PASS

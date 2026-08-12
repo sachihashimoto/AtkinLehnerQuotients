@@ -1,0 +1,70 @@
+Loading "src/triple_covers.m"
+Loading "src/AtkinLehner.m"
+Loading "QuadraticPoints/models_and_maps.m"
+Loading "src/cm_points.m"
+Loading "src/cm_orders.m"
+Loading "src/star_quotients.m"
+Loading "src/modelsX0Nstar.m"
+Loading "src/star_model_cache.m"
+Loading "src/star_degree.m"
+Loading "src/cm_numerics.m"
+Loading "src/classify_covers.m"
+Loading "src/fields_of_definition.m"
+Loading "src/labeling.m"
+Loading "src/point_search.m"
+Loading "tests/assertions.m"
+found CM point at discriminant -19
+found CM point at discriminant -43
+found CM point at discriminant -11
+Actual points: [ (1 : 0 : 1 : 0), (0 : 0 : 0 : 1), (8 : 4 : 2 : 1), (1 : 1 : 0 : 1), (1 : 0 : 0 : 0) ]
+Special points: 4
+  disc = -11 -> rats[4] -> (1 : 1 : 0 : 1) (CM)
+  disc = -43 -> rats[2] -> (0 : 0 : 0 : 1) (CM)
+  disc = -19 -> rats[1] -> (1 : 0 : 1 : 0) (CM)
+
+N=311 plane (from exceptional point + D=-123 conjugate pair): vi = [ -1, 1, 1, 2 ]
+
+[cache] loaded eqs_quos data for level 311
+
+[cache] loaded jmap for level 311
+  D=-19 preimage j = -884736
+  D=-19 preimage j = -884736
+
+degree-2 component [
+$.1 - 2/3*$.3 - 19/9*$.4,
+$.2 + 1/3*$.3 - 1/9*$.4,
+$.3^2 + 4/3*$.3*$.4 + 22/9*$.4^2
+]: matches HilbertClassPolynomial candidates [ -232 ]
+  preimage j = 18715922336599488000*r3 + 302364978924945672000
+  preimage j = 18715922336599488000*r4 + 302364978924945672000
+  preimage j = 18715922336599488000*r4 + 302364978924945672000
+  preimage j = -18715922336599488000*r4 + 302364978924945672000
+
+degree-2 component [
+$.1 - $.2 - $.4,
+$.2^2 + $.2*$.4 + $.4^2,
+$.3 + $.4
+]: matches HilbertClassPolynomial candidates [ -123 ]
+  preimage j = 105741103104000*r3*r1 + 317223309312000*r3 - 677073420288000
+  preimage j = 105741103104000*r4*r1 + 317223309312000*r4 - 677073420288000
+  preimage j = 105741103104000*r5*r2 + 317223309312000*r5 - 677073420288000
+  preimage j = 105741103104000*r6*r2 + 317223309312000*r6 - 677073420288000
+
+=== Exceptional point: preimage on X_0(311) and its j-invariant ===
+  field: Algebraically closed field with 2 variables over Rational Field
+Defining relations:
+[
+r2^2 - 39816211853,
+r1^2 - 39816211853
+]
+  j = -156581053899805171539733968949219503507755126784000*r1 + 31244183594433270730990985793058589729152601677824000000
+  field: Algebraically closed field with 2 variables over Rational Field
+Defining relations:
+[
+r2^2 - 39816211853,
+r1^2 - 39816211853
+]
+  j = -156581053899805171539733968949219503507755126784000*r2 + 31244183594433270730990985793058589729152601677824000000
+
+test_311_jmap: 28 assertions, all passed
+@@TEST_RESULT@@ PASS

@@ -1,0 +1,135 @@
+Loading "src/AtkinLehner.m"
+Loading "QuadraticPoints/models_and_maps.m"
+Loading "src/cm_points.m"
+Loading "src/cm_orders.m"
+Loading "src/star_quotients.m"
+Loading "src/modelsX0Nstar.m"
+Loading "src/star_model_cache.m"
+Loading "src/star_degree.m"
+Loading "src/cm_numerics.m"
+Loading "src/classify_covers.m"
+Loading "src/fields_of_definition.m"
+Loading "src/labeling.m"
+Loading "src/point_search.m"
+Loading "tests/assertions.m"
+
+=== FixedPointForm ===
+
+=== AutForm orders ===
+
+=== IsGamma0Equivalent is Gamma_0(N), not SL2(Z) ===
+
+=== CMTauOrbits: structure ===
+
+=== CMTauOrbits: no optimal embedding ===
+
+=== CMTauReps: one min-A representative per orbit ===
+
+=== #orbits == DegreeOfFieldOfDefinitionOfCMPoint ===
+found CM point at discriminant -4
+found CM point at discriminant -8
+found CM point at discriminant -16
+found CM point at discriminant -88
+found CM point at discriminant -100
+found CM point at discriminant -20
+found CM point at discriminant -72
+found CM point at discriminant -36
+found CM point at discriminant -40
+found CM point at discriminant -3
+found CM point at discriminant -27
+found CM point at discriminant -12
+found CM point at discriminant -48
+found CM point at discriminant -15
+found CM point at discriminant -60
+found CM point at discriminant -147
+found CM point at discriminant -75
+found CM point at discriminant -123
+found CM point at discriminant -8
+found CM point at discriminant -20
+found CM point at discriminant -72
+found CM point at discriminant -36
+found CM point at discriminant -408
+found CM point at discriminant -84
+found CM point at discriminant -228
+found CM point at discriminant -168
+found CM point at discriminant -312
+found CM point at discriminant -132
+found CM point at discriminant -4
+found CM point at discriminant -16
+found CM point at discriminant -100
+found CM point at discriminant -20
+found CM point at discriminant -24
+found CM point at discriminant -36
+found CM point at discriminant -760
+found CM point at discriminant -180
+found CM point at discriminant -120
+found CM point at discriminant -15
+found CM point at discriminant -60
+found CM point at discriminant -24
+found CM point at discriminant -340
+found CM point at discriminant -520
+found CM point at discriminant -120
+found CM point at discriminant -15
+found CM point at discriminant -60
+found CM point at discriminant -24
+found CM point at discriminant -36
+found CM point at discriminant -408
+found CM point at discriminant -228
+found CM point at discriminant -168
+found CM point at discriminant -372
+found CM point at discriminant -312
+found CM point at discriminant -19
+found CM point at discriminant -91
+found CM point at discriminant -35
+found CM point at discriminant -20
+found CM point at discriminant -340
+found CM point at discriminant -280
+found CM point at discriminant -760
+found CM point at discriminant -180
+found CM point at discriminant -120
+found CM point at discriminant -91
+found CM point at discriminant -35
+found CM point at discriminant -40
+found CM point at discriminant -315
+found CM point at discriminant -595
+found CM point at discriminant -195
+found CM point at discriminant -15
+found CM point at discriminant -60
+found CM point at discriminant -36
+found CM point at discriminant -84
+found CM point at discriminant -240
+found CM point at discriminant -120
+found CM point at discriminant -19
+found CM point at discriminant -4
+found CM point at discriminant -7
+found CM point at discriminant -8
+found CM point at discriminant -11
+found CM point at discriminant -28
+found CM point at discriminant -16
+found CM point at discriminant -19
+found CM point at discriminant -43
+found CM point at discriminant -11
+found CM point at discriminant -4
+found CM point at discriminant -16
+found CM point at discriminant -100
+found CM point at discriminant -36
+found CM point at discriminant -40
+found CM point at discriminant -340
+found CM point at discriminant -280
+found CM point at discriminant -120
+found CM point at discriminant -3
+found CM point at discriminant -27
+found CM point at discriminant -12
+found CM point at discriminant -48
+found CM point at discriminant -147
+found CM point at discriminant -75
+found CM point at discriminant -483
+found CM point at discriminant -1995
+
+=== sweep including degree > 1 discriminants ===
+
+=== conductor cases ===
+
+=== extra-automorphism discriminants ===
+test_cm_orbits: 33 assertions, all passed
+@@TEST_RESULT@@ PASS

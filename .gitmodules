@@ -1,0 +1,3 @@
+[submodule "QuadraticPoints"]
+	path = QuadraticPoints
+	url = https://github.com/sachihashimoto/QuadraticPoints.git
