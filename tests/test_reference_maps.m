@@ -1,6 +1,6 @@
 // tests/test_reference_maps.m
 //
-// Exercises both TripleCoverMap_* branches of BuildStarCover
+// Exercises both TripleCoverMap_* branches of BuildTripleCover
 // (src/triple_covers.m), including the canonical branch, which otherwise has
 // zero runtime coverage anywhere in the test suite. ~38 s.
 //
@@ -10,9 +10,10 @@
 // classification is exhaustive (reproduced in
 // outputs/triple_cover_classification.txt, pinned against the paper's table by
 // tests/test_triple_cover_table.m), there are exactly 48 (M, target) pairs
-// for which BuildStarCover can possibly succeed, period, and all 48 already
-// have a data/starmodels/map_<M>_<label>.m cache entry (verified by
-// scripts/reconcile_covers.m: 48 enumerated, 48 cached, 0 orphans, 0 missing).
+// for which BuildTripleCover can possibly succeed, period, and all 48 already
+// have a data/starmodels/map_<M>_<label>.m cache entry (checked by reconciling
+// the enumerated pairs against the cached filenames: 48 and 48, no orphans and
+// nothing missing).
 // So no pair, now or in the future, can be "the uncached one": any pair
 // added here would get cached the first time this file runs and stay cached.
 // Picking pairs by cache absence is therefore not a stable strategy; instead,
@@ -26,11 +27,11 @@
 // fine and matches the documented timings below.)
 //
 //   call                              branch          expected time
-//   BuildStarCover(246, "123b1")      canonical       ~7.6 s
-//   BuildStarCover(290, "58a1")       canonical       ~8.3 s
-//   BuildStarCover(286, "143a1")      hyperelliptic   ~21.6 s
+//   BuildTripleCover(246, "123b1")    canonical       ~7.6 s
+//   BuildTripleCover(290, "58a1")     canonical       ~8.3 s
+//   BuildTripleCover(286, "143a1")    hyperelliptic   ~21.6 s
 //
-// BuildStarCover rewrites map_<M>_<label>.m in data/starmodels/ as a side
+// BuildTripleCover rewrites map_<M>_<label>.m in data/starmodels/ as a side
 // effect, with identical content; expected, and harmless. Do not "reset" the
 // cache with `git clean -fdq data/starmodels`: most map files there are
 // untracked and that would delete maps costing hours to rebuild.
@@ -43,7 +44,7 @@ results := NewResults();
 
 // --- Arrange ---
 // <M, Cremona label, branch, expected aInvariants(E)> for the three cases that
-// exercise both TripleCoverMap_* branches of BuildStarCover. The canonical
+// exercise both TripleCoverMap_* branches of BuildTripleCover. The canonical
 // branch has no other runtime coverage anywhere in the suite.
 //
 // Only aInvariants(E) and Degree(pi) are pinned. Both are canonical: E is
@@ -64,7 +65,7 @@ cases := [
 
 for c in cases do
     M := c[1]; lab := c[2]; branch := c[3]; expected_ainv := c[4];
-    printf "\n=== BuildStarCover(%o, \"%o\") [%o branch] ===\n", M, lab, branch;
+    printf "\n=== BuildTripleCover(%o, \"%o\") [%o branch] ===\n", M, lab, branch;
 
     // --- Act ---
     // use_cache := false forces a genuine build, so the search path is
@@ -72,14 +73,14 @@ for c in cases do
     // a cache-read bypass, not a delete: the cached maps cost hours to produce
     // and are independent evidence that each cover exists.
     //
-    // BuildStarCover's progress chatter is suppressed so only the assertions
+    // BuildTripleCover's progress chatter is suppressed so only the assertions
     // below reach stdout. There is no try/catch: Magma's try/catch does not
     // catch runtime errors, and a runtime error here terminates the process
     // with its message on stderr (which SetOutputFile does not redirect),
     // emitting no completion marker -- which tests/run.sh reports as
     // INCOMPLETE, the correct status for a suite that died.
     SetOutputFile("/dev/null" : Overwrite := true);
-    pi, X, E, fs, Sstar, cval := BuildStarCover(M, lab : use_cache := false);
+    pi, X, E, fs, Sstar, cval := BuildTripleCover(M, lab : use_cache := false);
     UnsetOutputFile();
 
     // --- Assert ---

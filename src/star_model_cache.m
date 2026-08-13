@@ -7,6 +7,10 @@
 //
 // Entry point:  StarModelWithForms(N, eval_prec)
 //
+// Reading the cache is the default everywhere.  Writing it is not: an entry is
+// created when none exists, but an existing entry is only rewritten for a
+// caller that passes GrowCache := true (see StarModelWithForms below).
+//
 // Not loadable standalone: load "src/AtkinLehner.m" instead.  Depends on
 // src/modelsX0Nstar.m, and must load before src/point_search.m.
 
@@ -195,10 +199,31 @@ function HyperellipticModelFromForms(fs_full, Np)
 end function;
 
 // Unified model builder with caching.  Returns X, fs (eval_prec terms),
-// fs_full (cache-precision series, used downstream in place of Sstar).
+// fs_full (cache-precision series, used downstream in place of Sstar), and the
+// live form basis if this call built one -- empty on a cache hit, where the
+// forms came off disk as series and no live basis was ever constructed.
+//
+// That fourth return exists because only a live basis can be asked for more
+// q-expansion terms (BoostFsPrec); frozen series have the terms they have.  A
+// cache hit therefore has nothing better to offer, but a miss does: it built
+// the basis on the way through, and callers that may need more precision later
+// would otherwise have to rebuild the level to get back what this call already
+// had.  Callers content with fixed-precision series keep taking three returns.
+//
 // Requires GenusStarQuotient(Np) ge 2, caller is responsible for the genus <= 1
 // special case (X0Nstar(Np) directly).
-function StarModelWithForms(Np, eval_prec : cache_prec := 3000)
+//
+// GrowCache controls the write side when an entry already exists but holds
+// fewer terms than cp.  Creating an absent entry is always safe, but rewriting
+// an existing one at a different precision is not: data/starmodels/ is
+// committed, so it turns an ordinary search into a diff in a tracked file, and
+// (see the README's "Regenerating the cache") it silently invalidates every
+// map_<Np>_*.m built against the old forms, since those record polynomial
+// exponents but not the coordinate system they were built in.  So by default a
+// too-short entry is rebuilt in memory and left alone on disk; callers that
+// genuinely want the file grown to cp -- BuildTripleCover, which is the thing
+// that owns those map_*.m files -- ask for it.
+function StarModelWithForms(Np, eval_prec : cache_prec := 3000, GrowCache := false)
     hyp := IsHyperellipticX0Nstar(Np);
     cp := Max(eval_prec, cache_prec);
     ok, prec, fs_full := LoadStarForms(Np);
@@ -207,7 +232,7 @@ function StarModelWithForms(Np, eval_prec : cache_prec := 3000)
         X := hyp select HyperellipticModelFromForms(fs_full, Np)
                  else CanonicalModelFromForms(fs_full, Np);
         fs := [f + O(Parent(f).1^eval_prec) : f in fs_full];
-        return X, fs, fs_full;
+        return X, fs, fs_full, [];   // no live basis: nothing was built here
     end if;
     if hyp then
         X, fs, Sstar := XZeroNstarWithForms_hyperelliptic(Np, eval_prec);
@@ -217,9 +242,16 @@ function StarModelWithForms(Np, eval_prec : cache_prec := 3000)
         full := BoostFsPrec(Sstar, cp);
     end if;
     if #full gt 0 then
-        SaveStarForms(Np, full, cp);
+        // ok here means LoadStarForms returned usable forms that were merely too
+        // short; a missing or unparseable file leaves it false and is (re)written.
+        if not ok or GrowCache then
+            SaveStarForms(Np, full, cp);
+        else
+            printf "[cache] level %o has a %o-term entry, need %o: rebuilt in memory, on-disk entry left as is (pass GrowCache := true to rewrite it)\n",
+                Np, prec, cp;
+        end if;
     else
         full := fs;
     end if;
-    return X, fs, full;
+    return X, fs, full, Sstar;
 end function;

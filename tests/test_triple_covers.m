@@ -84,7 +84,7 @@ AssertEqual(~results, #[j : j in Keys(i2d97) | i2d97[j] eq 0], 1,
 // ---------------------------------------------------------------------------
 printf "\n=== 4. End-to-end known answer: M = 286 -> 143a1 (X_0(286)*) ===\n";
 // ---------------------------------------------------------------------------
-pi, X, E, fs, Sstar, c := BuildStarCover(286, "143a1");
+pi, X, E, fs, Sstar, c := BuildTripleCover(286, "143a1");
 AssertEqual(~results, Degree(pi), 3, "M=286: map has degree 3");
 AssertEqual(~results, c, 1, "M=286: differential normalization c = 1");
 AssertEqual(~results, CremonaReference(E), "143a1", "M=286: E = 143a1");

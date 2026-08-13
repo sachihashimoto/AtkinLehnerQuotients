@@ -100,7 +100,7 @@ for cover in covers do
     // can only "boost" a live ModSym object, not a cache hit, so asking for
     // more CM-labelling terms than the cache holds silently gets nothing
     // (see src/triple_covers.m CMFiberSetup's cached branch). Raising
-    // cache_prec forces BuildStarCover to regenerate the cache with enough
+    // cache_prec forces BuildTripleCover to regenerate the cache with enough
     // terms up front.
     ct := IsDefined(cm_terms_override, cover[1]) select cm_terms_override[cover[1]] else 3000;
     rows := ExceptionalFiberRows(cover[1], cover[2] :

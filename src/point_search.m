@@ -11,10 +11,22 @@
 //                count_special_points_X0Nstar(N)     CM points plus cusp,
 //                    straight from class-number data, with no search or model
 //
-// The search functions take UseCache := true to build the model from
-// data/starmodels/ rather than recomputing it.  It is off by default, since
-// scripts that diff regenerated models against committed ones need every level
-// built the same fresh way.
+// The search functions build the model from the data/starmodels/ cache when a
+// usable entry is there (UseCache, on by default), which saves the
+// Atkin-Lehner diagonalization that is almost all the cost of a level.  They
+// never rewrite an existing entry: see StarModelWithForms in
+// src/star_model_cache.m.
+//
+// A cache hit costs one thing.  The Sstar it returns is a materialized
+// fixed-precision series list rather than a live form basis, so BoostFsPrec
+// cannot ask it for more q-expansion terms; retry_precision_failures below
+// handles that by rebuilding the level fresh, so it is a slower retry rather
+// than a lost one.  A cache miss costs nothing: the build produced a live
+// basis and that is what comes back, exactly as with UseCache := false.
+// Pass UseCache := false to force a fresh build outright --
+// what scripts/gen_genus_models.m does, since a cached rebuild reproduces the
+// same curve through a different choice of ideal generators and that script
+// diffs its output against committed files.
 //
 // Depends on star_quotients.m, fields_of_definition.m, cm_numerics.m and
 // labeling.m, so it loads last in src/AtkinLehner.m.
@@ -61,7 +73,7 @@ end function;
 // the bounded search itself costs) and hangs outright at some higher-omega
 // genus-8 levels (scripts/pointsearch_g8.m's header: "unbounded at the
 // omega=4 levels"). 
-function point_search_X0Nstar(N, B : eval_prec := 3000, UseCache := false)
+function point_search_X0Nstar(N, B : eval_prec := 3000, UseCache := true)
     if IsHyperellipticX0Nstar(N) then
         g := GenusStarQuotient(N);
         if g le 1 then
@@ -71,7 +83,10 @@ function point_search_X0Nstar(N, B : eval_prec := 3000, UseCache := false)
         end if;
         // Build model from cusp forms so CM evaluation is consistent for all genus >= 2.
         if UseCache then
-            C, fs, Sstar := StarModelWithForms(N, eval_prec);
+            // Prefer the live basis when the cache missed and one was built:
+            // it is the only form of Sstar BoostFsPrec can extend later.
+            C, fs, full, live := StarModelWithForms(N, eval_prec);
+            Sstar := #live gt 0 select live else full;
         else
             C, fs, Sstar := XZeroNstarWithForms_hyperelliptic(N, eval_prec);
         end if;
@@ -79,7 +94,8 @@ function point_search_X0Nstar(N, B : eval_prec := 3000, UseCache := false)
         return pts, C, fs, Sstar;
     else
         if UseCache then
-            X, fs, Sstar := StarModelWithForms(N, eval_prec);
+            X, fs, full, live := StarModelWithForms(N, eval_prec);
+            Sstar := #live gt 0 select live else full;
         else
             X, fs, Sstar := XZeroNstarWithForms(N, eval_prec);
         end if;
@@ -105,7 +121,7 @@ function count_special_points_X0Nstar(N)
 end function;
 
 
-function exceptional_pts_X0Nstar(N, B : eval_prec := 3000, UseCache := false)
+function exceptional_pts_X0Nstar(N, B : eval_prec := 3000, UseCache := true)
     pts, X, fs, Sstar := point_search_X0Nstar(N, B : eval_prec := eval_prec, UseCache := UseCache);
     if Genus(X) le 1 then return false, [], X, fs, Sstar, AssociativeArray(); end if;
     // Note: count_special_points_X0Nstar calls RationalCMDiscs dynamically and
@@ -122,14 +138,14 @@ function exceptional_pts_X0Nstar(N, B : eval_prec := 3000, UseCache := false)
 end function;
 
 
-function check_exceptional_example(N :B := 1000, eval_prec := 3000, UseCache := false)
+function check_exceptional_example(N :B := 1000, eval_prec := 3000, UseCache := true)
     interesting := [* *];
     n, rats, X, fs, Sstar, cm_pts := exceptional_pts_X0Nstar(N, B : eval_prec := eval_prec, UseCache := UseCache);
     Append(~interesting, <N, n, rats, X, fs, Sstar, cm_pts>);
     return interesting;
 end function;
 
-function check_exceptional_X0Nstar(g : B := 1000, eval_prec := 3000, skip := {}, UseCache := false)
+function check_exceptional_X0Nstar(g : B := 1000, eval_prec := 3000, skip := {}, UseCache := true)
   interesting := [* *];
   // Note: RationalCMDiscs assumes N is squarefree; skip non-squarefree N.
   for entry in StarQuotientsOfGenusExactly(g) do
@@ -186,8 +202,15 @@ end function;
 // interesting must be the list passed to analyze_exceptional (same index order).
 // Uses stored Sstar to recompute fs at new_eval_prec without rerunning all_diag_basis
 // or any CM discriminant computations.
+//
+// When Sstar came from a cache hit it is a fixed-precision series list that
+// BoostFsPrec cannot extend, so that shortcut is unavailable and the level is
+// instead rebuilt from scratch at new_eval_prec (fresh, since the point of the
+// retry is more terms than the cache holds).  B is the point-search bound for
+// those rebuilds; entries do not record the bound they were found with, so pass
+// the one the caller used if it was not the default.
 // Returns an updated copy of results.
-function retry_precision_failures(results, interesting : new_eval_prec := 7000, max_class_num := 0, confirm_deg2 := true)
+function retry_precision_failures(results, interesting : new_eval_prec := 7000, B := 1000, max_class_num := 0, confirm_deg2 := true)
     assert #results eq #interesting;  // pre-condition: both built from same ordered loop
     updated := results;
     for i in [1..#results] do
@@ -210,8 +233,23 @@ function retry_precision_failures(results, interesting : new_eval_prec := 7000, 
             new_fs := BoostFsPrec(Sstar, new_eval_prec);
         end if;
         if #new_fs eq 0 then
-            printf "WARNING: BoostFsPrec returned empty for N=%o at prec=%o; skipping retry\n", N, new_eval_prec;
-            continue;
+            // Either Sstar is a cache hit's materialized series list (BoostFsPrec
+            // fails soft on those by design) or the boost itself failed. Both are
+            // recoverable the same way: rebuild the level fresh at new_eval_prec,
+            // which gives a live basis at the precision wanted. Take that build's
+            // X, rats and cm_pts too, so fs and the points being labelled come
+            // from one construction rather than being mixed across two.
+            printf "  Sstar cannot be extended to %o terms; rebuilding N=%o fresh (UseCache := false, B = %o)\n",
+                new_eval_prec, N, B;
+            fresh := check_exceptional_example(N : B := B, eval_prec := new_eval_prec, UseCache := false);
+            rats   := fresh[1][3];
+            X      := fresh[1][4];
+            new_fs := fresh[1][5];
+            cm_pts := fresh[1][7];
+            if #new_fs eq 0 then
+                printf "WARNING: fresh rebuild of N=%o at prec=%o produced no forms; skipping retry\n", N, new_eval_prec;
+                continue;
+            end if;
         end if;
         // Dispatch to the correct labeling function; hyperelliptic curves have WPS
         // coordinates that are incompatible with the projective matching in LabelAndAnalyze.

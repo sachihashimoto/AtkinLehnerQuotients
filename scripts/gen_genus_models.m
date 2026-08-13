@@ -19,7 +19,9 @@
 // squarefree, so non-squarefree levels of the same genus are skipped.
 //
 // This script deliberately does not route model construction through the
-// disk cache in data/starmodels/ (StarModelWithForms, src/triple_covers.m):
+// disk cache in data/starmodels/ (StarModelWithForms, src/star_model_cache.m).
+// The search entry points read that cache by default, so the call below opts
+// out explicitly with UseCache := false:
 // reusing a cached starforms_<N>.m entry reproduces the identical curve but
 // through a *different* choice of ideal generators than a fresh
 // XZeroNstarWithForms computation would pick, HNF canonicalizes the
@@ -84,8 +86,11 @@ for g in gs do
 
         ok := true;
         try
+            // UseCache := false: see the header note above. This is the one
+            // caller that needs every level built the same fresh way, since it
+            // diffs its output against the committed data/genus<g>_models.m.
             exc, pts, X, fs, Sstar, cm_pts := exceptional_pts_X0Nstar(N, B :
-                eval_prec := eval_prec, Nonsingular := (g ge 7));
+                eval_prec := eval_prec, UseCache := false);
         catch e
             printf "FAILED N=%o: %o\n", N, e`Object;
             note(Sprintf("FAILED N=%o: %o", N, e`Object));

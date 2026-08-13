@@ -14,11 +14,11 @@ Loading "src/labeling.m"
 Loading "src/point_search.m"
 Loading "tests/assertions.m"
 
-=== BuildStarCover(246, "123b1") [canonical branch] ===
+=== BuildTripleCover(246, "123b1") [canonical branch] ===
 
-=== BuildStarCover(290, "58a1") [canonical branch] ===
+=== BuildTripleCover(290, "58a1") [canonical branch] ===
 
-=== BuildStarCover(286, "143a1") [hyperelliptic branch] ===
+=== BuildTripleCover(286, "143a1") [hyperelliptic branch] ===
 
 test_reference_maps: 6 assertions, all passed
 @@TEST_RESULT@@ PASS

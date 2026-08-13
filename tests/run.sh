@@ -27,7 +27,7 @@
 
 set -uo pipefail
 
-SLOW_SUITES="test_exceptional_tables test_find_examples test_311_jmap test_degree_formula"
+SLOW_SUITES="test_find_examples test_311_jmap test_degree_formula"
 
 MAGMA="${MAGMA:-magma}"
 LOGDIR="tests/logs"

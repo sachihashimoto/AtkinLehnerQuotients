@@ -8,7 +8,7 @@
 //                    magma -b caseidx:=1 fibersearch:=1 scripts/run_triple_covers.m
 //   custom case, in a Magma session (bypassing the `cases` table below):
 //       load "src/triple_covers.m";
-//       pi, X, E, fs, Sstar, c := BuildStarCover(286, "143a1");
+//       pi, X, E, fs, Sstar, c := BuildTripleCover(286, "143a1");
 //       rows := SweepCMFibers(pi, X, E, fs, Sstar, 286);   // all valid D
 //
 // Driver for degree-3 maps pi : X_0(M)* -> E, and the analysis of
@@ -35,7 +35,7 @@ load "src/triple_covers.m";
 // <top level M, Cremona label of the target E^C_f>.  The pair is exactly the
 // triple-cover map cache key, and it determines the map: a degree-3 map
 // X_0(M)* -> E is unique up to sign and translation.  The newform level d is
-// not listed, BuildStarCover derives it as the conductor of the target's
+// not listed, BuildTripleCover derives it as the conductor of the target's
 // isogeny class, which is what keeps a factor-1 prime from being folded into it.
 // Every entry appears as a row of outputs/triple_cover_classification.txt.
 // "caseidx:=<i>" selects the i-th entry below.
@@ -107,7 +107,7 @@ function DoCase(M, Elabel : do_fibersearch := false, do_ramified := false, do_cu
     // so the star-forms cache itself has to be built with enough terms.
     // cm_terms_override is keyed on the top level M.
     ct := IsDefined(cm_terms_override, M) select cm_terms_override[M] else 3000;
-    pi, X, E, fs, Sstar, c := BuildStarCover(M, Elabel : cache_prec := ct);
+    pi, X, E, fs, Sstar, c := BuildTripleCover(M, Elabel : cache_prec := ct);
     printf "X_0(%o)* = %o\n", M, X;
     printf "E = %o (%o)\n", aInvariants(E), CremonaReference(E);
     // The target is the named curve.  It is X_0(M)* itself only when that

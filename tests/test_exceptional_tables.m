@@ -122,23 +122,16 @@ printf "\n=== Genus 4: analyze_exceptional (max_class_num:=%o, confirm_deg2:=tru
 results4 := analyze_exceptional(interesting4 : max_class_num := MAX_CLASS_NUM, confirm_deg2 := true);
 
 // N=399's D=-3 CM point needs more q-expansion precision than the default
-// (3000, also all the genus-4 starforms cache holds) to converge. interesting4
-// was built with UseCache := true, so its Sstar is a precision-capped power
-// series list rather than a live CuspForms basis, BoostFsPrec (the usual
-// retry_precision_failures mechanism) can't extend a materialized series, it
-// can only ask a live modular form for more q-expansion terms. So instead of
-// retrying via BoostFsPrec, rebuild fresh (UseCache := false) at higher
-// eval_prec for exactly the entries that still need it; verified this
-// converges N=399 to the expected {-1995,-483,-147,-84} plane.
+// (3000, also all the genus-4 starforms cache holds) to converge, so it comes
+// back as a "needs higher eval_prec" failure. interesting4 was built from the
+// cache, so its Sstar is a precision-capped power series list rather than a
+// live CuspForms basis and BoostFsPrec cannot extend it; retry_precision_failures
+// handles that itself by rebuilding the level fresh at the higher eval_prec
+// (src/point_search.m), which converges N=399 to the expected
+// {-1995,-483,-147,-84} plane.
 RETRY_EVAL_PREC := 7000;
-for i in [1..#results4] do
-    if "needs higher eval_prec" notin results4[i][5] then continue; end if;
-    N := results4[i][1];
-    printf "\n=== Retrying N=%o fresh at eval_prec=%o (UseCache := false) ===\n", N, RETRY_EVAL_PREC;
-    retry_interesting := check_exceptional_example(N : UseCache := false, eval_prec := RETRY_EVAL_PREC);
-    retry_results := analyze_exceptional(retry_interesting : max_class_num := MAX_CLASS_NUM, confirm_deg2 := true);
-    results4[i] := retry_results[1];
-end for;
+results4 := retry_precision_failures(results4, interesting4 :
+    new_eval_prec := RETRY_EVAL_PREC, max_class_num := MAX_CLASS_NUM, confirm_deg2 := true);
 
 printf "\n--- Reconstructed Table: Exceptional points for genus 4 ---\n";
 printf "%-6o %o\n", "Level", "Collinearity";

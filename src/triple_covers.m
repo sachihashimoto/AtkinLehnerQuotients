@@ -5,7 +5,7 @@
 // of the star curve being covered.  The newform level d = Conductor(E) divides
 // M and is derived from the curve, never supplied.
 //
-// Entry points:  BuildStarCover(M, Elabel)      returns pi, X, E, fs, Sstar, c
+// Entry points:  BuildTripleCover(M, Elabel)    returns pi, X, E, fs, Sstar, c
 //                AnalyzeCMFiber(pi, X, E, fs, Sstar, M, D)     the fiber over
 //                    the disc-D CM points, each point labelled CM disc, cusp,
 //                    or exceptional
@@ -383,63 +383,9 @@ end function;
 // Main constructor.
 // ---------------------------------------------------------------------------
 
-// Build (or load from cache) the star model of X_0(M)*, try each candidate
-// curve in Es for a degree-3 map to it, cache and return on success.
-//
-// Es is a list rather than a single curve because the star quotient is one
-// specific lattice in the isogeny class: BuildStarCover knows exactly which
-// curve it wants and passes a one-element list, but the search itself is
-// happy to try several and keep whichever one the linear algebra accepts.
-// label: short tag for progress printfs.
-// target_lab: the Cremona label of the target curve, and the second half of the
-// (M, target_lab) cache key.
-// use_cache := false skips the map-cache read, so a caller that wants to time or
-// re-derive a genuine build gets one.  It is deliberately not a delete: forcing
-// a miss by removing files would destroy maps that cost hours to produce and
-// that are independent evidence a cover exists.
-// The from_cache flag is returned so the caller's success-message printf (which
-// spells out the pullback-differential formula) is skipped on a cache hit,
-// leaving only the "[cache] loaded" line.
-function BuildTripleCoverCore(M, target_lab, Es, eval_prec, label
-                              : cache_prec := 3000, use_cache := true)
-    t0 := Cputime();
-    printf "[%o] building model of X_0(%o)* (eval_prec = %o, cached if available)... ", label, M, eval_prec;
-    X, fs, Sstar := StarModelWithForms(M, eval_prec : cache_prec := cache_prec);
-    printf "done (%o s)\n", Cputime(t0);
-    okc := false;
-    if use_cache then
-        okc, pic, Ec, cc := LoadTripleCoverMap(M, target_lab, X);
-    end if;
-    if okc then
-        printf "[cache] loaded triple-cover map for (M=%o, %o)\n", M, target_lab;
-        return pic, X, Ec, fs, Sstar, cc, true;
-    end if;
-    hyp := IsHyperellipticX0Nstar(M);
-    ok := false;
-    pi := 0;
-    c := 0;
-    E := 0;
-    for Ecand in Es do
-        printf "[%o] trying E = %o\n", label, CremonaReference(Ecand);
-        if hyp then
-            ok, pi, c := TripleCoverMap_hyperelliptic(X, fs, Ecand, M, eval_prec);
-        else
-            ok, pi, c := TripleCoverMap_canonical(X, fs, Ecand, M, eval_prec);
-        end if;
-        if ok then
-            E := Ecand;
-            break;
-        end if;
-    end for;
-    error if not ok,
-        Sprintf("%o: no map found, try higher eval_prec or more c candidates", label);
-    SaveTripleCoverMap(M, target_lab, E, c, pi);
-    return pi, X, E, fs, Sstar, c, false;
-end function;
-
 // The Cremona-optimal curve of the isogeny class containing E.  ModularDegree
 // and StarDegree are only meaningful there, while the label handed to
-// BuildStarCover names E^C_f, which need not be optimal (185c2).
+// BuildTripleCover names E^C_f, which need not be optimal (185c2).
 function OptimalCurveOfClass(E)
     d := Conductor(E);
     DB := CremonaDatabase();
@@ -451,23 +397,30 @@ function OptimalCurveOfClass(E)
         d, CremonaReference(E));
 end function;
 
-// The single triple-cover builder.  M is the top level; Elabel names the target
-// E^C_f = E_f/C.  Verifies the degree formula before doing any work:
+// The triple-cover builder.  M is the top level, the level of the star curve
+// X_0(M)* being covered; Elabel names the target E^C_f = E_f/C.  Checks the
+// degree formula before doing any work, so a case that cannot give degree 3
+// fails immediately rather than after the model build:
 //     deg(pi_f) = delta_f * prod_{l | M/d} (l + 1 + a_l(f)) = 3.
 //
 // The target is named explicitly rather than derived from M, because deriving
 // it is not always possible: conductor 201 carries two all-plus classes, so no
 // rule picks the right one for X_0(402)*, and X_0(185)*'s target is 185c2, not
 // the Cremona-optimal 185c1 of its class.
-function BuildStarCover(M, Elabel : eval_prec := 400, cache_prec := 3000, use_cache := true)
+//
+// use_cache := false skips the map-cache READ, so a caller that wants to time
+// or re-derive a genuine build gets one.  It is deliberately not a delete:
+// forcing a miss by removing files would destroy maps that cost hours to
+// produce and that are independent evidence a cover exists.
+function BuildTripleCover(M, Elabel : eval_prec := 400, cache_prec := 3000, use_cache := true)
     E := MinimalModel(EllipticCurve(Elabel));
     Eopt := OptimalCurveOfClass(E);
     d := Conductor(Eopt);
     error if not IsDivisibleBy(M, d),
-        Sprintf("BuildStarCover: conductor %o does not divide M = %o", d, M);
+        Sprintf("BuildTripleCover: conductor %o does not divide M = %o", d, M);
     tgt := CremonaReference(StarTargetCurve(Eopt));
     error if tgt ne CremonaReference(E),
-        Sprintf("BuildStarCover: %o is not E^C_f for the class of conductor %o; that is %o",
+        Sprintf("BuildTripleCover: %o is not E^C_f for the class of conductor %o; that is %o",
             Elabel, d, tgt);
     delta := StarDegree(Eopt);
     cofactor := ExactQuotient(M, d);
@@ -476,14 +429,36 @@ function BuildStarCover(M, Elabel : eval_prec := 400, cache_prec := 3000, use_ca
     printf "M = %o, d = %o: E^C_f = %o (E_f = %o), delta_f = %o, factors %o, expected degree %o\n",
         M, d, Elabel, CremonaReference(Eopt), delta, factors, expdeg;
     error if expdeg ne 3,
-        Sprintf("BuildStarCover: expected a degree-3 map, the formula gives %o", expdeg);
-    pi, X, E, fs, Sstar, c, from_cache :=
-        BuildTripleCoverCore(M, CremonaReference(E), [E], eval_prec, "BuildStarCover"
-                             : cache_prec := cache_prec, use_cache := use_cache);
-    if not from_cache then
-        printf "success: pi : X_0(%o)* -> %o (degree 3) with pi^*omega = %o * h dq/q, h = sum_(e | %o) e f(q^e)\n",
-            M, Elabel, c, cofactor;
+        Sprintf("BuildTripleCover: expected a degree-3 map, the formula gives %o", expdeg);
+
+    lab := CremonaReference(E);
+    t0 := Cputime();
+    printf "[BuildTripleCover] building model of X_0(%o)* (eval_prec = %o, cached if available)... ", M, eval_prec;
+    // GrowCache: this is the caller that owns the map_<M>_*.m files a rewritten
+    // starforms_<M>.m would invalidate, so raising cache_prec here is meant to
+    // regenerate the on-disk entry (scripts/make_exceptional_table.m relies on
+    // that to get enough CM-labelling terms up front).
+    X, fs, Sstar := StarModelWithForms(M, eval_prec : cache_prec := cache_prec, GrowCache := true);
+    printf "done (%o s)\n", Cputime(t0);
+
+    if use_cache then
+        okc, pic, Ec, cc := LoadTripleCoverMap(M, lab, X);
+        if okc then
+            printf "[cache] loaded triple-cover map for (M=%o, %o)\n", M, lab;
+            return pic, X, Ec, fs, Sstar, cc;
+        end if;
     end if;
+
+    if IsHyperellipticX0Nstar(M) then
+        ok, pi, c := TripleCoverMap_hyperelliptic(X, fs, E, M, eval_prec);
+    else
+        ok, pi, c := TripleCoverMap_canonical(X, fs, E, M, eval_prec);
+    end if;
+    error if not ok,
+        "BuildTripleCover: no map found, try higher eval_prec or more c candidates";
+    SaveTripleCoverMap(M, lab, E, c, pi);
+    printf "success: pi : X_0(%o)* -> %o (degree 3) with pi^*omega = %o * h dq/q, h = sum_(e | %o) e f(q^e)\n",
+        M, Elabel, c, cofactor;
     return pi, X, E, fs, Sstar, c;
 end function;
 
@@ -1281,7 +1256,7 @@ end function;
 // false only the known discs are checked (fast verification of the table).
 function ExceptionalFiberRows(M, Elabel : B := 100000, cm_terms := 3000, cache_prec := 3000,
     known_discs := [], discover := true, confirm_deg2 := false)
-    pi, X, E, fs, Sstar, c := BuildStarCover(M, Elabel : cache_prec := cache_prec);
+    pi, X, E, fs, Sstar, c := BuildTripleCover(M, Elabel : cache_prec := cache_prec);
     // cond/cofactor, not d: `d` is the place degree in the fiber loops below,
     // and both are resolved once here so no inner binding can reach the row.
     // ExactQuotient rather than `div` so a non-dividing conductor raises

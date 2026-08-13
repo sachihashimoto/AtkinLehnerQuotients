@@ -43,7 +43,7 @@ printf "\n=== 3. TotallyPlusOptimalCurves ===\n";
 // ---------------------------------------------------------------------------
 // A level can carry several totally-+1 classes, 185a and 185c both have
 // a_5 = a_37 = -1.  Only 185c has delta_f = 3; 185a is filtered later, by the
-// degree, not here.  (This multiplicity is why BuildStarCover takes the target
+// degree, not here.  (This multiplicity is why BuildTripleCover takes the target
 // curve by Cremona label rather than deriving it from the level.)
 AssertEqual(~results,
     [CremonaReference(F) : F in TotallyPlusOptimalCurves(185)], ["185a1", "185c1"],

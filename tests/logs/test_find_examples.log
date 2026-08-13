@@ -50,6 +50,7 @@ All exceptional points geometrically covered: true
 All exceptional points CM-confirmed: false
 
 === LabelAndAnalyze regression test for N=329 (7*47) ===
+[cache] loaded 3000-term star forms for level 329
 found CM point at discriminant -19
 found CM point at discriminant -91
 found CM point at discriminant -35
@@ -74,6 +75,7 @@ All exceptional points geometrically covered: true
 All exceptional points CM-confirmed: false
 
 === LabelAndAnalyze regression test for N=137 ===
+[cache] loaded 3000-term star forms for level 137
 found CM point at discriminant -19
 found CM point at discriminant -4
 found CM point at discriminant -7
@@ -112,6 +114,7 @@ All exceptional points geometrically covered: true
 All exceptional points CM-confirmed: false
 
 === LabelAndAnalyze regression test for N=311 ===
+[cache] loaded 3000-term star forms for level 311
 found CM point at discriminant -19
 found CM point at discriminant -43
 found CM point at discriminant -11
@@ -132,6 +135,7 @@ All exceptional points geometrically covered: true
 All exceptional points CM-confirmed: true
 
 === MatchRationalCMPoints regression test for N=399 (3*7*19) ===
+[cache] loaded 7000-term star forms for level 399
 found CM point at discriminant -3
 found CM point at discriminant -27
 found CM point at discriminant -12
@@ -245,6 +249,7 @@ Involution pairs found: 1
 All exceptional points explained: true
 
 === LabelAndAnalyze_hyperelliptic elliptic-CM test for N=106 (2*53) ===
+[cache] loaded 3000-term star forms for level 106
 found CM point at discriminant -4
 found CM point at discriminant -7
 found CM point at discriminant -28
@@ -273,6 +278,7 @@ Involution pairs found: 1
 All exceptional points explained: true
 
 === LabelAndAnalyze_hyperelliptic regression test for N=107 ===
+[cache] loaded 3000-term star forms for level 107
 found CM point at discriminant -7
 found CM point at discriminant -8
 found CM point at discriminant -43
@@ -287,6 +293,7 @@ found CM point at discriminant -67
 Labelled 6 CM+cusp, 0 exceptional
 
 === LabelAndAnalyze_hyperelliptic involution test for N=103 ===
+[cache] loaded 3000-term star forms for level 103
 found CM point at discriminant -3
 found CM point at discriminant -43
 found CM point at discriminant -27
@@ -307,6 +314,7 @@ Involution pairs found: 1
 All exceptional points explained: true
 
 === LabelAndAnalyze_hyperelliptic involution test for N=209 (11*19) ===
+[cache] loaded 3000-term star forms for level 209
 found CM point at discriminant -19
 found CM point at discriminant -8
 found CM point at discriminant -88
@@ -323,6 +331,7 @@ Involution pairs found: 1
 All exceptional points explained: true
 
 === LabelAndAnalyze_hyperelliptic exc-exc pair test for N=129 ===
+[cache] loaded 3000-term star forms for level 129
 found CM point at discriminant -3
 found CM point at discriminant -8
 found CM point at discriminant -27
@@ -353,6 +362,7 @@ Involution pairs found: 2
 All exceptional points explained: false
 
 === Order-2 elliptic CM regression tests for N=330 ===
+[cache] loaded 3000-term star forms for level 330
 found CM point at discriminant -24
 found CM point at discriminant -84
 found CM point at discriminant -120
@@ -373,6 +383,7 @@ Involution pairs found: 1
 All exceptional points explained: true
 
 === Order-2 elliptic CM regression test for N=93 (D=-12) ===
+[cache] loaded 3000-term star forms for level 93
 found CM point at discriminant -3
 found CM point at discriminant -27
 found CM point at discriminant -11
@@ -405,6 +416,7 @@ Involution pairs found: 2
 All exceptional points explained: true
 
 === Order-2 elliptic CM regression test for N=161 (D=-7) ===
+[cache] loaded 3000-term star forms for level 161
 found CM point at discriminant -19
 found CM point at discriminant -7
 found CM point at discriminant -28
@@ -429,6 +441,7 @@ Involution pairs found: 2
 All exceptional points explained: true
 
 === Order-2 elliptic CM regression test for N=166 (D=-8) ===
+[cache] loaded 3000-term star forms for level 166
 found CM point at discriminant -8
 found CM point at discriminant -88
 found CM point at discriminant -52
@@ -453,6 +466,7 @@ Involution pairs found: 2
 All exceptional points explained: true
 
 === Order-2 elliptic CM regression test for N=165 (D=-11) ===
+[cache] loaded 3000-term star forms for level 165
 found CM point at discriminant -11
 found CM point at discriminant -51
 found CM point at discriminant -99
@@ -485,6 +499,7 @@ Involution pairs found: 3
 All exceptional points explained: true
 
 === Cusp identification regression test (N=230, 285, 330) ===
+[cache] loaded 3000-term star forms for level 230
 found CM point at discriminant -15
 found CM point at discriminant -60
 found CM point at discriminant -20
@@ -507,6 +522,7 @@ Labelled 9 CM+cusp, 1 exceptional
 Involution pairs found: 1
   rats[9] = (3 : -35/2 : 1) is hyperelliptic involution of rats[10] (CM disc { -180 })
 All exceptional points explained: true
+[cache] loaded 3000-term star forms for level 285
 found CM point at discriminant -51
 found CM point at discriminant -15
 found CM point at discriminant -60
@@ -527,6 +543,7 @@ Involution pairs found: 2
   rats[6] = (3 : -12 : 1) is hyperelliptic involution of rats[7] (CM disc { -240 })
   rats[8] = (-3/2 : -57/16 : 1) is hyperelliptic involution of rats[9] (CM disc { -1995 })
 All exceptional points explained: true
+[cache] loaded 3000-term star forms for level 330
 found CM point at discriminant -24
 found CM point at discriminant -84
 found CM point at discriminant -120

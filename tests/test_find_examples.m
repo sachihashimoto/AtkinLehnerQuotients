@@ -329,8 +329,12 @@ printf "\n=== retry_precision_failures integration test for N=399 ===\n";
 // quickstart entry point, which produces the current
 // <N, n, rats, X, fs, Sstar, cm_pts> shape and gives that entry point its
 // first automated coverage.
+// UseCache := false is load-bearing here, not incidental: it is what makes
+// Sstar a live form basis, so this exercises retry_precision_failures'
+// BoostFsPrec path. The cached path, where Sstar cannot be boosted and the
+// retry rebuilds instead, is covered in tests/test_star_cache_policy.m.
 N399_retry := 399;
-interesting_low := check_exceptional_example(N399_retry : eval_prec := 3000);
+interesting_low := check_exceptional_example(N399_retry : eval_prec := 3000, UseCache := false);
 // max_class_num := 2 bounds Degree2Points(399), which is otherwise
 // unbounded and does not terminate in practice (disc -14763 alone costs
 // 831 s, -3192 exceeded 1277 s). Same bound and same reason as the N=311
@@ -391,7 +395,13 @@ AssertEqual(~results, IsHyperellipticX0Nstar(N158), true,
 AssertEqual(~results, GenusStarQuotient(N158), 2,
     Sprintf("N=158: genus = 2  (got %o)", GenusStarQuotient(N158)));
 
-pts158, X158, fs158, Sstar158 := point_search_X0Nstar(N158, 3000 : eval_prec := 3000);
+// UseCache := false pins this to a fresh build, so assertion 2 below always
+// has a live basis to boost. With the default, whether Sstar is live depends
+// on whether data/starmodels/starforms_158.m happens to exist in the checkout
+// (a hit returns frozen series, which BoostFsPrec cannot extend), and that
+// file is untracked and written by any earlier run. Cache-hit behaviour is
+// covered deterministically in tests/test_star_cache_policy.m.
+pts158, X158, fs158, Sstar158 := point_search_X0Nstar(N158, 3000 : eval_prec := 3000, UseCache := false);
 cm158, _ := RationalCMDiscs(N158);
 
 AssertEqual(~results, #pts158, 8,

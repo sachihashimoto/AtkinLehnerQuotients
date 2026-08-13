@@ -14,6 +14,8 @@ This repository is licensed under the MIT License; see [`LICENSE`](LICENSE).
 licensed under [CC BY-4.0](https://creativecommons.org/licenses/by/4.0/).
 It is edited from the upstream original.
 
+Many functions from this repository are derived from [assaferan/ShimuraCurveALQuotients](https://github.com/assaferan/ShimuraCurveALQuotients) by Eran Assaf and Sachi Hashimoto.
+
 ## Hardware and timing note
 
 Every runtime quoted in this README was measured on a MacBook Pro (Apple M4
@@ -86,7 +88,7 @@ what a bigger search would find. Measured ~703 s (~11.7 min).
 The triple-cover code (`src/triple_covers.m`) is separate from
 `src/AtkinLehner.m`, and is normally run through `scripts/run_triple_covers.m`
  but it also can be used directly in a Magma session. There is one builder,
-`BuildStarCover(M, Elabel)`: `M` is the top level and `Elabel` the Cremona
+`BuildTripleCover(M, Elabel)`: `M` is the top level and `Elabel` the Cremona
 label of the target curve E<sup>C</sup><sub>f</sub>. The newform level
 `d = Conductor(E)` is derived, not supplied. What you choose next depends only
 on whether you already know a discriminant to check.
@@ -95,7 +97,7 @@ If you already have a discriminant in mind:
 
 ```
 load "src/triple_covers.m";
-pi, X, E, fs, Sstar, c := BuildStarCover(290, "58a1");
+pi, X, E, fs, Sstar, c := BuildTripleCover(290, "58a1");
 results := AnalyzeCMFiber(pi, X, E, fs, Sstar, 290, -136);
 ```
 
@@ -108,7 +110,7 @@ If you don't have a discriminant in mind you can sweep every plausible discrimin
 
 ```
 load "src/triple_covers.m";
-pi, X, E, fs, Sstar, c := BuildStarCover(258, "258a1");
+pi, X, E, fs, Sstar, c := BuildTripleCover(258, "258a1");
 rows := SweepCMFibers(pi, X, E, fs, Sstar, 258);
 ```
 
@@ -143,18 +145,17 @@ construction, so the whole sweep is fast: measured **9.26 s total** for all
 ## Running the tests
 
 ```
-tests/run.sh                 # the 21 fast suites (the default), ~3.6 min
-tests/run.sh --slow          # all 25 suites, including the slow ones, ~42 min
+tests/run.sh                 # the 23 fast suites (the default), ~6.2 min
+tests/run.sh --slow          # all 26 suites, including the slow ones, ~43 min
 tests/run.sh <name>          # one suite, with its output streamed
 ```
 
-`--slow` means *also* run the slow suites, not *only* the slow ones. Four
+`--slow` means *also* run the slow suites, not *only* the slow ones. Three
 suites account for nearly all of the runtime — `test_311_jmap`,
-`test_find_examples`, `test_degree_formula`, and `test_exceptional_tables` —
-and are excluded from the default run. They are listed in `SLOW_SUITES` at the
-top of `tests/run.sh`.
+`test_find_examples`, and `test_degree_formula` — and are excluded from the
+default run. They are listed in `SLOW_SUITES` at the top of `tests/run.sh`.
 
-`test_311_jmap` dominates: it alone is ~31 min of the ~42 min total, because of
+`test_311_jmap` dominates: it alone is ~31 min of the ~43 min total, because of
 the genus-26 pullbacks it does on X_0(311). Everything else put together is
 about 11 minutes. Long stretches with no output during that suite are expected.
 
@@ -178,9 +179,9 @@ magma -b tests/test_cm_points.m
 ## Repository layout
 
 - `src/`: the 13 core libraries, plus `AtkinLehner.m`, which loads 11 of them in the required order. The other two load separately: `triple_covers.m` (which loads `AtkinLehner.m` itself) and `hnf_canonical.m` (load it after `AtkinLehner.m`).
-- `scripts/`: 9 standalone scripts for generating models, running point searches, and building triple covers. See the table below. The tenth file, `cm_terms_overrides.m`, is a lookup table that two of the scripts load, not a script itself.
+- `scripts/`: 8 standalone scripts for generating models, running point searches, and building triple covers. See the table below. The ninth file, `cm_terms_overrides.m`, is a lookup table that two of the scripts load, not a script itself.
 - `tests/`: the test suites, plus `tests/assertions.m` (the shared assertion procedures every suite loads) and `tests/run.sh` (the runner). See "Running the tests" below.
-- `data/`: reference model files (`genus5_models.m`-`genus8_models.m`) and cached data for triple-cover maps and forms (`data/starmodels/`).
+- `data/`: reference models of X₀(N)\* in the canonical saturated-HNF basis, one file per genus (`genus3_models.m`-`genus8_models.m`) with one entry per squarefree level of that genus; the degree-3 cover classification table (`triple_cover_classification.txt`); and cached data for triple-cover maps and forms (`data/starmodels/`).
 - `QuadraticPoints/`: see submodule section below.
 
 ## Script table
@@ -234,7 +235,7 @@ and `map_286_286c1.m`).
 
 - `<M>` is the level of the star curve.
 - These files are written by `SaveStarForms` and loaded by `LoadStarForms`.
-- If the cached precision is too low, the cache is ignored and the file is rebuilt automatically.
+- A level with no entry gets one written the first time it is built. If an entry exists but its precision is too low, the run rebuilds in memory and leaves the file alone; only `BuildTripleCover` rewrites an existing entry.
 
 `map_<M>_<label>.m`
 
@@ -242,7 +243,7 @@ and `map_286_286c1.m`).
 - `<label>` is the Cremona label of the target curve E<sup>C</sup><sub>f</sub>.
 
 Every triple cover π : X₀(M)\* → E is built the same way, by
-`BuildStarCover(M, Elabel)`: as a pullback of E's cusp form,
+`BuildTripleCover(M, Elabel)`: as a pullback of E's cusp form,
 π\*ω = c·h·dq/q once E is known. The pair `(M, label)` determines the map.
 
 ## `QuadraticPoints` dependency
