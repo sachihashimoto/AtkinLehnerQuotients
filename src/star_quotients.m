@@ -189,12 +189,12 @@ function CandidateLevelsByGonality(g)
         with lambda_1 >= 975/4096 (Kim-Sarnak), giving (975/4096)/24 = 325/32768,
         and if genus X_0(N)^* <= g, then
 
-            gon(X_0(N)) <= 2^omega(N) * (g + 1).
+            gon(X_0(N)) <= 2^omega(N) * (g + 3).
     */
 
     assert g ge 0;
 
-    bound := Rationals()!(2^15 * (g + 1)) / 325;
+    bound := Rationals()!(2^15 * (g + 3)) / 325;
 
     cands := [];
     ExtendCandidates(~cands, 1, bound, 2);
