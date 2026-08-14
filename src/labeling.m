@@ -427,6 +427,49 @@ function IntersectWithHyperplane(X, rats, vi)
     return plane_eqn, comp_degs, on_plane;
 end function;
 
+// Whether the hyperplane vi.z = 0 meets X at the rational point pt_coords with
+// multiplicity >= 2, i.e. is tangent to X there.
+//
+// The coplanarity searches require their plane to be transversal at the
+// exceptional point: a hyperplane cuts out a canonical divisor of degree
+// 2g-2, and the explanation being claimed reads that divisor as the
+// exceptional point plus the CM points listed. Tangency there makes it
+// 2*P_exc + (rest) instead, a different divisor whose CM labels do not
+// describe what the plane meets.
+//
+// comp_degs cannot answer this. Magma's IrreducibleComponents keeps the
+// non-reduced structure, so a tangency comes back as a degree-2 component,
+// indistinguishable from the Galois-conjugate pair of CM points a degree-2
+// component is meant to be: at N=399 the plane z[1]+4z[2]+z[3]-8z[4] is
+// tangent at the exceptional point and reports comps [1,1,2,2] like any
+// genuine CM-carrying plane.
+//
+// The test is exact linear algebra. X is smooth, so the affine cone over the
+// tangent line at pt_coords is Kernel(J) for J the Jacobian of X's defining
+// equations there, and the plane contains that tangent line exactly when vi
+// lies in the row space of J. That is equivalent to
+// Valuation(Divisor(X, vi.z), Place(pt)) ge 2, which is the definition, but it
+// stays in linear algebra rather than building the function field once per
+// candidate plane; tests/test_tangent_plane.m checks the two against each
+// other on planes of both kinds.
+function HyperplaneIsTangentAt(X, vi, pt_coords)
+    g := Genus(X);
+    coords := [Rationals()!c : c in pt_coords];
+    eqs := DefiningEquations(X);
+    J := Matrix(Rationals(), #eqs, g,
+        [[Evaluate(Derivative(f, l), coords) : l in [1..g]] : f in eqs]);
+    r := Rank(J);
+    // A smooth point of a curve in P^(g-1) has Jacobian rank g-2. Any other
+    // rank means pt_coords is a singular point of X, or not on X at all, and
+    // the tangent line this test is about does not exist. Say so rather than
+    // return a verdict the caller has no reason to distrust.
+    error if r ne g - 2,
+        Sprintf("HyperplaneIsTangentAt: Jacobian of X at %o has rank %o, expected %o for a smooth point of a curve in P^%o",
+                coords, r, g - 2, g - 1);
+    Jv := VerticalJoin(J, Matrix(Rationals(), 1, g, [Rationals()!c : c in vi]));
+    return Rank(Jv) eq r;
+end function;
+
 // Recognize a coordinate via PowerRelation(degree 2).
 // Returns <0,0> if zero, <1, rat> if rational, <2, poly> if quadratic algebraic.
 function RecognizeCoord(val, tol, CC)
@@ -858,7 +901,8 @@ end function;
 // Search 1: hyperplanes through the exceptional point and (g-2)-subsets of
 // known rational points, for genus 3 through 6. Returns all-rational planes
 // (max degree 1) and planes with a degree-2 component, both as entries
-// <pt_idxs, plane_eqn, comp_degs, on_plane>.
+// <pt_idxs, plane_eqn, comp_degs, on_plane>. Planes tangent to X at the
+// exceptional point are dropped; see HyperplaneIsTangentAt.
 //
 // Distinct subsets hit the same plane whenever more than g-1 known rational
 // points are coplanar with the exceptional point; at N=137 three of them are,
@@ -885,6 +929,13 @@ function CoplanaritySearch1(X, rats, exc_idx, known_rat_idxs)
         key := CanonicalPlaneKey(vi);
         if key in seen_keys then continue; end if;
         Include(~seen_keys, key);
+        // Before the intersection, which is the expensive step: a plane tangent
+        // at the exceptional point explains nothing (see HyperplaneIsTangentAt).
+        if HyperplaneIsTangentAt(X, vi, exc_coords) then
+            printf "  CoplanaritySearch1: dropping plane %o: tangent to X at the exceptional point rats[%o]\n",
+                vi, exc_idx;
+            continue;
+        end if;
         eqn, degs, on_plane := IntersectWithHyperplane(X, rats, vi);
         if #degs eq 0 then continue; end if;
         if Maximum(degs) le 1 then
@@ -898,7 +949,8 @@ end function;
 
 // Search 2: hyperplanes through the exceptional point and an h=2 conjugate
 // pair, certified by CertifiedPlaneFromCMPair (see its header for the checks).
-// A candidate that cannot be certified is dropped, never labelled anyway.
+// A candidate that cannot be certified is dropped, never labelled anyway, as
+// is one tangent to X at the exceptional point (see HyperplaneIsTangentAt).
 // Returns <D, plane_eqn, comp_degs, on_plane> with max component degree 2.
 //
 // Genus: g in {3,4} only. Three points span a hyperplane just in P^2 and P^3,
@@ -918,6 +970,14 @@ function CoplanaritySearch2(X, rats, exc_idx, d, N, fs, ell_pts, disc_ell_pts :
     for c in certs do
         vi := c[3];
         if &and[vi[l] eq 0 : l in [1..#vi]] then continue; end if;
+        // CM certification says the conjugate pair lies on the plane; it says
+        // nothing about how the plane meets X at the exceptional point, which
+        // is a separate requirement (see HyperplaneIsTangentAt).
+        if HyperplaneIsTangentAt(X, vi, exc_coords) then
+            printf "  CoplanaritySearch2: dropping D=%o plane %o: tangent to X at the exceptional point rats[%o]\n",
+                d, vi, exc_idx;
+            continue;
+        end if;
         eqn, degs, on_plane := IntersectWithHyperplane(X, rats, vi);
         if #degs eq 0 or Maximum(degs) gt 2 then continue; end if;
         // CertifiedPlaneFromCMPair's exact-containment check already guarantees
@@ -1279,7 +1339,11 @@ end function;
 // which apply to the analysis and not to the labeling.
 //
 // Each entry of `planes` is a 12-tuple:
-//    1 exc_idx        the exceptional point this plane explains
+//    1 exc_idx        the exceptional point this plane explains. Every plane
+//                     here meets X transversally there, tangent ones having
+//                     been dropped by the searches (see HyperplaneIsTangentAt),
+//                     so exc_idx occurs once in the degree-(2g-2) divisor
+//                     X cap plane_eqn
 //    2 plane_eqn      \
 //    3 comp_degs      / geometry of X cap plane_eqn, independent of CM labeling
 //    4 cm_discs       confirmed discriminants on the plane: rational CM and
