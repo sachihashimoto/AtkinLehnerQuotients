@@ -30,7 +30,7 @@ Special points: 8
   disc = -19 -> rats[2] -> (3 : 2 : 1 : 1) (CM)
   disc = -16 -> rats[4] -> (1 : 2 : 0 : 1) (CM)
   disc = -28 -> rats[3] -> (0 : 1 : 1 : 0) (CM)
-Time: 1.160
+Time: 1.080
 
 D=-32 component field: x^2 - 4*x + 2
 D=-32 points on the eqs_quos X_0(137)* model: [

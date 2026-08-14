@@ -178,18 +178,6 @@ function CandidateLevelsByGonality(g)
         Certified finite superset of all N such that
 
             genus X_0(N)^* <= g.
-
-        Uses the necessary condition
-
-            mu(N) / 2^omega(N) <= 2^(15)/325 * (g + 1).
-
-        This comes from Abramovich's bound
-            gon(X_0(N)) >= (lambda_1/24) * mu(N),
-
-        with lambda_1 >= 975/4096 (Kim-Sarnak), giving (975/4096)/24 = 325/32768,
-        and if genus X_0(N)^* <= g, then
-
-            gon(X_0(N)) <= 2^omega(N) * (g + 3).
     */
 
     assert g ge 0;
