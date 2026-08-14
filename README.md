@@ -257,3 +257,17 @@ above for initializing it.
 
 The fork carries one patch to `models_and_maps.m`'s
 `all_diag_basis`. In short, it avoids a combinatorial blow-up in the simultaneous-eigenspace computation.
+
+We load `models_and_maps.m` and use four of its functions:
+
+- `all_diag_basis(N)` — the AL-diagonal integral basis of S₂(Γ₀(N)); its +1
+  eigenspace gives the coordinates for every X₀(N)\* model here.
+  (`src/modelsX0Nstar.m`, `src/hnf_canonical.m`, `tests/test_311_jmap.m`)
+- `eqs_quos(N, als)` — model and quotient map on the hyperelliptic/low-genus
+  path, and an independent model of X₀(137)/X₀(137)\* to compare against ours.
+  (`src/modelsX0Nstar.m`, `tests/test_137_jmap.m`)
+- `canonic(B)` — canonical model of X₀(311)\* from the +1 eigenbasis.
+  (`tests/test_311_jmap.m`)
+- `jmap(X, N)`, and its worker `find_rels` directly at N = 311 — the
+  j-invariant map, used to identify the exceptional points' j-invariants.
+  (`tests/test_137_jmap.m`, `tests/test_311_jmap.m`)

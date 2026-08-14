@@ -15,7 +15,7 @@ Loading "src/point_search.m"
 Loading "tests/assertions.m"
 
 === 1. TripleCoverXYSeries consistency ===
-[FormalWLog] computing formal group of 143a1 to t-precision 60... done (0.000 s)
+[FormalWLog] computing formal group of 143a1 to t-precision 60... done (0.010 s)
 [FormalWLog] computing formal group of 58a1 to t-precision 60... done (0.000 s)
 
 === 2. SolveRatFun synthetic identity ===
@@ -47,7 +47,7 @@ Labelled 10 CM+cusp, 0 exceptional
 === 4. End-to-end known answer: M = 286 -> 143a1 (X_0(286)*) ===
 M = 286, d = 143: E^C_f = 143a1 (E_f = 143a1), delta_f = 1, factors [ <2, 3> ], expected degree 3
 [BuildTripleCover] building model of X_0(286)* (eval_prec = 400, cached if available)... [cache] loaded 3000-term star forms for level 286
-done (14.310 s)
+done (14.370 s)
 [cache] loaded triple-cover map for (M=286, 143a1)
 
 === X_0(286)* -> 143a1: fiber analysis for D = -39 ===

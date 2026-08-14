@@ -22,3 +22,8 @@ Loading "tests/assertions.m"
 === hyperelliptic models: observed field of definition vs prediction ===
 [cache] loaded 3000-term star forms for level 154
 [cache] loaded 3000-term star forms for level 285
+[cache] loaded 3000-term star forms for level 286
+
+=== the multi-valued contrasts are still in the table ===
+test_cm_field_observed: 159 assertions, all passed
+@@TEST_RESULT@@ PASS
