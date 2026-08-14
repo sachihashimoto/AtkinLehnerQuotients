@@ -4,14 +4,16 @@
 // each exceptional point in genus 3 and 4, and emits it as LaTeX.
 //
 // Why this exists: the Collinearity column of the two exceptional-point tables
-// records one witnessing plane per level.  Which one it records turned out to
-// depend on eval_prec -- at the default 3000, N = 178 reported "10 planes (1
-// with algebraic CM match)"; at 7000 the same 10 planes gave 5 confirmed
-// matches.  The geometry never changed, only the CM identification of the
-// degree-2 components.  So the published column was selecting on a numerical
-// artifact.  This script re-runs every level at 7000 and reports the full set.
+// records one witnessing plane per level.  The planes that are algebraic matches depend on the eval_prec.
+// At the default 3000, N = 178 reported "10 planes (4 with algebraic CM match)"; 
+// at 7000 the same 10 planes gave 5 confirmed
+// matches (the plane 2*z[2] - z[3]=0  containing the cusp and unconfirmed CM points
+// now has a confirmed CM point at higher precision). 
+// The geometry does not change, only the confidence in the CM identification of the
+// degree-2 components: at lower precision we are not able to select between -32 and -64.
+//  This script re-runs every level at 7000 and reports the full set.
 //
-// Run from the repo root:
+// Run from the main folder of the repository:
 //     magma scripts/make_plane_multiplicity_table.m
 // or inside a session:
 //     load "scripts/make_plane_multiplicity_table.m";
