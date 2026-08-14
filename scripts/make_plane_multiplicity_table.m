@@ -21,8 +21,9 @@
 // Output: a progress line per level, then a LaTeX tabular on stdout.
 //
 // Runtime: a fresh build at eval_prec 7000 with confirm_deg2 for all 14
-// levels.  Hours, not minutes.  Each level prints as it completes, so a
-// partial run is still usable.
+// levels takes about 10 minutes (measured: 583 s wall, 371 MB peak).  Each
+// level takes 10-100 s and prints as it completes, so a partial run is still
+// usable.
 
 load "src/AtkinLehner.m";
 
@@ -102,30 +103,70 @@ for N in LEVELS do
 end for;
 
 // ---------------------------------------------------------------------------
-printf "\n\n%%%% ---- LaTeX, paste into the paper ----\n\n";
-printf "\\begin{table}[ht]\n\\centering\n\\small\n";
-printf "\\begin{tabular}{ccl}\n\\toprule\n";
-printf "\\textbf{Level} & \\textbf{Genus} & \\textbf{Special hyperplanes through the exceptional point} \\\\\n";
-printf "\\midrule\n";
+// Right-pad to a fixed width, so the emitted .tex source lines up by column.
+// ---------------------------------------------------------------------------
+function Pad(s, w)
+    t := s;
+    while #t lt w do t cat:= " "; end while;
+    return t;
+end function;
+
+// ---------------------------------------------------------------------------
+// Flatten to one printable line per plane.  A line carries the level and genus
+// only when it opens that level's block; continuation lines leave both blank.
+// starts records the line index opening each block, so the table can be split
+// into two halves without cutting a level in two.
+// ---------------------------------------------------------------------------
+lines  := [];
+starts := [];
 for r in rows do
     N, g, cp := Explode(r);
-    first := true;
-    for e in cp do
+    Append(~starts, #lines + 1);
+    for i in [1..#cp] do
+        e    := cp[i];
         star := (e[1] eq PUBLISHED[N]) select "$^{\\dagger}$" else "";
-        if first then
-            printf "$%o$ & $%o$ & %o%o \\\\\n", N, g, DiscsToTeX(e[1]), star;
-            first := false;
+        cell := Sprintf("%o%o", DiscsToTeX(e[1]), star);
+        if i eq 1 then
+            Append(~lines, <Sprintf("$%o$", N), Sprintf("$%o$", g), cell>);
         else
-            printf "     &     & %o%o \\\\\n", DiscsToTeX(e[1]), star;
+            Append(~lines, <"", "", cell>);
         end if;
     end for;
-    printf "\\addlinespace\n";
+end for;
+
+// The block boundary closest to halving the table; ties go to the later one,
+// filling the left half first.
+half  := Ceiling(#lines / 2);
+split := 1;
+for s in starts do
+    if Abs(s - 1 - half) le Abs(split - 1 - half) then split := s; end if;
+end for;
+left  := [lines[i] : i in [1 .. split - 1]];
+right := [lines[i] : i in [split .. #lines]];
+blank := <"", "", "">;
+
+// Both halves print against one set of rules, so they end flush by
+// construction.  That rules out \addlinespace between levels: a gap belongs to
+// a whole row, and the level boundaries of the two halves do not coincide.
+printf "\n\n%%%% ---- LaTeX, paste into the paper ----\n\n";
+printf "\\begin{table}[ht]\n\\centering\n\\small\n";
+printf "\\setlength{\\tabcolsep}{5pt}\n";
+printf "\\begin{tabular}{ccl@{\\hspace{2.5em}}ccl}\n\\toprule\n";
+printf "$N$ & $g$ & Collinearity & $N$ & $g$ & Collinearity \\\\\n";
+printf "\\midrule\n";
+for i in [1 .. Max(#left, #right)] do
+    L := (i le #left)  select left[i]  else blank;
+    R := (i le #right) select right[i] else blank;
+    printf "%o & %o & %o & %o & %o & %o \\\\\n",
+           Pad(L[1], 5), Pad(L[2], 3), Pad(L[3], 26),
+           Pad(R[1], 5), Pad(R[2], 3), R[3];
 end for;
 printf "\\bottomrule\n\\end{tabular}\n";
 printf "\\caption{Every confirmed special hyperplane through an exceptional\n";
 printf "point of $X_0^*(N)$ in genus $3$ and $4$, computed at\n";
-printf "$\\texttt{eval\\_prec} = %o$.  Each row lists the CM discriminants (and\n", EVAL_PREC;
-printf "the cusp, where it occurs) of the special divisor cut out.  A dagger\n";
-printf "marks the plane recorded in Tables~\\ref{tab:exceptional_points_genus_3}\n";
+printf "$\\texttt{eval\\_prec} = %o$.  Each collinearity is listed by the CM\n", EVAL_PREC;
+printf "discriminants (and the cusp, where it occurs) of the special divisor\n";
+printf "cut out.  A dagger marks the plane recorded in\n";
+printf "Tables~\\ref{tab:exceptional_points_genus_3}\n";
 printf "and~\\ref{tab:exceptional_points_genus_4}.}\n";
 printf "\\label{tab:all_planes}\n\\end{table}\n";
