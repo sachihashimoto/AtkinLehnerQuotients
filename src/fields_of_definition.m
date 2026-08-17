@@ -244,13 +244,9 @@ function RationalCMDiscs(N)
         end if;
         for d in discs[n] do
 
-            i := Valuation(n, 2);
             disc := -d;
             R := QuadraticOrder(BinaryQuadraticForms(disc));
-            f_cond := Conductor(R);
-            N_R_primes := {p : p in PrimeDivisors(N) | KroneckerCharacter(disc)(p) eq 1 or f_cond mod p eq 0};
 
-            //first optimization is to look at the prime ideals corresponding to w_p in the class group and check if they generate the class group
             opt_emb := NumberOfOptimalEmbeddings(R, N);
             if opt_emb eq 0 then continue; end if;
 
