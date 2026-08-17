@@ -148,6 +148,8 @@ Qx<xind> := PolynomialRing(Rationals());
 f_nonsquare := xind^6 + 1/2*xind^3 + 1/3;
 C_nonsquare := HyperellipticCurve(f_nonsquare);
 pts_nonsquare := PointsOriginalModel(C_nonsquare, 20);
+AssertEqual(~results, #pts_nonsquare gt 0, true,
+    "PointsOriginalModel: non-square-denominator model (den=6) returns at least one point (a regression to zero points would make the check below vacuous)");
 AssertEqual(~results, forall{P : P in pts_nonsquare | P in C_nonsquare}, true,
     Sprintf("PointsOriginalModel: non-square-denominator model (den=6) no longer aborts, and all %o returned points verify on the curve", #pts_nonsquare));
 

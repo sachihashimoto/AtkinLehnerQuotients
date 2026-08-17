@@ -27,6 +27,18 @@
 // stored columns with zero drift, so a fully green run is the expected
 // result. If a mismatch appears here, that is a real finding about the
 // current code, report it, do not edit the expected value to match.
+//
+// Caveat on what this suite can and cannot catch: every `special` value in
+// the table below was itself produced by count_special_points_X0Nstar (via
+// RationalCMDiscs) -- the PointSearch sweep tables and data/genus8_models.m
+// both call the same code path this suite asserts against. So this is a
+// regression-drift check, not an independent verification: a bug already
+// present in RationalCMDiscs when the table was generated would be silently
+// enshrined here as "expected" and this suite would stay green. Only the 14
+// levels also covered by tests/test_exceptional_tables.m (178, 183, 246,
+// 290, 310, 318, 329, 430, 455, 510, 137, 311, 370, 399) have any
+// independent corroboration, via that suite's paper-sourced exceptional-
+// point tables. The other 184 levels have none.
 
 load "src/AtkinLehner.m";
 load "tests/assertions.m";
