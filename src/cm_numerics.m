@@ -16,8 +16,10 @@ function TauFromForms(forms, CC)
         A := f[1]; B := f[2]; C := f[3];
         P<z> := PolynomialRing(CC);
         rts := Roots(A*z^2 + B*z + C, CC);
-        tau := [r[1] : r in rts | Imaginary(r[1]) gt 0][1];
-        Append(~taus, tau);
+        upper := [r[1] : r in rts | Imaginary(r[1]) gt 0];
+        error if #upper eq 0,
+            Sprintf("TauFromForms: no root with positive imaginary part for form <%o,%o,%o>", A, B, C);
+        Append(~taus, upper[1]);
     end for;
     return taus;
 end function;
