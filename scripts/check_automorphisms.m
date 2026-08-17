@@ -54,6 +54,15 @@ load "src/AtkinLehner.m";
 // phi(g_i)'s coefficient vector, equal to zero -- equations purely in the
 // T-unknowns, no per-generator mixing variables needed at all.
 //
+// V_d must be the FULL degree-d graded piece of the ideal, not just
+// span{gens of degree exactly d}: it also contains every (monomial of
+// degree d - deg(g)) * g for every generator g of degree <= d (e.g. z_i *
+// (the quadric) is a genuine degree-3 element of the ideal even though it
+// is not among the "new" degree-3 generators Magma reports). Omitting
+// those multiples made an earlier version of this annihilator too small,
+// over-constraining phi(g_i) to a smaller subspace than the true ideal
+// allows and producing false negatives.
+//
 // n: ambient dimension (rank of the polynomial ring)
 // p_from, p_to: SeqEnum[FldRatElt] of length n, homogeneous coordinates.
 //
@@ -71,13 +80,38 @@ function FindLinAutoMappingPoint(gens, p_from, p_to : verbose := false)
 
     // For each degree d present among gens: a monomial basis `mons` of R_d,
     // and a sequence of covectors (SeqEnum[FldRatElt], one per mons) that
-    // annihilate span{gens of degree d} inside R_d.
+    // annihilate I_d, the full degree-d graded piece of the ideal (see
+    // above -- not just span{gens of degree exactly d}).
     ann := AssociativeArray();
     for d in uniq_degs do
         mons := [m : m in MonomialsOfDegree(R, d)];
-        idxs := [i : i in [1..r] | degs[i] eq d];
-        M := Matrix(Rationals(), #mons, #idxs,
-                     [MonomialCoefficient(gens[idxs[j]], mons[i]) : i in [1..#mons], j in [1..#idxs]]);
+        spanvecs := [R | ];
+        for gi in [1..r] do
+            e := degs[gi];
+            if e gt d then continue; end if;
+            if e eq d then
+                Append(~spanvecs, gens[gi]);
+            else
+                for m in MonomialsOfDegree(R, d - e) do
+                    Append(~spanvecs, m * gens[gi]);
+                end for;
+            end if;
+        end for;
+        // NB: Magma's [f(i,j) : i in S1, j in S2] varies i FASTEST (the
+        // first-listed variable is the inner/fast loop, the last-listed is
+        // the outer/slow one) -- the opposite of the usual left-to-right
+        // nested-loop reading. j (spanvecs, matching Matrix's columns) must
+        // be listed first so consecutive #spanvecs-sized runs fill one row
+        // at a time; get this backwards and Matrix()'s row-by-row fill
+        // silently scrambles the entries into a nonsense matrix that still
+        // parses and computes -- this exact bug spuriously rejected a
+        // genuine automorphism at N=370, independently confirmed via
+        // Magma's own AutomorphismGroup(X) (which found #Aut = 2 and, when
+        // evaluated directly at the curve's rational points, sends the CM
+        // disc -4 point to the exceptional point -- exactly the witness
+        // the paper claims).
+        M := Matrix(Rationals(), #mons, #spanvecs,
+                     [MonomialCoefficient(spanvecs[j], mons[i]) : j in [1..#spanvecs], i in [1..#mons]]);
         NS := NullSpace(M); // {L : L*M = 0}, L of length #mons
         ann[d] := <mons, [Eltseq(b) : b in Basis(NS)]>;
     end for;
