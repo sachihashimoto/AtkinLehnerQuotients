@@ -40,6 +40,8 @@
 load "src/AtkinLehner.m";
 load "src/hnf_canonical.m";
 
+System("mkdir -p outputs");
+
 if not assigned g then
     gs := [5, 6];      // original default: both genus 5 and 6 in one run
 else

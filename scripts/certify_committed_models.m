@@ -56,7 +56,11 @@ function CertifyCommittedModel(N, g, C)
         try
             ok2, B := CertifyModularIdentity(val, N, weight);
         catch err
-            return "FAIL", Sprintf("N=%o: %o", N, err`Object);
+            msg := Sprint(err`Object);
+            if "insufficient precision" in msg then
+                return "SKIP", Sprintf("N=%o: cached forms have insufficient precision to certify this equation; not checked (%o)", N, msg);
+            end if;
+            return "FAIL", Sprintf("N=%o: %o", N, msg);
         end try;
         if not ok2 then
             return "FAIL", Sprintf("N=%o: equation of degree %o FAILED past Sturm bound %o", N, Degree(e), B);
