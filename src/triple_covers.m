@@ -412,24 +412,30 @@ end function;
 // or re-derive a genuine build gets one.  It is deliberately not a delete:
 // forcing a miss by removing files would destroy maps that cost hours to
 // produce and that are independent evidence a cover exists.
-function BuildTripleCover(M, Elabel : eval_prec := 400, cache_prec := 3000, use_cache := true)
+function BuildTripleCover(M, Elabel : expected := 3, allow_Ef := false,
+			     eval_prec := 400, cache_prec := 3000, use_cache := true)
     E := MinimalModel(EllipticCurve(Elabel));
     Eopt := OptimalCurveOfClass(E);
     d := Conductor(Eopt);
     error if not IsDivisibleBy(M, d),
         Sprintf("BuildTripleCover: conductor %o does not divide M = %o", d, M);
     tgt := CremonaReference(StarTargetCurve(Eopt));
-    error if tgt ne CremonaReference(E),
-        Sprintf("BuildTripleCover: %o is not E^C_f for the class of conductor %o; that is %o",
-            Elabel, d, tgt);
+    to_Ef := (CremonaReference(E) eq CremonaReference(Eopt)) and (tgt ne CremonaReference(E));
+    error if (tgt ne CremonaReference(E)) and not (allow_Ef and to_Ef),
+        Sprintf("BuildTripleCover: %o is neither E^C_f nor E_f for the class of conductor %o; E^C_f is %o", Elabel, d, tgt);
     delta := StarDegree(Eopt);
     cofactor := ExactQuotient(M, d);
     factors := [<l, l + 1 + TraceOfFrobenius(Eopt, l)> : l in PrimeDivisors(cofactor)];
     expdeg := delta * &*[Integers() | t[2] : t in factors];
     printf "M = %o, d = %o: E^C_f = %o (E_f = %o), delta_f = %o, factors %o, expected degree %o\n",
         M, d, Elabel, CremonaReference(Eopt), delta, factors, expdeg;
-    error if expdeg ne 3,
-        Sprintf("BuildTripleCover: expected a degree-3 map, the formula gives %o", expdeg);
+    if to_Ef then
+        Cord := Integers() ! (delta * 2^#PrimeDivisors(d) / ModularDegree(Eopt));
+        expdeg := ExactQuotient(expdeg, Cord);
+    end if;
+    error if expdeg ne expected,
+        Sprintf("BuildTripleCover: expected a degree-%o map, the formula gives %o",
+                 expected, expdeg);
 
     lab := CremonaReference(E);
     t0 := Cputime();
@@ -450,15 +456,15 @@ function BuildTripleCover(M, Elabel : eval_prec := 400, cache_prec := 3000, use_
     end if;
 
     if IsHyperellipticX0Nstar(M) then
-        ok, pi, c := TripleCoverMap_hyperelliptic(X, fs, E, M, eval_prec);
+        ok, pi, c := TripleCoverMap_hyperelliptic(X, fs, E, M, eval_prec : expected_deg := expected);
     else
-        ok, pi, c := TripleCoverMap_canonical(X, fs, E, M, eval_prec);
+        ok, pi, c := TripleCoverMap_canonical(X, fs, E, M, eval_prec : expected_deg := expected);
     end if;
     error if not ok,
         "BuildTripleCover: no map found, try higher eval_prec or more c candidates";
     SaveTripleCoverMap(M, lab, E, c, pi);
-    printf "success: pi : X_0(%o)* -> %o (degree 3) with pi^*omega = %o * h dq/q, h = sum_(e | %o) e f(q^e)\n",
-        M, Elabel, c, cofactor;
+    printf "success: pi : X_0(%o)* -> %o (degree %o) with pi^*omega = %o * h dq/q, h = sum_(e | %o) e f(q^e)\n",
+        M, Elabel, expected, c, cofactor;
     return pi, X, E, fs, Sstar, c;
 end function;
 
