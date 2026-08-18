@@ -237,9 +237,13 @@ EVAL_PREC[399] := 6000;
 // ---------------------------------------------------------------------------
 function AutomorphismExplains(N : B := 1000, eval_prec := 3000)
     interesting := check_exceptional_example(N : B := B, eval_prec := eval_prec);
-    error if #interesting eq 0,
-        Sprintf("N = %o: no exceptional point found", N);
     entry  := interesting[1];
+    // Guard on entry[2] (n, the exceptional-point count), not #interesting:
+    // check_exceptional_example always appends exactly one entry regardless of
+    // how many exceptional points it actually found, so a #interesting test can
+    // never fire.
+    error if entry[2] eq 0,
+        Sprintf("N = %o: no exceptional point found", N);
     rats   := entry[3];
     X      := entry[4];
     fs     := entry[5];
