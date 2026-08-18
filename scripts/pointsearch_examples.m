@@ -21,6 +21,7 @@ level := StringToInteger(Np);
 bound := StringToInteger(B);
 eval_prec := 3000;
 
+System("mkdir -p outputs");
 outfile := Sprintf("outputs/pointsearch_example_Np%o_B%o.txt", level, bound);
 part := outfile cat ".part";
 System("rm -f " cat part);

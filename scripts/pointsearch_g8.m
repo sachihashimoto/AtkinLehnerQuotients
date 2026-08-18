@@ -21,6 +21,7 @@ ns := StringToInteger(nshards);
 load "data/genus8_models.m";
 Ns := Sort(Setseq(Keys(models)));
 
+System("mkdir -p outputs");
 outfile := Sprintf("outputs/special_vs_found_g8_sqfree_B%o_shard%o.txt", B, sh);
 part := outfile cat ".part";
 System("rm -f " cat part);
