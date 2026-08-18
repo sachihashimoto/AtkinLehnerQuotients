@@ -7,44 +7,45 @@
 
 Q := Rationals();
 P<x, y, z, w, t> := ProjectiveSpace(Q, 4);
-ModelRec := recformat< N, genus, squarefree, hyperelliptic, special_points, curve >;
+ModelRec := recformat< N, genus, squarefree, hyperelliptic, special_points, 
+curve >;
 models := AssociativeArray();
 
 
 // ---- N = 157,  [ <157, 1> ],  special points = 9 ----
-models[157] := rec< ModelRec | N := 157, genus := 5, squarefree := true, hyperelliptic := false, special_points := 9, curve := Curve(P, [
-    x^2*z - x*y^2 + 4*y*z^2 - 8*y*z*w - 9*y*w^2 + 22*y*w*t - 18*y*t^2 - z^3 + 6*z^2*w - 10*z^2*t + 15*z*w^2 - 18*z*w*t + 14*z*t^2 + 9*w^3 - 32*w^2*t + 6*w*t^2 + 29*t^3,
-    x^2*w - y^3 + 2*y*z^2 + 2*y*z*w - 11*y*w^2 + 17*y*w*t - 10*y*t^2 - 6*z^2*w - 2*z^2*t + 7*z*w^2 + 9*z*w*t - 6*z*t^2 + 12*w^3 - 35*w^2*t - 19*w*t^2 + 32*t^3,
-    x^2*t - y^2*z + y*z^2 + 2*y*z*w - 4*y*w^2 - 4*y*w*t + y*t^2 - z^2*w - 2*z^2*t + 3*z*w^2 + 5*z*w*t - 5*z*t^2 + 4*w^3 - 4*w^2*t - 7*w*t^2 + 3*t^3,
-    x*y*z - y^3 + 4*y*z*w - 5*y*w^2 + 4*y*w*t - 4*y*t^2 - 4*z^2*w - z^2*t + 2*z*w^2 + 8*z*w*t - 9*z*t^2 + 6*w^3 - 16*w^2*t - 6*w*t^2 + 22*t^3,
-    x*y*w - y^2*z + 2*y*z*w + y*w^2 + 10*y*t^2 - 3*z^2*w - 4*z*w^2 + 6*z*w*t - 5*z*t^2 - w^3 + 2*w^2*t - 14*w*t^2 - 11*t^3,
-    x*y*t - y*z^2 + y*z*w + 2*y*w^2 - 6*y*w*t + 5*y*t^2 + z^2*t - 2*z*w^2 - 3*z*t^2 - 2*w^3 + 8*w^2*t - 2*w*t^2 - 10*t^3,
-    x*z^2 - y^2*z + y*z*w + 4*y*w^2 + 12*y*t^2 - z^3 - 3*z^2*t - 4*z*w^2 - 4*z*w*t + 2*z*t^2 - 4*w^3 + 8*w^2*t - 8*w*t^2 - 20*t^3,
-    x*z*w - y*z^2 + 3*y*w^2 + 9*y*t^2 - z^2*w + z^2*t - 3*z*w^2 - 3*z*w*t - 2*z*t^2 - 3*w^3 + 6*w^2*t - 6*w*t^2 - 15*t^3,
-    x*z*t - y*z*w + z^2*w - z^2*t + z*w^2 - 2*z*w*t - z*t^2,
-    x*w^2 - y*z*w + 3*y*w*t - z*w^2 + z*w*t - 3*w^2*t - 5*w*t^2,
-    x*w*t - y*w^2 + z*w^2 - z*w*t + w^3 - 2*w^2*t - w*t^2,
-    x*t^2 - y*w*t + z*w*t - z*t^2 + w^2*t - 2*w*t^2 - t^3,
-    y^2*w - y*z^2 + 2*y*w^2 - 4*y*w*t + 9*y*t^2 + z^2*t - 3*z*w^2 - 2*z*t^2 - 3*w^3 + 10*w^2*t - 4*w*t^2 - 15*t^3,
-    y^2*t - y*z*w - y*w*t - 4*y*t^2 + z^2*w + z*w^2 - 2*z*w*t + 2*z*t^2 + 4*w*t^2 + 2*t^3,
-    y*z*t - y*w^2 - 3*y*t^2 + z*w^2 - z*t^2 + w^3 - 2*w^2*t + 2*w*t^2 + 5*t^3
+models[157] := rec< ModelRec | N := 157, genus := 5, squarefree := true, 
+hyperelliptic := false, special_points := 9, curve := Curve(P, [
+    x*z - y^2 + y*w + 4*y*t - z^2 - 3*z*t - 4*w*t - 2*t^2,
+    x*w - y*z + 3*y*t - z*w + z*t - 3*w*t - 5*t^2,
+    x*t - y*w + z*w - z*t + w^2 - 2*w*t - t^2
 ]) >;
 
 
 // ---- N = 181,  [ <181, 1> ],  special points = 9 ----
-models[181] := rec< ModelRec | N := 181, genus := 5, squarefree := true, hyperelliptic := false, special_points := 9, curve := Curve(P, [
-    x^2*z - x*y^2 + x*w^2 + 3*y^2*w - 7*y*z*w - 6*y*w^2 + 7*z^2*w - 7*z^2*t + 13*z*w^2 - 17*z*w*t + 2*z*t^2 + 3*w^3 - 12*w^2*t + 12*w*t^2 + 9*t^3,
-    x^2*w - x*w^2 - y^3 + 2*y*z^2 + 2*y*z*w - 2*y*w^2 + z^3 - 13*z^2*w + 3*z^2*t + 6*z*w^2 + 27*z*w*t - 27*z*t^2 + 3*w^3 - 13*w^2*t - 22*w*t^2 + 27*t^3,
-    x^2*t - y^2*z + y*z^2 + y*z*w - y*w^2 + z^3 - 3*z^2*w - 5*z^2*t - 2*z*w^2 + 17*z*w*t - 3*z*t^2 + w^3 + 4*w^2*t - 29*w*t^2 + 5*t^3,
-    x*y*z - y^3 + 3*y*z*w + y*w^2 - 7*z^2*w + 7*z^2*t - 6*z*w^2 + 22*z*w*t - 30*z*t^2 + 6*w^2*t - 27*w*t^2 + 27*t^3,
-    x*y*w - x*w^2 - y^2*z - y^2*w + y*z^2 + 2*y*z*w + y*w^2 + z^3 - 4*z^2*w - 4*z^2*t - z*w^2 + 12*z*w*t - z*t^2 - 13*w*t^2 + 6*t^3,
-    x*y*t - y^2*w + y*z*w + y*w^2 - z^2*w + z^2*t - 2*z*w^2 + 2*z*w*t - 2*z*t^2 + 2*w^2*t - 5*w*t^2 - 3*t^3,
+models[181] := rec< ModelRec | N := 181, genus := 5, squarefree := true, 
+hyperelliptic := false, special_points := 9, curve := Curve(P, [
+    x*z - y^2 + 3*z*w - 7*z*t + w^2 - 6*w*t + 9*t^2,
+    x*t - y*w + z*w - z*t + w^2 - 2*w*t - t^2,
+    y*t - z*w + z*t + w*t - 3*t^2,
+    x^2*z - x*y^2 + x*w^2 + 3*y^2*w - 7*y*z*w - 6*y*w^2 + 7*z^2*w - 7*z^2*t + 
+13*z*w^2 - 17*z*w*t + 2*z*t^2 + 3*w^3 - 12*w^2*t + 12*w*t^2 + 9*t^3,
+    x^2*w - x*w^2 - y^3 + 2*y*z^2 + 2*y*z*w - 2*y*w^2 + z^3 - 13*z^2*w + 3*z^2*t
++ 6*z*w^2 + 27*z*w*t - 27*z*t^2 + 3*w^3 - 13*w^2*t - 22*w*t^2 + 27*t^3,
+    x^2*t - y^2*z + y*z^2 + y*z*w - y*w^2 + z^3 - 3*z^2*w - 5*z^2*t - 2*z*w^2 + 
+17*z*w*t - 3*z*t^2 + w^3 + 4*w^2*t - 29*w*t^2 + 5*t^3,
+    x*y*z - y^3 + 3*y*z*w + y*w^2 - 7*z^2*w + 7*z^2*t - 6*z*w^2 + 22*z*w*t - 
+30*z*t^2 + 6*w^2*t - 27*w*t^2 + 27*t^3,
+    x*y*w - x*w^2 - y^2*z - y^2*w + y*z^2 + 2*y*z*w + y*w^2 + z^3 - 4*z^2*w - 
+4*z^2*t - z*w^2 + 12*z*w*t - z*t^2 - 13*w*t^2 + 6*t^3,
+    x*y*t - y^2*w + y*z*w + y*w^2 - z^2*w + z^2*t - 2*z*w^2 + 2*z*w*t - 2*z*t^2 
++ 2*w^2*t - 5*w*t^2 - 3*t^3,
     x*z^2 - y^2*z + 3*z^2*w - 7*z^2*t + z*w^2 - 6*z*w*t + 9*z*t^2,
     x*z*w - y^2*w + 3*z*w^2 - 7*z*w*t + w^3 - 6*w^2*t + 9*w*t^2,
     x*z*t - y*z*w + z^2*w - z^2*t + z*w^2 - 2*z*w*t - z*t^2,
     x*w*t - y*w^2 + z*w^2 - z*w*t + w^3 - 2*w^2*t - w*t^2,
     x*t^2 - z*w^2 + 2*z*w*t - z*t^2 + 2*w^2*t - 5*w*t^2 - t^3,
-    y^2*t - y*z*w + z^2*w - z^2*t + z*w^2 - 5*z*w*t + 6*z*t^2 - w^2*t + 6*w*t^2 - 9*t^3,
+    y^2*t - y*z*w + z^2*w - z^2*t + z*w^2 - 5*z*w*t + 6*z*t^2 - w^2*t + 6*w*t^2 
+- 9*t^3,
     y*z*t - z^2*w + z^2*t + z*w*t - 3*z*t^2,
     y*w*t - z*w^2 + z*w*t + w^2*t - 3*w*t^2,
     y*t^2 - z*w*t + z*t^2 + w*t^2 - 3*t^3
@@ -52,59 +53,52 @@ models[181] := rec< ModelRec | N := 181, genus := 5, squarefree := true, hyperel
 
 
 // ---- N = 218,  [ <2, 1>, <109, 1> ],  special points = 10 ----
-models[218] := rec< ModelRec | N := 218, genus := 5, squarefree := true, hyperelliptic := false, special_points := 10, curve := Curve(P, [
-    x^2*z - x*y^2 + y*z^2 - 2*y*z*w + y*w^2 + 4*y*w*t - z^3 - 2*z^2*w + 2*z*w^2 - 3*z*t^2 - w^3 + w^2*t + 2*w*t^2,
-    x^2*w - y^3 + y*z^2 + y*z*w - 6*y*w^2 + 9*y*w*t - 3*y*t^2 - z^2*w - 2*z^2*t - 5*z*w^2 + 7*w^3 + 3*w^2*t - 3*w*t^2 + 2*t^3,
-    x^2*t - y^2*z + 2*y*z*w - 3*y*w*t + 4*y*t^2 - 2*z^2*t - z*w^2 - 2*z*w*t + 3*w^2*t + 2*w*t^2 - 2*t^3,
-    x*y*z - y^3 + y*z*w - 3*y*w^2 + 5*y*w*t - 3*y*t^2 - 2*z^2*t - 3*z*w^2 + z*w*t + 4*w^3 + w^2*t - w*t^2 + 2*t^3,
-    x*y*w - y^2*z + y*z*w + y*w*t + 4*y*t^2 - 2*z^2*t - 2*z*w^2 - 2*z*w*t + 2*w*t^2 + 2*t^3,
-    x*y*t - y*z^2 + 2*y*w^2 - 2*y*w*t + 2*y*t^2 + z*w^2 - z*w*t - 2*w^3 - w^2*t + w*t^2,
-    x*z^2 - y^2*z + y*z*w + 2*y*w^2 + 4*y*t^2 - z^3 - z^2*w - 2*z^2*t - z*w*t + z*t^2 - 2*w^3 + 2*w*t^2,
-    x*z*w - y*z^2 + 2*y*w^2 + 4*y*t^2 - z^2*w - 3*z*w*t - 2*w^3 + 2*w*t^2,
-    x*z*t - y*z*w + z*w^2 - 2*z*t^2,
-    x*w^2 - y*z*w + 2*y*w*t - z*w^2 - w^2*t,
-    x*w*t - y*w^2 + w^3 - 2*w*t^2,
-    x*t^2 - y*w*t + w^2*t - 2*t^3,
-    y^2*w - y*z^2 + y*w^2 - 2*y*w*t + 4*y*t^2 + z*w^2 - z*w*t - 2*w^3 - w^2*t + w*t^2,
-    y^2*t - y*z*w - y*w*t - 2*y*t^2 + z^2*t + z*w^2 + z*w*t - w*t^2 - t^3,
-    y*z*t - y*w^2 - 2*y*t^2 + z*w*t + w^3 - w*t^2
+models[218] := rec< ModelRec | N := 218, genus := 5, squarefree := true, 
+hyperelliptic := false, special_points := 10, curve := Curve(P, [
+    x*z - y^2 + y*w + 2*y*t - z^2 - z*w - 2*z*t + w*t + t^2,
+    x*w - y*z + 2*y*t - z*w - w*t,
+    x*t - y*w + w^2 - 2*t^2
 ]) >;
 
 
 // ---- N = 226,  [ <2, 1>, <113, 1> ],  special points = 11 ----
-models[226] := rec< ModelRec | N := 226, genus := 5, squarefree := true, hyperelliptic := false, special_points := 11, curve := Curve(P, [
-    x^2*z - x*y^2 + 2*y*z^2 - 2*y*z*w + y*w^2 + y*w*t + 4*y*t^2 - 2*z^3 - 4*z^2*w + 4*z^2*t + 4*z*w^2 + 5*z*w*t - 9*z*t^2 + w^3 - 7*w^2*t - 4*w*t^2,
-    x^2*w - y^3 + 2*y*z^2 + 5*y*z*w - 16*y*w^2 + 18*y*w*t - 8*y*t^2 - 4*z^3 + 5*z^2*w - 2*z^2*t - z*w^2 - 13*z*w*t + 17*z*t^2 + 9*w^3 + 3*w^2*t - 29*w*t^2 + 6*t^3,
-    x^2*t - y^2*z + y*z^2 + 2*y*z*w - 4*y*w^2 - 3*y*w*t + 2*y*t^2 + z^2*w - z^2*t - z*w^2 - 2*z*w*t + 2*z*t^2 + 2*w^3 + 6*w^2*t - 4*w*t^2 - 9*t^3,
-    x*y*z - y^3 + 5*y*z*w - 7*y*w^2 + 10*y*w*t - 6*y*t^2 - 3*z^3 + 3*z^2*w - z^2*t - 2*z*w^2 - 9*z*w*t + 12*z*t^2 + 4*w^3 + 2*w^2*t - 14*w*t^2 + 4*t^3,
-    x*y*w - y^2*z + 3*y*z*w - 3*y*w^2 + y*w*t - z^3 + 2*z^2*w - 2*z*w^2 - 5*z*w*t + 5*z*t^2 + w^3 + 3*w^2*t - 4*w*t^2 - 2*t^3,
-    x*y*t - y*z^2 + y*w^2 - 4*y*w*t + y*t^2 + z^3 + z^2*w - z*w^2 - z*w*t - 2*z*t^2 - w^3 + 3*w^2*t + 4*w*t^2 - 4*t^3,
-    x*z^2 - y^2*z + y*z*w + 4*y*w^2 - 4*y*w*t + 4*y*t^2 - z^3 - 2*z^2*w + 2*z^2*t + 2*z*w*t - 4*z*t^2 - 2*w^3 - 2*w^2*t + 4*w*t^2 - 4*t^3,
-    x*z*w - y*z^2 - y*z*w + 4*y*w^2 - 4*y*w*t + 4*y*t^2 + z^3 - 2*z^2*w + z^2*t + 3*z*w*t - 4*z*t^2 - 2*w^3 - 2*w^2*t + 4*w*t^2 - 4*t^3,
-    x*z*t - 2*y*z*w + 2*y*w^2 - 2*y*w*t + 2*y*t^2 + z^3 - z^2*w - z^2*t + z*w^2 + 3*z*w*t - 4*z*t^2 - w^3 - w^2*t + 2*w*t^2 - 2*t^3,
-    x*w^2 - y*z*w - y*w^2 + 2*y*w*t + z^2*w - z*w*t - w^2*t - 2*w*t^2,
-    x*w*t - 2*y*w^2 + y*w*t + z^2*w - 2*z*w*t + w^3 + w^2*t - 3*w*t^2,
-    x*t^2 - 2*y*w*t + y*t^2 + z^2*t - 2*z*t^2 + w^2*t + w*t^2 - 3*t^3,
-    y^2*w - y*z^2 - y*z*w + 3*y*w^2 - 6*y*w*t + 4*y*t^2 + z^3 - z^2*w + z^2*t + 3*z*w*t - 4*z*t^2 - 2*w^3 + 6*w*t^2 - 4*t^3,
-    y^2*t - 2*y*z*w + 2*y*w^2 - 3*y*w*t + z^3 - z^2*w + z*w^2 + 3*z*w*t - 4*z*t^2 - w^3 - w^2*t + 4*w*t^2,
-    y*z*t - 2*y*w^2 + 2*y*w*t - 2*y*t^2 + z^2*w - z^2*t - 2*z*w*t + z*t^2 + w^3 + w^2*t - 2*w*t^2 + 2*t^3
+models[226] := rec< ModelRec | N := 226, genus := 5, squarefree := true, 
+hyperelliptic := false, special_points := 11, curve := Curve(P, [
+    x*z - y^2 + y*w + 2*y*t - z^2 - 2*w*t - 2*t^2,
+    x*w - y*z - y*w + 2*y*t + z^2 - z*t - w*t - 2*t^2,
+    x*t - 2*y*w + y*t + z^2 - 2*z*t + w^2 + w*t - 3*t^2
 ]) >;
 
 
 // ---- N = 227,  [ <227, 1> ],  special points = 4 ----
-models[227] := rec< ModelRec | N := 227, genus := 5, squarefree := true, hyperelliptic := false, special_points := 4, curve := Curve(P, [
-    x^2*z - x*y^2 - x*t^2 + y^2*z - 6*y^2*t - y*z^2 + y*z*t + 24*y*t^2 - z^3 + 5*z^2*w + 9*z^2*t - 5*z*w^2 - 11*z*w*t - 32*z*t^2 + 4*w^3 - w^2*t + 12*t^3,
-    x^2*w - 5*x*t^2 - y^3 + 4*y^2*t + y*z^2 - 9*y*z*t + 10*y*t^2 - 3*z^3 + 3*z^2*w + 9*z^2*t - 4*z*w^2 + z*w*t - 2*z*t^2 + w^3 - 5*w^2*t - 4*t^3,
-    x^2*t - 5*x*t^2 - y^2*t - y*z*t + 6*y*t^2 - z^3 + z^2*w + 5*z^2*t - z*w^2 - z*w*t - 8*z*t^2 + 2*w^2*t - 5*w*t^2 + 10*t^3,
-    x*y*z - 2*x*t^2 - y^3 + 3*y^2*t + y*z^2 - 7*y*z*t + 2*y*t^2 - z^3 + 3*z^2*t - z*w*t + 2*z*t^2 - w*t^2 + 2*t^3,
-    x*y*w - 2*x*t^2 - y^2*z + 2*y^2*t + y*z*t - 5*y*t^2 - 2*z^2*w - z^2*t + z*w^2 + 4*z*w*t + 7*z*t^2 - 2*w^3 + w^2*t - 4*w*t^2,
-    x*y*t - 2*x*t^2 - y*z*t - y*t^2 - z^2*w + z^2*t + z*w^2 + z*w*t + z*t^2 - w^3 + 2*w^2*t - 4*w*t^2 + 4*t^3,
-    x*z^2 - x*t^2 - y^2*z - y^2*t + 3*y*z*t + 3*y*t^2 + z^3 - z^2*w - 4*z^2*t + z*w^2 - 3*z*w*t - z*t^2 + w^2*t - 2*w*t^2 + 4*t^3,
-    x*z*w - x*t^2 - y^2*t - y*z^2 + 2*y*z*t + 3*y*t^2 + 3*z^2*t - z*w^2 - 2*z*w*t - 7*z*t^2 + w^2*t - 2*w*t^2 + 4*t^3,
-    x*z*t - x*t^2 - y^2*t + 3*y*t^2 + z^2*t - z*w*t - 5*z*t^2 + w^2*t - 2*w*t^2 + 4*t^3,
-    x*w^2 - x*t^2 - 2*y*z*t + 4*y*t^2 - z^3 + 5*z^2*t - z*w^2 + 3*z*w*t - 6*z*t^2 - w^3 - 5*w*t^2 + 2*t^3,
+models[227] := rec< ModelRec | N := 227, genus := 5, squarefree := true, 
+hyperelliptic := false, special_points := 4, curve := Curve(P, [
+    x*z - x*t - y^2 + 3*y*t + z^2 - z*w - 5*z*t + w^2 - 2*w*t + 4*t^2,
+    x*w - x*t - y*z + 2*y*t + 2*z*t - w^2 - w*t - 2*t^2,
+    y*w - y*t - z^2 + 3*z*t - w^2 + w*t - 2*t^2,
+    x^2*z - x*y^2 - x*t^2 + y^2*z - 6*y^2*t - y*z^2 + y*z*t + 24*y*t^2 - z^3 + 
+5*z^2*w + 9*z^2*t - 5*z*w^2 - 11*z*w*t - 32*z*t^2 + 4*w^3 - w^2*t + 12*t^3,
+    x^2*w - 5*x*t^2 - y^3 + 4*y^2*t + y*z^2 - 9*y*z*t + 10*y*t^2 - 3*z^3 + 
+3*z^2*w + 9*z^2*t - 4*z*w^2 + z*w*t - 2*z*t^2 + w^3 - 5*w^2*t - 4*t^3,
+    x^2*t - 5*x*t^2 - y^2*t - y*z*t + 6*y*t^2 - z^3 + z^2*w + 5*z^2*t - z*w^2 - 
+z*w*t - 8*z*t^2 + 2*w^2*t - 5*w*t^2 + 10*t^3,
+    x*y*z - 2*x*t^2 - y^3 + 3*y^2*t + y*z^2 - 7*y*z*t + 2*y*t^2 - z^3 + 3*z^2*t 
+- z*w*t + 2*z*t^2 - w*t^2 + 2*t^3,
+    x*y*w - 2*x*t^2 - y^2*z + 2*y^2*t + y*z*t - 5*y*t^2 - 2*z^2*w - z^2*t + 
+z*w^2 + 4*z*w*t + 7*z*t^2 - 2*w^3 + w^2*t - 4*w*t^2,
+    x*y*t - 2*x*t^2 - y*z*t - y*t^2 - z^2*w + z^2*t + z*w^2 + z*w*t + z*t^2 - 
+w^3 + 2*w^2*t - 4*w*t^2 + 4*t^3,
+    x*z^2 - x*t^2 - y^2*z - y^2*t + 3*y*z*t + 3*y*t^2 + z^3 - z^2*w - 4*z^2*t + 
+z*w^2 - 3*z*w*t - z*t^2 + w^2*t - 2*w*t^2 + 4*t^3,
+    x*z*w - x*t^2 - y^2*t - y*z^2 + 2*y*z*t + 3*y*t^2 + 3*z^2*t - z*w^2 - 
+2*z*w*t - 7*z*t^2 + w^2*t - 2*w*t^2 + 4*t^3,
+    x*z*t - x*t^2 - y^2*t + 3*y*t^2 + z^2*t - z*w*t - 5*z*t^2 + w^2*t - 2*w*t^2 
++ 4*t^3,
+    x*w^2 - x*t^2 - 2*y*z*t + 4*y*t^2 - z^3 + 5*z^2*t - z*w^2 + 3*z*w*t - 
+6*z*t^2 - w^3 - 5*w*t^2 + 2*t^3,
     x*w*t - x*t^2 - y*z*t + 2*y*t^2 + 2*z*t^2 - w^2*t - w*t^2 - 2*t^3,
-    y^2*w - y^2*t - y*z^2 + 3*y*z*t - 2*y*t^2 - z^2*w + 3*z*w*t - w^3 + w^2*t - 2*w*t^2,
+    y^2*w - y^2*t - y*z^2 + 3*y*z*t - 2*y*t^2 - z^2*w + 3*z*w*t - w^3 + w^2*t - 
+2*w*t^2,
     y*z*w - y*z*t - z^3 + 3*z^2*t - z*w^2 + z*w*t - 2*z*t^2,
     y*w^2 - y*t^2 - z^2*w - z^2*t + 3*z*w*t + 3*z*t^2 - w^3 - w*t^2 - 2*t^3,
     y*w*t - y*t^2 - z^2*t + 3*z*t^2 - w^2*t + w*t^2 - 2*t^3
@@ -112,59 +106,47 @@ models[227] := rec< ModelRec | N := 227, genus := 5, squarefree := true, hyperel
 
 
 // ---- N = 235,  [ <5, 1>, <47, 1> ],  special points = 8 ----
-models[235] := rec< ModelRec | N := 235, genus := 5, squarefree := true, hyperelliptic := false, special_points := 8, curve := Curve(P, [
-    x^2*z - x*y^2 + x*t^2 + y^2*t + 2*y*z^2 - 2*y*z*w + y*z*t + 9*y*w^2 - 20*y*w*t + 21*y*t^2 - 3*z^3 - 4*z^2*w + 10*z^2*t + z*w^2 + 28*z*w*t - 64*z*t^2 - 9*w^3 + 6*w^2*t - 28*w*t^2 + 62*t^3,
-    x^2*w - y^3 + y*z^2 - 2*y*z*w + 4*y*w^2 - 8*y*w*t - 11*y*t^2 + 2*z^3 - 8*z^2*w - 22*z^2*t + 10*z*w^2 + 30*z*w*t + 70*z*t^2 - 3*w^3 - 10*w^2*t - 20*w*t^2 - 60*t^3,
-    x^2*t + x*t^2 + y^2*t + 2*y*w^2 - 6*y*w*t + 5*y*t^2 - z^3 - z^2*w + 6*z^2*t + 4*z*w*t - 19*z*t^2 - 2*w^3 + w^2*t - 5*w*t^2 + 4*t^3,
-    x*y*z - y^3 + y^2*t + 2*y*z*w + y*z*t + 3*y*w^2 - 18*y*w*t + 8*y*t^2 - 8*z^2*w + z^2*t + 6*z*w^2 + 16*z*w*t - 4*z*t^2 - 2*w^3 + w^2*t - 4*w*t^2 - 12*t^3,
-    x*y*w - y^2*z + y*z*w + y*z*t - y*w^2 - 2*y*w*t - 8*y*t^2 - z^2*w - 3*z^2*t + 2*z*w^2 + 2*z*w*t + 22*z*t^2 + w^3 - 3*w^2*t + 2*w*t^2 - 24*t^3,
-    x*y*t + x*t^2 - y*w*t - 4*y*t^2 - z^2*w - z^2*t + z*w^2 + 2*z*w*t + 6*z*t^2 - w^2*t - 10*t^3,
-    x*z^2 - y^2*z + 3*y*z*w + y*z*t + 3*y*w^2 - 12*y*w*t + 12*y*t^2 - 3*z^3 - z^2*w + 15*z^2*t - 2*z*w^2 + 5*z*w*t - 48*z*t^2 - 3*w^3 + 6*w^2*t - 6*w*t^2 + 36*t^3,
-    x*z*w - y*z^2 + y*z*w + y*w^2 - 4*y*w*t + 4*y*t^2 - z^3 + 9*z^2*t - z*w^2 - z*w*t - 20*z*t^2 - w^3 + 2*w^2*t - 2*w*t^2 + 12*t^3,
-    x*z*t + y^2*t + y*z*w + y*w^2 - 7*y*w*t + 9*y*t^2 - z^3 - z^2*w + 9*z^2*t - z*w^2 - 31*z*t^2 - w^3 + 4*w^2*t - w*t^2 + 18*t^3,
-    x*w^2 - y*z*w + y*w^2 - 2*y*w*t - z^2*w + z*w^2 + 7*z*w*t - w^3 - 3*w^2*t - 6*w*t^2,
-    x*w*t + y*z*t + y*w^2 - 3*y*w*t + 2*y*t^2 - z^2*w + z^2*t + 3*z*w*t - 7*z*t^2 - w^3 + w^2*t - 5*w*t^2 + 6*t^3,
-    2*x*t^2 + y*w*t - 2*y*t^2 - z^2*t + 4*z*t^2 - w^2*t - 8*t^3,
-    y^2*w - y*z^2 + y*z*w - 2*y*w^2 + y*w*t + 4*y*t^2 - z^3 + 3*z^2*w + 9*z^2*t - 3*z*w^2 - 10*z*w*t - 20*z*t^2 + w^3 + 3*w^2*t + 4*w*t^2 + 12*t^3,
-    2*y^2*t + y*z*w + y*w^2 - 10*y*w*t + 14*y*t^2 - z^3 - z^2*w + 12*z^2*t - z*w^2 - 2*z*w*t - 40*z*t^2 - w^3 + 6*w^2*t + 24*t^3,
-    2*y*z*t + y*w^2 - 4*y*w*t + 4*y*t^2 - z^2*w + 2*z^2*t + 2*z*w*t - 14*z*t^2 - w^3 + 2*w^2*t - 2*w*t^2 + 12*t^3
+models[235] := rec< ModelRec | N := 235, genus := 5, squarefree := true, 
+hyperelliptic := false, special_points := 8, curve := Curve(P, [
+    x*z - y^2 + 3*y*w - 5*y*t - 3*z^2 + 2*z*w + 9*z*t - 2*w^2 - w*t - 6*t^2,
+    x*w - y*z + y*w - 2*y*t - z^2 + z*w + 7*z*t - w^2 - 3*w*t - 6*t^2,
+    2*x*t + y*w - 2*y*t - z^2 + 4*z*t - w^2 - 8*t^2
 ]) >;
 
 
 // ---- N = 237,  [ <3, 1>, <79, 1> ],  special points = 11 ----
-models[237] := rec< ModelRec | N := 237, genus := 5, squarefree := true, hyperelliptic := false, special_points := 11, curve := Curve(P, [
-    x^2*z - x*y^2 + x*t^2 + y^2*t + y*z^2 - 2*y*z*w - 7*y*w*t + 14*y*t^2 + 2*z^3 - 6*z^2*w + 8*z^2*t + 3*z*w^2 - 3*z*w*t - 19*z*t^2 + 2*w^3 + 5*w^2*t + 23*w*t^2 - 31*t^3,
-    x^2*w - y^3 + 6*y*z*w - 22*y*w^2 + 24*y*w*t + y*t^2 - 4*z^3 + 22*z^2*w - 4*z^2*t - 30*z*w^2 - 20*z*w*t + 20*z*t^2 + 28*w^3 + 34*w^2*t - 71*w*t^2 + 8*t^3,
-    x^2*t - y^2*z + y*z*w + y*z*t - 10*y*w*t + 8*y*t^2 + z^3 - z^2*w + 5*z^2*t - 7*z*w*t - 5*z*t^2 + 12*w^2*t + 14*w*t^2 - 27*t^3,
-    x*y*z - y^3 + y^2*t + 2*y*z*w + y*z*t - 12*y*w^2 + 18*y*w*t - 4*y*t^2 - 2*z^3 + 12*z^2*w - 6*z^2*t - 16*z*w^2 - 8*z*w*t + 12*z*t^2 + 16*w^3 + 16*w^2*t - 48*w*t^2 + 16*t^3,
-    x*y*w - y^2*z - y*z*w + y*z*t + y*w^2 - 3*y*w*t + z^3 - z^2*w + 2*z*w^2 - 2*z*t^2 - 2*w^3 + 2*w^2*t + 4*w*t^2 - 4*t^3,
-    x*y*t + x*t^2 - y*z^2 - 2*y*z*w + 8*y*w^2 - 16*y*w*t + 5*y*t^2 + 2*z^3 - 6*z^2*w + 5*z^2*t + 9*z*w^2 - z*w*t - 8*z*t^2 - 10*w^3 + w^2*t + 31*w*t^2 - 23*t^3,
-    x*z^2 - y^2*z - 2*y*z*w + y*z*t + 10*y*w^2 - 16*y*w*t + 8*y*t^2 + 2*z^3 - 10*z^2*w + 5*z^2*t + 12*z*w^2 - 12*z*t^2 - 12*w^3 - 4*w^2*t + 40*w*t^2 - 24*t^3,
-    x*z*w - y*z^2 - 2*y*z*w + 5*y*w^2 - 8*y*w*t + 4*y*t^2 + 2*z^3 - 5*z^2*w + 3*z^2*t + 6*z*w^2 + z*w*t - 8*z*t^2 - 6*w^3 - 2*w^2*t + 20*w*t^2 - 12*t^3,
-    x*z*t + y^2*t - 5*y*z*w + 10*y*w^2 - 14*y*w*t + 3*y*t^2 + 3*z^3 - 10*z^2*w + 4*z^2*t + 14*z*w^2 + 6*z*w*t - 15*z*t^2 - 12*w^3 - 8*w^2*t + 36*w*t^2 - 16*t^3,
-    x*w^2 - y*z*w - 2*y*w^2 + 2*y*w*t + 2*z^2*w - 2*z*w^2 - z*w*t + 2*w^3 + 3*w^2*t - 6*w*t^2,
-    x*w*t + y*z*t - 5*y*w^2 + 6*y*w*t - 2*y*t^2 + 3*z^2*w - 2*z^2*t - 4*z*w^2 + z*t^2 + 6*w^3 + 4*w^2*t - 17*w*t^2 + 6*t^3,
-    2*x*t^2 - 5*y*w*t + 4*y*t^2 + 3*z^2*t - 4*z*w*t - 2*z*t^2 + 6*w^2*t + 6*w*t^2 - 14*t^3,
-    y^2*w - y*z^2 - 2*y*z*w + 7*y*w^2 - 13*y*w*t + 4*y*t^2 + 2*z^3 - 7*z^2*w + 3*z^2*t + 10*z*w^2 + 4*z*w*t - 8*z*t^2 - 10*w^3 - 6*w^2*t + 28*w*t^2 - 12*t^3,
-    2*y^2*t - 5*y*z*w + 10*y*w^2 - 12*y*w*t - 2*y*t^2 + 3*z^3 - 10*z^2*w + 2*z^2*t + 14*z*w^2 + 10*z*w*t - 12*z*t^2 - 12*w^3 - 12*w^2*t + 32*w*t^2 - 8*t^3,
-    2*y*z*t - 5*y*w^2 + 8*y*w*t - 4*y*t^2 + 3*z^2*w - 4*z^2*t - 4*z*w^2 + 2*z*w*t + 2*z*t^2 + 6*w^3 + 2*w^2*t - 20*w*t^2 + 12*t^3
+models[237] := rec< ModelRec | N := 237, genus := 5, squarefree := true, 
+hyperelliptic := false, special_points := 11, curve := Curve(P, [
+    x*z - y^2 - 2*y*w + 5*y*t + 2*z^2 - 4*z*w - 3*z*t + 4*w^2 + 4*w*t - 8*t^2,
+    x*w - y*z - 2*y*w + 2*y*t + 2*z^2 - 2*z*w - z*t + 2*w^2 + 3*w*t - 6*t^2,
+    2*x*t - 5*y*w + 4*y*t + 3*z^2 - 4*z*w - 2*z*t + 6*w^2 + 6*w*t - 14*t^2
 ]) >;
 
 
 // ---- N = 253,  [ <11, 1>, <23, 1> ],  special points = 8 ----
-models[253] := rec< ModelRec | N := 253, genus := 5, squarefree := true, hyperelliptic := false, special_points := 8, curve := Curve(P, [
-    x^2*z - x*y^2 - x*y*z + y^3 + y^2*w - 4*y*w^2 - 3*z^3 + 5*z^2*w - z^2*t + 7*z*w^2 - 8*z*w*t + 3*w^3 - w^2*t + w*t^2,
-    x^2*w - x*y*z + y^2*w - y*w^2 - 2*z^2*t - z*w^2 + 5*z*w*t - z*t^2 + w^3 + w^2*t - 3*w*t^2,
-    x^2*t - y^2*z + 2*y^2*w - 2*y*z^2 + 3*y*z*w - 2*y*w^2 - z^3 + 4*z^2*w - 3*z^2*t - 3*z*w^2 + 2*z*w*t + z*t^2 - 2*w^3 + 7*w^2*t - 5*w*t^2 - t^3,
-    x*y*w - y^2*z + y^2*w - y*z^2 + y*z*w + z^2*w - z^2*t - z*w^2 + z*w*t + z*t^2 - 2*w^3 + 2*w^2*t - 2*w*t^2,
+models[253] := rec< ModelRec | N := 253, genus := 5, squarefree := true, 
+hyperelliptic := false, special_points := 8, curve := Curve(P, [
+    x*w - y*z + y*w - z^2 + z*w + z*t - 2*w*t,
+    x*t - z^2 + z*t + w^2 - w*t - t^2,
+    y*t - z*w + z*t - w^2 + w*t - t^2,
+    x^2*z - x*y^2 - x*y*z + y^3 + y^2*w - 4*y*w^2 - 3*z^3 + 5*z^2*w - z^2*t + 
+7*z*w^2 - 8*z*w*t + 3*w^3 - w^2*t + w*t^2,
+    x^2*w - x*y*z + y^2*w - y*w^2 - 2*z^2*t - z*w^2 + 5*z*w*t - z*t^2 + w^3 + 
+w^2*t - 3*w*t^2,
+    x^2*t - y^2*z + 2*y^2*w - 2*y*z^2 + 3*y*z*w - 2*y*w^2 - z^3 + 4*z^2*w - 
+3*z^2*t - 3*z*w^2 + 2*z*w*t + z*t^2 - 2*w^3 + 7*w^2*t - 5*w*t^2 - t^3,
+    x*y*w - y^2*z + y^2*w - y*z^2 + y*z*w + z^2*w - z^2*t - z*w^2 + z*w*t + 
+z*t^2 - 2*w^3 + 2*w^2*t - 2*w*t^2,
     x*y*t - y*z^2 + y*w^2 + z^2*w - z^2*t - z*w*t + 2*z*t^2 - w^3 - t^3,
-    x*z^2 - y^2*z + 2*y^2*w - 2*y*z^2 + 2*y*z*w - y*w^2 - 2*z^3 + 4*z^2*w - z^2*t - z*w^2 + z*w*t - z*t^2 - 3*w^3 + 5*w^2*t - 3*w*t^2,
+    x*z^2 - y^2*z + 2*y^2*w - 2*y*z^2 + 2*y*z*w - y*w^2 - 2*z^3 + 4*z^2*w - 
+z^2*t - z*w^2 + z*w*t - z*t^2 - 3*w^3 + 5*w^2*t - 3*w*t^2,
     x*z*w - y*z^2 + y*z*w - z^3 + z^2*w + z^2*t - 2*z*w*t,
     x*z*t - z^3 + z^2*t + z*w^2 - z*w*t - z*t^2,
     x*w^2 - y*z*w + y*w^2 - z^2*w + z*w^2 + z*w*t - 2*w^2*t,
     x*w*t - z^2*w + z*w*t + w^3 - w^2*t - w*t^2,
     x*t^2 - z^2*t + z*t^2 + w^2*t - w*t^2 - t^3,
-    y^2*t - y*z*w - y*w^2 + z^2*w - z^2*t + 2*z*w^2 - 3*z*w*t + 2*z*t^2 + w^3 - 2*w^2*t + 2*w*t^2 - t^3,
+    y^2*t - y*z*w - y*w^2 + z^2*w - z^2*t + 2*z*w^2 - 3*z*w*t + 2*z*t^2 + w^3 - 
+2*w^2*t + 2*w*t^2 - t^3,
     y*z*t - z^2*w + z^2*t - z*w^2 + z*w*t - z*t^2,
     y*w*t - z*w^2 + z*w*t - w^3 + w^2*t - w*t^2,
     y*t^2 - z*w*t + z*t^2 - w^2*t + w*t^2 - t^3
@@ -172,54 +154,42 @@ models[253] := rec< ModelRec | N := 253, genus := 5, squarefree := true, hyperel
 
 
 // ---- N = 263,  [ <263, 1> ],  special points = 6 ----
-models[263] := rec< ModelRec | N := 263, genus := 5, squarefree := true, hyperelliptic := false, special_points := 6, curve := Curve(P, [
-    x^2*z - x*y^2 + y^2*z - 2*y*z^2 + 6*y*z*w - 2*y*w^2 + 8*y*w*t + 8*y*t^2 - z^3 + z^2*w - 4*z*w^2 - 4*z*w*t - 9*z*t^2 - 2*w^3 - w^2*t - 5*w*t^2 - 11*t^3,
-    x^2*w - y^3 + y^2*z - y*z*w + y*w^2 + 20*y*w*t + 16*y*t^2 + 5*z^2*w - 12*z^2*t - 6*z*w^2 + 5*z*w*t - 3*z*t^2 - 5*w^3 - 12*w^2*t - 13*w*t^2 - 31*t^3,
-    x^2*t - y*z^2 + y*z*w + y*t^2 + 2*z^2*t - 4*z*w*t + z*t^2 - 5*t^3,
-    x*y*z - y^3 + y*z^2 - 2*y*z*w + y*w^2 + 19*y*w*t + 16*y*t^2 + 3*z^2*w - 12*z^2*t - 2*z*w^2 + 4*z*w*t - 3*z*t^2 - 5*w^3 - 12*w^2*t - 8*w*t^2 - 31*t^3,
-    x*y*w - y^2*z + y*z^2 - y*z*w + 10*y*w*t + 8*y*t^2 + z^2*w - 5*z^2*t + z*w^2 + z*t^2 - 4*w^3 - 6*w^2*t - 6*w*t^2 - 18*t^3,
-    x*y*t - y*z*w + y*w^2 - 3*y*w*t - 5*y*t^2 - z^2*w + 2*z^2*t + z*w^2 - z*w*t + 2*z*t^2 + 3*w^2*t - w*t^2 + 7*t^3,
-    x*z^2 - y^2*z + 2*y*z*w + 10*y*w*t + 10*y*t^2 - z^3 - 2*z^2*t + 2*z*w^2 - 4*z*w*t - 2*z*t^2 - 5*w^3 - 5*w^2*t - 5*w*t^2 - 20*t^3,
-    x*z*w - y*z^2 + y*z*w + 4*y*w*t + 4*y*t^2 + z^2*t - 3*z*w*t - 2*z*t^2 - 2*w^3 - 2*w^2*t - 2*w*t^2 - 8*t^3,
-    x*z*t - 2*y*w*t - 2*y*t^2 - z^2*w + z^2*t - z*t^2 + w^3 + w^2*t + w*t^2 + 4*t^3,
-    x*w^2 - y*z*w + y*w^2 + 2*y*w*t + z*w*t - 2*w^3 - w^2*t - 4*w*t^2,
-    x*w*t - y*w*t - z*w^2 + z*w*t + w^3 - w^2*t,
-    x*t^2 - y*t^2 - z*w*t + z*t^2 + w^2*t - w*t^2,
-    y^2*w - y*z^2 + y*z*w - 2*y*w^2 - y*w*t + 4*y*t^2 + z^2*w + z^2*t - z*w*t - 2*z*t^2 + w^3 - 3*w^2*t + 5*w*t^2 - 8*t^3,
-    y^2*t - 4*y*w*t - 7*y*t^2 - z^2*w + 2*z^2*t + z*t^2 + w^3 + 4*w^2*t + 11*t^3,
-    y*z*t - 2*y*w*t - 2*y*t^2 - z*w^2 + z*w*t - z*t^2 + w^3 + w^2*t + w*t^2 + 4*t^3
+models[263] := rec< ModelRec | N := 263, genus := 5, squarefree := true, 
+hyperelliptic := false, special_points := 6, curve := Curve(P, [
+    x*z - y^2 + 2*y*w + 5*y*t - z^2 - 2*z*t - 3*w^2 + w*t - 7*t^2,
+    x*w - y*z + y*w + 2*y*t + z*t - 2*w^2 - w*t - 4*t^2,
+    x*t - y*t - z*w + z*t + w^2 - w*t
 ]) >;
 
 
 // ---- N = 278,  [ <2, 1>, <139, 1> ],  special points = 7 ----
-models[278] := rec< ModelRec | N := 278, genus := 5, squarefree := true, hyperelliptic := false, special_points := 7, curve := Curve(P, [
-    x^2*z - x*y^2 + y^2*z - 2*y*z^2 + 5*y*z*w - 3*y*w^2 + 7*y*w*t - 4*y*t^2 - 2*z^2*w + 4*z^2*t - 3*z*w^2 - 5*z*w*t + 5*w^3 - 13*w^2*t + 15*w*t^2 - 7*t^3,
-    x^2*w - y^3 - y*z*w + 3*y*w^2 - y*w*t + 7*y*t^2 + 4*z^2*w - 8*z*w^2 + 4*z*w*t - 4*z*t^2 + 4*w^3 - 6*w^2*t - 2*w*t^2 + 4*t^3,
-    x^2*t - y*z^2 + y*z*w - z^2*w + 2*z^2*t - 4*z*w*t + 2*z*t^2 + w^3 - 2*w^2*t + 2*w*t^2 - t^3,
-    x*y*z - y^3 + y*z^2 - 2*y*z*w + 3*y*w^2 - y*w*t + 7*y*t^2 + 3*z^2*w - 2*z^2*t - 5*z*w^2 + 3*z*w*t - 4*z*t^2 + 2*w^3 - w^2*t - 7*w*t^2 + 6*t^3,
-    x*y*w - y^2*z - y*z*w + y*w^2 - 3*y*w*t + 2*y*t^2 + 2*z*w^2 - 2*z*w*t + 4*z*t^2 - 2*w^3 + 6*w^2*t - 8*w*t^2 + 4*t^3,
-    x*y*t - y*z*w + y*w^2 - 2*y*w*t + y*t^2,
-    x*z^2 - y^2*z + y*z*w - 2*z^2*w + 4*z*w^2 - 7*z*w*t + 7*z*t^2 - 2*w^3 + 6*w^2*t - 8*w*t^2 + 4*t^3,
-    x*z*w - y*z^2 - z^2*w + 2*z^2*t + z*w^2 - 3*z*w*t + 2*z*t^2,
-    x*z*t - z^2*w + z*w^2 - 2*z*w*t + z*t^2,
-    x*w^2 - y*z*w - z*w^2 + 2*z*w*t + w^3 - 3*w^2*t + 2*w*t^2,
-    x*w*t - z*w^2 + w^3 - 2*w^2*t + w*t^2,
-    x*t^2 - z*w*t + w^2*t - 2*w*t^2 + t^3,
-    y^2*w - y*z^2 - y*w^2 - 2*y*w*t - z^2*w + 2*z^2*t + 3*z*w^2 - 3*z*w*t + 2*z*t^2 - 2*w^3 + 5*w^2*t - 3*w*t^2,
-    y^2*t - y*w*t - 2*y*t^2 - z^2*w + z*w^2 + z*t^2 - 2*w^2*t + 5*w*t^2 - 3*t^3,
-    y*z*t - z*w^2 + z*w*t - 2*z*t^2 + w^3 - 3*w^2*t + 4*w*t^2 - 2*t^3
+models[278] := rec< ModelRec | N := 278, genus := 5, squarefree := true, 
+hyperelliptic := false, special_points := 7, curve := Curve(P, [
+    x*z - y^2 + y*w + 2*y*t - 2*z*w + 2*w^2 - 5*w*t + 3*t^2,
+    x*w - y*z - z*w + 2*z*t + w^2 - 3*w*t + 2*t^2,
+    x*t - z*w + w^2 - 2*w*t + t^2
 ]) >;
 
 
 // ---- N = 302,  [ <2, 1>, <151, 1> ],  special points = 6 ----
-models[302] := rec< ModelRec | N := 302, genus := 5, squarefree := true, hyperelliptic := false, special_points := 6, curve := Curve(P, [
-    x^2*z - x*y^2 + y*z^2 - 3*y*z*w - y*w^2 + z^3 - 3*z^2*t + 4*z*w^2 + 3*z*w*t - 2*z*t^2 - 2*w^3 - w*t^2 + t^3,
-    x^2*w - x*w^2 - y^3 + 2*y^2*w - y*z^2 + 2*y*z*w - 5*y*w^2 + 2*z^2*w + 2*z^2*t - 3*z*w^2 - 3*z*w*t + z*t^2 + 4*w^3 + w^2*t - 2*w*t^2 - t^3,
-    x^2*t - y^2*z + 2*y*z*w - y*w^2 - z^3 + z^2*w + z^2*t - 4*z*w^2 - 4*z*w*t - z*t^2 + 4*w^3 + 2*w^2*t - 2*t^3,
-    x*y*z - x*w^2 - y^3 + y^2*w - y*z^2 + 3*y*z*w - y*w^2 - z^3 + z^2*t - 2*z*w^2 - 2*z*w*t + z*t^2 + 2*w^3 + w^2*t - t^3,
-    x*y*w - x*w^2 - y^2*z + 3*y*z*w - y*w^2 - z^3 + z^2*w + 2*z^2*t - 4*z*w^2 - 3*z*w*t + z*t^2 + 3*w^3 + w^2*t - t^3,
+models[302] := rec< ModelRec | N := 302, genus := 5, squarefree := true, 
+hyperelliptic := false, special_points := 6, curve := Curve(P, [
+    x*z - x*w - y^2 + y*z + y*w - z^2 - z*t + w*t,
+    x*t - y*w - z*t + w^2 - t^2,
+    y*t - z*w - z*t + w^2,
+    x^2*z - x*y^2 + y*z^2 - 3*y*z*w - y*w^2 + z^3 - 3*z^2*t + 4*z*w^2 + 3*z*w*t 
+- 2*z*t^2 - 2*w^3 - w*t^2 + t^3,
+    x^2*w - x*w^2 - y^3 + 2*y^2*w - y*z^2 + 2*y*z*w - 5*y*w^2 + 2*z^2*w + 
+2*z^2*t - 3*z*w^2 - 3*z*w*t + z*t^2 + 4*w^3 + w^2*t - 2*w*t^2 - t^3,
+    x^2*t - y^2*z + 2*y*z*w - y*w^2 - z^3 + z^2*w + z^2*t - 4*z*w^2 - 4*z*w*t - 
+z*t^2 + 4*w^3 + 2*w^2*t - 2*t^3,
+    x*y*z - x*w^2 - y^3 + y^2*w - y*z^2 + 3*y*z*w - y*w^2 - z^3 + z^2*t - 
+2*z*w^2 - 2*z*w*t + z*t^2 + 2*w^3 + w^2*t - t^3,
+    x*y*w - x*w^2 - y^2*z + 3*y*z*w - y*w^2 - z^3 + z^2*w + 2*z^2*t - 4*z*w^2 - 
+3*z*w*t + z*t^2 + 3*w^3 + w^2*t - t^3,
     x*y*t - y^2*w + y*w^2 - z^2*w - z^2*t + z*w^2 - z*w*t - z*t^2 + w^2*t,
-    x*z^2 - x*w^2 - y^2*z - y^2*w + y*z^2 + 2*y*z*w + y*w^2 - z^3 - z^2*w - z^2*t + w^2*t,
+    x*z^2 - x*w^2 - y^2*z - y^2*w + y*z^2 + 2*y*z*w + y*w^2 - z^3 - z^2*w - 
+z^2*t + w^2*t,
     x*z*w - x*w^2 - y^2*w + y*z*w + y*w^2 - z^2*w - z*w*t + w^2*t,
     x*z*t - y*z*w - z^2*t + z*w^2 - z*t^2,
     x*w*t - y*w^2 - z*w*t + w^3 - w*t^2,
@@ -232,13 +202,21 @@ models[302] := rec< ModelRec | N := 302, genus := 5, squarefree := true, hyperel
 
 
 // ---- N = 323,  [ <17, 1>, <19, 1> ],  special points = 5 ----
-models[323] := rec< ModelRec | N := 323, genus := 5, squarefree := true, hyperelliptic := false, special_points := 5, curve := Curve(P, [
-    x^2*z - x*y^2 + y*z^2 - 2*y*z*w + y*w^2 - 3*z^3 + 4*z^2*w - 3*z^2*t + 2*z*w^2 + 2*z*w*t - 3*z*t^2 - 3*w^3 + 2*w^2*t + t^3,
-    x^2*w - x*y*z + y*z^2 - y*z*w - 2*z^2*w + 3*z*w^2 + z*w*t - w^3 - 2*w^2*t - w*t^2,
-    x^2*t - y^2*z + y*z^2 + y*z*w - y*w^2 - z^3 - 2*z^2*t - z*w^2 + 2*z*w*t - 3*z*t^2 + 2*w^3 + w^2*t - w*t^2,
+models[323] := rec< ModelRec | N := 323, genus := 5, squarefree := true, 
+hyperelliptic := false, special_points := 5, curve := Curve(P, [
+    x*w - y*z + z*w - w^2 - w*t,
+    x*t - z^2 + z*w - w*t - t^2,
+    y*t - z*w + w^2 - w*t,
+    x^2*z - x*y^2 + y*z^2 - 2*y*z*w + y*w^2 - 3*z^3 + 4*z^2*w - 3*z^2*t + 
+2*z*w^2 + 2*z*w*t - 3*z*t^2 - 3*w^3 + 2*w^2*t + t^3,
+    x^2*w - x*y*z + y*z^2 - y*z*w - 2*z^2*w + 3*z*w^2 + z*w*t - w^3 - 2*w^2*t - 
+w*t^2,
+    x^2*t - y^2*z + y*z^2 + y*z*w - y*w^2 - z^3 - 2*z^2*t - z*w^2 + 2*z*w*t - 
+3*z*t^2 + 2*w^3 + w^2*t - w*t^2,
     x*y*w - y^2*z + y*z*w - y*w^2 - z*w^2 + w^3 - w^2*t,
     x*y*t - y*z^2 + y*z*w - z*w^2 - z*w*t + w^3 - w*t^2,
-    x*z^2 - y^2*z + y*z*w - y*w^2 - z^3 + 2*z^2*w - z^2*t - 3*z*w^2 - 3*z*t^2 + 2*w^3 + 2*w^2*t + w*t^2 + t^3,
+    x*z^2 - y^2*z + y*z*w - y*w^2 - z^3 + 2*z^2*w - z^2*t - 3*z*w^2 - 3*z*t^2 + 
+2*w^3 + 2*w^2*t + w*t^2 + t^3,
     x*z*w - y*z^2 + z^2*w - z*w^2 - z*w*t,
     x*z*t - z^3 + z^2*w - z*w*t - z*t^2,
     x*w^2 - y*z*w + z*w^2 - w^3 - w^2*t,
@@ -252,379 +230,197 @@ models[323] := rec< ModelRec | N := 323, genus := 5, squarefree := true, hyperel
 
 
 // ---- N = 339,  [ <3, 1>, <113, 1> ],  special points = 7 ----
-models[339] := rec< ModelRec | N := 339, genus := 5, squarefree := true, hyperelliptic := false, special_points := 7, curve := Curve(P, [
-    x^2*z - x*y^2 + y*z^2 - y*z*w - y*w^2 + z^2*w - z^2*t + z*w^2 + z*t^2 + w^3 + w^2*t + w*t^2,
-    x^2*w - y^3 + y*z^2 - 3*y*w^2 + 2*y*w*t + z^2*w + 2*z^2*t - 3*z*w^2 - 7*z*w*t - 2*z*t^2 + 4*w^3 + 7*w^2*t + 3*w*t^2 + 2*t^3,
-    x^2*t - y^2*z + y*z*w - 2*y*w*t + y*t^2 + z^2*t - z*w*t - 3*z*t^2 + 2*w^2*t + 3*w*t^2 + t^3,
-    x*y*z - y^3 + y*z*w - y*w^2 + y*w*t + 2*z^2*t - 2*z*w^2 - 4*z*w*t - 2*z*t^2 + 2*w^3 + 4*w^2*t + 2*w*t^2 + 2*t^3,
-    x*y*w - y^2*z + y*z*w - y*w^2 + y*t^2 + 2*z^2*t - 2*z*w^2 - 4*z*w*t - 3*z*t^2 + w^3 + 3*w^2*t + 2*w*t^2 + t^3,
-    x*y*t - y*z^2 + 2*y*w^2 - y*w*t + 2*y*t^2 - z^2*w - z^2*t + z*w^2 + 2*z*w*t - 2*z*t^2 - 2*w^3 - 2*w^2*t - t^3,
-    x*z^2 - y^2*z + 2*y*w^2 + 4*y*t^2 - z^2*w - 2*z^2*t + z*w^2 + z*w*t - 2*z*t^2 - 2*w^3 - 2*w^2*t - 2*t^3,
-    x*z*w - y*z^2 + 2*y*w^2 + 4*y*t^2 - z^2*w - z^2*t - 3*z*t^2 - 2*w^3 - 2*w^2*t - 2*t^3,
-    x*z*t - y*z*w - z^2*t + z*w^2 + z*w*t,
-    x*w^2 - y*z*w + 2*y*w*t - z*w^2 - z*w*t - w*t^2,
-    x*w*t - y*w^2 - z*w*t + w^3 + w^2*t,
-    x*t^2 - y*w*t - z*t^2 + w^2*t + w*t^2,
-    y^2*w - y*z^2 + 2*y*w^2 - 2*y*w*t + 4*y*t^2 - z^2*w - z^2*t + z*w^2 + 2*z*w*t - 3*z*t^2 - 3*w^3 - 3*w^2*t - 2*t^3,
-    y^2*t - y*z*w - 2*y*t^2 - z^2*t + z*w^2 + 2*z*w*t + 2*z*t^2 - w^2*t - w*t^2,
-    y*z*t - y*w^2 - 2*y*t^2 + z*t^2 + w^3 + w^2*t + t^3
+models[339] := rec< ModelRec | N := 339, genus := 5, squarefree := true, 
+hyperelliptic := false, special_points := 7, curve := Curve(P, [
+    x*z - y^2 + 2*y*t - z*w - 2*z*t + w^2 + w*t,
+    x*w - y*z + 2*y*t - z*w - z*t - t^2,
+    x*t - y*w - z*t + w^2 + w*t
 ]) >;
 
 
 // ---- N = 371,  [ <7, 1>, <53, 1> ],  special points = 5 ----
-models[371] := rec< ModelRec | N := 371, genus := 5, squarefree := true, hyperelliptic := false, special_points := 5, curve := Curve(P, [
-    x^2*z - x*y^2 + x*t^2 + 2*y^2*t + y*z^2 + 4*y*z*t - 3*y*w^2 + 6*y*w*t - 6*y*t^2 + 3*z^2*w - 8*z^2*t + 2*z*w^2 - 4*z*w*t + 3*z*t^2 - w^3 + 6*w^2*t - 11*w*t^2 - 2*t^3,
-    x^2*w - y^3 + y^2*z + y^2*t + y*z^2 - y*z*w + 3*y*z*t + y*w^2 + 11*y*w*t + z^3 - 2*z^2*w - 11*z^2*t + 2*z*w^2 - 6*z*w*t + 6*z*t^2 + 5*w^3 - 4*w^2*t - 22*w*t^2 - 9*t^3,
-    x^2*t + y^2*t + y*z*w + 3*y*z*t + y*w^2 + 3*y*w*t - 4*y*t^2 - z^3 - z^2*w - 4*z^2*t + 2*z*w^2 - 4*z*w*t + 2*w^3 - 2*w^2*t - 9*w*t^2 - t^3,
-    x*y*z - y^3 + 2*y^2*t - y*z*w + 4*y*z*t + 2*y*w^2 + 7*y*w*t - y*t^2 + 2*z^3 - 3*z^2*w - 9*z^2*t + 4*z*t^2 + 5*w^3 - 6*w^2*t - 17*w*t^2 - 6*t^3,
-    x*y*w + 2*x*t^2 - y^2*z + y^2*t + y*z^2 + 2*y*z*t + 4*y*w*t + z^3 - z^2*w - 5*z^2*t + z*w*t + z*t^2 + 2*w^3 - w^2*t - 11*w*t^2 - 4*t^3,
-    x*y*t + 2*x*t^2 + 2*y^2*t + y*z*w + 2*y*z*t + y*w^2 + 4*y*w*t - 5*y*t^2 - z^3 - 6*z^2*t + 2*z*w^2 - 5*z*w*t + z*t^2 + w^3 + 3*w^2*t - 14*w*t^2 - 4*t^3,
-    x*z^2 - y^2*z - y*z*w - y*w^2 - 4*y*w*t + 2*y*t^2 + z^3 + z^2*w + 3*z^2*t - 2*z*w^2 + 6*z*w*t - 2*z*t^2 - 2*w^3 + w^2*t + 10*w*t^2 + 3*t^3,
-    x*z*w + 2*y^2*t - y*z^2 + 2*y*z*t + 2*y*w*t - 6*y*t^2 + z^3 + z^2*w - 4*z^2*t - z*w*t + 3*z*t^2 + 2*w^2*t - 6*w*t^2,
-    x*z*t + 2*y^2*t + y*z*w + 2*y*z*t + 2*y*w*t - 6*y*t^2 - z^3 + z^2*w - 4*z^2*t + 2*z*w^2 - 5*z*w*t + z*t^2 + 2*w^2*t - 6*w*t^2,
-    x*w^2 + 2*x*t^2 - y*z*w + 2*y*z*t + 4*y*w*t + z^2*w - 4*z^2*t + z*w^2 - 2*z*w*t + 3*w^2*t - 9*w*t^2 - 4*t^3,
-    x*w*t + 2*x*t^2 + 2*y*z*t + y*w^2 + 4*y*w*t - z^2*w - 4*z^2*t + z*w^2 - 2*z*w*t + 2*w^3 - w^2*t - 11*w*t^2 - 4*t^3,
-    3*x*t^2 + y*w*t + 2*y*t^2 - z^2*t + z*w*t - 2*z*t^2 + 2*w^2*t - 5*w*t^2 - 3*t^3,
-    y^2*w + 2*y^2*t - y*z^2 + 2*y*z*t + y*w^2 - y*w*t - 6*y*t^2 + z^3 - 4*z^2*t + z*w*t + 3*z*t^2 + w^3 - w^2*t - 6*w*t^2,
-    3*y^2*t + y*z*w + 2*y*z*t + 3*y*w*t - 9*y*t^2 - z^3 + z^2*w - 5*z^2*t + 2*z*w^2 - 5*z*w*t + 3*z*t^2 + 3*w^2*t - 9*w*t^2,
-    3*y*z*t + y*w^2 + 4*y*w*t - 2*y*t^2 - z^2*w - 5*z^2*t + z*w^2 - 3*z*w*t + 2*z*t^2 + 2*w^3 - w^2*t - 10*w*t^2 - 3*t^3
+models[371] := rec< ModelRec | N := 371, genus := 5, squarefree := true, 
+hyperelliptic := false, special_points := 5, curve := Curve(P, [
+    x*z - y^2 - y*w + 3*y*t + z^2 - 2*z*t - w^2 + 3*w*t,
+    x*w + 2*x*t - y*z + 2*y*t + z^2 + z*w - 2*z*t - w*t - t^2,
+    3*x*t + y*w + 2*y*t - z^2 + z*w - 2*z*t + 2*w^2 - 5*w*t - 3*t^2
 ]) >;
 
 
 // ---- N = 377,  [ <13, 1>, <29, 1> ],  special points = 4 ----
-models[377] := rec< ModelRec | N := 377, genus := 5, squarefree := true, hyperelliptic := false, special_points := 4, curve := Curve(P, [
-    x^2*z - x*y^2 + y^2*z - 2*y*z^2 - y*z*w + 9*y*w^2 + 40*y*w*t + 70*y*t^2 + 4*z^3 - 16*z^2*w - 32*z^2*t + 16*z*w^2 + 43*z*w*t - 21*z*t^2 - 11*w^3 - 65*w^2*t - 89*w*t^2 - 20*t^3,
-    x^2*w - y^3 + 2*y^2*z - 3*y*z*w + 4*y*w^2 + 13*y*w*t + 20*y*t^2 + z^3 - 4*z^2*w - 12*z^2*t + 3*z*w^2 + 15*z*w*t - 6*z*t^2 - 2*w^3 - 20*w^2*t - 29*w*t^2 - 4*t^3,
-    x^2*t - y*z^2 + y*z*w + 2*y*t^2 + z*t^2 - 2*w*t^2 - 3*t^3,
-    x*y*z - y^3 + y*z^2 - 3*y*w^2 - 17*y*w*t - 36*y*t^2 - 2*z^3 + 7*z^2*w + 16*z^2*t - 7*z*w^2 - 22*z*w*t + 11*z*t^2 + 5*w^3 + 31*w^2*t + 44*w*t^2 + 10*t^3,
-    x*y*w - y^2*z + 2*y*z^2 - y*z*w + y*w^2 + y*w*t - 6*y*t^2 - z^2*w + 2*z^2*t + z*w^2 - 4*z*w*t - 3*z*t^2 - w^3 - w^2*t + 6*w*t^2 + 6*t^3,
-    x*y*t + y*z*w - 4*y*w^2 - 17*y*w*t - 29*y*t^2 - 2*z^3 + 7*z^2*w + 13*z^2*t - 7*z*w^2 - 18*z*w*t + 11*z*t^2 + 5*w^3 + 28*w^2*t + 36*w*t^2 + 6*t^3,
-    x*z^2 - y^2*z + 2*y*w^2 + 8*y*w*t + 16*y*t^2 + z^3 - 4*z^2*w - 7*z^2*t + 4*z*w^2 + 11*z*w*t - 6*z*t^2 - 2*w^3 - 14*w^2*t - 20*w*t^2 - 4*t^3,
-    x*z*w - y*z^2 - 2*y*z*w + 8*y*w^2 + 32*y*w*t + 64*y*t^2 + 4*z^3 - 13*z^2*w - 29*z^2*t + 12*z*w^2 + 41*z*w*t - 22*z*t^2 - 8*w^3 - 56*w^2*t - 80*w*t^2 - 16*t^3,
-    x*z*t + y*z*w - 2*y*w^2 - 8*y*w*t - 16*y*t^2 - z^3 + 3*z^2*w + 7*z^2*t - 3*z*w^2 - 11*z*w*t + 5*z*t^2 + 2*w^3 + 14*w^2*t + 20*w*t^2 + 4*t^3,
-    x*w^2 - y*z*w - 2*y*w^2 - 8*y*w*t + 4*z^2*w - 5*z*w^2 + 3*z*w*t + 4*w^3 + 9*w^2*t + 2*w*t^2,
-    x*w*t + y*w^2 + 2*y*w*t - z^2*w + z*w^2 - z*w*t - w^3 - 3*w^2*t - w*t^2,
-    x*t^2 + y*w*t + 2*y*t^2 - z^2*t + z*w*t - z*t^2 - w^2*t - 3*w*t^2 - t^3,
-    y^2*w - y*z^2 - 2*y*z*w + 8*y*w^2 + 34*y*w*t + 64*y*t^2 + 4*z^3 - 14*z^2*w - 29*z^2*t + 14*z*w^2 + 40*z*w*t - 22*z*t^2 - 10*w^3 - 59*w^2*t - 80*w*t^2 - 16*t^3,
-    y^2*t + y*z*w - 2*y*w^2 - 8*y*w*t - 14*y*t^2 - z^3 + 3*z^2*w + 6*z^2*t - 3*z*w^2 - 9*z*w*t + 4*z*t^2 + 2*w^3 + 12*w^2*t + 17*w*t^2 + 4*t^3,
-    y*z*t + y*w^2 + 4*y*w*t + 8*y*t^2 - z^2*w - 4*z^2*t + z*w^2 + 4*z*w*t - 3*z*t^2 - w^3 - 7*w^2*t - 10*w*t^2 - 2*t^3
+models[377] := rec< ModelRec | N := 377, genus := 5, squarefree := true, 
+hyperelliptic := false, special_points := 4, curve := Curve(P, [
+    x*z - y^2 - 2*y*t + z^2 - 2*z*w + z*t + 2*w^2 + 3*w*t,
+    x*w - y*z - 2*y*w - 8*y*t + 4*z^2 - 5*z*w + 3*z*t + 4*w^2 + 9*w*t + 2*t^2,
+    x*t + y*w + 2*y*t - z^2 + z*w - z*t - w^2 - 3*w*t - t^2
 ]) >;
 
 
 // ---- N = 382,  [ <2, 1>, <191, 1> ],  special points = 6 ----
-models[382] := rec< ModelRec | N := 382, genus := 5, squarefree := true, hyperelliptic := false, special_points := 6, curve := Curve(P, [
-    x^2*z - x*y^2 + y*z^2 + 6*y*z*w - 6*y*w^2 - 14*y*w*t - 3*y*t^2 - 7*z^3 + 5*z^2*w + 12*z^2*t + 4*z*w^2 - 7*z*w*t - 5*z*t^2 + 3*w^3 + 10*w^2*t + 8*w*t^2 - 4*t^3,
-    x^2*w - y^3 - y*z*w + 6*y*w^2 + 12*y*w*t + 3*y*t^2 + 2*z^3 - 7*z^2*w - 8*z^2*t - 5*z*w^2 + 3*z*w*t + 4*z*t^2 - 3*w^3 - 8*w^2*t - 7*w*t^2 + 2*t^3,
-    x^2*t - y^2*z + 4*y*w^2 + 9*y*w*t + 5*y*t^2 + z^3 - 5*z^2*w - 8*z^2*t - 3*z*w^2 + z*w*t + 3*z*t^2 - 2*w^3 - 7*w^2*t - 5*w*t^2,
-    x*y*z - y^3 + 5*y*w^2 + 9*y*w*t + 3*y*t^2 + z^3 - 6*z^2*w - 6*z^2*t - 4*z*w^2 + 2*z*w*t + 3*z*t^2 - 2*w^3 - 7*w^2*t - 5*w*t^2 + 2*t^3,
-    x*y*w - y^2*z - y*z*w + y*w^2 + 2*y*w*t - y*t^2 + z^3 - z^2*w - z^2*t - z*w^2 + 3*z*w*t - z*t^2 - w^3 - w^2*t - w*t^2 + t^3,
-    x*y*t - y*z^2 - 2*y*z*w + y*w^2 + 2*y*w*t + y*t^2 + 2*z^3 - 4*z^2*t + 2*z*t^2 - 2*w^2*t - 2*w*t^2,
-    x*z^2 - y^2*z + y*z*w - 2*y*w^2 - 4*y*w*t - y*t^2 - z^3 + 3*z^2*w + z^2*t + 2*z*w^2 - 2*z*w*t - z*t^2 + w^3 + 3*w^2*t + 2*w*t^2 - t^3,
-    x*z*w - y*z^2 - 2*y*z*w + 2*y*w^2 + 4*y*w*t + y*t^2 + 2*z^3 - 2*z^2*w - 3*z^2*t - z*w^2 + 2*z*w*t - w^3 - 3*w^2*t - 2*w*t^2 + t^3,
-    x*z*t + 2*y*z*w - 4*y*w^2 - 8*y*w*t - 2*y*t^2 - 3*z^3 + 4*z^2*w + 6*z^2*t + 3*z*w^2 - 4*z*w*t - 3*z*t^2 + 2*w^3 + 6*w^2*t + 4*w*t^2 - 2*t^3,
-    x*w^2 - y*z*w - 2*y*w^2 - y*w*t + 2*z^2*w + z*w^2 - z*w*t + w^3 + w^2*t - w*t^2,
-    x*w*t + 2*y*w^2 + 2*y*w*t - 3*z^2*w - 2*z*w^2 + 2*z*w*t - w^3 - 2*w^2*t - w*t^2,
-    x*t^2 + 2*y*w*t + 2*y*t^2 - 3*z^2*t - 2*z*w*t + 2*z*t^2 - w^2*t - 2*w*t^2 - t^3,
-    y^2*w - y*z^2 - 2*y*z*w + y*w^2 + 3*y*w*t + y*t^2 + 2*z^3 - z^2*w - 3*z^2*t - z*w^2 + 3*z*w*t - w^3 - 2*w^2*t - 2*w*t^2 + t^3,
-    y^2*t + 2*y*z*w - 4*y*w^2 - 9*y*w*t - 3*y*t^2 - 3*z^3 + 4*z^2*w + 7*z^2*t + 3*z*w^2 - 4*z*w*t - 2*z*t^2 + 2*w^3 + 6*w^2*t + 5*w*t^2 - 2*t^3,
-    y*z*t + 2*y*w^2 + 4*y*w*t + y*t^2 - 3*z^2*w - 2*z^2*t - 2*z*w^2 + z*w*t + z*t^2 - w^3 - 3*w^2*t - 2*w*t^2 + t^3
+models[382] := rec< ModelRec | N := 382, genus := 5, squarefree := true, 
+hyperelliptic := false, special_points := 6, curve := Curve(P, [
+    x*z - y^2 + y*w + y*t - z^2 - z*t - w*t,
+    x*w - y*z - 2*y*w - y*t + 2*z^2 + z*w - z*t + w^2 + w*t - t^2,
+    x*t + 2*y*w + 2*y*t - 3*z^2 - 2*z*w + 2*z*t - w^2 - 2*w*t - t^2
 ]) >;
 
 
 // ---- N = 391,  [ <17, 1>, <23, 1> ],  special points = 6 ----
-models[391] := rec< ModelRec | N := 391, genus := 5, squarefree := true, hyperelliptic := false, special_points := 6, curve := Curve(P, [
-    x^2*z - x*y^2 + y*z^2 - 4*y*w^2 + 5*y*w*t - 7*y*t^2 - 3*z^3 + 4*z^2*w - z^2*t + z*w^2 + 2*z*w*t - 4*z*t^2 - 2*w^2*t - 6*w*t^2 + 8*t^3,
-    x^2*w - y^3 + y*z^2 + y*z*w - 4*y*w^2 + 11*y*w*t - 17*y*t^2 - 2*z^2*w - 10*z^2*t + 3*z*w^2 + 18*z*w*t - 7*z*t^2 - 6*w^2*t - 19*w*t^2 + 18*t^3,
-    x^2*t - y^2*z + y*z^2 + y*z*w - 2*y*w^2 + 5*y*w*t - 5*y*t^2 - 7*z^2*t + 8*z*w*t - 10*w*t^2 + 4*t^3,
-    x*y*z - y^3 + 2*y*z*w - 4*y*w^2 + 8*y*w*t - 14*y*t^2 - z^3 + z^2*w - 7*z^2*t + z*w^2 + 12*z*w*t - 7*z*t^2 - 2*w^2*t - 14*w*t^2 + 15*t^3,
-    x*y*w - y^2*z + y*w^2 + 3*y*t^2 + z^3 - z^2*w - 2*z^2*t - z*w^2 + z*t^2 + 2*w^2*t - w*t^2 - 3*t^3,
-    x*y*t - y*z^2 + 2*y*w^2 - 5*y*w*t + 7*y*t^2 + z^3 - z^2*w + 3*z^2*t - z*w^2 - 5*z*w*t + 3*z*t^2 + 2*w^2*t + 6*w*t^2 - 8*t^3,
-    x*z^2 - y^2*z + y*z*w - z^3 + z^2*w - 2*z^2*t - 2*z*w*t + z*t^2,
-    x*z*w - y*z^2 - y*z*w + 3*y*w^2 - 6*y*w*t + 9*y*t^2 + z^3 - 2*z^2*w + 5*z^2*t - 8*z*w*t + 3*z*t^2 + 9*w*t^2 - 9*t^3,
-    x*z*t - y*z*w + y*w^2 - 2*y*w*t + 3*y*t^2 + 2*z^2*t - 3*z*w*t + 3*w*t^2 - 3*t^3,
-    x*w^2 - y*z*w - y*w^2 + 3*y*w*t + z^2*w - 2*z*w^2 + 2*z*w*t + w^2*t - 3*w*t^2,
-    x*w*t - y*w^2 + y*w*t + z*w*t - 2*w*t^2,
-    x*t^2 - y*w*t + y*t^2 + z*t^2 - 2*t^3,
-    y^2*w - y*z^2 - y*z*w + 2*y*w^2 - 6*y*w*t + 9*y*t^2 + z^3 - z^2*w + 5*z^2*t - z*w^2 - 6*z*w*t + 3*z*t^2 + 2*w^2*t + 8*w*t^2 - 9*t^3,
-    y^2*t - y*z*w + y*w^2 - 3*y*w*t + 3*y*t^2 + 3*z^2*t - 4*z*w*t + 2*z*t^2 + 5*w*t^2 - 4*t^3,
-    y*z*t - y*w^2 + 2*y*w*t - 3*y*t^2 - z^2*t + 3*z*w*t - 2*z*t^2 - 3*w*t^2 + 3*t^3
+models[391] := rec< ModelRec | N := 391, genus := 5, squarefree := true, 
+hyperelliptic := false, special_points := 6, curve := Curve(P, [
+    x*z - y^2 + y*w - z^2 + z*w - 2*z*t - 2*w*t + t^2,
+    x*w - y*z - y*w + 3*y*t + z^2 - 2*z*w + 2*z*t + w*t - 3*t^2,
+    x*t - y*w + y*t + z*t - 2*t^2
 ]) >;
 
 
 // ---- N = 393,  [ <3, 1>, <131, 1> ],  special points = 4 ----
-models[393] := rec< ModelRec | N := 393, genus := 5, squarefree := true, hyperelliptic := false, special_points := 4, curve := Curve(P, [
-    x^2*z - x*y^2 + y*w^2 - 4*y*w*t + 2*y*t^2 - z^3 - 2*z^2*w + 3*z^2*t + 2*z*w^2 + z*w*t - 4*z*t^2 + 2*w^2*t - 2*w*t^2 + t^3,
-    x^2*w - y^3 + y*w^2 - 3*y*w*t + y*t^2 + z^3 - 3*z^2*w - 2*z^2*t + 2*z*w^2 + 2*z*w*t + 2*z*t^2 - w^3 - t^3,
-    x^2*t - y^2*z + y*z*w + y*w*t - 2*y*t^2 + z^2*w - 3*z^2*t - z*w^2 + 4*z*t^2 + w*t^2 - 2*t^3,
-    x*y*z - y^3 - 3*y*w*t + 2*y*t^2 - z^2*w + 2*z*w^2 - z*t^2 - w^3 + 2*w*t^2 - t^3,
-    x*y*w - y^2*z + y*w*t - y*t^2 + z^2*w - 2*z^2*t + 3*z*t^2 - w^3 - 2*w^2*t + 2*w*t^2 - t^3,
-    x*y*t - y*z^2 + y*z*w - y*w*t - z^3 + z^2*w + 2*z^2*t - z*w*t - z*t^2 + w^2*t + w*t^2 - t^3,
-    x*z^2 - y^2*z + y*z*w - 2*y*w*t + y*t^2 - z^3 + z^2*t - z*w*t - z*t^2 + w^2*t,
-    x*z*w - y*z^2 + y*z*w - 2*y*w*t + y*t^2 - z^3 + 3*z^2*t - z*w*t - 2*z*t^2 + w^2*t,
-    x*z*t - 2*y*w*t + y*t^2 - z^3 + 2*z^2*t + z*w^2 - 3*z*t^2 + w^2*t,
-    x*w^2 - y*z*w + y*w^2 - y*w*t - z^2*w + z*w^2 + 2*z*w*t - w^3 - w^2*t,
-    x*w*t - y*w*t - z^2*w + z*w^2 + z*w*t - w*t^2,
-    x*t^2 - y*t^2 - z^2*t + z*w*t + z*t^2 - t^3,
-    y^2*w - y*z^2 + y*z*w - y*w^2 - y*w*t + y*t^2 - z^3 + z^2*w + 3*z^2*t - z*w^2 - z*w*t - 2*z*t^2 + w^3 + 2*w^2*t - w*t^2,
-    y^2*t - 3*y*w*t + 2*y*t^2 - z^3 + 3*z^2*t + z*w^2 - z*w*t - 3*z*t^2 + 2*w^2*t + w*t^2 - t^3,
-    y*z*t - 2*y*w*t + y*t^2 - z^2*w + z^2*t + z*w^2 - 2*z*t^2 + w^2*t
+models[393] := rec< ModelRec | N := 393, genus := 5, squarefree := true, 
+hyperelliptic := false, special_points := 4, curve := Curve(P, [
+    x*z - y^2 + y*w - y*t - z^2 + z*w - w^2 - w*t + t^2,
+    x*w - y*z + y*w - y*t - z^2 + z*w + 2*z*t - w^2 - w*t,
+    x*t - y*t - z^2 + z*w + z*t - t^2
 ]) >;
 
 
 // ---- N = 402,  [ <2, 1>, <3, 1>, <67, 1> ],  special points = 11 ----
-models[402] := rec< ModelRec | N := 402, genus := 5, squarefree := true, hyperelliptic := false, special_points := 11, curve := Curve(P, [
-    x^2*z - x*y^2 + y^2*z + y^2*t - 2*y*z^2 + 8*y*z*t - 4*y*w^2 + 8*y*w*t - 8*y*t^2 + 2*z^3 + 4*z^2*w - 8*z^2*t - 8*z*w^2 + 2*z*t^2 + 2*w^3 - 4*w^2*t - 2*w*t^2 + 4*t^3,
-    x^2*w + 2*x*t^2 - y^3 + y^2*t - y*z*w + 5*y*z*t - 4*y*w^2 + 6*y*w*t - 3*y*t^2 - z^3 + 7*z^2*w + z^2*t - 7*z*w^2 - 7*z*w*t - 3*z*t^2 + w^3 - w^2*t - w*t^2 + t^3,
-    x^2*t + 6*x*t^2 + 5*y^2*t - y*z^2 - 6*y*z*w + 4*y*z*t - 5*y*w*t - 6*y*t^2 + 5*z^3 - 5*z^2*w - 7*z^2*t + 3*z*w*t - 4*z*t^2 - 4*w^2*t + 4*t^3,
-    x*y*z - y^3 + 2*y^2*t + y*z^2 - 2*y*z*w + 7*y*z*t - 6*y*w^2 + 10*y*w*t - 8*y*t^2 + 7*z^2*w - 5*z^2*t - 8*z*w^2 - 3*z*w*t + z*t^2 + w^3 - 3*w^2*t - w*t^2 + 3*t^3,
-    x*y*w - y^2*z + 5*y^2*t - 5*y*z*w + 8*y*z*t - 4*y*w^2 + 5*y*w*t - 13*y*t^2 + 4*z^3 - z^2*w - 13*z^2*t - 3*z*w^2 + 7*z*w*t + 4*z*t^2 - 6*w^2*t + 6*t^3,
-    x*y*t - y*z*w + 6*y*z*t - 6*y*w^2 + 7*y*w*t - 5*y*t^2 + 5*z^2*w - 3*z^2*t - 5*z*w^2 - 3*z*w*t - 2*w^2*t + 2*t^3,
-    x*z^2 - y^2*z + 2*y*z*t + z^3 - 2*z^2*w - z^2*t + z*w^2 - z*t^2,
-    x*z*w + 5*y^2*t - y*z^2 - 5*y*z*w + 4*y*z*t - 10*y*t^2 + 5*z^3 - 6*z^2*w - 12*z^2*t + z*w^2 + 10*z*w*t + 4*z*t^2 - 5*w^2*t + 5*t^3,
-    x*z*t + 7*y^2*t - 7*y*z*w + 5*y*z*t - 14*y*t^2 + 7*z^3 - 8*z^2*w - 18*z^2*t + z*w^2 + 14*z*w*t + 6*z*t^2 - 7*w^2*t + 7*t^3,
-    x*w^2 + 7*x*t^2 - y*z*w + 5*y*z*t - 5*y*w^2 + y*w*t + 5*z^2*w + 3*z^2*t - 6*z*w^2 - 9*z*w*t - 9*z*t^2 + w^3 - w^2*t - w*t^2 + t^3,
-    x*w*t + 5*x*t^2 + 7*y*z*t - 7*y*w^2 + 5*y*w*t - 3*y*t^2 + 7*z^2*w - 8*z*w^2 - 9*z*w*t - 6*z*t^2 + w^3 - 2*w^2*t - w*t^2 + 2*t^3,
-    8*x*t^2 - 7*y*w*t + 5*y*t^2 + 7*z^2*t - 8*z*w*t - 11*z*t^2 + w^2*t - t^3,
-    y^2*w + 5*y^2*t - y*z^2 - 5*y*z*w + 4*y*z*t - 2*y*w*t - 10*y*t^2 + 5*z^3 - 7*z^2*w - 12*z^2*t + 3*z*w^2 + 11*z*w*t + 4*z*t^2 - w^3 - 5*w^2*t + w*t^2 + 5*t^3,
-    8*y^2*t - 7*y*z*w + 5*y*z*t - 16*y*t^2 + 7*z^3 - 8*z^2*w - 19*z^2*t + z*w^2 + 16*z*w*t + 7*z*t^2 - 8*w^2*t + 8*t^3,
-    8*y*z*t - 7*y*w^2 + 10*y*w*t - 7*y*t^2 + 7*z^2*w - 5*z^2*t - 8*z*w^2 - 3*z*w*t + z*t^2 + w^3 - 3*w^2*t - w*t^2 + 3*t^3
+models[402] := rec< ModelRec | N := 402, genus := 5, squarefree := true, 
+hyperelliptic := false, special_points := 11, curve := Curve(P, [
+    x*z - y^2 + 2*y*t + z^2 - 2*z*w - z*t + w^2 - t^2,
+    x*w + 5*x*t - y*z - 5*y*w + 4*y*t + 5*z^2 - 6*z*w - 7*z*t + w^2 - t^2,
+    8*x*t - 7*y*w + 5*y*t + 7*z^2 - 8*z*w - 11*z*t + w^2 - t^2
 ]) >;
 
 
 // ---- N = 406,  [ <2, 1>, <7, 1>, <29, 1> ],  special points = 8 ----
-models[406] := rec< ModelRec | N := 406, genus := 5, squarefree := true, hyperelliptic := false, special_points := 8, curve := Curve(P, [
-    x^2*z - x*y^2 + x*t^2 - y*z*w - 2*y*w^2 - y*w*t - 2*z^3 + 2*z^2*w + 3*z*w^2 - z*t^2 + w^2*t - w*t^2,
-    x^2*w - y^3 + y^2*t + y*z^2 - y*z*w - y*w^2 - 4*y*w*t - 2*y*t^2 - 3*z^2*w - z^2*t + 4*z*w^2 - z*w*t - 2*w^2*t + 2*t^3,
-    x^2*t - y^2*z + y*z^2 + y*z*w - y*t^2 - z^2*w - 3*z^2*t + z*t^2 - w*t^2,
-    x*y*z - y^3 - y*w^2 - 2*y*w*t - 2*y*t^2 - 2*z^2*w - z^2*t + 3*z*w^2 - z*w*t - 2*z*t^2 - w^2*t - 2*w*t^2 + 3*t^3,
-    x*y*w - y^2*z + y^2*t + y*z*t - y*t^2,
-    x*y*t + 2*x*t^2 - y*z^2 + y*z*w - y*w*t + z^2*w - z*w^2 + 3*z*w*t + z*t^2 + w^2*t + w*t^2 - 3*t^3,
-    x*z^2 - y^2*z + y*z*w - z^3 - 2*z^2*t - 2*z*w*t + z*t^2,
-    x*z*w - y*z^2 + y*z*t + z^2*t - z*t^2,
-    x*z*t + 2*y^2*t - 2*y*z*w - 2*y*w*t - z^3 + 3*z^2*w + 3*z^2*t + z*w*t + z*t^2 + 4*w*t^2 - 2*t^3,
-    x*w^2 - y*z*w + y*w*t + z*w*t - w*t^2,
-    x*w*t + 2*y*z*t - 2*y*w^2 - 2*y*t^2 - z^2*w + 3*z*w^2 + z*w*t - 2*z*t^2 + w^2*t - 3*w*t^2 + 2*t^3,
-    3*x*t^2 - 2*y*w*t - z^2*t + 3*z*w*t + z*t^2 + w*t^2 - 3*t^3,
-    y^2*w - y*z^2 + y*z*t - y*w^2 + z^2*w + z^2*t + 2*z*w*t - z*t^2 + 2*w^2*t - w*t^2,
-    3*y^2*t - 2*y*z*w - 3*y*w*t - z^3 + 3*z^2*w + 4*z^2*t + z*w*t + 3*z*t^2 + 6*w*t^2 - 3*t^3,
-    3*y*z*t - 2*y*w^2 - 3*y*t^2 - z^2*w + 3*z*w^2 + z*w*t - 3*z*t^2 + w^2*t - 3*w*t^2 + 3*t^3
+models[406] := rec< ModelRec | N := 406, genus := 5, squarefree := true, 
+hyperelliptic := false, special_points := 8, curve := Curve(P, [
+    x*z - y^2 + y*w - z^2 - 2*z*t - 2*w*t + t^2,
+    x*w - y*z + y*t + z*t - t^2,
+    3*x*t - 2*y*w - z^2 + 3*z*w + z*t + w*t - 3*t^2
 ]) >;
 
 
 // ---- N = 407,  [ <11, 1>, <37, 1> ],  special points = 5 ----
-models[407] := rec< ModelRec | N := 407, genus := 5, squarefree := true, hyperelliptic := false, special_points := 5, curve := Curve(P, [
-    x^2*z - x*y^2 + x*t^2 + y*z^2 + 4*y*z*w - 30*y*w^2 + 23*y*w*t - 4*y*t^2 - 5*z^3 + 29*z^2*w - 3*z^2*t - 18*z*w^2 - 17*z*w*t + 5*z*t^2 + 38*w^3 - 29*w^2*t + w*t^2 + t^3,
-    x^2*w + x*t^2 - y^3 + y^2*t + y*z*w + 2*y*z*t - 12*y*w^2 + 2*y*w*t - z^3 + 9*z^2*w + z^2*t - 3*z*w^2 - 10*z*w*t - 2*z*t^2 + 15*w^3 - 6*w^2*t + t^3,
-    x^2*t + x*t^2 - y^2*z + y^2*t + y*z^2 - 4*y*z*w + y*z*t - 4*y*w*t + 2*z^3 - 2*z^2*t + 5*z*w^2 - 2*z*w*t - 2*z*t^2 + 3*w^2*t,
-    x*y*z - y^3 + y^2*t - 2*y*z*w + y*z*t + 6*y*w^2 - 10*y*w*t + 2*y*t^2 + 2*z^3 - 7*z^2*w + 2*z^2*t + 7*z*w^2 - 4*z*t^2 - 7*w^3 + 10*w^2*t - w*t^2,
-    x*y*w + x*t^2 - y^2*z - y*z*w + 7*y*w^2 - 14*y*w*t + 5*y*t^2 + z^3 - 7*z^2*w + 7*z^2*t + 5*z*w^2 + z*w*t - 8*z*t^2 - 9*w^3 + 17*w^2*t - 5*w*t^2 - t^3,
-    x*y*t + x*t^2 + y^2*t - y*z^2 - 6*y*z*w + y*z*t + 19*y*w^2 - 23*y*w*t + 5*y*t^2 + 6*z^3 - 20*z^2*w + 3*z^2*t + 18*z*w^2 + 7*z*w*t - 9*z*t^2 - 25*w^3 + 27*w^2*t - 3*w*t^2 - t^3,
-    x*z^2 - y^2*z - 5*y*z*w + 18*y*w^2 - 20*y*w*t + 6*y*t^2 + 5*z^3 - 17*z^2*w + 5*z^2*t + 14*z*w^2 + 5*z*w*t - 9*z*t^2 - 22*w^3 + 26*w^2*t - 6*w*t^2 - 2*t^3,
-    x*z*w + y^2*t - y*z^2 - 7*y*z*w + 2*y*z*t + 9*y*w^2 - 5*y*w*t - y*t^2 + 6*z^3 - 10*z^2*w - 6*z^2*t + 12*z*w^2 + 3*z*w*t - 11*w^3 + 5*w^2*t + 2*w*t^2,
-    x*z*t + y^2*t - 9*y*z*w + y*z*t + 18*y*w^2 - 15*y*w*t + 2*y*t^2 + 7*z^3 - 17*z^2*w - 3*z^2*t + 17*z*w^2 + 7*z*w*t - 4*z*t^2 - 22*w^3 + 18*w^2*t - w*t^2 - t^3,
-    x*w^2 + x*t^2 - y*z*w + y*z*t - 7*y*w^2 + 2*y*w*t + y*t^2 + 6*z^2*w + z^2*t - 3*z*w^2 - 6*z*w*t - 2*z*t^2 + 9*w^3 - 3*w^2*t - 2*w*t^2,
-    x*w*t + x*t^2 + y*z*t - 9*y*w^2 + 3*y*w*t + y*t^2 + 7*z^2*w + z^2*t - 3*z*w^2 - 8*z*w*t - 2*z*t^2 + 11*w^3 - 4*w^2*t - 2*w*t^2,
-    2*x*t^2 - 9*y*w*t + 5*y*t^2 + 7*z^2*t - 3*z*w*t - 8*z*t^2 + 11*w^2*t - 6*w*t^2 - t^3,
-    y^2*w + y^2*t - y*z^2 - 7*y*z*w + 2*y*z*t + 14*y*w^2 - 9*y*w*t - y*t^2 + 6*z^3 - 15*z^2*w - 6*z^2*t + 15*z*w^2 + 8*z*w*t - 19*w^3 + 10*w^2*t + 3*w*t^2,
-    2*y^2*t - 9*y*z*w + y*z*t + 18*y*w^2 - 10*y*w*t - 2*y*t^2 + 7*z^3 - 17*z^2*w - 8*z^2*t + 17*z*w^2 + 10*z*w*t + z*t^2 - 22*w^3 + 10*w^2*t + 4*w*t^2,
-    2*y*z*t - 9*y*w^2 + 10*y*w*t - 3*y*t^2 + 7*z^2*w - 5*z^2*t - 3*z*w^2 - 5*z*w*t + 4*z*t^2 + 11*w^3 - 13*w^2*t + 3*w*t^2 + t^3
+models[407] := rec< ModelRec | N := 407, genus := 5, squarefree := true, 
+hyperelliptic := false, special_points := 5, curve := Curve(P, [
+    x*z - y^2 - 5*y*w + 4*y*t + 5*z^2 - 3*z*w - 5*z*t + 8*w^2 - 5*w*t - t^2,
+    x*w + x*t - y*z - 7*y*w + 4*y*t + 6*z^2 - 3*z*w - 6*z*t + 9*w^2 - 5*w*t - 
+t^2,
+    2*x*t - 9*y*w + 5*y*t + 7*z^2 - 3*z*w - 8*z*t + 11*w^2 - 6*w*t - t^2
 ]) >;
 
 
 // ---- N = 410,  [ <2, 1>, <5, 1>, <41, 1> ],  special points = 8 ----
-models[410] := rec< ModelRec | N := 410, genus := 5, squarefree := true, hyperelliptic := false, special_points := 8, curve := Curve(P, [
-    x^2*z - x*y^2 + y*z^2 + 6*y*z*w + y*z*t - 2*y*w^2 - 2*y*w*t - 7*z^3 + 4*z^2*t - z*t^2,
-    x^2*w + x*t^2 - y^3 + 2*y^2*t + y*z*w + 2*y*z*t + 10*y*w^2 + 11*y*w*t + y*t^2 - z^3 - 13*z^2*w - 8*z^2*t - 4*z*w^2 + 2*z*t^2 - w^3 - 3*w^2*t - w*t^2 + t^3,
-    x^2*t + 2*x*t^2 - y^2*z + y^2*t + 4*y*z*w + 3*y*z*t + 10*y*w^2 + 16*y*w*t + 5*y*t^2 - 4*z^3 - 14*z^2*w - 15*z^2*t - 4*z*w^2 + 2*z*t^2 - w^3 - 4*w^2*t - 2*w*t^2 + t^3,
-    x*y*z - y^3 - 2*y*z*w + y*z*t + 11*y*w^2 + 10*y*w*t + 2*y*t^2 + 3*z^3 - 13*z^2*w - 7*z^2*t - 4*z*w^2 + 3*z*w*t - 2*z*t^2 - w^3 - 3*w^2*t + 2*t^3,
-    x*y*w - y^2*z + y^2*t + 3*y*z*w + 2*y*z*t - y*w^2 - 3*y*w*t - 2*y*t^2 - 4*z^3 + 4*z^2*t,
-    x*y*t + y^2*t - y*z^2 + 2*y*z*w + 2*y*z*t + 3*y*w^2 + 3*y*w*t - 3*z^3 - 4*z^2*w - 3*z^2*t - z*w^2 - 2*z*w*t + 2*z*t^2,
-    x*z^2 - y^2*z + y*z*w + y*z*t - z^3 - z^2*t,
-    x*z*w + y^2*t - y*z^2 + 2*y*z*w + y*z*t - y*w*t - y*t^2 - 3*z^3 - z^2*w + 3*z^2*t - z*w*t,
-    x*z*t + 2*y^2*t + 10*y*z*w + y*z*t - 10*y*w^2 - 10*y*w*t - 3*y*t^2 - 13*z^3 + 9*z^2*w + 10*z^2*t + 3*z*w^2 - 5*z*w*t + 3*z*t^2 + w^3 + 3*w^2*t - 2*t^3,
-    x*w^2 + 2*x*t^2 - y*z*w + y*z*t + 2*y*w^2 + 9*y*w*t + 3*y*t^2 - 3*z^2*w - 10*z^2*t - z*w^2 - z*w*t + 2*z*t^2 - 2*w^2*t - 2*w*t^2,
-    x*w*t + x*t^2 + 2*y*z*t + 10*y*w^2 + 10*y*w*t + 2*y*t^2 - 13*z^2*w - 7*z^2*t - 4*z*w^2 + 2*z*w*t - w^3 - 3*w^2*t - w*t^2 + t^3,
-    3*x*t^2 + 10*y*w*t + 4*y*t^2 - 13*z^2*t - 4*z*w*t + 4*z*t^2 - w^2*t - 2*w*t^2 - t^3,
-    y^2*w + y^2*t - y*z^2 + 2*y*z*w + y*z*t - y*w^2 - 2*y*w*t - y*t^2 - 3*z^3 + 3*z^2*t,
-    3*y^2*t + 10*y*z*w + y*z*t - 10*y*w^2 - 11*y*w*t - 4*y*t^2 - 13*z^3 + 9*z^2*w + 11*z^2*t + 3*z*w^2 - 5*z*w*t + 4*z*t^2 + w^3 + 3*w^2*t - 2*t^3,
-    3*y*z*t + 10*y*w^2 + 8*y*w*t + y*t^2 - 13*z^2*w - 4*z^2*t - 4*z*w^2 + 3*z*w*t - 2*z*t^2 - w^3 - 3*w^2*t + 2*t^3
+models[410] := rec< ModelRec | N := 410, genus := 5, squarefree := true, 
+hyperelliptic := false, special_points := 8, curve := Curve(P, [
+    x*z - y^2 + y*w + y*t - z^2 - z*t,
+    x*w + x*t - y*z + 2*y*w + y*t - 3*z^2 - z*w + 2*z*t - w*t - t^2,
+    3*x*t + 10*y*w + 4*y*t - 13*z^2 - 4*z*w + 4*z*t - w^2 - 2*w*t - t^2
 ]) >;
 
 
 // ---- N = 413,  [ <7, 1>, <59, 1> ],  special points = 3 ----
-models[413] := rec< ModelRec | N := 413, genus := 5, squarefree := true, hyperelliptic := false, special_points := 3, curve := Curve(P, [
-    x^2*z - x*y^2 + y*z^2 - 4*y*z*w + 3*y*w^2 + 2*y*w*t - z^2*w + z^2*t - 3*z*w^2 + 8*z*w*t - 3*z*t^2 - 4*w^3 - w^2*t - 3*w*t^2,
-    x^2*w - y^3 + y*z^2 - 4*y*w^2 + 4*y*w*t - y*t^2 - z^2*w + z^2*t + 2*z*w*t + z*t^2 - 4*w^3 - w^2*t - w*t^2 - 3*t^3,
-    x^2*t - y^2*z + y*z^2 - y*w^2 - y*w*t + z*w^2 + z*t^2 - 4*w^2*t + 4*w*t^2 - 3*t^3,
-    x*y*z - y^3 + y*z*w - 3*y*w^2 + 3*y*w*t - y*t^2 - z^2*w + z^2*t - z*w^2 + z*w*t + z*t^2 - 4*w^2*t + 2*w*t^2 - 3*t^3,
-    x*y*w - y^2*z + y*z*w - y*w*t + y*t^2 - z^2*w + z^2*t + z*t^2 - 4*w^2*t + 3*w*t^2 - 3*t^3,
-    x*y*t - y*z^2 + y*z*w - y*w*t - 2*z*w*t + 4*w^3 - 3*w^2*t + 3*w*t^2,
-    x*z^2 - y^2*z + y*w^2 + y*t^2 + z^2*t - 5*z*w^2 + 4*z*w*t - 3*z*t^2 - w*t^2,
-    x*z*w - y*z^2 + y*w^2 + y*t^2 - z*w^2 - w*t^2,
-    x*z*t - y*z*w + z^2*w - z^2*t,
-    x*w^2 - y*z*w + y*w*t - w^2*t,
-    x*w*t - y*w^2 + z*w^2 - z*w*t,
-    x*t^2 - y*w*t + z*w*t - z*t^2,
-    y^2*w - y*z^2 + y*w^2 - y*w*t + y*t^2 - z*w^2 - z*w*t + 4*w^3 - 3*w^2*t + 2*w*t^2,
-    y^2*t - y*z*w - y*t^2 + z^2*w - z^2*t - z*t^2 + 4*w^2*t - 3*w*t^2 + 3*t^3,
-    y*z*t - y*w^2 - y*t^2 + z*w^2 - z*w*t + w*t^2
+models[413] := rec< ModelRec | N := 413, genus := 5, squarefree := true, 
+hyperelliptic := false, special_points := 3, curve := Curve(P, [
+    x*z - y^2 + y*t + z*t - 4*w^2 + 3*w*t - 3*t^2,
+    x*w - y*z + y*t - w*t,
+    x*t - y*w + z*w - z*t
 ]) >;
 
 
 // ---- N = 418,  [ <2, 1>, <11, 1>, <19, 1> ],  special points = 8 ----
-models[418] := rec< ModelRec | N := 418, genus := 5, squarefree := true, hyperelliptic := false, special_points := 8, curve := Curve(P, [
-    x^2*z - x*y^2 + y*z^2 - 3*y*z*w + 2*y*t^2 + z^3 - z^2*w - z^2*t + 3*z*w^2 + z*w*t - 2*z*t^2 - w^3 - 3*w^2*t + 5*w*t^2,
-    x^2*w - y^3 + y*z^2 + y*z*w - 3*y*w^2 - 2*y*w*t + 2*y*t^2 - 2*z^2*w + 3*z*w^2 + 4*z*w*t - 6*w^2*t + w*t^2,
-    x^2*t - y^2*z - y*w^2 - 3*y*w*t + z^3 - 3*z^2*t + z*w^2 + 2*z*w*t + 3*z*t^2 - 3*w*t^2 - 2*t^3,
-    x*y*z - y^3 + y*z*w - 2*y*w^2 - 2*y*w*t + 2*y*t^2 + z^2*t + z*w^2 - z*w*t - 2*z*t^2 + 3*w*t^2,
-    x*y*w - y^2*z + y*w^2 + y*w*t + z^3 - z^2*w - 4*z^2*t + 4*z*w*t + 4*z*t^2 - w^3 - 4*w*t^2,
-    x*y*t - y*z^2 + y*z*w - y*w^2 - 3*y*w*t - z^3 + 2*z^2*w + 3*z^2*t - z*w^2 - 5*z*w*t - z*t^2 + w^3 + w^2*t + w*t^2 - 2*t^3,
-    x*z^2 - y^2*z + z^2*w - z^2*t - z*w^2 + 2*z*t^2,
-    x*z*w - y*z^2 + y*z*w - z^3 + z^2*w + 2*z^2*t - z*w^2 - 3*z*w*t,
-    x*z*t - y*z*w - y*w^2 - 2*y*w*t + z^2*w + z^2*t + z*w^2 - 2*z*w*t - 2*z*t^2 + 3*w*t^2,
-    x*w^2 - y*z*w + y*w^2 - z^2*w + z*w^2 + 2*z*w*t - w^3 - 3*w^2*t,
-    x*w*t - y*w^2 - y*w*t + z*w^2 - w^2*t,
-    x*t^2 - y*w*t - y*t^2 + z*w*t - w*t^2,
-    y^2*w - y*z^2 + y*z*w - z^3 + z^2*w + 2*z^2*t - 2*z*w^2 - 2*z*w*t + w^3 - 2*w*t^2,
-    y^2*t - y*z*w - y*w^2 - 2*y*w*t + z^2*w + z^2*t + z*w^2 - 3*z*w*t - z*t^2 + w^2*t + 3*w*t^2 - 2*t^3,
-    y*z*t - y*w^2 - 2*y*w*t + z^2*t + z*w^2 - z*w*t - 2*z*t^2 + 3*w*t^2
+models[418] := rec< ModelRec | N := 418, genus := 5, squarefree := true, 
+hyperelliptic := false, special_points := 8, curve := Curve(P, [
+    x*z - y^2 + z*w - z*t - w^2 + 2*t^2,
+    x*w - y*z + y*w - z^2 + z*w + 2*z*t - w^2 - 3*w*t,
+    x*t - y*w - y*t + z*w - w*t
 ]) >;
 
 
 // ---- N = 435,  [ <3, 1>, <5, 1>, <29, 1> ],  special points = 7 ----
-models[435] := rec< ModelRec | N := 435, genus := 5, squarefree := true, hyperelliptic := false, special_points := 7, curve := Curve(P, [
-    x^2*z - x*y^2 + y^2*t + y*z^2 + 3*y*z*w + y*z*t + 13*y*w^2 - 35*y*w*t + 11*y*t^2 - 4*z^3 - 11*z^2*w + 28*z^2*t - 4*z*w^2 + 41*z*w*t - 74*z*t^2 - 8*w^3 + 15*w^2*t - 13*w*t^2 + 30*t^3,
-    x^2*w - y^3 - 4*y*z*w + 2*y*w^2 + 6*y*w*t - 3*y*t^2 + 4*z^3 - 18*z^2*t + 2*z*w^2 + 6*z*w*t + 20*z*t^2 - w^3 - 4*w^2*t - 3*w*t^2 - 6*t^3,
-    x^2*t + x*t^2 - y*z*w + y*z*t + 3*y*w^2 - 2*y*w*t - 3*y*t^2 - 2*z^2*w - 2*z^2*t + 10*z*w*t - z*t^2 - 2*w^3 + w^2*t - 5*w*t^2 + t^3,
-    x*y*z + x*t^2 - y^3 + y^2*t + y*z*w + y*z*t + 5*y*w^2 - 11*y*w*t + y*t^2 - 6*z^2*w + 4*z^2*t + z*w^2 + 13*z*w*t - 16*z*t^2 - 4*w^3 + 9*w^2*t - 9*w*t^2 + 8*t^3,
-    x*y*w - y^2*z + y^2*t - y*z*w + y*z*t - 4*y*w^2 + 10*y*w*t - 5*y*t^2 + z^3 + 3*z^2*w - 11*z^2*t + 2*z*w^2 - 12*z*w*t + 27*z*t^2 + 2*w^3 - 2*w^2*t - w*t^2 - 9*t^3,
-    x*y*t + x*t^2 - y*w^2 + 4*y*w*t - 4*y*t^2 - 4*z^2*t + z*w^2 - 3*z*w*t + 12*z*t^2 + w^2*t - 3*w*t^2 - 4*t^3,
-    x*z^2 + x*t^2 - y^2*z + y^2*t + 3*y*z*w + y*z*t + 6*y*w^2 - 16*y*w*t + 3*y*t^2 - 3*z^3 - 5*z^2*w + 13*z^2*t - 2*z*w^2 + 18*z*w*t - 29*z*t^2 - 4*w^3 + 8*w^2*t - 7*w*t^2 + 11*t^3,
-    x*z*w - y*z^2 + 2*y*z*w + y*z*t + 3*y*w^2 - 8*y*w*t + 2*y*t^2 - 2*z^3 - 3*z^2*w + 11*z^2*t - z*w^2 + 7*z*w*t - 17*z*t^2 - 2*w^3 + 4*w^2*t - 3*w*t^2 + 6*t^3,
-    x*z*t + x*t^2 + y^2*t + 3*y*z*w + 6*y*w^2 - 16*y*w*t + 3*y*t^2 - 3*z^3 - 6*z^2*w + 16*z^2*t - 2*z*w^2 + 17*z*w*t - 30*z*t^2 - 4*w^3 + 8*w^2*t - 7*w*t^2 + 11*t^3,
-    x*w^2 - y*z*w + 2*y*w^2 - y*w*t - 2*z^2*w + 7*z*w*t - w^3 - w^2*t - 3*w*t^2,
-    x*w*t + y*z*t + 3*y*w^2 - 6*y*w*t + y*t^2 - 3*z^2*w + 2*z^2*t + 8*z*w*t - 7*z*t^2 - 2*w^3 + 3*w^2*t - 4*w*t^2 + 3*t^3,
-    2*x*t^2 + 3*y*w*t - 4*y*t^2 - 3*z^2*t + 8*z*t^2 - 2*w^2*t + 2*w*t^2 - 5*t^3,
-    y^2*w - y*z^2 + 2*y*z*w - 3*y*w*t + y*t^2 - 2*z^3 + 9*z^2*t - 2*z*w^2 + 2*z*w*t - 10*z*t^2 + 3*t^3,
-    2*y^2*t + 3*y*z*w + 6*y*w^2 - 19*y*w*t + 6*y*t^2 - 3*z^3 - 6*z^2*w + 19*z^2*t - 2*z*w^2 + 16*z*w*t - 35*z*t^2 - 4*w^3 + 10*w^2*t - 10*w*t^2 + 15*t^3,
-    2*y*z*t + 3*y*w^2 - 8*y*w*t + 2*y*t^2 - 3*z^2*w + 4*z^2*t + 8*z*w*t - 14*z*t^2 - 2*w^3 + 4*w^2*t - 3*w*t^2 + 6*t^3
+models[435] := rec< ModelRec | N := 435, genus := 5, squarefree := true, 
+hyperelliptic := false, special_points := 7, curve := Curve(P, [
+    x*z + x*t - y^2 + 3*y*w - 3*y*t - 3*z^2 + z*w + 5*z*t - 2*w^2 + 3*w*t - 
+4*t^2,
+    x*w - y*z + 2*y*w - y*t - 2*z^2 + 7*z*t - w^2 - w*t - 3*t^2,
+    2*x*t + 3*y*w - 4*y*t - 3*z^2 + 8*z*t - 2*w^2 + 2*w*t - 5*t^2
 ]) >;
 
 
 // ---- N = 438,  [ <2, 1>, <3, 1>, <73, 1> ],  special points = 8 ----
-models[438] := rec< ModelRec | N := 438, genus := 5, squarefree := true, hyperelliptic := false, special_points := 8, curve := Curve(P, [
-    x^2*z - x*y^2 + x*t^2 + 3*y^2*t + 6*y*z*w + 6*y*z*t + 6*y*w^2 - 30*y*w*t + 8*y*t^2 - 7*z^3 - 17*z^2*w + 24*z^2*t + 5*z*w^2 + 5*z*w*t - 25*z*t^2 + 15*w^3 - 16*w^2*t + 15*w*t^2 - t^3,
-    x^2*w + 3*x*t^2 - y^3 + y^2*w + 2*y^2*t - y*z^2 + y*z*w + 5*y*z*t + 8*y*w^2 - 18*y*w*t - 2*z^3 - 13*z^2*w + 6*z^2*t + 4*z*w^2 + 10*z*w*t - 7*z*t^2 + 9*w^3 - 11*w^2*t + 3*w*t^2 - 3*t^3,
-    x^2*t + x*t^2 - y^2*z - y*z^2 + 3*y*z*w + 3*y*w*t - 5*y*t^2 - z^3 + 2*z^2*w - 5*z^2*t - 2*z*w*t + 8*z*t^2 + 4*w^2*t - 6*w*t^2 - 2*t^3,
-    x*y*z - y^3 + y^2*w + 2*y^2*t - y*z^2 + y*z*w + 2*y*z*t + 5*y*w^2 - 14*y*w*t + 3*y*t^2 - 3*z^3 - 7*z^2*w + 11*z^2*t + 4*z*w^2 + 2*z*w*t - 11*z*t^2 + 5*w^3 - 9*w^2*t + 8*w*t^2,
-    x*y*w - y^2*z + 3*y^2*t + 2*y*z*w + 5*y*z*t + 7*y*w^2 - 26*y*w*t + 6*y*t^2 - 5*z^3 - 14*z^2*w + 20*z^2*t + 7*z*w^2 + 5*z*w*t - 21*z*t^2 + 10*w^3 - 17*w^2*t + 15*w*t^2,
-    x*y*t + y^2*w + 2*y^2*t - 2*y*z^2 + 3*y*z*w + 2*y*z*t + 4*y*w^2 - 18*y*w*t + 3*y*t^2 - 6*z^3 - 6*z^2*w + 18*z^2*t + 5*z*w^2 - 2*z*w*t - 15*z*t^2 + 5*w^3 - 10*w^2*t + 11*w*t^2,
-    x*z^2 + 3*x*t^2 - y^2*z + 3*y^2*t + 4*y*z*w + 4*y*z*t + 6*y*w^2 - 23*y*w*t + 3*y*t^2 - 7*z^3 - 13*z^2*w + 17*z^2*t + 7*z*w^2 + 3*z*w*t - 16*z*t^2 + 10*w^3 - 12*w^2*t + 10*w*t^2 - 3*t^3,
-    x*z*w + x*t^2 + y^2*w + 2*y^2*t - 2*y*z^2 + 4*y*z*w + 5*y*z*t + 5*y*w^2 - 25*y*w*t + 6*y*t^2 - 6*z^3 - 12*z^2*w + 21*z^2*t + 4*z*w^2 + 2*z*w*t - 20*z*t^2 + 10*w^3 - 13*w^2*t + 13*w*t^2 - t^3,
-    x*z*t + 3*x*t^2 + 3*y^2*t + 3*y*z*w + 3*y*z*t + 6*y*w^2 - 23*y*w*t + 3*y*t^2 - 7*z^3 - 13*z^2*w + 18*z^2*t + 7*z*w^2 + 3*z*w*t - 17*z*t^2 + 10*w^3 - 12*w^2*t + 10*w*t^2 - 3*t^3,
-    x*w^2 + 3*x*t^2 - y*z*w + y*z*t + 2*y*w^2 - y*w*t - 3*y*t^2 - 3*z^2*w - 4*z^2*t + z*w^2 + 4*z*w*t + 4*z*t^2 + w^3 - 4*w*t^2 - 3*t^3,
-    x*w*t + x*t^2 + 3*y*z*t + 3*y*w^2 - 8*y*w*t + y*t^2 - 7*z^2*w + 2*z^2*t + z*w^2 + 6*z*w*t - 4*z*t^2 + 5*w^3 - 5*w^2*t + w*t^2 - t^3,
-    4*x*t^2 + 3*y*w*t - 5*y*t^2 - 7*z^2*t + z*w*t + 8*z*t^2 + 5*w^2*t - 7*w*t^2 - 4*t^3,
-    y^2*w + y^2*t - y*z^2 + 2*y*z*w + 3*y*z*t + 2*y*w^2 - 14*y*w*t + 4*y*t^2 - 3*z^3 - 6*z^2*w + 12*z^2*t + 2*z*w^2 + z*w*t - 12*z*t^2 + 5*w^3 - 7*w^2*t + 8*w*t^2,
-    4*y^2*t + 3*y*z*w + 3*y*z*t + 6*y*w^2 - 27*y*w*t + 7*y*t^2 - 7*z^3 - 13*z^2*w + 25*z^2*t + 7*z*w^2 + 2*z*w*t - 24*z*t^2 + 10*w^3 - 17*w^2*t + 17*w*t^2,
-    4*y*z*t + 3*y*w^2 - 10*y*w*t + 3*y*t^2 - 7*z^2*w + 5*z^2*t + z*w^2 + 5*z*w*t - 8*z*t^2 + 5*w^3 - 6*w^2*t + 5*w*t^2
+models[438] := rec< ModelRec | N := 438, genus := 5, squarefree := true, 
+hyperelliptic := false, special_points := 8, curve := Curve(P, [
+    x*z + 3*x*t - y^2 + 4*y*w - 4*y*t - 7*z^2 + z*w + 7*z*t + 5*w^2 - 7*w*t - 
+3*t^2,
+    x*w + x*t - y*z + 2*y*w - 2*y*t - 3*z^2 + z*w + 4*z*t + w^2 - 4*w*t - t^2,
+    4*x*t + 3*y*w - 5*y*t - 7*z^2 + z*w + 8*z*t + 5*w^2 - 7*w*t - 4*t^2
 ]) >;
 
 
 // ---- N = 442,  [ <2, 1>, <13, 1>, <17, 1> ],  special points = 6 ----
-models[442] := rec< ModelRec | N := 442, genus := 5, squarefree := true, hyperelliptic := false, special_points := 6, curve := Curve(P, [
-    x^2*z - x*y^2 + 5*x*t^2 + 4*y^2*t + y*z^2 + y*z*w + 12*y*z*t - 2*y*w^2 + 14*y*w*t + 14*y*t^2 - 4*z^3 - 11*z^2*w - 4*z^2*t - 11*z*w^2 + 5*z*w*t - 3*z*t^2 - 3*w^3 - 3*w^2*t + w*t^2 - 25*t^3,
-    x^2*w + 11*x*t^2 - y^3 - y*z^2 - y*z*w - 3*y*w*t + 10*y*t^2 + 2*z^3 + 2*z^2*w - 9*z^2*t + z*w^2 - 10*z*w*t + 16*z*t^2 - 2*w^2*t + w*t^2 - 5*t^3,
-    x^2*t + 14*x*t^2 - y^2*z + 9*y^2*t - 2*y*z*w + 8*y*z*t - 11*y*w*t + 8*y*t^2 - 6*z^3 - 9*z^2*w + 11*z^2*t - 3*z*w^2 - 12*z*w*t + 12*z*t^2 - 2*w^2*t + 13*w*t^2 - 17*t^3,
-    x*y*z + 6*x*t^2 - y^3 + y*z*w + 9*y*z*t - 2*y*w^2 + 17*y*w*t + 22*y*t^2 - 6*z^2*w - 16*z^2*t - 9*z*w^2 + z*w*t + 6*z*t^2 - 3*w^3 - 5*w^2*t - 2*w*t^2 - 26*t^3,
-    x*y*w + 9*x*t^2 - y^2*z + 8*y^2*t - 3*y*z*w + y*z*t + 2*y*w^2 - 28*y*w*t - 12*y*t^2 - 6*z^3 - 3*z^2*w + 25*z^2*t + 6*z*w^2 - 13*z*w*t + 6*z*t^2 + 3*w^3 + 3*w^2*t + 13*w*t^2 + 11*t^3,
-    x*y*t + 6*x*t^2 + 11*y^2*t - y*z^2 - 4*y*z*w + 6*y*z*t + y*w^2 - 21*y*w*t - 15*y*t^2 - 7*z^3 - 6*z^2*w + 25*z^2*t + 3*z*w^2 - 7*z*w*t - 2*z*t^2 + 2*w^3 + 3*w^2*t + 11*w*t^2 + 8*t^3,
-    x*z^2 + 14*x*t^2 - y^2*z + 14*y^2*t - 3*y*z*w + y*z*t + 4*y*w^2 - 46*y*w*t - 26*y*t^2 - 11*z^3 - 4*z^2*w + 39*z^2*t + 11*z*w^2 - 22*z*w*t + 8*z*t^2 + 5*w^3 + 4*w^2*t + 21*w*t^2 + 24*t^3,
-    x*z*w + 11*x*t^2 + 11*y^2*t - y*z^2 - 4*y*z*w + 10*y*z*t - 11*y*w*t - 7*z^3 - 11*z^2*w + 18*z^2*t - 3*z*w^2 - 7*z*w*t + 4*z*t^2 + 11*w*t^2 - 11*t^3,
-    x*z*t + 14*x*t^2 + 14*y^2*t - 4*y*z*w + y*z*t + 4*y*w^2 - 46*y*w*t - 26*y*t^2 - 11*z^3 - 5*z^2*w + 40*z^2*t + 11*z*w^2 - 21*z*w*t + 7*z*t^2 + 5*w^3 + 4*w^2*t + 21*w*t^2 + 24*t^3,
-    x*w^2 + 14*x*t^2 - y*z*w + 11*y*z*t - 4*y*w^2 + 18*y*w*t + 34*y*t^2 - 7*z^2*w - 22*z^2*t - 11*z*w^2 - 5*z*w*t + 18*z*t^2 - 3*w^3 - 8*w^2*t + 3*w*t^2 - 40*t^3,
-    x*w*t + 11*x*t^2 + 14*y*z*t - 4*y*w^2 + 28*y*w*t + 36*y*t^2 - 11*z^2*w - 23*z^2*t - 16*z*w^2 + 2*z*w*t + 12*z*t^2 - 5*w^3 - 7*w^2*t - 3*w*t^2 - 45*t^3,
-    15*x*t^2 - 4*y*w*t + 16*y*t^2 - 11*z^2*t - 16*z*w*t + 24*z*t^2 - 5*w^2*t + 6*w*t^2 - 13*t^3,
-    y^2*w + 11*y^2*t - y*z^2 - 4*y*z*w + 11*y*z*t - y*w^2 - 7*y*w*t - 10*y*t^2 - 7*z^3 - 11*z^2*w + 25*z^2*t - 4*z*w^2 + 5*z*w*t - 14*z*t^2 + 4*w^2*t + 6*w*t^2 - 4*t^3,
-    15*y^2*t - 4*y*z*w + y*z*t + 4*y*w^2 - 43*y*w*t - 42*y*t^2 - 11*z^3 - 5*z^2*w + 51*z^2*t + 11*z*w^2 - 6*z*w*t - 16*z*t^2 + 5*w^3 + 9*w^2*t + 16*w*t^2 + 36*t^3,
-    15*y*z*t - 4*y*w^2 + 32*y*w*t + 26*y*t^2 - 11*z^2*w - 16*z^2*t - 16*z*w^2 + 13*z*w*t - 6*z*t^2 - 5*w^3 - 4*w^2*t - 7*w*t^2 - 38*t^3
+models[442] := rec< ModelRec | N := 442, genus := 5, squarefree := true, 
+hyperelliptic := false, special_points := 6, curve := Curve(P, [
+    x*z + 14*x*t - y^2 - 3*y*w + 16*y*t - 11*z^2 - 15*z*w + 23*z*t - 5*w^2 + 
+5*w*t - 12*t^2,
+    x*w + 11*x*t - y*z - 4*y*w + 10*y*t - 7*z^2 - 11*z*w + 18*z*t - 3*w^2 + 
+4*w*t - 7*t^2,
+    15*x*t - 4*y*w + 16*y*t - 11*z^2 - 16*z*w + 24*z*t - 5*w^2 + 6*w*t - 13*t^2
 ]) >;
 
 
 // ---- N = 465,  [ <3, 1>, <5, 1>, <31, 1> ],  special points = 8 ----
-models[465] := rec< ModelRec | N := 465, genus := 5, squarefree := true, hyperelliptic := false, special_points := 8, curve := Curve(P, [
-    x^2*z - x*y^2 - y*z*w - 2*y*w*t + y*t^2 - z^3 - z^2*w + 2*z^2*t + 2*z*w^2 + z*w*t - z*t^2 - w^3 - 2*w*t^2,
-    x^2*w - y^3 + y*w^2 - 3*y*w*t + y*t^2 + z^3 - 3*z^2*w + z^2*t - z*w^2 - z*w*t + 2*w^3 + w^2*t - w*t^2,
-    x^2*t - y^2*z - y*z*w + 3*y*w*t - y*t^2 + z^3 + z^2*w - 3*z^2*t - 2*z*w^2 - z*w*t + z*t^2 + 2*w*t^2,
-    x*y*z - y^3 - 4*y*w*t + y*t^2 - 2*z^2*w + 2*z^2*t + z*w^2 - z*t^2 + w^3 + w^2*t - 2*w*t^2,
-    x*y*w - y^2*z - y*z*w - y*w^2 + 4*y*w*t + z^3 + 2*z^2*w - 2*z^2*t - 2*z*w^2 - 2*z*w*t + z*t^2 - w^3 - 3*w^2*t + w*t^2,
-    x*y*t - y*z^2 + y*z*w - y*t^2 - z^3 + z*w^2 + 2*z*w*t + 2*w^2*t + w*t^2,
-    x*z^2 - y^2*z - y*z*w + 2*y*w*t + z^3 - 2*z^2*t - 2*z*w^2 - 2*z*w*t + z*t^2 - w^2*t + w*t^2,
-    x*z*w - y*z^2 + y*z*w - z^3 + z^2*t + z*w*t,
-    x*z*t - 2*y*w*t - z^3 + z^2*t + z*w^2 + z*w*t - z*t^2 + w^2*t - w*t^2,
-    x*w^2 - y*z*w + y*w^2 - z^2*w + z*w*t + w^2*t,
-    x*w*t - y*w*t - z^2*w + z*w^2 + w^2*t,
-    x*t^2 - y*t^2 - z^2*t + z*w*t + w*t^2,
-    y^2*w - y*z^2 + y*z*w + y*w^2 - y*w*t - z^3 - z^2*w + z^2*t + z*w^2 + 2*z*w*t + w^3 + 2*w^2*t,
-    y^2*t - y*w*t - y*t^2 - z^3 + z*w^2 + 2*z*w*t + 2*w^2*t + w*t^2,
-    y*z*t - 2*y*w*t - z^2*w + z^2*t + z*w^2 - z*t^2 + w^2*t - w*t^2
+models[465] := rec< ModelRec | N := 465, genus := 5, squarefree := true, 
+hyperelliptic := false, special_points := 8, curve := Curve(P, [
+    x*z - y^2 - y*w + y*t + z^2 - z*w - z*t - w^2 - 2*w*t,
+    x*w - y*z + y*w - z^2 + z*t + w*t,
+    x*t - y*t - z^2 + z*w + w*t
 ]) >;
 
 
 // ---- N = 494,  [ <2, 1>, <13, 1>, <19, 1> ],  special points = 7 ----
-models[494] := rec< ModelRec | N := 494, genus := 5, squarefree := true, hyperelliptic := false, special_points := 7, curve := Curve(P, [
-    x^2*z - x*y^2 + y^2*z - 2*y*z^2 + 3*y*z*w - y*w^2 + 4*y*w*t + 3*y*t^2 - z^2*w - 3*z*w*t + 2*z*t^2 - 4*w^2*t - 4*t^3,
-    x^2*w - y^3 - 2*y*z*w + y*w^2 + 4*y*w*t + 2*y*t^2 + 2*z^2*w - 2*z*w^2 - z*w*t - w^3 - 2*w*t^2 - 4*t^3,
-    x^2*t - y*z^2 + y*t^2 - z^2*w - z*w^2 + z*t^2 - 3*w^2*t + w*t^2 - t^3,
-    x*y*z - y^3 + y*z^2 - 2*y*z*w + y*w^2 + 4*y*w*t + y*t^2 + 3*z^2*w - 2*z*w^2 - 2*z*w*t - z*t^2 + 2*w^2*t - 3*w*t^2 - 3*t^3,
-    x*y*w - y^2*z - y*z*w + y*w^2 - 2*y*w*t - y*t^2 - z^2*w + z*w*t + 2*t^3,
-    x*y*t - y*z*w - y*w*t,
-    x*z^2 - y^2*z + y*z*w - 2*y*t^2 - 2*z^2*w + 2*z*w^2 - 2*z*w*t - 2*z*t^2 + 4*w^2*t - 2*w*t^2 + 2*t^3,
-    x*z*w - y*z^2 + y*t^2 - z^2*w + z*t^2 - 2*w^2*t + w*t^2 - t^3,
-    x*z*t - z^2*w - z*w*t,
-    x*w^2 - y*z*w - y*w*t - z*w^2 + w^3 - w^2*t + w*t^2,
-    x*w*t - z*w^2 - w^2*t,
-    x*t^2 - z*w*t - w*t^2,
-    y^2*w - y*z^2 - y*w^2 - 2*y*w*t + y*t^2 - z^2*w + 2*z*w^2 + z*t^2 - 2*w^2*t + 3*w*t^2 - t^3,
-    y^2*t - y*w*t - 2*y*t^2 - z^2*w + z*w*t + 2*t^3,
-    y*z*t + y*t^2 - z*w^2 + z*w*t - 2*w^2*t + w*t^2 - t^3
+models[494] := rec< ModelRec | N := 494, genus := 5, squarefree := true, 
+hyperelliptic := false, special_points := 7, curve := Curve(P, [
+    x*z - y^2 + y*w + 2*y*t - 2*z*w - 2*t^2,
+    x*w - y*z - y*t - z*w + w^2 - w*t + t^2,
+    x*t - z*w - w*t
 ]) >;
 
 
 // ---- N = 551,  [ <19, 1>, <29, 1> ],  special points = 2 ----
-models[551] := rec< ModelRec | N := 551, genus := 5, squarefree := true, hyperelliptic := false, special_points := 2, curve := Curve(P, [
-    x^2*z - x*y^2 + y*z^2 + y*w^2 + z^3 - z^2*w + z^2*t - 2*z*w^2 + 3*z*w*t + 2*z*t^2 - w^3 - t^3,
-    x^2*w - y^3 + y*z*w + 3*y*w^2 + 6*y*w*t - z^3 - 2*z^2*w - 3*z^2*t - 2*z*w^2 - 5*z*w*t - 3*z*t^2 + w^3 - 6*w^2*t - 3*w*t^2 - t^3,
-    x^2*t - y^2*z + y^2*t - 2*y*z*w - 2*y*w^2 - 4*y*w*t - 2*y*t^2 + z^3 + 2*z^2*w + 2*z^2*t + 2*z*w^2 + 4*z*w*t + 3*w^2*t + 2*w*t^2 + 2*t^3,
-    x*y*z + x*z^2 - y^3 - y^2*z + y^2*w - y*z^2 + 2*y*z*w + 5*y*w^2 + 6*y*w*t - z^3 - 3*z^2*w - 3*z^2*t - 4*z*w^2 - 6*z*w*t - 3*z*t^2 + w^3 - 8*w^2*t - 3*w*t^2 - t^3,
-    x*y*w - y^2*z + y^2*w - y*z^2 - y*w^2 - 4*y*w*t + z^2*t + z*w^2 + z*t^2 + w^2*t + 2*w*t^2,
-    x*y*t + y^2*w + y^2*t - 2*y*z^2 + y*z*w - 3*y*w*t - 2*y*t^2 - 2*z^3 - 2*z^2*t + 2*z*w^2 - 5*z*w*t - z*t^2 + w^3 - w^2*t + 2*w*t^2 + 2*t^3,
-    2*x*z^2 - 2*y^2*z - 2*y*z*w + 2*y*w^2 + 4*y*w*t + 2*z^3 + z^2*t - 3*z*w^2 + 4*z*w*t - 4*z*t^2 - 2*w^2*t - 4*w*t^2,
-    x*z*w - y*z^2 + y*z*w - z^3 - z^2*t - 2*z*w*t,
-    x*z*t - y*z*w - y*w^2 - 2*y*w*t + z^2*w + z^2*t + z*w^2 + z*w*t + z*t^2 + w^2*t + 2*w*t^2,
-    x*w^2 - y*z*w + y*w^2 - z^2*w - z*w*t - 2*w^2*t,
-    x*w*t - y*w^2 - y*w*t + z*w^2 + w^2*t,
-    x*t^2 - y*w*t - y*t^2 + z*w*t + w*t^2,
-    2*y^2*w - 2*y*z^2 + 2*y*z*w + 2*y*w^2 - 2*y*w*t - 2*z^3 - 2*z^2*w - 2*z^2*t - 7*z*w*t + w^3 - 4*w^2*t + 2*w*t^2,
-    2*y^2*t - 2*y*z*w - 2*y*w^2 - 2*y*w*t - 2*y*t^2 + 2*z^2*w + 2*z*w^2 + 2*z*w*t - z*t^2 + 3*w^2*t + 2*t^3,
-    y*z*t - y*w^2 - 2*y*w*t + z^2*t + z*w^2 + z*t^2 + w^2*t + 2*w*t^2
+models[551] := rec< ModelRec | N := 551, genus := 5, squarefree := true, 
+hyperelliptic := false, special_points := 2, curve := Curve(P, [
+    2*x*z - 2*y^2 - 2*y*w + 2*y*t + 2*z^2 + 3*z*t - w^2 + 4*w*t - 2*t^2,
+    x*w - y*z + y*w - z^2 - z*t - 2*w*t,
+    x*t - y*w - y*t + z*w + w*t
 ]) >;
 
 
 // ---- N = 555,  [ <3, 1>, <5, 1>, <37, 1> ],  special points = 7 ----
-models[555] := rec< ModelRec | N := 555, genus := 5, squarefree := true, hyperelliptic := false, special_points := 7, curve := Curve(P, [
-    x^2*z - x*y^2 - x*t^2 - 3*y^2*t + 3*y*t^2 + 6*z^3 + 5*z^2*w + 2*z^2*t - 2*z*w^2 + z*w*t + z*t^2 + 2*w^2*t + 4*w*t^2 + 2*t^3,
-    x^2*w + x*t^2 - y^3 + 4*y^2*t + 2*y*z^2 - 2*y*z*t - 2*y*t^2 - 3*z^3 - 3*z^2*w - 3*z^2*t + z*w^2 + z*t^2 - w^2*t - 3*w*t^2 - 2*t^3,
-    x^2*t - x*t^2 - y^2*z - y^2*t - 2*y*z^2 + 2*y*z*t + y*t^2 + z^3 + z^2*w + z^2*t - z*w*t - z*t^2,
-    x*y*z - y^3 + 3*y^2*t - y*z*t - y*t^2 - 3*z^3 - 2*z^2*w + z*w^2 - z*w*t - z*t^2 - w^2*t - 2*w*t^2 - t^3,
-    x*y*w - y^2*z - y^2*t + y*z*t + y*t^2 + 3*z^3 + 2*z^2*w - z^2*t - z*w^2 + z*t^2 + w^2*t + w*t^2,
-    x*y*t + y^2*t - y*z^2 - y*t^2 - 3*z^3 - 2*z^2*w + z*w^2 - z*w*t - z*t^2 - w^2*t - 2*w*t^2 - t^3,
+models[555] := rec< ModelRec | N := 555, genus := 5, squarefree := true, 
+hyperelliptic := false, special_points := 7, curve := Curve(P, [
+    x*z - x*t - y^2 + 2*y*t + z^2 - z*t,
+    x*w + x*t - y*z - z^2 + z*t - w*t - t^2,
+    y*w + y*t - z^2 - z*w - w*t - t^2,
+    x^2*z - x*y^2 - x*t^2 - 3*y^2*t + 3*y*t^2 + 6*z^3 + 5*z^2*w + 2*z^2*t - 
+2*z*w^2 + z*w*t + z*t^2 + 2*w^2*t + 4*w*t^2 + 2*t^3,
+    x^2*w + x*t^2 - y^3 + 4*y^2*t + 2*y*z^2 - 2*y*z*t - 2*y*t^2 - 3*z^3 - 
+3*z^2*w - 3*z^2*t + z*w^2 + z*t^2 - w^2*t - 3*w*t^2 - 2*t^3,
+    x^2*t - x*t^2 - y^2*z - y^2*t - 2*y*z^2 + 2*y*z*t + y*t^2 + z^3 + z^2*w + 
+z^2*t - z*w*t - z*t^2,
+    x*y*z - y^3 + 3*y^2*t - y*z*t - y*t^2 - 3*z^3 - 2*z^2*w + z*w^2 - z*w*t - 
+z*t^2 - w^2*t - 2*w*t^2 - t^3,
+    x*y*w - y^2*z - y^2*t + y*z*t + y*t^2 + 3*z^3 + 2*z^2*w - z^2*t - z*w^2 + 
+z*t^2 + w^2*t + w*t^2,
+    x*y*t + y^2*t - y*z^2 - y*t^2 - 3*z^3 - 2*z^2*w + z*w^2 - z*w*t - z*t^2 - 
+w^2*t - 2*w*t^2 - t^3,
     x*z^2 - x*t^2 - y^2*z - y^2*t + 2*y*z*t + 2*y*t^2 + z^3 - z*t^2,
     x*z*w + x*t^2 + y^2*t - y*z^2 - 2*y*t^2 - z^3 - z*w*t,
     x*z*t - x*t^2 - y^2*t + 2*y*t^2 + z^2*t - z*t^2,
     x*w^2 - x*t^2 + 2*y*z*t - z^3 - 2*z^2*w + z^2*t - 2*z*t^2 - w^2*t + t^3,
     x*w*t + x*t^2 - y*z*t - z^2*t + z*t^2 - w*t^2 - t^3,
-    y^2*w + y^2*t - y*z^2 + y*z*t - z^3 - z^2*w - z^2*t - 2*z*w*t - z*t^2 - w*t^2 - t^3,
+    y^2*w + y^2*t - y*z^2 + y*z*t - z^3 - z^2*w - z^2*t - 2*z*w*t - z*t^2 - 
+w*t^2 - t^3,
     y*z*w + y*z*t - z^3 - z^2*w - z*w*t - z*t^2,
     y*w^2 - y*t^2 - z^2*w + z^2*t - z*w^2 + z*w*t - w^2*t + t^3,
     y*w*t + y*t^2 - z^2*t - z*w*t - w*t^2 - t^3
@@ -632,162 +428,76 @@ models[555] := rec< ModelRec | N := 555, genus := 5, squarefree := true, hyperel
 
 
 // ---- N = 574,  [ <2, 1>, <7, 1>, <41, 1> ],  special points = 6 ----
-models[574] := rec< ModelRec | N := 574, genus := 5, squarefree := true, hyperelliptic := false, special_points := 6, curve := Curve(P, [
-    x^2*z - x*y^2 + y*z^2 + y*z*w - 4*z^3 + z^2*w + 5*z^2*t - 5*z*w^2 - 2*z*w*t + z*t^2 - w^3 - 3*w^2*t - 3*w*t^2 - t^3,
-    x^2*w - y^3 + y*z^2 + y*z*w + 4*y*w^2 - 4*y*w*t - y*t^2 - z^3 - 8*z^2*w + 6*z^2*t + 2*z*w^2 + 8*z*w*t - 6*z*t^2 - 10*w^3 - 2*w^2*t + 2*w*t^2,
-    x^2*t - y^2*z + 2*y*z*w - z^3 - z^2*w - 2*z*w^2 + 3*z*w*t + 3*z*t^2 - 2*w^3 - 5*w^2*t - 4*w*t^2 - t^3,
-    x*y*z - y^3 + y*z*w + 4*y*w^2 - 4*y*w*t - y*t^2 - 7*z^2*w + 3*z^2*t + 3*z*w^2 + 10*z*w*t - 5*z*t^2 - 10*w^3 - 2*w^2*t + 2*w*t^2,
-    x*y*w - y^2*z + y*z*w - z^2*w + z*w*t + z*t^2 - w^3 - 2*w^2*t - w*t^2,
-    x*y*t - y*z^2 - y*w^2 - 2*y*w*t - y*t^2 + 2*z^2*w - 2*z*w*t - 2*z*t^2 + 2*w^3 + 4*w^2*t + 2*w*t^2,
-    x*z^2 - y^2*z + 3*y*z*w - 3*z^3 + z^2*w + 5*z^2*t - 5*z*w^2 - 4*z*w*t - z*t^2,
-    x*z*w - y*z^2 + z^2*w - z^2*t,
-    x*z*t - z^3 + 2*z^2*t - z*w^2 - 2*z*w*t - z*t^2,
-    x*w^2 - y*z*w + z*w^2 - z*w*t,
-    x*w*t - z^2*w + 2*z*w*t - w^3 - 2*w^2*t - w*t^2,
-    x*t^2 - z^2*t + 2*z*t^2 - w^2*t - 2*w*t^2 - t^3,
-    y^2*w - y*z^2 - 3*y*w^2 + 4*z^2*w - z^2*t - z*w^2 - 5*z*w*t + 5*w^3 + 4*w^2*t + w*t^2,
-    y^2*t - 3*y*w*t - z^3 + 5*z^2*t - z*w^2 - 3*z*w*t - 6*z*t^2 + 5*w^2*t + 4*w*t^2 + t^3,
-    y*z*t - z^2*w + z*w*t + z*t^2 - w^3 - 2*w^2*t - w*t^2
+models[574] := rec< ModelRec | N := 574, genus := 5, squarefree := true, 
+hyperelliptic := false, special_points := 6, curve := Curve(P, [
+    x*z - y^2 + 3*y*w - 3*z^2 + z*w + 5*z*t - 5*w^2 - 4*w*t - t^2,
+    x*w - y*z + z*w - z*t,
+    x*t - z^2 + 2*z*t - w^2 - 2*w*t - t^2
 ]) >;
 
 
 // ---- N = 595,  [ <5, 1>, <7, 1>, <17, 1> ],  special points = 7 ----
-models[595] := rec< ModelRec | N := 595, genus := 5, squarefree := true, hyperelliptic := false, special_points := 7, curve := Curve(P, [
-    x^2*z - x*y^2 - y*z*w - 4*y*w*t - 2*y*t^2 + 2*z^2*w + 5*z^2*t - 2*z*w^2 - 3*z*w*t - 8*z*t^2 + 2*w^3 - w^2*t + 3*t^3,
-    x^2*w - y^3 - 7*y*z*w + 8*y*w^2 + 8*y*w*t + y*t^2 + 7*z^3 - 8*z^2*w - 18*z^2*t + 3*z*w^2 + 11*z*w*t + 11*z*t^2 - 3*w^3 - w*t^2,
-    x^2*t - y*z*w + 4*y*w*t - y*t^2 + z^2*w - 2*z^2*t - z*w^2 + z*w*t + 2*z*t^2 - w*t^2,
-    x*y*z - y^3 - 3*y*z*w + 2*y*w^2 + 7*y*w*t + 2*y*t^2 + 3*z^3 - 3*z^2*w - 11*z^2*t + 2*z*w^2 + 5*z*w*t + 9*z*t^2 - 2*w^3 - t^3,
-    x*y*w - y^2*z - 3*y*z*w - y*w^2 - 2*y*w*t + y*t^2 + 3*z^3 + z^2*w - 5*z^2*t + z*w^2 - 4*z*w*t + 3*z*t^2 + w^3 - 2*w^2*t + 2*w*t^2 - t^3,
-    x*y*t - y*w^2 + 4*y*w*t + y*t^2 - 4*z^2*t + z*w^2 + z*w*t + 6*z*t^2 - w^3 - 2*t^3,
-    x*z^2 - y^2*z + y*z*w - 4*y*w^2 - 4*y*w*t + 2*y*t^2 - z^3 + 4*z^2*w + 4*z^2*t - z*w^2 - 7*z*w*t - z*t^2 + 2*w^3 - 2*w^2*t + 2*w*t^2 - 2*t^3,
-    x*z*w - y*z^2 - y*z*w - 2*y*w^2 - 2*y*w*t + y*t^2 + z^3 + 2*z^2*w + z^2*t - 5*z*w*t - z*t^2 + w^3 - w^2*t + w*t^2 - t^3,
-    x*z*t + 2*y*z*w - 2*y*w^2 - 2*y*w*t + y*t^2 - 2*z^3 + 2*z^2*w + 5*z^2*t - z*w^2 - 3*z*w*t - 2*z*t^2 + w^3 - w^2*t + w*t^2 - t^3,
-    x*w^2 - y*z*w - y*w^2 + y*w*t + z^2*w - w^2*t - w*t^2,
-    x*w*t + 2*y*w^2 + y*w*t - 2*z^2*w + 4*z*w*t - w^3 + w^2*t - 2*w*t^2,
-    x*t^2 + 2*y*w*t + y*t^2 - 2*z^2*t + 4*z*t^2 - w^2*t + w*t^2 - 2*t^3,
-    y^2*w - y*z^2 - y*z*w - 3*y*w^2 - 4*y*w*t + y*t^2 + z^3 + 3*z^2*w + z^2*t - 7*z*w*t - z*t^2 + 2*w^3 - 2*w^2*t + 2*w*t^2 - t^3,
-    y^2*t + 2*y*z*w - 2*y*w^2 - 3*y*w*t - y*t^2 - 2*z^3 + 2*z^2*w + 6*z^2*t - z*w^2 - 3*z*w*t - 4*z*t^2 + w^3,
-    y*z*t + 2*y*w^2 + 2*y*w*t - y*t^2 - 2*z^2*w - z^2*t + 4*z*w*t - w^3 + w^2*t - w*t^2 + t^3
+models[595] := rec< ModelRec | N := 595, genus := 5, squarefree := true, 
+hyperelliptic := false, special_points := 7, curve := Curve(P, [
+    x*z - y^2 + y*w + 2*y*t - z^2 + 2*z*t - w^2 + w*t - t^2,
+    x*w - y*z - y*w + y*t + z^2 - w*t - t^2,
+    x*t + 2*y*w + y*t - 2*z^2 + 4*z*t - w^2 + w*t - 2*t^2
 ]) >;
 
 
 // ---- N = 645,  [ <3, 1>, <5, 1>, <43, 1> ],  special points = 6 ----
-models[645] := rec< ModelRec | N := 645, genus := 5, squarefree := true, hyperelliptic := false, special_points := 6, curve := Curve(P, [
-    x^2*z - x*y^2 - y^2*z + y^2*t + y*z^2 + 7*y*z*w - y*z*t + y*w^2 - 4*y*w*t - 10*z^3 + 3*z^2*w + 17*z^2*t + z*w^2 - 5*z*w*t - 8*z*t^2 - w^2*t + 2*w*t^2 + t^3,
-    x^2*w - y^3 + y*z^2 - y*z*w - y*z*t + 7*y*w^2 - 9*z^2*w + z^2*t + 5*z*w^2 + 11*z*w*t - 2*z*t^2 - w^3 - 4*w^2*t - 2*w*t^2 + t^3,
-    x^2*t - 2*y^2*z + y^2*t + y*z^2 + 7*y*z*w - y*z*t + 3*y*w^2 - 4*y*w*t - 7*z^3 - 3*z^2*w + 12*z^2*t + 3*z*w^2 + 3*z*w*t - 6*z*t^2 - 3*w^2*t + t^3,
-    x*y*z - y^3 - y*z^2 + y*z*w + y*z*t + 10*y*w^2 - 3*y*w*t - 12*z^2*w + 2*z^2*t + 5*z*w^2 + 14*z*w*t - 3*z*t^2 - 5*w^2*t - 2*w*t^2 + t^3,
-    x*y*w - y^2*z + y^2*t + 4*y*z*w + 4*y*w^2 - 7*y*w*t + y*t^2 - 4*z^3 - 5*z^2*w + 11*z^2*t + 4*z*w^2 + 2*z*w*t - 8*z*t^2 - 3*w^2*t + 2*w*t^2 + t^3,
-    x*y*t - 2*y*z^2 + 3*y*z*w + 2*y*z*t + 6*y*w^2 - 5*y*w*t - 2*z^3 - 6*z^2*w + 6*z^2*t + 3*z*w^2 + 6*z*w*t - 5*z*t^2 - 3*w^2*t + t^3,
-    2*x*z^2 - 2*x*z*t + x*t^2 - 2*y^2*z + 2*y^2*t + 10*y*z*w + 6*y*w^2 - 11*y*w*t + y*t^2 - 12*z^3 - 4*z^2*w + 23*z^2*t + 6*z*w^2 - z*w*t - 12*z*t^2 - 4*w^2*t + 3*w*t^2 + t^3,
-    2*x*z*w - x*w*t - 2*y*z^2 + 2*y*z*w + 3*y*z*t + 6*y*w^2 - 5*y*w*t - 2*z^3 - 6*z^2*w + 5*z^2*t + 4*z*w^2 + 4*z*w*t - 3*z*t^2 - 3*w^2*t + w*t^2,
-    x*z*t + y^2*t + 6*y*z*w + 6*y*w^2 - 9*y*w*t + y*t^2 - 10*z^3 - 4*z^2*w + 20*z^2*t + 6*z*w^2 - z*w*t - 11*z*t^2 - 4*w^2*t + 3*w*t^2 + t^3,
-    x*w^2 - y*z*w + y*w^2 - z^2*w + 2*z*w^2 + z*w*t - w^3 - w^2*t,
-    x*w*t + y*z*t + 6*y*w^2 - 3*y*w*t - 10*z^2*w + z^2*t + 6*z*w^2 + 10*z*w*t - z*t^2 - 5*w^2*t - w*t^2,
-    x*t^2 + 3*y*w*t - y*t^2 - 5*z^2*t + 3*z*w*t + 6*z*t^2 - 3*w*t^2 - t^3,
-    y^2*w - y*z^2 + y*z*w + y*z*t - 2*y*w^2 - y*w*t - z^3 + 3*z^2*w + 2*z^2*t - z*w^2 - 4*z*w*t - z*t^2 + w^2*t + w*t^2,
-    y^2*t + 3*y*z*w + 3*y*w^2 - 7*y*w*t + y*t^2 - 5*z^3 - 2*z^2*w + 13*z^2*t + 3*z*w^2 - 2*z*w*t - 9*z*t^2 - 2*w^2*t + 3*w*t^2 + t^3,
-    y*z*t + 3*y*w^2 - 2*y*w*t - 5*z^2*w + z^2*t + 3*z*w^2 + 4*z*w*t - z*t^2 - 2*w^2*t
+models[645] := rec< ModelRec | N := 645, genus := 5, squarefree := true, 
+hyperelliptic := false, special_points := 6, curve := Curve(P, [
+    x*z - y^2 + 5*y*w - y*t - 6*z^2 + 3*z*w + 7*z*t - 3*w*t - t^2,
+    x*w - y*z + y*w - z^2 + 2*z*w + z*t - w^2 - w*t,
+    x*t + 3*y*w - y*t - 5*z^2 + 3*z*w + 6*z*t - 3*w*t - t^2
 ]) >;
 
 
 // ---- N = 663,  [ <3, 1>, <13, 1>, <17, 1> ],  special points = 4 ----
-models[663] := rec< ModelRec | N := 663, genus := 5, squarefree := true, hyperelliptic := false, special_points := 4, curve := Curve(P, [
-    x^2*z - x*y^2 + x*w*t - 2*y*z*w + y*z*t + y*w^2 + 3*y*w*t + y*t^2 - 3*z^2*w - z^2*t + z*w^2 + z*w*t + z*t^2 - 2*w^3 - 3*w^2*t - w*t^2 - t^3,
-    x^2*w + x*w^2 + 2*x*w*t - y^3 - y*z*w - y*w^2 + 2*y*w*t + y*t^2 + z^3 - 3*z^2*w - z^2*t + z*w^2 - 2*w^3 - 2*w^2*t,
-    x^2*t + x*w*t - y^2*z + y*z^2 - y*w*t - y*t^2 - z^3 - 2*z^2*w + z^2*t + 2*z*w*t - z*t^2 + t^3,
-    x*y*z - y^3 + y^2*t - y*z*w + 2*y*z*t + 3*y*w*t + y*t^2 - 3*z^2*w - z^2*t - z*w^2 - 2*w^3 - 2*w^2*t - w*t^2 - t^3,
-    x*y*w + x*w*t - y^2*z + y^2*w + y^2*t - y*z^2 + 2*y*z*t - y*w^2 - y*w*t - z^3 + z^2*t + 3*z*w^2 - 2*w^3 - 3*w^2*t - w*t^2 - t^3,
-    x*y*t + y^2*w + y^2*t - 2*y*z^2 + 3*y*z*t - 2*y*w^2 + y*t^2 - z^2*w - z^2*t + 3*z*w^2 - z*w*t + z*t^2 - 2*w^3 - 4*w^2*t - w*t^2 - 2*t^3,
-    x*z^2 - y^2*z + y^2*t + y*z*w + 4*y*z*t + y*w*t - 2*z^3 - 3*z^2*w + z^2*t - z*w^2 - z*t^2 - 2*w^3 - 2*w^2*t - w*t^2 - t^3,
-    x*z*w + x*w*t + y^2*w + y^2*t - 2*y*z^2 - y*z*w + y*z*t - y*w^2 + 3*z*w^2 + z*t^2 - 2*w^3 - 3*w^2*t - w*t^2 - t^3,
-    x*z*t + y^2*t + 3*y*z*t + y*w*t - 2*z^3 - z^2*w + z^2*t - z*w^2 - z*w*t - z*t^2 - 2*w^3 - 2*w^2*t - w*t^2 - t^3,
-    2*x*w^2 + x*w*t - 2*y*z*w - y*w^2 - y*w*t + 2*z*w^2 - w^2*t + w*t^2,
-    2*x*w*t + y*w*t - 2*z^2*w + z*w^2 + z*w*t - 2*w^3 - 2*w^2*t - w*t^2,
-    x*t^2 + 2*y*z*t + 2*y*w*t + 2*y*t^2 - 2*z^2*w - 2*z^2*t + z*w^2 + z*t^2 - 2*w^3 - 4*w^2*t - 2*w*t^2 - 2*t^3,
-    2*y^2*w + y^2*t - 2*y*z^2 - y*z*w + y*z*t - 2*y*w^2 - 2*y*w*t + 2*z^2*w + 4*z*w^2 - z*w*t + z*t^2 - 2*w^2*t - t^3,
-    2*y^2*t + y*z*t - 2*y*w*t - 3*y*t^2 - 2*z^3 + z^2*w + 3*z^2*t - 2*z*w^2 + z*w*t - 2*z*t^2 + 2*w^2*t + t^3,
-    4*y*z*t + 4*y*w*t + 3*y*t^2 - 4*z^2*w - 2*z^2*t + 2*z*w^2 - z*w*t + z*t^2 - 4*w^3 - 6*w^2*t - 2*w*t^2 - 3*t^3
+models[663] := rec< ModelRec | N := 663, genus := 5, squarefree := true, 
+hyperelliptic := false, special_points := 4, curve := Curve(P, [
+    x*z + x*t - y^2 + y*w + 2*y*t - 2*z^2 - z*w + z*t - 2*w^2 - w*t - t^2,
+    2*x*w + x*t - 2*y*z - y*w - y*t + 2*z*w - w*t + t^2,
+    2*x*t + y*t - 2*z^2 + z*w + z*t - 2*w^2 - 2*w*t - t^2
 ]) >;
 
 
 // ---- N = 714,  [ <2, 1>, <3, 1>, <7, 1>, <17, 1> ],  special points = 6 ----
-models[714] := rec< ModelRec | N := 714, genus := 5, squarefree := true, hyperelliptic := false, special_points := 6, curve := Curve(P, [
-    x^2*z - x*y^2 + y*z^2 - 4*y*w^2 + 2*y*w*t + 4*y*t^2 - z^3 + 3*z^2*w - 2*z^2*t + 4*z*w^2 - 7*z*w*t + 3*w^3 - w^2*t + w*t^2 - t^3,
-    x^2*w - y^3 - 8*y*z*w + y*w^2 + 9*y*w*t + 15*y*t^2 + 8*z^3 - 3*z^2*w - 8*z^2*t - 2*z*w^2 + 6*z*w*t + 4*z*t^2 - 2*w^3 - 8*w^2*t + 2*w*t^2 - 4*t^3,
-    x^2*t - y^2*z + y*z*w - 3*y*w^2 + 2*y*w*t + 2*z^2*w - 3*z^2*t - 2*z*w^2 + 2*z*w*t + 8*w^2*t - 8*w*t^2 - t^3,
-    x*y*z - y^3 - 7*y*z*w + 9*y*w*t + 15*y*t^2 + 8*z^3 - z^2*w - 8*z^2*t - 2*z*w^2 + 5*z*w*t + 4*z*t^2 - w^3 - 3*w^2*t + 3*w*t^2 - 4*t^3,
-    x*y*w - y^2*z - y*w^2 - y*w*t,
-    x*y*t - y*z^2 - y*t^2 + z^2*w - 2*z*w^2 - w^3 + 4*w^2*t - w*t^2,
-    x*z^2 - y^2*z + y*z*w - 4*y*w^2 - z^3 + 5*z^2*w - z*w^2 - 3*z*w*t - z*t^2 + 12*w^2*t,
-    x*z*w - y*z^2 - z*w^2 - z*w*t,
-    x*z*t + y*z*w - 2*z^3 + z^2*t - 4*z*w*t - z*t^2,
-    x*w^2 - y*z*w - w^3 - w^2*t,
-    x*w*t + y*w^2 - 2*z^2*w + z*w*t - 4*w^2*t - w*t^2,
-    x*t^2 + y*w*t - 2*z^2*t + z*t^2 - 4*w*t^2 - t^3,
-    y^2*w - y*z^2 - y*w^2 - 4*y*w*t + z^2*w + 2*z*w^2 - z*w*t + w^3 - w^2*t + w*t^2,
-    y^2*t + y*z*w - y*w*t - 4*y*t^2 - 2*z^3 + 2*z^2*t - z*w*t - z*t^2 + w^2*t - w*t^2 + t^3,
-    y*z*t + y*w^2 - 2*z^2*w + z*w*t - 3*w^2*t
+models[714] := rec< ModelRec | N := 714, genus := 5, squarefree := true, 
+hyperelliptic := false, special_points := 6, curve := Curve(P, [
+    x*z - y^2 + y*w + 4*y*t - z^2 - 3*z*w - w^2 + w*t - t^2,
+    x*w - y*z - w^2 - w*t,
+    x*t + y*w - 2*z^2 + z*t - 4*w*t - t^2
 ]) >;
 
 
 // ---- N = 770,  [ <2, 1>, <5, 1>, <7, 1>, <11, 1> ],  special points = 6 ----
-models[770] := rec< ModelRec | N := 770, genus := 5, squarefree := true, hyperelliptic := false, special_points := 6, curve := Curve(P, [
-    x^2*z - x*y^2 + x*t^2 - 4*y*z*w + y*w^2 - 8*y*w*t + 2*z^3 - z^2*w + 8*z^2*t + 5*z*w*t + 8*z*t^2 - 2*w^3 - 9*w^2*t + 9*w*t^2,
-    x^2*w - y^3 + y*z*t - 11*y*w^2 + 8*y*w*t + 2*y*t^2 + 8*z^2*w - 3*z^2*t - 3*z*w^2 + 9*z*w*t - 9*z*t^2 - 6*w^3 + 23*w^2*t - 9*w*t^2,
-    x^2*t - y^2*z + y^2*t + y*z^2 - 4*y*z*w + y*z*t + 10*y*w^2 - 13*y*w*t - 4*y*t^2 + 3*z^3 - 9*z^2*w + 10*z^2*t + 2*z*w^2 - 2*z*w*t + 11*z*t^2 + 4*w^3 - 28*w^2*t + 11*w*t^2,
-    x*y*z + x*t^2 - y^3 + y*z*t - 7*y*w^2 + 4*y*w*t + 3*y*t^2 + 4*z^2*w - 2*z^2*t - 2*z*w^2 + 4*z*w*t - 4*z*t^2 - 2*w^3 + 15*w^2*t - 3*w*t^2,
-    x*y*w + x*t^2 - y^2*z - 3*y*z*w + 4*y*w^2 - 8*y*w*t + 3*z^3 - 4*z^2*w + 10*z^2*t - 3*z*w^2 + z*w*t + 9*z*t^2 + 4*w^3 - 16*w^2*t + 10*w*t^2,
-    x*y*t + x*t^2 + y^2*t - y*z^2 - 3*y*z*w + y*z*t - y*w^2 + y*w*t + 2*y*t^2 + 3*z^3 + z^2*w + 6*z^2*t - 6*z*w^2 + 6*z*w*t + z*t^2 + 2*w^3 + 3*w^2*t + 2*w*t^2,
-    x*z^2 + x*t^2 - y^2*z + y^2*t - 3*y*z*w + 2*y*z*t - 2*y*w*t + y*t^2 + 2*z^3 - z^2*w + 3*z^2*t - 2*z*w^2 + 3*z*w*t + 3*z*t^2 + 4*w*t^2,
-    x*z*w + x*t^2 + y^2*t - y*z^2 - 4*y*z*w + y*z*t - 2*y*w*t + y*t^2 + 3*z^3 + 6*z^2*t - 4*z*w^2 + 6*z*w*t + 3*z*t^2 + 4*w*t^2,
-    x*z*t + x*t^2 + y^2*t - 5*y*z*w + y*z*t + 5*y*w^2 - 8*y*w*t + 3*z^3 - 4*z^2*w + 9*z^2*t - z*w^2 + 3*z*w*t + 8*z*t^2 + 2*w^3 - 13*w^2*t + 9*w*t^2,
-    x*w^2 + x*t^2 - y*z*w + y*z*t - 4*y*w^2 + 2*y*t^2 + 3*z^2*w + 4*z*w*t - 4*w^3 + 8*w^2*t + w*t^2,
-    x*w*t + x*t^2 + y*z*t - 5*y*w^2 + 2*y*w*t + 2*y*t^2 + 3*z^2*w - z*w^2 + 4*z*w*t - 2*w^3 + 9*w^2*t + w*t^2,
-    2*x*t^2 - 5*y*w*t + 3*y*t^2 + 3*z^2*t - z*w*t + 5*z*t^2 - 2*w^2*t + 7*w*t^2,
-    y^2*w + y^2*t - y*z^2 - 4*y*z*w + 2*y*z*t - 2*y*w^2 + 3*y*w*t + 3*z^3 + z^2*w + 3*z^2*t - 4*z*w^2 + 9*z*w*t - 2*z*t^2 + 8*w^2*t - 2*w*t^2,
-    2*y^2*t - 5*y*z*w + y*z*t + 5*y*w^2 - 5*y*w*t - 2*y*t^2 + 3*z^3 - 4*z^2*w + 7*z^2*t - z*w^2 + 4*z*w*t + 6*z*t^2 + 2*w^3 - 11*w^2*t + 6*w*t^2,
-    2*y*z*t - 5*y*w^2 + 6*y*w*t + y*t^2 + 3*z^2*w - 3*z^2*t - z*w^2 + 4*z*w*t - 5*z*t^2 - 2*w^3 + 13*w^2*t - 5*w*t^2
+models[770] := rec< ModelRec | N := 770, genus := 5, squarefree := true, 
+hyperelliptic := false, special_points := 6, curve := Curve(P, [
+    x*z + x*t - y^2 - 3*y*w + 2*y*t + 2*z^2 - z*w + 2*z*t - 2*w^2 + 3*w*t,
+    x*w + x*t - y*z - 4*y*w + y*t + 3*z^2 + 5*z*t - 4*w^2 + 6*w*t,
+    2*x*t - 5*y*w + 3*y*t + 3*z^2 - z*w + 5*z*t - 2*w^2 + 7*w*t
 ]) >;
 
 
 // ---- N = 798,  [ <2, 1>, <3, 1>, <7, 1>, <19, 1> ],  special points = 7 ----
-models[798] := rec< ModelRec | N := 798, genus := 5, squarefree := true, hyperelliptic := false, special_points := 7, curve := Curve(P, [
-    x^2*z - x*y^2 + 3*x*t^2 - 2*y*z^2 + 3*y*z*w + 5*y*z*t - 2*y*w^2 - 26*y*w*t + 29*y*t^2 - 4*z^3 - 2*z^2*w + 9*z^2*t + 24*z*w^2 - 7*z*w*t + 20*z*t^2 - 10*w^3 - 14*w^2*t - 59*w*t^2 - 29*t^3,
-    x^2*w + 6*x*t^2 - y^3 + 2*y^2*t - y*z^2 + 2*y*z*w + 10*y*z*t - 3*y*w^2 - 35*y*w*t + 30*y*t^2 - 3*z^3 - 5*z^2*w + 11*z^2*t + 27*z*w^2 - 10*z*w*t + 21*z*t^2 - 11*w^3 - 16*w^2*t - 68*w*t^2 - 35*t^3,
-    x^2*t + 7*x*t^2 - y^2*z + 8*y^2*t + y*z^2 - 2*y*z*w + 14*y*z*t - 2*y*w^2 - 48*y*w*t + 42*y*t^2 - 6*z^3 - 3*z^2*w + 13*z^2*t + 38*z*w^2 - 11*z*w*t + 27*z*t^2 - 16*w^3 - 23*w^2*t - 93*w*t^2 - 46*t^3,
-    x*y*z - y^3 + 3*y^2*t - 2*y*z*w + 4*y*z*t - 22*y*w*t + 24*y*t^2 - 3*z^3 - 2*z^2*w + 9*z^2*t + 20*z*w^2 - 10*z*w*t + 16*z*t^2 - 8*w^3 - 8*w^2*t - 44*w*t^2 - 20*t^3,
-    x*y*w - y^2*z + 9*y^2*t - y*z*w + 9*y*z*t - 2*y*w^2 - 42*y*w*t + 55*y*t^2 - 9*z^3 + 5*z^2*w + 19*z^2*t + 34*z*w^2 - 21*z*w*t + 34*z*t^2 - 16*w^3 - 22*w^2*t - 98*w*t^2 - 42*t^3,
-    x*y*t + 5*x*t^2 + 2*y^2*t - y*z^2 + 2*y*z*w + 8*y*z*t - 2*y*w^2 - 29*y*w*t + 25*y*t^2 - 3*z^3 - 4*z^2*w + 8*z^2*t + 25*z*w^2 - 5*z*w*t + 18*z*t^2 - 10*w^3 - 14*w^2*t - 57*w*t^2 - 29*t^3,
-    x*z^2 + 4*x*t^2 - y^2*z + 6*y^2*t - y*z*w + 13*y*z*t - 2*y*w^2 - 46*y*w*t + 46*y*t^2 - 5*z^3 - 7*z^2*w + 15*z^2*t + 40*z*w^2 - 16*z*w*t + 30*z*t^2 - 16*w^3 - 20*w^2*t - 92*w*t^2 - 44*t^3,
-    x*z*w + 8*x*t^2 + 2*y^2*t - y*z^2 + y*z*w + 5*y*z*t - y*w^2 - 24*y*w*t + 16*y*t^2 - 3*z^3 - 3*z^2*w + 2*z^2*t + 21*z*w^2 + 7*z*w*t + 15*z*t^2 - 8*w^3 - 14*w^2*t - 46*w*t^2 - 26*t^3,
-    x*z*t + 6*x*t^2 + 9*y^2*t - y*z*w + 8*y*z*t - 2*y*w^2 - 45*y*w*t + 43*y*t^2 - 9*z^3 + 4*z^2*w + 12*z^2*t + 36*z*w^2 - 5*z*w*t + 31*z*t^2 - 16*w^3 - 24*w^2*t - 92*w*t^2 - 44*t^3,
-    x*w^2 + 6*x*t^2 - y*z*w + 2*y*z*t + y*w^2 - 8*y*w*t - 2*y*t^2 - 3*z^2*w - 3*z^2*t + 6*z*w^2 + 8*z*w*t + z*t^2 - w^3 - 2*w^2*t - 7*w*t^2 - 8*t^3,
-    x*w*t + 2*x*t^2 + 9*y*z*t - y*w^2 - 23*y*w*t + 21*y*t^2 - 9*z^2*w + 9*z^2*t + 22*z*w^2 - 13*z*w*t + 12*z*t^2 - 8*w^3 - 7*w^2*t - 42*w*t^2 - 21*t^3,
-    10*x*t^2 - y*w*t - 12*y*t^2 - 9*z^2*t + 22*z*w*t - 3*z*t^2 - 8*w^2*t - 6*t^3,
-    y^2*w + 2*y^2*t - y*z^2 + y*z*w + 9*y*z*t - y*w^2 - 33*y*w*t + 36*y*t^2 - 3*z^3 - 7*z^2*w + 14*z^2*t + 32*z*w^2 - 17*z*w*t + 23*z*t^2 - 12*w^3 - 10*w^2*t - 64*w*t^2 - 30*t^3,
-    10*y^2*t - y*z*w + 8*y*z*t - 2*y*w^2 - 44*y*w*t + 50*y*t^2 - 9*z^3 + 4*z^2*w + 17*z^2*t + 36*z*w^2 - 16*z*w*t + 34*z*t^2 - 16*w^3 - 20*w^2*t - 92*w*t^2 - 40*t^3,
-    10*y*z*t - y*w^2 - 24*y*w*t + 26*y*t^2 - 9*z^2*w + 12*z^2*t + 22*z*w^2 - 19*z*w*t + 14*z*t^2 - 8*w^3 - 6*w^2*t - 46*w*t^2 - 22*t^3
+models[798] := rec< ModelRec | N := 798, genus := 5, squarefree := true, 
+hyperelliptic := false, special_points := 7, curve := Curve(P, [
+    x*z + 6*x*t - y^2 - y*w - 7*y*t - 5*z^2 + 11*z*w - 3*z*t - 4*w^2 - 4*t^2,
+    x*w + 2*x*t - y*z + y*w - 5*y*t - 3*z^2 + 6*z*w - 2*z*t - w^2 + 4*w*t + t^2,
+    10*x*t - y*w - 12*y*t - 9*z^2 + 22*z*w - 3*z*t - 8*w^2 - 6*t^2
 ]) >;
 
 
 // ---- N = 910,  [ <2, 1>, <5, 1>, <7, 1>, <13, 1> ],  special points = 4 ----
-models[910] := rec< ModelRec | N := 910, genus := 5, squarefree := true, hyperelliptic := false, special_points := 4, curve := Curve(P, [
-    x^2*z - x*y^2 + 7*x*t^2 + y^2*t + y*z^2 + 4*y*z*w + 2*y*z*t + 2*y*w^2 + 15*y*w*t + 2*y*t^2 - 5*z^3 - 5*z^2*w - 24*z^2*t - z*w^2 - 14*z*w*t - 11*z*t^2 - 14*w*t^2,
-    x^2*w + 18*x*t^2 - y^3 + 14*y^2*t - y*z^2 + 27*y*z*w + 8*y*z*t + 13*y*w^2 + 38*y*w*t + 6*y*t^2 - 40*z^3 - 34*z^2*w - 78*z^2*t - z*w^2 - 70*z*w*t - 24*z*t^2 + 3*w^3 - 14*w^2*t - 37*w*t^2 + 2*t^3,
-    x^2*t + 3*x*t^2 - y^2*z + 13*y^2*t - y*z^2 + 26*y*z*w + 32*y*z*t + 63*y*w^2 + 19*y*w*t + 26*y*t^2 - 38*z^3 - 110*z^2*w - 37*z^2*t - 31*z*w^2 - 87*z*w*t - 13*z*t^2 + 14*w^3 - 88*w^2*t - 8*w*t^2 + 12*t^3,
-    x*y*z + 14*x*t^2 - y^3 + 14*y^2*t + 28*y*z*w + 18*y*z*t + 32*y*w^2 + 34*y*w*t + 14*y*t^2 - 41*z^3 - 64*z^2*w - 67*z^2*t - 13*z*w^2 - 79*z*w*t - 22*z*t^2 + 7*w^3 - 42*w^2*t - 29*w*t^2 + 6*t^3,
-    x*y*w + 20*x*t^2 - y^2*z + 18*y^2*t + 37*y*z*w + 4*y*z*t + y*w^2 + 40*y*w*t - 56*z^3 - 23*z^2*w - 90*z^2*t + 8*z*w^2 - 77*z*w*t - 22*z*t^2 - 40*w*t^2,
-    x*y*t + 14*x*t^2 + y^2*w + 20*y^2*t - 2*y*z^2 + 38*y*z*w + 18*y*z*t + 30*y*w^2 + 32*y*w*t + 12*y*t^2 - 59*z^3 - 68*z^2*w - 77*z^2*t - 9*z*w^2 - 95*z*w*t - 18*z*t^2 + 7*w^3 - 42*w^2*t - 29*w*t^2 + 6*t^3,
-    x*z^2 + 31*x*t^2 - y^2*z + 31*y^2*t + 61*y*z*w + 6*y*z*t + 62*y*w*t - 92*z^3 - 36*z^2*w - 143*z^2*t + 14*z*w^2 - 124*z*w*t - 33*z*t^2 - 62*w*t^2,
-    x*z*w + 26*x*t^2 + 26*y^2*t - y*z^2 + 51*y*z*w + 36*y*z*t + 63*y*w^2 + 64*y*w*t + 28*y*t^2 - 77*z^3 - 126*z^2*w - 125*z^2*t - 26*z*w^2 - 151*z*w*t - 42*z*t^2 + 14*w^3 - 84*w^2*t - 54*w*t^2 + 12*t^3,
-    x*z*t + 31*x*t^2 + 31*y^2*t + 63*y*z*w + 6*y*z*t + 62*y*w*t - 95*z^3 - 38*z^2*w - 144*z^2*t + 14*z*w^2 - 126*z*w*t - 33*z*t^2 - 62*w*t^2,
-    x*w^2 + 28*x*t^2 - y*z*w + 26*y*z*t + 51*y*w^2 + 64*y*w*t + 28*y*t^2 - 77*z^2*w - 88*z^2*t - 31*z*w^2 - 71*z*w*t - 56*z*t^2 + 12*w^3 - 56*w^2*t - 58*w*t^2 + 8*t^3,
-    x*w*t + 26*x*t^2 + 31*y*z*t + 63*y*w^2 + 63*y*w*t + 32*y*t^2 - 95*z^2*w - 83*z^2*t - 38*z*w^2 - 78*z*w*t - 55*z*t^2 + 14*w^3 - 72*w^2*t - 54*w*t^2 + 10*t^3,
-    32*x*t^2 + 63*y*w*t + 6*y*t^2 - 95*z^2*t - 38*z*w*t - 51*z*t^2 + 14*w^2*t - 64*w*t^2 - 2*t^3,
-    y^2*w + 26*y^2*t - y*z^2 + 51*y*z*w + 5*y*z*t + 2*y*w^2 + y*w*t - 4*y*t^2 - 77*z^3 - 34*z^2*w - 42*z^2*t + 10*z*w^2 - 74*z*w*t + 13*z*t^2 - 14*w^2*t + 2*t^3,
-    32*y^2*t + 63*y*z*w + 6*y*z*t + y*w*t - 6*y*t^2 - 95*z^3 - 38*z^2*w - 52*z^2*t + 14*z*w^2 - 90*z*w*t + 17*z*t^2 - 14*w^2*t + 2*t^3,
-    32*y*z*t + 63*y*w^2 + 12*y*w*t + 28*y*t^2 - 95*z^2*w - 6*z^2*t - 38*z*w^2 - 47*z*w*t - 14*z*t^2 + 14*w^3 - 84*w^2*t - 2*w*t^2 + 12*t^3
+models[910] := rec< ModelRec | N := 910, genus := 5, squarefree := true, 
+hyperelliptic := false, special_points := 4, curve := Curve(P, [
+    x*z + 31*x*t - y^2 + 61*y*w + 6*y*t - 92*z^2 - 36*z*w - 50*z*t + 14*w^2 - 
+62*w*t - 2*t^2,
+    x*w + 26*x*t - y*z + 51*y*w + 4*y*t - 77*z^2 - 31*z*w - 41*z*t + 12*w^2 - 
+52*w*t - 2*t^2,
+    32*x*t + 63*y*w + 6*y*t - 95*z^2 - 38*z*w - 51*z*t + 14*w^2 - 64*w*t - 2*t^2
 ]) >;
 
 
