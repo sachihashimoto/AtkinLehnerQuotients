@@ -1,0 +1,61 @@
+name: Install Magma
+description: >-
+  Restore Magma from the shared cache, downloading and extracting it on a
+  miss.  Used by both prime-magma (which warms the cache once) and every
+  matrix job (as a fallback), so the cache key and install logic cannot
+  drift apart.
+
+inputs:
+  magma-url:
+    description: Authenticated download URL for the Magma tarball
+    required: true
+  magma-username:
+    description: Username for the download
+    required: true
+  magma-password:
+    description: Password for the download
+    required: true
+  cache-key:
+    description: Cache key; bump to reset the cache when the URL changes
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Cache magma
+      uses: actions/cache@v4
+      id: magmacache
+      with:
+        path: ./magma
+        key: ${{ inputs.cache-key }}
+
+    - name: Install magma
+      shell: bash
+      if: steps.magmacache.outputs.cache-hit != 'true'
+      env:
+        MAGMA_URL: ${{ inputs.magma-url }}
+        MAGMA_USERNAME: ${{ inputs.magma-username }}
+        MAGMA_PASSWORD: ${{ inputs.magma-password }}
+      run: |
+        # Bounded timeout so a stalled connection fails fast instead of
+        # hanging, with backoff retries.  --no-verbose (not --quiet) keeps the
+        # actual wget error in the log.
+        ok=""
+        for attempt in 1 2 3 4 5; do
+          # A failed tar can leave a partial tree that still contains an executable
+          # magma/magma; start every attempt from nothing so only a fully extracted
+          # archive can reach the cache.
+          rm -rf ./magma magma.tar.gz
+          if wget "$MAGMA_URL" -O magma.tar.gz \
+               --user="$MAGMA_USERNAME" --password="$MAGMA_PASSWORD" \
+               --timeout=120 --tries=3 --waitretry=30 --retry-connrefused --no-verbose; then
+            if tar xf magma.tar.gz; then ok=1; break; fi
+          fi
+          echo "::warning::magma download/extract attempt $attempt failed; backing off $((attempt*30))s"
+          sleep $((attempt * 30))
+        done
+        # Fail loudly on any incomplete install: a failed step means actions/cache
+        # skips its save, so a broken tree can never poison the cache.
+        [ -n "$ok" ]
+        test -x ./magma/magma
+        ./magma/magma -d | grep -q "Valid MAC addresses"

@@ -1,0 +1,207 @@
+name: tests
+
+# Adapted from the tests.yml in assaferan/ShimuraCurveALQuotients, which this
+# repository's code partly derives from.  Two differences worth knowing:
+#
+#  - Checkout is recursive.  tests/ load QuadraticPoints/models_and_maps.m
+#    through the submodule; without `submodules: recursive` every suite dies at
+#    `Could not open file`, which looks like a code failure but is not.
+#
+#  - Each matrix job shells out to tests/run.sh rather than re-implementing a
+#    runner.  run.sh already gives one Magma process per suite, a PASS/FAIL/
+#    INCOMPLETE verdict from the completion marker, and a transcript in
+#    tests/logs/.  INCOMPLETE (crash / no marker) is deliberately distinct from
+#    FAIL (wrong answer) and both exit non-zero, so CI inherits that
+#    distinction for free.
+
+on:
+  # push covers main only: PR branches are covered by pull_request_target, and
+  # push-on-'**' would run the whole multi-hour matrix a second time per commit.
+  push:
+    branches: [ main ]
+
+  pull_request_target:
+
+# One live run per PR (or per branch for push events); a force-push cancels
+# the superseded run instead of leaving its whole matrix going for hours.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+env:
+  # The single Magma cache key for every job.  Increase to reset the cache
+  # when MAGMA_URL changes.
+  MAGMA_CACHE_NUMBER: 2.29-4
+
+jobs:
+
+  # Enumerate suites so each gets its own job: the slow ones (test_find_examples,
+  # test_311_jmap, test_degree_formula -- see SLOW_SUITES in run.sh) then run
+  # concurrently with the fast ones instead of serialising behind them.
+  # tests/assertions.m is a helper, not a suite, and does not match test_*.m.
+  matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+        if: ${{ github.event_name == 'push' }}
+
+      - uses: actions/checkout@v4
+        if: ${{ github.event_name == 'pull_request_target' }}
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - id: set-matrix
+        run: |
+          # Refuse to build a matrix from any filename that could smuggle shell
+          # metacharacters into the test job (this file runs under pull_request_target).
+          for f in tests/test_*.m; do
+            b=$(basename "$f" .m)
+            if ! [[ "$b" =~ ^test_[A-Za-z0-9_]+$ ]]; then
+              echo "::error::refusing suspicious test filename: $f"
+              exit 1
+            fi
+          done
+          matrix=$( (
+            echo '{ "target" : ['
+            ls -1 tests/test_*.m | xargs -n1 basename | sed 's/\.m$//' \
+              | sed -r 's/^(.*)$/"\1"/' | paste -sd "," -
+            echo " ]}"
+          ) | jq -c . )
+          echo "$matrix" | jq .
+          echo "matrix=$matrix" >> $GITHUB_OUTPUT
+
+  # The MAGMA_* secrets are not set on a fresh fork, and Magma is licensed
+  # software that cannot be fetched without them.  Rather than fail every run
+  # with a confusing download error, gate the test job on the secret being
+  # present so it skips cleanly instead.
+  has_access:
+    runs-on: ubuntu-latest
+    outputs:
+      has_access: ${{ steps.my-key.outputs.has_access }}
+    steps:
+      - id: my-key
+        env:
+          MAGMA_URL: ${{ secrets.MAGMA_URL }}
+        if: "${{ env.MAGMA_URL != '' }}"
+        run: |
+          echo "has_access=true" >> $GITHUB_OUTPUT
+
+  # Download Magma ONCE and populate the shared cache before the matrix fans
+  # out.  On a cold cache the matrix jobs would otherwise each fire the same
+  # authenticated wget at the licence server in parallel; the server throttles
+  # the connections, wget stalls, and the tests are skipped rather than run.
+  prime-magma:
+    runs-on: ubuntu-latest
+    needs: has_access
+    if: needs.has_access.outputs.has_access == 'true'
+    steps:
+      # A plain checkout (no ref) always takes the BASE repository's code, so
+      # under pull_request_target this job never executes anything from the PR
+      # head -- it exists only to warm the cache with the base's installer.
+      - uses: actions/checkout@v4
+
+      - name: Install magma
+        uses: ./.github/actions/install-magma
+        with:
+          magma-url: ${{ secrets.MAGMA_URL }}
+          magma-username: ${{ secrets.MAGMA_USERNAME }}
+          magma-password: ${{ secrets.MAGMA_PASSWORD }}
+          cache-key: ${{ env.MAGMA_CACHE_NUMBER }}
+
+  test:
+    runs-on: ubuntu-latest
+    name: ${{ matrix.target }}
+    needs: [has_access, matrix, prime-magma]
+    if: needs.has_access.outputs.has_access == 'true'
+
+    # The slow suites can run for hours.  The step-level timeout on "Run test
+    # suite" (340) is the one that normally fires: a step timeout FAILS the
+    # step, so the transcript upload below still runs.  The job-level ceiling
+    # is only a backstop (GitHub's hard limit is 360), and a suite that
+    # exceeds it needs to be run locally rather than here.
+    timeout-minutes: 350
+
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(needs.matrix.outputs.matrix) }}
+
+    steps:
+      # SECURITY: pull_request_target runs with this repository's secrets while
+      # checking out the PR head below -- i.e. untrusted code with access to the
+      # Magma credentials.  This permission gate is the only thing preventing an
+      # arbitrary fork PR from exfiltrating them.  Do not remove it, and do not
+      # move it after the checkout.
+      - name: Check user permission
+        id: check
+        uses: scherermichael-oss/action-has-permission@17f29510f1bf987b916c8cbb451566a56eed23f1 # master, pinned 2026-08-30
+        with:
+          required-permission: write
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Stop workflow for users with no write access
+        if: steps.check.outputs.has-permission != '1'
+        run: |
+          echo "Sorry! Your permissions are insufficient."
+          false
+
+      - name: Checkout for a push event
+        uses: actions/checkout@v4
+        if: ${{ github.event_name == 'push' }}
+        with:
+          submodules: recursive
+
+      - name: Checkout for a PR event
+        uses: actions/checkout@v4
+        if: ${{ github.event_name == 'pull_request_target' }}
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          submodules: recursive
+
+      # NOTE: on a pull_request_target run this local action comes from the
+      # checked-out PR head.  That is within the existing trust model -- the
+      # permission gate above already ensures only write-access users reach
+      # this point, after which head code runs with secrets regardless.
+      # Fallback: normally skipped because prime-magma warmed the cache.
+      - name: Install magma
+        uses: ./.github/actions/install-magma
+        with:
+          magma-url: ${{ secrets.MAGMA_URL }}
+          magma-username: ${{ secrets.MAGMA_USERNAME }}
+          magma-password: ${{ secrets.MAGMA_PASSWORD }}
+          cache-key: ${{ env.MAGMA_CACHE_NUMBER }}
+
+      # Magma's licence is keyed to a MAC address, so give the runner a dummy
+      # interface carrying one of the addresses this licence accepts.  The bare
+      # `echo | magma` afterwards is a licence handshake, not a test.
+      - name: Create dummy network device
+        shell: bash
+        run: |
+          sudo ip link add dumdum type dummy
+          sudo ifconfig dumdum hw ether `./magma/magma -d | grep "Valid MAC addresses" -A1 | tail -n1`
+          echo | ./magma/magma
+
+      # run.sh insists on being run from the repository root and honours $MAGMA.
+      # Single-suite mode exits 0 only on PASS, so FAIL and INCOMPLETE both fail
+      # the job.
+      - name: Run test suite
+        id: run-tests
+        shell: bash
+        timeout-minutes: 340
+        env:
+          TARGET: ${{ matrix.target }}
+        run: |
+          # $TARGET arrives via env, never via template interpolation, so a
+          # hostile value cannot rewrite this script; re-validate it anyway.
+          [[ "$TARGET" =~ ^test_[A-Za-z0-9_]+$ ]]
+          MAGMA="$PWD/magma/magma" tests/run.sh "$TARGET"
+
+      - name: Upload transcript when the suite fails
+        if: always() && (steps.run-tests.outcome == 'failure' || steps.run-tests.outcome == 'cancelled')
+        uses: actions/upload-artifact@v4
+        with:
+          name: log-${{ matrix.target }}
+          path: tests/logs/${{ matrix.target }}.log
+          if-no-files-found: error
