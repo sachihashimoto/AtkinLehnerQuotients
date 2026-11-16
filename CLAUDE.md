@@ -31,7 +31,7 @@ Most scripts end in `quit;`/`exit;`, so they are batch-only; `certify_committed_
 do not and can also be `load`ed in a session.
 
 - `load "src/AtkinLehner.m";` pulls in `QuadraticPoints/models_and_maps.m` plus
-  11 of the 13 src modules, in dependency order. Each header says whether the
+  12 of the 14 src modules, in dependency order. Each header says whether the
   module is loadable standalone: most are not, but `cm_points.m`, `cm_orders.m`
   and `cm_numerics.m` are self-contained (`tests/test_cm_points.m` loads
   `cm_points.m` directly).
@@ -71,7 +71,9 @@ casually: `--slow` is ~43 min, dominated by `test_311_jmap`.
   tau; `fields_of_definition.m` ring-class-field degrees and rational/degree-2
   discs; `labeling.m` labels points and fits planes through CM triples;
   `point_search.m` the driver entry points; `star_degree.m` (c_n, delta_f, E^C_f);
-  `classify_covers.m` (`ClassifyTripleCovers`); out-of-chain `triple_covers.m` and
+  `classify_covers.m` (`ClassifyTripleCovers`); `cm_certify.m` exact-arithmetic
+  proofs that a rational point is a given CM point (canonical models only; the
+  mathematics is in `notes/cm_integrality.tex`); out-of-chain `triple_covers.m` and
   `hnf_canonical.m`.
 - `scripts/` — `gen_genus_models.m` (regenerates `data/genus<g>_models.m`),
   `certify_committed_models.m`, `classify_triple_covers.m` (writes

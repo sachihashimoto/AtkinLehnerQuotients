@@ -1079,6 +1079,60 @@ function MatchRationalCMPoints(N, fs, rats_cc, rats, CC, tol, rat_cm_discs, ell_
     return matched, nfail, disc_to_idx, fail_reason;
 end function;
 
+// Prove the rational CM labels that MatchRationalCMPoints proposed.
+// disc_to_idx: its disc -> indices map. For each Gamma_0(N)*-orbit of each
+// disc, tries the indices matched to that disc until one is proved to be the
+// image of that orbit (src/cm_certify.m).
+// Returns the set of proved indices and a list of <disc, orbit_id> not proved.
+function ProveRationalCMLabels(N, fs, rats, disc_to_idx, ell_pts : Prec := 128)
+    Cs := DeligneConstants(fs, N);
+    proved := {Integers()|};
+    unproved := [* *];
+    for disc in Sort(Setseq(Keys(disc_to_idx))) do
+        e := EllipticOrderOfDisc(disc, ell_pts);
+        forms := CMOrbitForms(disc, N);
+        for oid in [1..#forms] do
+            hit := 0;
+            for j in disc_to_idx[disc] do
+                if j in proved then continue; end if;
+                if CertifyRationalCMPoint(N, fs, Cs, Eltseq(rats[j]), forms[oid], e : Prec := Prec) then
+                    hit := j; break;
+                end if;
+            end for;
+            if hit eq 0 then
+                Append(~unproved, <disc, oid>);
+            else
+                Include(~proved, hit);
+            end if;
+        end for;
+    end for;
+    return proved, unproved;
+end function;
+
+// Standalone driver: find the image of every rational CM discriminant among
+// `rats` with the floating-point matcher, then prove each identification.
+// rat_cm_discs: Keys(RationalCMDiscs(N)). Canonical models only.
+// Returns disc_to_idx restricted to proved indices, and the unproved
+// <disc, orbit_id> list (everything, if the matcher itself fails).
+function CertifyRationalCMPoints(N, fs, rats, rat_cm_discs : Prec := 128)
+    error if IsHyperellipticX0Nstar(N),
+        Sprintf("CertifyRationalCMPoints: level %o is hyperelliptic; only canonical models are supported", N);
+    CC := ComplexField(200);
+    rats_cc := [[CC!c : c in Eltseq(r)] : r in rats];
+    ell_pts, disc_ell_pts := EllipticDiscsByOrder(N);
+    _, nfail, disc_to_idx := MatchRationalCMPoints(N, fs, rats_cc, rats, CC, 10^-15, rat_cm_discs, ell_pts, disc_ell_pts);
+    if nfail ne 0 then
+        return AssociativeArray(), [* <d, 0> : d in rat_cm_discs *];
+    end if;
+    proved, unproved := ProveRationalCMLabels(N, fs, rats, disc_to_idx, ell_pts : Prec := Prec);
+    out := AssociativeArray();
+    for d in Keys(disc_to_idx) do
+        keep := [j : j in disc_to_idx[d] | j in proved];
+        if #keep gt 0 then out[d] := keep; end if;
+    end for;
+    return out, unproved;
+end function;
+
 // Status vocabulary for the three helpers below and for AlgebraicDeg2Matches.
 // Two levels of outcome, easy to confuse.
 //
@@ -1384,7 +1438,7 @@ end function;
 // rc_cache: passed to Degree2Points and returned updated, so a caller looping
 //   over several N can share one cache rather than rebuilding a shared
 //   discriminant's fields per level.
-function LabelAndAnalyze(N, X, fs, rats, rat_cm_discs : max_class_num := 0, analyze := true, confirm_deg2 := true, rc_cache := AssociativeArray(), prec_lo := 200, prec_hi := 600, resid_C := 10^3, recon_C := 10, error_max_recon := 10^-12, error_max_match := 10^-12)
+function LabelAndAnalyze(N, X, fs, rats, rat_cm_discs : prove := true, max_class_num := 0, analyze := true, confirm_deg2 := true, rc_cache := AssociativeArray(), prec_lo := 200, prec_hi := 600, resid_C := 10^3, recon_C := 10, error_max_recon := 10^-12, error_max_match := 10^-12)
     g := Genus(X);
     CC := ComplexField(200); tol := 10^-15;
     rats_cc := [[CC!c : c in Eltseq(r)] : r in rats];
@@ -1412,6 +1466,30 @@ function LabelAndAnalyze(N, X, fs, rats, rat_cm_discs : max_class_num := 0, anal
     end if;
     exceptional_idxs := [j : j in [1..#rats] | j notin matched];
     printf "Labelled %o CM+cusp, %o exceptional\n", #matched, #exceptional_idxs;
+    if prove then
+        // The labels above come from floating point. Prove them: each CM
+        // label by an exact-arithmetic certificate, the cusp by exact
+        // comparison with the leading coefficients. Every rational CM point
+        // is among the labelled ones (MatchRationalCMPoints found the number
+        // the field-of-definition count requires), so once all are proved to
+        // be distinct points of rats, the unlabelled points are proved to be
+        // neither cusps nor CM points.
+        cm_proved, cm_unproved := ProveRationalCMLabels(N, fs, rats, disc_to_idx, ell_pts);
+        n_cm := #matched - (#cusp_list gt 0 select 1 else 0);
+        cusp_ok := true;
+        if #cusp_list gt 0 then
+            c := Eltseq(rats[cusp_list[1]]);
+            a1 := [Rationals()!Coefficient(fs[i], 1) : i in [1..g]];
+            cusp_ok := Rank(Matrix(Rationals(), 2, g, [c, a1])) eq 1;
+        end if;
+        if #cm_unproved eq 0 and #cm_proved eq n_cm and cusp_ok then
+            printf "Proved: all %o CM labels and the cusp label; the %o exceptional point(s) are neither cusp nor CM\n",
+                n_cm, #exceptional_idxs;
+        else
+            printf "WARNING: N=%o: labels not proved for <disc, orbit> %o (cusp exact: %o); these labels are numerical only\n",
+                N, cm_unproved, cusp_ok;
+        end if;
+    end if;
     for j in exceptional_idxs do printf "  exceptional: rats[%o] = %o\n", j, rats[j]; end for;
     if #exceptional_idxs eq 0 then return exceptional_idxs, [* *], true, "", idx_to_disc, rc_cache, true; end if;
     if not analyze then
