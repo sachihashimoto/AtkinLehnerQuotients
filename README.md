@@ -68,7 +68,8 @@ analyze_exceptional(result);
 ```
 
 This passes the list that `check_exceptional_example` returns straight into
-`analyze_exceptional`. Expected output ends `All exceptional points in a plane: true`. Measured runtime ~1.6 s.
+`analyze_exceptional`. Expected output includes `All exceptional points geometrically covered: true`
+and `All exceptional points CM-confirmed: true`, followed by the returned list. Measured runtime ~3 s.
 
 **3. Sweep through a whole genus.**
 

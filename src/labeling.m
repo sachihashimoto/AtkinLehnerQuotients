@@ -1154,6 +1154,17 @@ function ComponentStatusPairs(comp_status, wanted_statuses)
     return out;
 end function;
 
+// The splitting field returned by PointsOverSplittingField, as an absolute
+// number field (or the rational field). Over the rationals, older Magma
+// versions return an algebraically closed field there and newer ones a number
+// field, possibly a tower; the two need different calls.
+function AbsoluteSplittingField(L)
+    if Type(L) eq FldAC then
+        return NumberField(AbsolutePolynomial(L));
+    end if;
+    return NumberField(DefiningPolynomial(AbsoluteField(L)));
+end function;
+
 // For a plane with degree-2 intersection components, decide which discriminant
 // in deg2pts lies on each component. Two stages per (component, disc) pair,
 // neither using numeric coordinate recognition of the CM evaluation:
@@ -1190,7 +1201,7 @@ function AlgebraicDeg2Matches(X, plane_eqn, deg2pts, N, fs, ell_pts, disc_ell_pt
         if Degree(comp) ne 2 then continue; end if;
         comp_idx +:= 1;
         _, split_fld := PointsOverSplittingField(comp);
-        comp_nf := NumberField(AbsolutePolynomial(split_fld));
+        comp_nf := AbsoluteSplittingField(split_fld);
         pts_K   := RationalPoints(BaseChange(comp, comp_nf));
         if #pts_K ne 2 then
             // Non-reduced or tangential intersection, so the component is not a
