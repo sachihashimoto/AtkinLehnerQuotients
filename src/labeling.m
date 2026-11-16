@@ -1079,6 +1079,60 @@ function MatchRationalCMPoints(N, fs, rats_cc, rats, CC, tol, rat_cm_discs, ell_
     return matched, nfail, disc_to_idx, fail_reason;
 end function;
 
+// Prove the rational CM labels that MatchRationalCMPoints proposed.
+// disc_to_idx: its disc -> indices map. For each Gamma_0(N)*-orbit of each
+// disc, tries the indices matched to that disc until one is proved to be the
+// image of that orbit (src/cm_certify.m).
+// Returns the set of proved indices and a list of <disc, orbit_id> not proved.
+function ProveRationalCMLabels(N, fs, rats, disc_to_idx, ell_pts : Prec := 128)
+    Cs := DeligneConstants(fs, N);
+    proved := {Integers()|};
+    unproved := [* *];
+    for disc in Sort(Setseq(Keys(disc_to_idx))) do
+        e := EllipticOrderOfDisc(disc, ell_pts);
+        forms := CMOrbitForms(disc, N);
+        for oid in [1..#forms] do
+            hit := 0;
+            for j in disc_to_idx[disc] do
+                if j in proved then continue; end if;
+                if CertifyRationalCMPoint(N, fs, Cs, Eltseq(rats[j]), forms[oid], e : Prec := Prec) then
+                    hit := j; break;
+                end if;
+            end for;
+            if hit eq 0 then
+                Append(~unproved, <disc, oid>);
+            else
+                Include(~proved, hit);
+            end if;
+        end for;
+    end for;
+    return proved, unproved;
+end function;
+
+// Standalone driver: find the image of every rational CM discriminant among
+// `rats` with the floating-point matcher, then prove each identification.
+// rat_cm_discs: Keys(RationalCMDiscs(N)). Canonical models only.
+// Returns disc_to_idx restricted to proved indices, and the unproved
+// <disc, orbit_id> list (everything, if the matcher itself fails).
+function CertifyRationalCMPoints(N, fs, rats, rat_cm_discs : Prec := 128)
+    error if IsHyperellipticX0Nstar(N),
+        Sprintf("CertifyRationalCMPoints: level %o is hyperelliptic; only canonical models are supported", N);
+    CC := ComplexField(200);
+    rats_cc := [[CC!c : c in Eltseq(r)] : r in rats];
+    ell_pts, disc_ell_pts := EllipticDiscsByOrder(N);
+    _, nfail, disc_to_idx := MatchRationalCMPoints(N, fs, rats_cc, rats, CC, 10^-15, rat_cm_discs, ell_pts, disc_ell_pts);
+    if nfail ne 0 then
+        return AssociativeArray(), [* <d, 0> : d in rat_cm_discs *];
+    end if;
+    proved, unproved := ProveRationalCMLabels(N, fs, rats, disc_to_idx, ell_pts : Prec := Prec);
+    out := AssociativeArray();
+    for d in Keys(disc_to_idx) do
+        keep := [j : j in disc_to_idx[d] | j in proved];
+        if #keep gt 0 then out[d] := keep; end if;
+    end for;
+    return out, unproved;
+end function;
+
 // Status vocabulary for the three helpers below and for AlgebraicDeg2Matches.
 // Two levels of outcome, easy to confuse.
 //
@@ -1154,6 +1208,17 @@ function ComponentStatusPairs(comp_status, wanted_statuses)
     return out;
 end function;
 
+// The splitting field returned by PointsOverSplittingField, as an absolute
+// number field (or the rational field). Over the rationals, older Magma
+// versions return an algebraically closed field there and newer ones a number
+// field, possibly a tower; the two need different calls.
+function AbsoluteSplittingField(L)
+    if Type(L) eq FldAC then
+        return NumberField(AbsolutePolynomial(L));
+    end if;
+    return NumberField(DefiningPolynomial(AbsoluteField(L)));
+end function;
+
 // For a plane with degree-2 intersection components, decide which discriminant
 // in deg2pts lies on each component. Two stages per (component, disc) pair,
 // neither using numeric coordinate recognition of the CM evaluation:
@@ -1171,18 +1236,22 @@ end function;
 // conjugate-pair components for different discs, and failing on one must not
 // stop that disc being confirmed on the other.
 //
-// Returns (matches, inconclusive, records, comp_status) in the statuses above.
+// Returns (matches, inconclusive, records, comp_status, proved) in the statuses
+// above. proved lists the confirmed <component_idx, disc> matches that were
+// also proved in exact arithmetic (empty with prove := false).
 // matches holds the sole confirmed disc of each confirmed component, so an
 // ambiguous component contributes none. inconclusive holds discs sitting on an
 // inconclusive or ambiguous component, both meaning "not a usable negative". A
 // disc whose records are all "rejected" is in neither.
 function AlgebraicDeg2Matches(X, plane_eqn, deg2pts, N, fs, ell_pts, disc_ell_pts :
-    prec_lo := 200, prec_hi := 600, resid_C := 10^3, error_max_match := 10^-12)
+    prec_lo := 200, prec_hi := 600, resid_C := 10^3, error_max_match := 10^-12, prove := true)
     records := [* *];
     comp_status := [* *];
     matches := {Integers()|};
     inconclusive := {Integers()|};
-    if #Keys(deg2pts) eq 0 then return matches, inconclusive, records, comp_status; end if;
+    proved := [* *];
+    Cs := [];
+    if #Keys(deg2pts) eq 0 then return matches, inconclusive, records, comp_status, proved; end if;
     P_amb := AmbientSpace(X);
     Scut := Scheme(P_amb, DefiningEquations(X) cat [plane_eqn]);
     comp_idx := 0;
@@ -1190,7 +1259,7 @@ function AlgebraicDeg2Matches(X, plane_eqn, deg2pts, N, fs, ell_pts, disc_ell_pt
         if Degree(comp) ne 2 then continue; end if;
         comp_idx +:= 1;
         _, split_fld := PointsOverSplittingField(comp);
-        comp_nf := NumberField(AbsolutePolynomial(split_fld));
+        comp_nf := AbsoluteSplittingField(split_fld);
         pts_K   := RationalPoints(BaseChange(comp, comp_nf));
         if #pts_K ne 2 then
             // Non-reduced or tangential intersection, so the component is not a
@@ -1297,6 +1366,18 @@ function AlgebraicDeg2Matches(X, plane_eqn, deg2pts, N, fs, ell_pts, disc_ell_pt
         inconclusive join:= inconclusive_add;
         if comp_stat eq "confirmed" then
             Append(~comp_status, <comp_idx, "confirmed", confirmed_discs>);
+            if prove then
+                // Prove the numerical match: every CM point of the disc
+                // satisfies the equations of this component, so its image is
+                // one of the component's two points (src/cm_certify.m).
+                if #Cs eq 0 then Cs := DeligneConstants(fs, N); end if;
+                for d in confirmed_discs do
+                    if CertifyPolynomialsVanishAtCM(N, fs, Cs, DefiningPolynomials(comp), CMOrbitForms(d, N),
+                            Integers()!DegreeOfFieldOfDefinitionOfCMPoint(N, d), EllipticOrderOfDisc(d, ell_pts)) then
+                        Append(~proved, <comp_idx, d>);
+                    end if;
+                end for;
+            end if;
             // Discs left inconclusive on a component that also confirmed one
             // get their own entry, so ComponentStatusPairs still reports them.
             if #inconclusive_discs gt 0 then
@@ -1321,7 +1402,7 @@ function AlgebraicDeg2Matches(X, plane_eqn, deg2pts, N, fs, ell_pts, disc_ell_pt
         end if;
     end for;
     inconclusive := inconclusive diff matches;
-    return matches, inconclusive, records, comp_status;
+    return matches, inconclusive, records, comp_status, proved;
 end function;
 
 // Label rational points on a canonical X_0(N)* and run the coplanarity
@@ -1363,6 +1444,9 @@ end function;
 //   12 plane_stable   always true: Search 2 planes passed
 //                     CertifiedPlaneFromCMPair's dual-run agreement and
 //                     Search 1 planes use only exact rational data
+//   13 proved_component_matches  the <component_idx, disc> records of (9)
+//                     that were also proved in exact arithmetic
+//                     (src/cm_certify.m); empty with prove := false
 //
 // Fields 5 and 8 answer different questions, and the distinction matters for
 // what you can claim. deg2_matched can be true because some unrelated disc
@@ -1384,7 +1468,7 @@ end function;
 // rc_cache: passed to Degree2Points and returned updated, so a caller looping
 //   over several N can share one cache rather than rebuilding a shared
 //   discriminant's fields per level.
-function LabelAndAnalyze(N, X, fs, rats, rat_cm_discs : max_class_num := 0, analyze := true, confirm_deg2 := true, rc_cache := AssociativeArray(), prec_lo := 200, prec_hi := 600, resid_C := 10^3, recon_C := 10, error_max_recon := 10^-12, error_max_match := 10^-12)
+function LabelAndAnalyze(N, X, fs, rats, rat_cm_discs : prove := true, max_class_num := 0, analyze := true, confirm_deg2 := true, rc_cache := AssociativeArray(), prec_lo := 200, prec_hi := 600, resid_C := 10^3, recon_C := 10, error_max_recon := 10^-12, error_max_match := 10^-12)
     g := Genus(X);
     CC := ComplexField(200); tol := 10^-15;
     rats_cc := [[CC!c : c in Eltseq(r)] : r in rats];
@@ -1394,7 +1478,7 @@ function LabelAndAnalyze(N, X, fs, rats, rat_cm_discs : max_class_num := 0, anal
     matched, nfail, disc_to_idx, fail_reason := MatchRationalCMPoints(N, fs, rats_cc, rats, CC, tol, rat_cm_discs, ell_pts, disc_ell_pts);
     if nfail ne 0 then
         printf "WARNING: CM matching failed for N=%o: %o\n", N, fail_reason;
-        return [], [* *], false, fail_reason, AssociativeArray(), rc_cache, false;
+        return [], [* *], false, fail_reason, AssociativeArray(), rc_cache, false, false;
     end if;
     idx_to_disc := AssociativeArray();
     for disc in Keys(disc_to_idx) do
@@ -1412,8 +1496,32 @@ function LabelAndAnalyze(N, X, fs, rats, rat_cm_discs : max_class_num := 0, anal
     end if;
     exceptional_idxs := [j : j in [1..#rats] | j notin matched];
     printf "Labelled %o CM+cusp, %o exceptional\n", #matched, #exceptional_idxs;
+    if prove then
+        // The labels above come from floating point. Prove them: each CM
+        // label by an exact-arithmetic certificate, the cusp by exact
+        // comparison with the leading coefficients. Every rational CM point
+        // is among the labelled ones (MatchRationalCMPoints found the number
+        // the field-of-definition count requires), so once all are proved to
+        // be distinct points of rats, the unlabelled points are proved to be
+        // neither cusps nor CM points.
+        cm_proved, cm_unproved := ProveRationalCMLabels(N, fs, rats, disc_to_idx, ell_pts);
+        n_cm := #matched - (#cusp_list gt 0 select 1 else 0);
+        cusp_ok := true;
+        if #cusp_list gt 0 then
+            c := Eltseq(rats[cusp_list[1]]);
+            a1 := [Rationals()!Coefficient(fs[i], 1) : i in [1..g]];
+            cusp_ok := Rank(Matrix(Rationals(), 2, g, [c, a1])) eq 1;
+        end if;
+        if #cm_unproved eq 0 and #cm_proved eq n_cm and cusp_ok then
+            printf "Proved: all %o CM labels and the cusp label; the %o exceptional point(s) are neither cusp nor CM\n",
+                n_cm, #exceptional_idxs;
+        else
+            printf "WARNING: N=%o: labels not proved for <disc, orbit> %o (cusp exact: %o); these labels are numerical only\n",
+                N, cm_unproved, cusp_ok;
+        end if;
+    end if;
     for j in exceptional_idxs do printf "  exceptional: rats[%o] = %o\n", j, rats[j]; end for;
-    if #exceptional_idxs eq 0 then return exceptional_idxs, [* *], true, "", idx_to_disc, rc_cache, true; end if;
+    if #exceptional_idxs eq 0 then return exceptional_idxs, [* *], true, "", idx_to_disc, rc_cache, true, prove; end if;
     if not analyze then
         // No search ran, so the two coverage booleans have nothing behind them.
         // Return false, not true: false reads as "not established", which is
@@ -1421,7 +1529,7 @@ function LabelAndAnalyze(N, X, fs, rats, rat_cm_discs : max_class_num := 0, anal
         // (The #exceptional_idxs eq 0 case returned true just above, and that
         // one is honest -- there is nothing left to cover.)
         printf "analyze := false: skipping the coplanarity search\n";
-        return exceptional_idxs, [* *], false, "", idx_to_disc, rc_cache, false;
+        return exceptional_idxs, [* *], false, "", idx_to_disc, rc_cache, false, false;
     end if;
 
     known_rat_idxs := Sort([j : j in matched]);
@@ -1439,14 +1547,14 @@ function LabelAndAnalyze(N, X, fs, rats, rat_cm_discs : max_class_num := 0, anal
         for e in r1_deg1 do
             on_cm := {idx_to_disc[j] : j in e[4] | IsDefined(idx_to_disc, j)};
             Append(~planes, <exc_idx, e[2], e[3], on_cm, false, {Integers()|},
-                             {Integers()|}, {Integers()|}, [* *], [* *], [rats[j] : j in e[4]], true>);
+                             {Integers()|}, {Integers()|}, [* *], [* *], [rats[j] : j in e[4]], true, [* *]>);
         end for;
         for e in r1_deg2 do
             on_cm := {idx_to_disc[j] : j in e[4] | IsDefined(idx_to_disc, j)};
             if confirm_deg2 then
-                alg_discs, inconclusive_discs, _, comp_status := AlgebraicDeg2Matches(X, e[2], deg2pts, N, fs, ell_pts, disc_ell_pts : prec_lo := prec_lo, prec_hi := prec_hi, resid_C := resid_C, error_max_match := error_max_match);
+                alg_discs, inconclusive_discs, _, comp_status, comp_proved := AlgebraicDeg2Matches(X, e[2], deg2pts, N, fs, ell_pts, disc_ell_pts : prec_lo := prec_lo, prec_hi := prec_hi, resid_C := resid_C, error_max_match := error_max_match, prove := prove);
             else
-                alg_discs := {Integers()|}; inconclusive_discs := {Integers()|}; comp_status := [* *];
+                alg_discs := {Integers()|}; inconclusive_discs := {Integers()|}; comp_status := [* *]; comp_proved := [* *];
             end if;
             // Take the (component_idx, disc) pairs from comp_status, whose
             // discs are already the right set per status, rather than testing
@@ -1458,7 +1566,7 @@ function LabelAndAnalyze(N, X, fs, rats, rat_cm_discs : max_class_num := 0, anal
                              {Integers()|}, {Integers()|},
                              ComponentStatusPairs(comp_status, {"confirmed"}),
                              ComponentStatusPairs(comp_status, {"inconclusive", "ambiguous"}),
-                             [rats[j] : j in e[4]], true>);
+                             [rats[j] : j in e[4]], true, comp_proved>);
         end for;
     end for;
 
@@ -1504,9 +1612,9 @@ function LabelAndAnalyze(N, X, fs, rats, rat_cm_discs : max_class_num := 0, anal
             for e in r2 do
                 on_cm := {idx_to_disc[j] : j in e[4] | IsDefined(idx_to_disc, j)};
                 if confirm_deg2 then
-                    alg_discs, inconclusive_discs, _, comp_status := AlgebraicDeg2Matches(X, e[2], deg2pts, N, fs, ell_pts, disc_ell_pts : prec_lo := prec_lo, prec_hi := prec_hi, resid_C := resid_C, error_max_match := error_max_match);
+                    alg_discs, inconclusive_discs, _, comp_status, comp_proved := AlgebraicDeg2Matches(X, e[2], deg2pts, N, fs, ell_pts, disc_ell_pts : prec_lo := prec_lo, prec_hi := prec_hi, resid_C := resid_C, error_max_match := error_max_match, prove := prove);
                 else
-                    alg_discs := {Integers()|}; inconclusive_discs := {Integers()|}; comp_status := [* *];
+                    alg_discs := {Integers()|}; inconclusive_discs := {Integers()|}; comp_status := [* *]; comp_proved := [* *];
                 end if;
                 // CoplanaritySearch2 returns the constructing disc first.
                 source_disc := e[1];
@@ -1521,7 +1629,7 @@ function LabelAndAnalyze(N, X, fs, rats, rat_cm_discs : max_class_num := 0, anal
                                      src, conf,
                                      ComponentStatusPairs(comp_status, {"confirmed"}),
                                      ComponentStatusPairs(comp_status, {"inconclusive", "ambiguous"}),
-                                     [rats[j] : j in e[4]], true>);
+                                     [rats[j] : j in e[4]], true, comp_proved>);
                 else
                     // Same geometry found again via a different discriminant:
                     // merge it into the existing record rather than discard it.
@@ -1530,7 +1638,7 @@ function LabelAndAnalyze(N, X, fs, rats, rat_cm_discs : max_class_num := 0, anal
                     new_src := p[7] join {source_disc};
                     new_conf := p[8];
                     if source_disc in alg_discs then Include(~new_conf, source_disc); end if;
-                    planes[pi] := <p[1], p[2], p[3], p[4], p[5], p[6], new_src, new_conf, p[9], p[10], p[11], p[12]>;
+                    planes[pi] := <p[1], p[2], p[3], p[4], p[5], p[6], new_src, new_conf, p[9], p[10], p[11], p[12], p[13]>;
                 end if;
             end for;
             if covered(exc_idx, planes) then break; end if;
@@ -1546,6 +1654,15 @@ function LabelAndAnalyze(N, X, fs, rats, rat_cm_discs : max_class_num := 0, anal
     end function;
     exc_cm_covered := {p[1] : p in planes | cm_certified(p)};
     all_cm_confirmed := {j : j in exceptional_idxs} subset exc_cm_covered;
+
+    // The proved version of the same criterion: a Search 1 plane needs some
+    // proved component match, a Search 2 plane a proved match for one of the
+    // discs that built it.
+    cm_proved_plane := function(p)
+        if #p[7] eq 0 then return #p[13] gt 0; end if;
+        return exists{m : m in p[13] | m[2] in p[7]};
+    end function;
+    all_cm_proved := prove and {j : j in exceptional_idxs} subset {p[1] : p in planes | cm_proved_plane(p)};
 
     // Geometric coplanarity (comps) and CM labeling (CM=, matched=) print as
     // separate statuses, and cm_inconclusive is never folded into CM=.
@@ -1564,6 +1681,9 @@ function LabelAndAnalyze(N, X, fs, rats, rat_cm_discs : max_class_num := 0, anal
         if #e[9] gt 0 then
             printf "    confirmed component matches (component_idx, disc): %o\n", e[9];
         end if;
+        if #e[13] gt 0 then
+            printf "    proved component matches (component_idx, disc): %o\n", e[13];
+        end if;
         if #e[10] gt 0 then
             printf "    inconclusive component matches (component_idx, disc): %o\n", e[10];
         end if;
@@ -1573,6 +1693,9 @@ function LabelAndAnalyze(N, X, fs, rats, rat_cm_discs : max_class_num := 0, anal
     end for;
     printf "All exceptional points geometrically covered: %o\n", all_geometrically_covered;
     printf "All exceptional points CM-confirmed: %o\n", all_cm_confirmed;
+    if prove then
+        printf "All exceptional points on a plane with a proved CM pair: %o\n", all_cm_proved;
+    end if;
 
-    return exceptional_idxs, planes, all_geometrically_covered, "", idx_to_disc, rc_cache, all_cm_confirmed;
+    return exceptional_idxs, planes, all_geometrically_covered, "", idx_to_disc, rc_cache, all_cm_confirmed, all_cm_proved;
 end function;
