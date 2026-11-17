@@ -11,6 +11,9 @@
 //                    or exceptional
 //                SweepCMFibers(pi, X, E, fs, Sstar, M)     the same, over every
 //                    plausible discriminant at once
+//                PlaceIsProvedCM(plc, X, fs_cm, Cs, M, D, ell_pts)   exact
+//                    proof that a place of X is CM of discriminant D; the
+//                    fiber functions call it on every numerical match
 //
 // Load this file directly; it loads src/AtkinLehner.m itself.
 
@@ -540,6 +543,71 @@ function PlaceMatchesEvals(plc, evals, CC : tol := 10^-6)
     return false;
 end function;
 
+// Proves, in exact arithmetic (src/cm_certify.m), that the place plc of X
+// consists of CM points of discriminant D on X_0(M)*. Handles rational places
+// and quadratic places whose two points are all the CM points of that
+// discriminant; returns false (not proved) in every other case. fs_cm are the
+// expansions whose ratios are the coordinates of X, Cs their coefficient
+// constants (DeligneConstants).
+//
+// Canonical model, quadratic place {P, P'}: the CM points are shown to lie on
+// the g-2 rational hyperplanes through P and P' and on the binary quadric
+// that is the minimal polynomial of a non-rational coordinate ratio. Those
+// equations cut out exactly {P, P'}, and the two CM points are distinct.
+// Genus 2 model: the same with the minimal polynomial of x, and y = a*x + b
+// fixing the sign of y; if x is rational or infinite the place is stable under
+// the hyperelliptic involution and no sign is needed.
+function PlaceIsProvedCM(plc, X, fs_cm, Cs, M, D, ell_pts)
+    d := Degree(plc);
+    if d gt 2 then return false; end if;
+    forms := CMOrbitForms(D, M);
+    if #forms eq 0 then return false; end if;
+    if Integers()!DegreeOfFieldOfDefinitionOfCMPoint(M, D) ne d then return false; end if;
+    if d eq 2 and #forms ne 2 then return false; end if;
+    e := EllipticOrderOfDisc(D, ell_pts);
+    hyp := Type(X) eq CrvHyp;
+    co := Eltseq(RepresentativePoint(plc));
+    if d eq 1 then
+        pt := [Rationals()!c : c in co];
+        if hyp then
+            return exists{fm : fm in forms | CertifyHyperellipticCMPoint(M, fs_cm, Cs, pt, fm, e)};
+        end if;
+        return exists{fm : fm in forms | CertifyRationalCMPoint(M, fs_cm, Cs, pt, fm, e)};
+    end if;
+    K := Universe(co);
+    if Type(K) in {FldRat, RngInt} or Degree(K) ne 2 then return false; end if;
+    if hyp then
+        if #fs_cm ne 2 then return false; end if;
+        S<XX, ZZ> := PolynomialRing(Rationals(), 2);
+        if co[3] eq 0 then
+            return CertifyHyperellipticCMPoints(M, fs_cm, Cs, ZZ, S!0, 1, forms, 2, e);
+        end if;
+        x0 := co[1]/co[3]; y0 := co[2]/co[3]^3;
+        if x0 in Rationals() then
+            x0 := Rationals()!x0;
+            return CertifyHyperellipticCMPoints(M, fs_cm, Cs, XX - x0*ZZ, S!0, 2, forms, 2, e);
+        end if;
+        mp := MinimalPolynomial(x0);
+        G := &+[Coefficient(mp, k)*XX^k*ZZ^(2 - k) : k in [0..2]];
+        xs := Eltseq(x0); ys := Eltseq(y0);
+        a := ys[2]/xs[2]; b := ys[1] - a*xs[1];
+        return CertifyHyperellipticCMPoints(M, fs_cm, Cs, G, a*XX*ZZ^2 + b*ZZ^3, 2, forms, 2, e);
+    end if;
+    g := #co;
+    j := Minimum([i : i in [1..g] | co[i] ne 0]);
+    co := [c/co[j] : c in co];
+    nonrat := [i : i in [1..g] | co[i] notin Rationals()];
+    if #nonrat eq 0 then return false; end if;
+    R := CoordinateRing(AmbientSpace(X));
+    rows := Matrix(Rationals(), [[Eltseq(c)[1] : c in co], [Eltseq(c)[2] : c in co]]);
+    ker := Basis(Kernel(Transpose(rows)));
+    polys := [&+[v[i]*R.i : i in [1..g]] : v in ker];
+    i := nonrat[1];
+    mp := MinimalPolynomial(co[i]);
+    Append(~polys, &+[Coefficient(mp, k)*R.i^k*R.j^(2 - k) : k in [0..2]]);
+    return CertifyPolynomialsVanishAtCM(M, fs_cm, Cs, polys, forms, 2, e);
+end function;
+
 // ---------------------------------------------------------------------------
 // Setup shared by every fiber-analysis entry point below (AnalyzeCMFiber,
 // SweepCMFibers, RunCuspFiber, FiberPointSearch, ExceptionalFiberRows,
@@ -678,16 +746,20 @@ end function;
 // ---------------------------------------------------------------------------
 // Per-discriminant core: evaluate the disc-D CM points of X_0(M)*, push them
 // through pi, and (for each rational image Q) pull back the fiber and identify
-// its points.  Returns <results, status>:
+// its points.  Returns <results, status, proved>:
 //   results = list of <D, Q, third_point, label> (non-CM points of CM fibers)
 //   status  = short human-readable outcome string
+//   proved  = true when the places identified numerically as the disc-D CM
+//             points were all proved to be so (PlaceIsProvedCM) and together
+//             account for every CM point of that discriminant
 // verbose := false gives one-line reporting suitable for sweeps.
 // ---------------------------------------------------------------------------
 function CMFiberForDisc(pi, X, E, fs_cm, rats, idx_to_disc, labels_ok,
-    M, D, ell_pts, disc_ell_pts : cc_prec := 200, verbose := true)
+    M, D, ell_pts, disc_ell_pts : cc_prec := 200, verbose := true, prove := true)
 
     hyp := Type(X) eq CrvHyp;
     CC := ComplexField(cc_prec);
+    n_proved := 0; n_unproved := 0;
     ell_order := 1;
     for ell in [2,3,4,6] do
         if D in Keys(ell_pts[ell]) then ell_order := ell; break; end if;
@@ -702,7 +774,7 @@ function CMFiberForDisc(pi, X, E, fs_cm, rats, idx_to_disc, labels_ok,
         if verbose then
             printf "  --> there are NO disc-%o CM points on X_0(%o)* (no optimal embedding of the order); skipping\n", D, M;
         end if;
-        return [* *], "no CM points (no optimal embedding of the order)";
+        return [* *], "no CM points (no optimal embedding of the order)", false;
     end if;
 
     targets := [];      // distinct rational images of the disc-D CM points
@@ -742,7 +814,7 @@ function CMFiberForDisc(pi, X, E, fs_cm, rats, idx_to_disc, labels_ok,
     end for;
     if #targets eq 0 then
         return [* *], nbad gt 0 select "images not rational (no rational fiber)"
-                                else "evaluation failed";
+                                else "evaluation failed", false;
     end if;
     if verbose then
         if #targets eq 1 and nbad eq 0 then
@@ -772,6 +844,14 @@ function CMFiberForDisc(pi, X, E, fs_cm, rats, idx_to_disc, labels_ok,
             d := Degree(plc);
             RP := RepresentativePoint(plc);
             is_cm := PlaceMatchesEvals(plc, cm_evals, CC);
+            pf := "";
+            if is_cm and prove then
+                if PlaceIsProvedCM(plc, X, fs_cm, DeligneConstants(fs_cm, M), M, D, ell_pts) then
+                    n_proved +:= d; pf := " (proved)";
+                else
+                    n_unproved +:= d; pf := " (numerical only)";
+                end if;
+            end if;
             if d eq 1 then
                 idx := Index([Sprint(r) : r in rats], Sprint(RP));
                 if idx gt 0 then
@@ -782,7 +862,7 @@ function CMFiberForDisc(pi, X, E, fs_cm, rats, idx_to_disc, labels_ok,
                 end if;
                 if verbose then
                     printf "  deg-1 place (mult %o): rational point %o  [%o]%o\n",
-                        mults[i], RP, lbl, is_cm select "  <-- disc-" cat Sprint(D) cat " CM point" else "";
+                        mults[i], RP, lbl, is_cm select "  <-- disc-" cat Sprint(D) cat " CM point" cat pf else "";
                 end if;
                 if not is_cm then
                     for m in [1..mults[i]] do Append(~results, <D, Q, RP, lbl>); end for;
@@ -792,7 +872,7 @@ function CMFiberForDisc(pi, X, E, fs_cm, rats, idx_to_disc, labels_ok,
                     K := ResidueClassField(plc);
                     printf "  deg-%o place (mult %o) over %o:\n      %o   %o\n",
                         d, mults[i], K, RP,
-                        is_cm select "<-- the two disc-" cat Sprint(D) cat " CM points"
+                        is_cm select "<-- the two disc-" cat Sprint(D) cat " CM points" cat pf
                               else "(quadratic pair, NOT the disc-" cat Sprint(D) cat " CM points)";
                 end if;
             end if;
@@ -803,7 +883,8 @@ function CMFiberForDisc(pi, X, E, fs_cm, rats, idx_to_disc, labels_ok,
             printf ">>> THIRD POINT in the fiber over Q = %o:\n>>>     %o   [%o]\n", t[2], t[3], t[4];
         end for;
     end if;
-    return results, Sprintf("%o rational fiber(s)", #targets);
+    return results, Sprintf("%o rational fiber(s)", #targets),
+        n_unproved eq 0 and n_proved eq #htaus;
 end function;
 
 // ---------------------------------------------------------------------------
@@ -1003,10 +1084,11 @@ function AnalyzeCMFiber(pi, X, E, fs, Sstar, M, D :
     rats, fs_cm, idx_to_disc, labels_ok, piE, ell_pts, disc_ell_pts :=
         CMFiberSetup(pi, X, fs, Sstar, M : B := B, label := label, cm_terms := cm_terms, confirm_deg2 := confirm_deg2);
     printf "\ndisc-%o CM points of X_0(%o)* and their images under pi:\n", D, M;
-    results, status := CMFiberForDisc(pi, X, E, fs_cm, rats, idx_to_disc, labels_ok,
+    results, status, proved := CMFiberForDisc(pi, X, E, fs_cm, rats, idx_to_disc, labels_ok,
         M, D, ell_pts, disc_ell_pts : cc_prec := cc_prec, verbose := true);
     printf "status: %o\n", status;
-    return results;
+    printf "CM points of disc %o proved to lie in these fibers: %o\n", D, proved;
+    return results, proved;
 end function;
 
 // ---------------------------------------------------------------------------
@@ -1068,9 +1150,12 @@ function SweepCMFibers(pi, X, E, fs, Sstar, M :
 
     for D in discs do
         printf "\n--- D = %o (h = %o) ---\n", D, ClassNumber(QuadraticField(D));
-        results, status := CMFiberForDisc(pi, X, E, fs_cm, rats, idx_to_disc, labels_ok,
+        results, status, proved := CMFiberForDisc(pi, X, E, fs_cm, rats, idx_to_disc, labels_ok,
             M, D, ell_pts, disc_ell_pts : cc_prec := cc_prec, verbose := true);
         printf "status: %o\n", status;
+        if #results gt 0 then
+            printf "CM points of disc %o proved to lie in these fibers: %o\n", D, proved;
+        end if;
         for r in results do Append(~rows, r); end for;
     end for;
 
@@ -1213,7 +1298,8 @@ end function;
 // Is the degree-2 place plc the pair of disc-D CM points for some D in the
 // candidate list?  The candidates are the discriminants whose CM points are
 // degree-2 points of X_0(M)* (Shimura reciprocity via Degree2Points), so
-// only a handful of numeric comparisons are needed, no blind scan.
+// only a handful of numeric comparisons are needed, no blind scan. The third
+// return value says whether the numerical match was also proved.
 function IdentifyPlaceCMDisc(plc, X, fs_cm, M, ell_pts, disc_ell_pts, candidates :
     cc_prec := 200)
     hyp := Type(X) eq CrvHyp;
@@ -1245,15 +1331,17 @@ function IdentifyPlaceCMDisc(plc, X, fs_cm, M, ell_pts, disc_ell_pts, candidates
             end if;
         end for;
         if #evals gt 0 and PlaceMatchesEvals(plc, evals, CC) then
-            return true, D;
+            return true, D, PlaceIsProvedCM(plc, X, fs_cm, DeligneConstants(fs_cm, M), M, D, ell_pts);
         end if;
     end for;
-    return false, 0;
+    return false, 0, false;
 end function;
 
 // Rows of the exceptional-fiber table for one triple cover X_0(M)* -> E.
 // Each row is <M, genus, cond, cofactor, exc_point, partner_string, cm_discs,
-// has_cm, Elabel>, where cond = Conductor(E) is the newform level and
+// has_cm, Elabel, proved_discs>, where proved_discs lists the entries of
+// cm_discs whose fiber partner was proved to be CM of that discriminant
+// (PlaceIsProvedCM), and cond = Conductor(E) is the newform level and
 // cofactor = M/cond.  An own-level cover has cond = M and cofactor = 1, which
 // is the "new" row marker scripts/make_exceptional_table.m keys on.
 // known_discs: discriminants expected for the quadratic fiber partners; these
@@ -1306,6 +1394,7 @@ function ExceptionalFiberRows(M, Elabel : B := 100000, cm_terms := 3000, cache_p
         plcs, mults := Support(PB);
         partners := [];
         discs := [];
+        proved_discs := [];
         has_cm := false;
         for i in [1..#plcs] do
             plc := plcs[i];
@@ -1322,14 +1411,18 @@ function ExceptionalFiberRows(M, Elabel : B := 100000, cm_terms := 3000, cache_p
                 if idx gt 0 and IsDefined(idx_to_disc, idx) and idx_to_disc[idx] ne 0 then
                     has_cm := true;
                     Append(~discs, idx_to_disc[idx]);
+                    if PlaceIsProvedCM(plc, X, fs_cm, DeligneConstants(fs_cm, M), M, idx_to_disc[idx], ell_pts) then
+                        Append(~proved_discs, idx_to_disc[idx]);
+                    end if;
                 end if;
                 Append(~partners, Sprintf("rational point %o [%o]%o", RP, lbl,
                     m gt 1 select Sprintf(", mult %o", m) else ""));
             else
-                okD, D := IdentifyPlaceCMDisc(plc, X, fs_cm, M, ell_pts, disc_ell_pts, candidates);
+                okD, D, pfD := IdentifyPlaceCMDisc(plc, X, fs_cm, M, ell_pts, disc_ell_pts, candidates);
                 if okD then
                     has_cm := true;
                     Append(~discs, D);
+                    if pfD then Append(~proved_discs, D); end if;
                     Append(~partners, Sprintf("quadratic CM pair of disc %o over %o", D, ResidueClassField(plc)));
                 else
                     Append(~partners, Sprintf("quadratic pair over %o, NOT CM",
@@ -1337,8 +1430,11 @@ function ExceptionalFiberRows(M, Elabel : B := 100000, cm_terms := 3000, cache_p
                 end if;
             end if;
         end for;
+        if has_cm then
+            printf "    CM partners proved for discs %o of %o\n", proved_discs, discs;
+        end if;
         Append(~rows, <M, g, cond, cofactor, Sprint(P), Join(partners, "; "), discs, has_cm,
-            CremonaReference(E)>);
+            CremonaReference(E), proved_discs>);
     end for;
     return rows;
 end function;
