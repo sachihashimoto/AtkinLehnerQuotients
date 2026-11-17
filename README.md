@@ -68,7 +68,14 @@ analyze_exceptional(result);
 ```
 
 This passes the list that `check_exceptional_example` returns straight into
-`analyze_exceptional`. Expected output ends `All exceptional points in a plane: true`. Measured runtime ~1.6 s.
+`analyze_exceptional`. Expected output includes `All exceptional points geometrically covered: true`
+and `All exceptional points CM-confirmed: true`, followed by the returned list. Measured runtime ~3 s.
+
+The output distinguishes numerical evidence from proof. "Confirmed" lines report
+floating-point matches. Lines starting with `Proved:`, and
+`All exceptional points on a plane with a proved CM pair: true`, report
+identifications of CM points that were proved in exact rational arithmetic by
+`src/cm_certify.m`; the mathematics is in `notes/cm_integrality.tex`.
 
 **3. Sweep through a whole genus.**
 
@@ -178,7 +185,7 @@ magma -b tests/test_cm_points.m
 
 ## Repository layout
 
-- `src/`: the 13 core libraries, plus `AtkinLehner.m`, which loads 11 of them in the required order. The other two load separately: `triple_covers.m` (which loads `AtkinLehner.m` itself) and `hnf_canonical.m` (load it after `AtkinLehner.m`).
+- `src/`: the 14 core libraries, plus `AtkinLehner.m`, which loads 12 of them in the required order. The other two load separately: `triple_covers.m` (which loads `AtkinLehner.m` itself) and `hnf_canonical.m` (load it after `AtkinLehner.m`).
 - `scripts/`: 13 standalone scripts for generating models, running point searches, building triple covers, computing automorphism groups, and producing the paper's tables. See the table below. The tenth file, `cm_terms_overrides.m`, is a lookup table that two of the scripts load, not a script itself.
 - `tests/`: the test suites, plus `tests/assertions.m` (the shared assertion procedures every suite loads) and `tests/run.sh` (the runner). See "Running the tests" below.
 - `data/`: reference models of X₀(N)\* in the canonical saturated-HNF basis, one file per genus (`genus3_models.m`-`genus8_models.m`) with one entry per squarefree level of that genus; the degree-3 cover classification table (`triple_cover_classification.txt`); and cached data for triple-cover maps and forms (`data/starmodels/`).

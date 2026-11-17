@@ -93,7 +93,8 @@ C1 := HyperellipticCurve(x^6 + 2*x^4 + 5*x^2 + 12*x - 4);   // examples/X0star28
 iso := IsIsomorphic(X, C1);
 AssertEqual(~results, iso, true, "M=286: X isomorphic to the X0star286.m model of X_0(286)*");
 
-res39 := AnalyzeCMFiber(pi, X, E, fs, Sstar, 286, -39);
+res39, proved39 := AnalyzeCMFiber(pi, X, E, fs, Sstar, 286, -39);
+AssertEqual(~results, proved39, true, "D=-39: the CM pair in the fiber is proved");
 AssertEqual(~results, #res39, 1, "D=-39: exactly one third point");
 if #res39 eq 1 then
     AssertEqual(~results, Sprint(res39[1][2]), "(4 : -7 : 1)",
@@ -104,7 +105,8 @@ if #res39 eq 1 then
         "D=-39: third point labelled exceptional");
 end if;
 
-res55 := AnalyzeCMFiber(pi, X, E, fs, Sstar, 286, -55);
+res55, proved55 := AnalyzeCMFiber(pi, X, E, fs, Sstar, 286, -55);
+AssertEqual(~results, proved55, true, "D=-55: the CM pair in the fiber is proved");
 AssertEqual(~results, #res55, 1, "D=-55: exactly one third point");
 if #res55 eq 1 then
     AssertEqual(~results, Sprint(res55[1][2]), "(0 : 1 : 0)",
@@ -113,6 +115,27 @@ if #res55 eq 1 then
         "D=-55: third point is (1 : -1/2 : 0)");
     AssertEqual(~results, res55[1][4], "cusp",
         "D=-55: third point labelled cusp");
+end if;
+
+printf "\n=== 5. PlaceIsProvedCM on a canonical model: quadratic CM pairs at N = 311 ===\n";
+// ---------------------------------------------------------------------------
+// The plane through the exceptional point of X_0(311)* found by the labeling
+// meets the curve in the conjugate pairs of discriminants -123 and -232.
+SetSeed(1);
+res := check_exceptional_example(311);
+X311 := res[1][4]; fs311 := res[1][5];
+out := analyze_exceptional(res);
+pl := [p : p in out[1][3] | {m[2] : m in p[13]} eq {-123, -232}];
+AssertEqual(~results, #pl ge 1, true, "N=311: a plane with proved pairs of discs -123 and -232 exists");
+if #pl ge 1 then
+    Cs311 := DeligneConstants(fs311, 311);
+    ell311 := EllipticDiscsByOrder(311);
+    plcs := [q : q in Support(Divisor(X311, Scheme(X311, pl[1][2]))) | Degree(q) eq 2];
+    AssertEqual(~results, #plcs, 2, "N=311: the plane section has two quadratic places");
+    hits := [{D : D in [-123, -232, -19] | PlaceIsProvedCM(q, X311, fs311, Cs311, 311, D, ell311)} : q in plcs];
+    AssertEqual(~results, forall{h : h in hits | #h eq 1}, true,
+        "N=311: each quadratic place is proved for exactly one discriminant");
+    AssertEqual(~results, &join hits, {-123, -232}, "N=311: the two places are the pairs of discs -123 and -232");
 end if;
 
 Report(~results, "test_triple_covers");

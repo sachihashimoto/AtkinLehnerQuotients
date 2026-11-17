@@ -31,7 +31,7 @@ Most scripts end in `quit;`/`exit;`, so they are batch-only; `certify_committed_
 do not and can also be `load`ed in a session.
 
 - `load "src/AtkinLehner.m";` pulls in `QuadraticPoints/models_and_maps.m` plus
-  11 of the 13 src modules, in dependency order. Each header says whether the
+  12 of the 14 src modules, in dependency order. Each header says whether the
   module is loadable standalone: most are not, but `cm_points.m`, `cm_orders.m`
   and `cm_numerics.m` are self-contained (`tests/test_cm_points.m` loads
   `cm_points.m` directly).
@@ -71,7 +71,9 @@ casually: `--slow` is ~43 min, dominated by `test_311_jmap`.
   tau; `fields_of_definition.m` ring-class-field degrees and rational/degree-2
   discs; `labeling.m` labels points and fits planes through CM triples;
   `point_search.m` the driver entry points; `star_degree.m` (c_n, delta_f, E^C_f);
-  `classify_covers.m` (`ClassifyTripleCovers`); out-of-chain `triple_covers.m` and
+  `classify_covers.m` (`ClassifyTripleCovers`); `cm_certify.m` exact-arithmetic
+  proofs that a rational point is a given CM point (canonical and genus 2 models; the
+  mathematics is in `notes/cm_integrality.tex`); out-of-chain `triple_covers.m` and
   `hnf_canonical.m`.
 - `scripts/` — `gen_genus_models.m` (regenerates `data/genus<g>_models.m`),
   `certify_committed_models.m`, `classify_triple_covers.m` (writes
@@ -138,9 +140,15 @@ the two against each other.
   singularity precheck is a Groebner computation that dominates at genus 8 and hangs
   at omega = 4 levels. Valid since canonical models of non-hyperelliptic curves are
   smooth. Hyperelliptic levels take `PointsOriginalModel` instead.
-- **"Confirmed"/"certified" in `labeling.m`** means numerically checked at two
-  precisions and two q-expansion lengths against a noise-scaled tolerance — strong
-  evidence, not proof. Real proof is the Sturm-bound path
+- **"Confirmed" vs. "proved" in `labeling.m` and `triple_covers.m`.** "Confirmed"
+  (and "certified" for a match) means numerically checked at two precisions and
+  two q-expansion lengths against a noise-scaled tolerance: strong evidence, not
+  proof. "Proved" means an exact-arithmetic certificate from `cm_certify.m`
+  succeeded; its output lines start with `Proved:` or say `(proved)`, and the
+  proved results are returned separately (`proved_component_matches`,
+  `all_cm_proved`, `labels_proved`, `proved_discs`). The numerical step finds the
+  candidate, the certificate proves it; a certificate that fails means "not
+  proved", never "false". Model identities are proved by the Sturm-bound path
   (`CertifyModularIdentity`), which errors rather than under-certify.
 
 ## Conventions
