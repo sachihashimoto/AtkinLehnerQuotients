@@ -195,7 +195,7 @@ error if #comps2Y ne 1,
 compY := comps2Y[1];
 
 _, split_fldY := PointsOverSplittingField(compY);
-comp_nfY := NumberField(AbsolutePolynomial(split_fldY));
+comp_nfY := AbsoluteSplittingField(split_fldY);
 pts_KY   := RationalPoints(BaseChange(compY, comp_nfY));
 error if #pts_KY ne 2,
     Sprintf("Expected 2 conjugate points on the degree-2 component; got %o.", #pts_KY);

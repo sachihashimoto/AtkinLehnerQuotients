@@ -1,0 +1,205 @@
+// tests/test_cm_certify.m
+// Tests for the exact CM certificates in src/cm_certify.m.
+// Run: tests/run.sh test_cm_certify
+//
+// The mathematics is in notes/cm_integrality.tex. Expected values come from
+// Magma's own real arithmetic (for the ball functions) and from the point
+// search and the existing floating-point labeling (for the CM points), never
+// from this module.
+
+load "src/AtkinLehner.m";
+load "tests/assertions.m";
+SetSeed(1);
+
+results := NewResults();
+RR := RealField(80);
+
+printf "\n=== Ball functions enclose the true value ===\n";
+pb := PiBall(150);
+AssertEqual(~results, Abs(pb[1] - Pi(RR)) le pb[2] + 10^-70 and pb[2] lt 10^-40, true, "PiBall(150) encloses pi");
+for t in [-37/5, -1/1000, 0, 3/7, 12] do
+    lo, up := ExpBounds(t, 150);
+    v := Exp(RR!t);
+    AssertEqual(~results, lo le v*(1 + 10^-70) and up ge v*(1 - 10^-70) and (up - lo) lt 10^-40*v, true,
+        Sprintf("ExpBounds(%o) encloses exp", t));
+end for;
+for m in [-3, -17/7, 0, 1/3, 22/7] do
+    c, s := CosSinBalls(<m, 1/10^50>, 150);
+    AssertEqual(~results, Abs(c[1] - Cos(RR!m)) le c[2] + 10^-70 and Abs(s[1] - Sin(RR!m)) le s[2] + 10^-70 and c[2] lt 10^-40, true,
+        Sprintf("CosSinBalls(%o) encloses cos and sin", m));
+end for;
+lo, up := SqrtBounds(163, 100);
+AssertEqual(~results, lo^2 le 163 and up^2 ge 163 and up - lo eq 1/2^100, true, "SqrtBounds(163)");
+
+// A disc product must contain the product of any two points of the factors.
+z := <3/5, -4/7, 1/1000>; w := <-2/3, 1/9, 1/500>;
+zw := CBMul(z, w, 100);
+CCt := ComplexField(40); I := CCt.1;
+zp := (3/5 + 1/1000) + I*(-4/7); wp := (-2/3) + I*(1/9 - 1/500);
+AssertEqual(~results, Abs(zp*wp - (zw[1] + I*zw[2])) le zw[3], true, "CBMul encloses a boundary product");
+
+printf "\n=== Coefficient bound holds on the available coefficients ===\n";
+for N in [137, 311, 178] do
+    ok, prec, fs := LoadStarForms(N);
+    Cs := DeligneConstants(fs, N);
+    worst := Maximum([Abs(Coefficient(fs[i], n))/(Cs[i]*NumberOfDivisors(n)*Sqrt(RR!n)) : n in [1..prec - 1], i in [1..#fs]]);
+    AssertEqual(~results, worst le 1, true, Sprintf("N=%o: |a_n| <= C*d(n)*sqrt(n) for n < %o", N, prec));
+end for;
+
+printf "\n=== Rational CM points are proved, level by level ===\n";
+for N in [137, 311, 178] do
+    rats, X, fs := point_search_X0Nstar(N, 1000);
+    discs := Keys(RationalCMDiscs(N));
+    d2i, unproved := CertifyRationalCMPoints(N, fs, rats, discs);
+    AssertEqual(~results, #unproved, 0, Sprintf("N=%o: nothing left unproved", N));
+    AssertEqual(~results, Keys(d2i), discs, Sprintf("N=%o: every rational CM disc proved", N));
+
+    // The proved labels agree with the floating-point labeling.
+    CC := ComplexField(100);
+    ell_pts, disc_ell_pts := EllipticDiscsByOrder(N);
+    rats_cc := [[CC!c : c in Eltseq(P)] : P in rats];
+    _, nfail, float_d2i := MatchRationalCMPoints(N, fs, rats_cc, rats, CC, 10^-10, discs, ell_pts, disc_ell_pts);
+    AssertEqual(~results, nfail, 0, Sprintf("N=%o: float labeling finds every disc", N));
+    for d in discs do
+        AssertEqual(~results, Set(d2i[d]), Set(float_d2i[d]), Sprintf("N=%o D=%o: proved index equals float index", N, d));
+    end for;
+
+    // Height bounds hold for the proved points.
+    Cs := DeligneConstants(fs, N);
+    for d in discs do
+        forms := CMOrbitForms(d, N);
+        e := EllipticOrderOfDisc(d, ell_pts);
+        for k in [1..#forms] do
+            ok, hb := CMHeightBounds(N, fs, Cs, forms[k], e);
+            P := Eltseq(rats[d2i[d][k]]);
+            den := LCM([Denominator(c) : c in P]);
+            a := [Integers()!(den*c) : c in P]; a := [c div GCD(a) : c in a];
+            AssertEqual(~results, ok and forall{i : i in [1..#a] | Abs(a[i]) le hb[i]}, true,
+                Sprintf("N=%o D=%o orbit %o: coordinates %o within proved bounds %o", N, d, k, a, hb));
+        end for;
+    end for;
+
+    // Negative controls: no other rational point is certified as this CM point.
+    proved := &join[Set(d2i[d]) : d in discs];
+    for d in discs do
+        form := CMOrbitForms(d, N)[1];
+        e := EllipticOrderOfDisc(d, ell_pts);
+        wrong := [j : j in [1..#rats] | j ne d2i[d][1] and CertifyRationalCMPoint(N, fs, Cs, Eltseq(rats[j]), form, e)];
+        AssertEqual(~results, wrong, [Integers()|], Sprintf("N=%o D=%o: no other point certified", N, d));
+    end for;
+    printf "N=%o: %o of %o rational points are proved CM; the rest are %o\n", N, #proved, #rats,
+        [j : j in [1..#rats] | j notin proved];
+end for;
+
+printf "\n=== A plane through a conjugate pair (N=311, D=-123) ===\n";
+N := 311;
+rats, X, fs := point_search_X0Nstar(N, 1000);
+discs := Keys(RationalCMDiscs(N));
+d2i := CertifyRationalCMPoints(N, fs, rats, discs);
+ell_pts, disc_ell_pts := EllipticDiscsByOrder(N);
+Cs := DeligneConstants(fs, N);
+// Hyperplanes through the D=-19 rational CM point and the D=-123 pair,
+// proposed by the floating-point plane fit.
+P19 := Eltseq(rats[d2i[-19][1]]);
+planes := CertifiedPlaneFromCMPair(P19, -123, N, fs, ell_pts, disc_ell_pts);
+AssertEqual(~results, #planes ge 1, true, "N=311: float fit proposes a plane through D=-19 and the D=-123 pair");
+forms := CMOrbitForms(-123, N);
+AssertEqual(~results, #forms, 2, "N=311 D=-123: two conjugate points");
+for pl in planes do
+    vi := pl[3];
+    AssertEqual(~results, CertifyVanishingAtCM(N, fs, Cs, vi, forms, 1), true,
+        Sprintf("N=311: plane %o proved to contain the D=-123 pair", vi));
+    bad := vi; bad[1] +:= 1;
+    AssertEqual(~results, CertifyVanishingAtCM(N, fs, Cs, bad, forms, 1), false,
+        Sprintf("N=311: perturbed plane %o is not certified", bad));
+end for;
+
+printf "\n=== Degree-2 components of plane sections are proved (N=137, 311) ===\n";
+for N in [137, 311] do
+    res := check_exceptional_example(N);
+    X := res[1][4]; fs := res[1][5];
+    out := analyze_exceptional(res);
+    planes := out[1][3];
+    ell_pts := EllipticDiscsByOrder(N);
+    Cs := DeligneConstants(fs, N);
+    all_proved := &join[{m[2] : m in p[13]} : p in planes];
+    AssertEqual(~results, #all_proved ge 2, true, Sprintf("N=%o: at least two quadratic CM discs proved (%o)", N, all_proved));
+    for p in planes do
+        // Everything the numerical matching confirmed is also proved.
+        AssertEqual(~results, {<m[1], m[2]> : m in p[13]}, {<m[1], m[2]> : m in p[9]},
+            Sprintf("N=%o plane %o: proved matches equal confirmed matches", N, p[2]));
+        // Negative control: the CM points of a different disc do not satisfy
+        // the equations of a proved component.
+        comps := [c : c in IrreducibleComponents(Scheme(AmbientSpace(X), DefiningEquations(X) cat [p[2]])) | Degree(c) eq 2];
+        for m in p[13] do
+            for d in all_proved diff {m[2]} do
+                AssertEqual(~results,
+                    CertifyPolynomialsVanishAtCM(N, fs, Cs, DefiningPolynomials(comps[m[1]]), CMOrbitForms(d, N),
+                        Integers()!DegreeOfFieldOfDefinitionOfCMPoint(N, d), EllipticOrderOfDisc(d, ell_pts)),
+                    false, Sprintf("N=%o plane %o component %o (D=%o): D=%o is not certified", N, p[2], m[1], m[2], d));
+            end for;
+        end for;
+    end for;
+end for;
+
+printf "\n=== Genus 2 levels: CM labels are proved (N=67, 93, 106) ===\n";
+// Between them these levels have elliptic orders 1, 2, 3, 4, 6 and a CM point
+// at infinity.
+orders_seen := {Integers()|};
+for N in [67, 93, 106] do
+    X, fs := XZeroNstarWithForms_hyperelliptic(N, 3000);
+    rats := PointsOriginalModel(X, 10000);
+    _, _, _, why, idx_to_disc, labels_proved :=
+        LabelAndAnalyze_hyperelliptic(N, X, fs, rats, Keys(RationalCMDiscs(N)));
+    AssertEqual(~results, why, "", Sprintf("N=%o: numerical labeling succeeds", N));
+    AssertEqual(~results, labels_proved, true, Sprintf("N=%o: all CM labels and the cusp proved", N));
+    ell_pts := EllipticDiscsByOrder(N);
+    Cs := DeligneConstants(fs, N);
+    cm_idxs := [j : j in Sort(Setseq(Keys(idx_to_disc))) | idx_to_disc[j] ne 0];
+    for t in [1..#cm_idxs] do
+        j := cm_idxs[t]; d := idx_to_disc[j];
+        e := EllipticOrderOfDisc(d, ell_pts); Include(~orders_seen, e);
+        form := CMOrbitForms(d, N)[1];
+        // Negative controls: the image under the hyperelliptic involution,
+        // and the next labelled point, are not certified for this CM point.
+        pt := Eltseq(rats[j]);
+        if pt[2] ne 0 then
+            AssertEqual(~results, CertifyHyperellipticCMPoint(N, fs, Cs, [pt[1], -pt[2], pt[3]], form, e), false,
+                Sprintf("N=%o D=%o: the involution image of %o is not certified", N, d, rats[j]));
+        end if;
+        other := cm_idxs[t mod #cm_idxs + 1];
+        AssertEqual(~results, CertifyHyperellipticCMPoint(N, fs, Cs, Eltseq(rats[other]), form, e), false,
+            Sprintf("N=%o D=%o: the point %o of D=%o is not certified", N, d, rats[other], idx_to_disc[other]));
+    end for;
+    AssertEqual(~results, exists{j : j in cm_idxs | rats[j][3] eq 0}, true,
+        Sprintf("N=%o: a CM point at infinity is among the proved labels", N));
+end for;
+AssertEqual(~results, orders_seen, {1, 2, 3, 4, 6}, "genus 2: every elliptic order is exercised");
+
+printf "\n=== Exact stabilizer orders ===\n";
+// tau = i and tau = (1 + sqrt(-3))/2 at level 1 have orders 2 and 3. At level
+// N the root of [N, 0, 1] is fixed by the Fricke involution.
+AssertEqual(~results, CMStabilizerOrder([1, 0, 1], 1), 2, "level 1: i has order 2");
+AssertEqual(~results, CMStabilizerOrder([1, -1, 1], 1), 3, "level 1: rho has order 3");
+AssertEqual(~results, CMStabilizerOrder([1, 0, 5], 1), 1, "level 1: sqrt(-5) has order 1");
+AssertEqual(~results, CMStabilizerOrder([137, 0, 1], 137) ge 2, true, "N=137: the Fricke fixed point is elliptic");
+// The table used by the labeling agrees at every CM point it lists.
+for N in [67, 93, 106, 137, 154, 178, 311, 330] do
+    ell_pts := EllipticDiscsByOrder(N);
+    discs := Keys(RationalCMDiscs(N)) join &join[Keys(ell_pts[l]) : l in [2, 3, 4, 6]];
+    bad := [<d, fm> : fm in CMOrbitForms(d, N), d in discs |
+        CMStabilizerOrder(fm, N) ne EllipticOrderOfDisc(d, ell_pts)];
+    AssertEqual(~results, bad, [], Sprintf("N=%o: stabilizer orders match the elliptic table (%o discs)", N, #discs));
+end for;
+// A certificate called with the wrong order refuses.
+N := 137;
+X, fs := StarModelWithForms(N, 3000);
+Cs := DeligneConstants(fs, N);
+form := CMOrbitForms(-19, N)[1];
+e0 := CMStabilizerOrder(form, N);
+ok := CMHeightBounds(N, fs, Cs, form, e0);
+AssertEqual(~results, ok, true, "N=137 D=-19: height bounds with the true order");
+ok := CMHeightBounds(N, fs, Cs, form, e0 + 1);
+AssertEqual(~results, ok, false, "N=137 D=-19: a wrong order is refused");
+
+Report(~results, "test_cm_certify");
