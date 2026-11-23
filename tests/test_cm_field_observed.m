@@ -3,7 +3,7 @@
 // Cross-check FieldsOfDefinitionOfCMPoint (src/fields_of_definition.m) against the
 // field the curve actually has: evaluate the CM point on the star model of
 // X_0(N)^*, recognize its coordinates as algebraic numbers, and compare the field
-// they generate with the predicted candidate list.
+// they generate with the predicted field.
 //
 // This is deliberately a different kind of check from
 // tests/test_cm_field_of_definition.m.  That test pins our implementation against a
@@ -154,8 +154,9 @@ function EllOrder(d, ell_pts, disc_ell_pts)
 end function;
 
 // <N, d, expected_tag, n_usable_orbits>.  Rows marked "multi-valued" are the ones
-// where FieldsOfDefinitionOfCMPoint returns more than one candidate and the
-// observation selects exactly one of them.
+// where the quaternion condition of Gonzalez-Rotger Lemma 5.10 allows every field
+// in the braces; the field after the arrow is the one the curve has, and
+// FieldsOfDefinitionOfCMPoint must return exactly that one.
 CANON_ROWS := [
     // N = 109
     <109, -267, 89, 2>,
@@ -266,11 +267,10 @@ function JudgeRow(N, d, expected_tag, obs, flds)
             Append(~reasons, Sprintf("orbit %o observed tag %o, expected %o",
                 o[1], FieldTag(K), expected_tag));
         end if;
-        // the comparison this test exists for: the observed field must be one of the
-        // predicted candidates.  The prediction is genuinely multi-valued, so
-        // membership, not equality with a single field, is the right check.
-        if not exists{F : F in flds | SameField(K, F)} then
-            Append(~reasons, Sprintf("orbit %o observed tag %o is NOT among the predicted %o",
+        // the comparison this test exists for: the observed field must be the
+        // predicted one.
+        if #flds ne 1 or not SameField(K, flds[1]) then
+            Append(~reasons, Sprintf("orbit %o observed tag %o, predicted %o",
                 o[1], FieldTag(K), [FieldTag(F) : F in flds]));
         end if;
     end for;
@@ -321,7 +321,7 @@ for N in LevelsOf(CANON_ROWS) do
         if #obs eq 0 then continue; end if;
         why := JudgeRow(N, d, expected_tag, obs, flds);
         AssertEqual(~results, why, "",
-            Sprintf("N=%o, d=%o: observed Q(P) has tag %o and is among the predicted %o",
+            Sprintf("N=%o, d=%o: observed Q(P) has tag %o and is the predicted %o",
                 N, d, expected_tag, [FieldTag(F) : F in flds]));
     end for;
 end for;
@@ -391,7 +391,7 @@ for N in LevelsOf(HYP_ROWS) do
         if #obs eq 0 then continue; end if;
         why := JudgeRow(N, d, expected_tag, obs, flds);
         AssertEqual(~results, why, "",
-            Sprintf("N=%o, d=%o: observed Q(P) has tag %o and is among the predicted %o",
+            Sprintf("N=%o, d=%o: observed Q(P) has tag %o and is the predicted %o",
                 N, d, expected_tag, [FieldTag(F) : F in flds]));
     end for;
 end for;
