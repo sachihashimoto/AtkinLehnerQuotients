@@ -47,10 +47,17 @@ jobs:
       - uses: actions/checkout@v4
         if: ${{ github.event_name == 'push' }}
 
+      # actions/checkout refuses to fetch a fork's PR head under
+      # pull_request_target unless the step opts in.  Opting in is safe here
+      # because this job only lists and validates file names: it runs nothing
+      # from the checkout and uses no secrets.  persist-credentials: false keeps
+      # the job token out of the working tree as well.
       - uses: actions/checkout@v4
         if: ${{ github.event_name == 'pull_request_target' }}
         with:
           ref: ${{ github.event.pull_request.head.sha }}
+          allow-unsafe-pr-checkout: true
+          persist-credentials: false
 
       - id: set-matrix
         run: |
@@ -153,12 +160,15 @@ jobs:
         with:
           submodules: recursive
 
+      # The opt-in below is what the permission gate above exists to make
+      # safe: this step is reached only for users with write access.
       - name: Checkout for a PR event
         uses: actions/checkout@v4
         if: ${{ github.event_name == 'pull_request_target' }}
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           submodules: recursive
+          allow-unsafe-pr-checkout: true
 
       # NOTE: on a pull_request_target run this local action comes from the
       # checked-out PR head.  That is within the existing trust model -- the
