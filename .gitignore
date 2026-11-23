@@ -10,3 +10,17 @@ tests/logs/
 
 # Local agent/tool state, not part of the project.
 .claude/
+
+# Talk drafts and slide decks.  Local working material, deliberately not part of
+# the public paper companion.
+talks/
+
+# LaTeX build products next to the notes (and next to drafts in the root).
+*.aux
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+/*.log
+/*.out
+notes/*.log
+notes/*.out

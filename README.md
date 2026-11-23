@@ -186,9 +186,9 @@ magma -b tests/test_cm_points.m
 ## Repository layout
 
 - `src/`: the 14 core libraries, plus `AtkinLehner.m`, which loads 12 of them in the required order. The other two load separately: `triple_covers.m` (which loads `AtkinLehner.m` itself) and `hnf_canonical.m` (load it after `AtkinLehner.m`).
-- `scripts/`: 13 standalone scripts for generating models, running point searches, building triple covers, computing automorphism groups, and producing the paper's tables. See the table below. The tenth file, `cm_terms_overrides.m`, is a lookup table that two of the scripts load, not a script itself.
+- `scripts/`: 15 standalone scripts for generating models, running point searches, building triple covers, computing automorphism groups, and producing the paper's tables and its distribution figure. See the table below. The tenth file, `cm_terms_overrides.m`, is a lookup table that two of the scripts load, not a script itself.
 - `tests/`: the test suites, plus `tests/assertions.m` (the shared assertion procedures every suite loads) and `tests/run.sh` (the runner). See "Running the tests" below.
-- `data/`: reference models of X₀(N)\* in the canonical saturated-HNF basis, one file per genus (`genus3_models.m`-`genus8_models.m`) with one entry per squarefree level of that genus; the degree-3 cover classification table (`triple_cover_classification.txt`); and cached data for triple-cover maps and forms (`data/starmodels/`).
+- `data/`: reference models of X₀(N)\* in the canonical saturated-HNF basis, one file per genus (`genus3_models.m`-`genus8_models.m`) with one entry per squarefree level of that genus; the degree-3 cover classification table (`triple_cover_classification.txt`); the rational cusp and CM point counts for the squarefree levels of genus 5–20 (`x0star_point_counts.txt`); and cached data for triple-cover maps and forms (`data/starmodels/`).
 - `QuadraticPoints/`: see submodule section below.
 
 ## Script table
@@ -206,6 +206,8 @@ magma -b tests/test_cm_points.m
 | Automorphisms, genus 3             | Aut<sub>Q</sub> of the 11 genus 3 levels, and its action on the rational points.                                    | `magma -b scripts/automorphisms_genus3.m`                                                            | ~4 s (all 11 levels)                                | Printed to the terminal                                       |
 | Automorphisms, N = 370             | Aut<sub>Q</sub> of the one genus 4 level with an exceptional point, and its action on the rational points.          | `magma -b scripts/automorphisms_370.m`                                                               | ~0.5 s                                              | Printed to the terminal                                       |
 | Automorphisms, N = 645             | Aut<sub>Q</sub> of the one genus 5 level with a nontrivial automorphism, and its action on the rational points.     | `magma -b scripts/automorphisms_645.m`                                                               | ~0.6 s                                              | Printed to the terminal                                       |
+| Count rational points by level     | For every squarefree level of genus 5–20, counts the rational cusps and CM points on X₀(N)\* and lists the CM discriminants. | `magma -b scripts/make_point_count_table.m \| grep '^@@DATA@@' \| sed 's/^@@DATA@@ //' > data/x0star_point_counts.txt` | ~5 min | `data/x0star_point_counts.txt` |
+| Draw the distribution figure       | Draws the by-genus distribution of the number of rational points from the table above. Python with matplotlib. Flags: `--counts` (number of curves above each bar), `--no-guides` (no 10% and 20% lines). | `python3 scripts/plot_point_distribution.py` | seconds | `outputs/x0star_distribution_profiles.pdf` |
 
 
 `data/starmodels/` cache note: the search scripts above check this cache
