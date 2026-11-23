@@ -1231,9 +1231,9 @@ function AlgebraicDeg2Matches(X, plane_eqn, deg2pts, N, fs, ell_pts, disc_ell_pt
         rejected_discs     := {Integers()|};
         inconclusive_discs := {Integers()|};
         for d in Keys(deg2pts) do
-            // The field of definition is multi-valued, so the component need
-            // only match one candidate. A mismatch means d was never a
-            // candidate here, so nothing is appended to records.
+            // deg2pts[d][2] is a one-element list holding the field of
+            // definition. A mismatch means d is not a candidate for this
+            // component, so nothing is appended to records.
             if not exists{F : F in deg2pts[d][2] | IsIsomorphic(comp_nf, F)} then
                 continue;
             end if;
