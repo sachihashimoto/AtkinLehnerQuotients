@@ -109,6 +109,8 @@ for pl in planes do
     vi := pl[3];
     AssertEqual(~results, CertifyVanishingAtCM(N, fs, Cs, vi, forms, 1), true,
         Sprintf("N=311: plane %o proved to contain the D=-123 pair", vi));
+    AssertEqual(~results, CertifyVanishingAtCM(N, fs, Cs, vi, forms, 1 : Sharp := true), true,
+        Sprintf("N=311: plane %o proved to contain the D=-123 pair, sharp constant", vi));
     bad := vi; bad[1] +:= 1;
     AssertEqual(~results, CertifyVanishingAtCM(N, fs, Cs, bad, forms, 1), false,
         Sprintf("N=311: perturbed plane %o is not certified", bad));
@@ -201,5 +203,24 @@ ok := CMHeightBounds(N, fs, Cs, form, e0);
 AssertEqual(~results, ok, true, "N=137 D=-19: height bounds with the true order");
 ok := CMHeightBounds(N, fs, Cs, form, e0 + 1);
 AssertEqual(~results, ok, false, "N=137 D=-19: a wrong order is refused");
+
+printf "\n=== The constant in the integrality statement ===\n";
+// p^Ceiling(k*p/(p-1)) over the primes of N, written out by hand.
+AssertEqual(~results, ConradConstant(67, 2), 67^3, "ConradConstant(67, 2)");
+AssertEqual(~results, ConradConstant(30, 2), 2^4*3^3*5^3, "ConradConstant(30, 2)");
+AssertEqual(~results, ConradConstant(6, 4), 2^8*3^6, "ConradConstant(6, 4)");
+AssertEqual(~results, ConradConstant(35, 6), 5^8*7^7, "ConradConstant(35, 6)");
+// The two statements differ only in the constant: c^s0 against N^(e*s0/2).
+AssertEqual(~results,
+    NuPowerUpper(137, [137, 15, 1], 1, 1, 1)/NuPowerUpper(137, [137, 15, 1], 1, 1, 1 : Sharp := true),
+    137^5, "N=137, weight 2: default bound is 137^5 times the sharp one");
+AssertEqual(~results,
+    NuPowerUpper(6, [6, 1, 1], 2, 1, 1)/NuPowerUpper(6, [6, 1, 1], 2, 1, 1 : Sharp := true),
+    (2^7*3^5)^4, "N=6, weight 4: default bound is (2^7*3^5)^4 times the sharp one");
+// Height bounds: both hold, and the sharp one is the smaller.
+ok_c, hb_c := CMHeightBounds(N, fs, Cs, form, e0);
+ok_s, hb_s := CMHeightBounds(N, fs, Cs, form, e0 : Sharp := true);
+AssertEqual(~results, ok_c and ok_s and forall{i : i in [1..#hb_s] | hb_s[i] le hb_c[i]}, true,
+    "N=137 D=-19: sharp height bounds are within the default ones");
 
 Report(~results, "test_cm_certify");

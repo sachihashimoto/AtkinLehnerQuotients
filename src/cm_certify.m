@@ -1,14 +1,26 @@
 // src/cm_certify.m
 //
 // Proofs, in exact rational arithmetic, about the images of CM points on the
-// canonical model of X_0(N)*, or on its genus 2 model y^2 = P(x). The mathematics is in notes/cm_integrality.tex:
-// for an integral star form F and a CM point tau the number
-//     nu_F(tau)^sigma_0(N)
-// is the root of a rational integer when the point is rational, so an upper
-// bound below 1 proves F vanishes there, and an upper bound in general bounds
-// the height of the point.
+// canonical model of X_0(N)*, or on its genus 2 model y^2 = P(x). For an
+// integral star form F and a CM point tau, a power of
+//     c * Im(tau) * |F(tau)| / prod_{d | N} ||eta||(d tau)^(4/sigma_0(N))
+// is the absolute value of a rational integer when the point is rational, so
+// an upper bound below 1 proves F vanishes there, and an upper bound in
+// general bounds the height of the point.
 //
-// Entry points:  CertifyRationalCMPoint(N, fs, Cs, P, form, e)
+// Two integrality statements give two values of the constant c, chosen by the
+// Sharp parameter of every certificate:
+//   Sharp := false (default)  c = prod_{p | N} p^Ceiling(2p/(p-1)), from
+//       Conrad's bound on the denominators of forms with integral q-expansion
+//       at infinity (appendix B of Bertolini-Darmon-Prasanna, "p-adic
+//       L-functions and the coniveau filtration on Chow groups", Theorem
+//       B.3.2.1 with r = 1).
+//   Sharp := true             c = sqrt(N), from notes/cm_integrality.tex.
+// The default constant is larger, so the same proof needs a more accurate
+// evaluation; the certificates raise their working precision to match.
+//
+// Entry points:  ConradConstant(N, k)
+//                CertifyRationalCMPoint(N, fs, Cs, P, form, e)
 //                CertifyVanishingAtCM(N, fs, Cs, mvec, forms, e)
 //                CertifyPolynomialsVanishAtCM(N, fs, Cs, polys, forms, h, e)
 //                CertifyHyperellipticCMPoint(N, fs, Cs, pt, form, e)
@@ -317,14 +329,36 @@ function CMBasisValues(fs, form, e, m, p)
     return sums, tail;
 end function;
 
-// Rational upper bound for nu^sigma_0(N), where U bounds |F^[e](tau)| above
-// and L bounds prod ||eta||(d tau)^4 below. Uses that sigma_0(N) is even.
-// For a polynomial of degree m in the forms, pass e*m in place of e.
-function NuPowerUpper(N, form, e, U, L)
+// The integer c such that (c*H(tau))^12 / Delta(tau)^k is an algebraic integer
+// at every CM point tau, for H of weight k on Gamma_0(N) with q-expansion at
+// infinity in Z[[q]] and N squarefree (Conrad, Theorem B.3.2.1 with r = 1,
+// together with good reduction of CM curves).
+function ConradConstant(N, k)
+    error if not IsSquarefree(N), Sprintf("ConradConstant: level %o is not squarefree", N);
+    return &*[Integers() | p^Ceiling(k*p/(p - 1)) : p in PrimeDivisors(N)];
+end function;
+
+// Extra bits of accuracy a certificate needs when it uses ConradConstant: the
+// constant multiplies the bound at each of the h conjugate points. E is half
+// the weight of the form tested.
+function ConstantBits(N, E, h, Sharp)
+    if Sharp then return 0; end if;
+    return h*(Ilog2(ConradConstant(N, 2*E)) + 1);
+end function;
+
+// Rational upper bound for the sigma_0(N)-th power of the quantity in the
+// file header, where U bounds |F^[e](tau)| above and L bounds
+// prod ||eta||(d tau)^4 below. The form tested has weight 2e, and the bound is
+//     c^s0 * Im(tau)^(e*s0) * U^s0 / L^e,   s0 = sigma_0(N),
+// with c = ConradConstant(N, 2e), or c = N^(e/2) when Sharp. Uses that
+// sigma_0(N) is even. For a polynomial of degree m in the forms, pass e*m in
+// place of e.
+function NuPowerUpper(N, form, e, U, L : Sharp := false)
     s0 := NumberOfDivisors(N);
     error if IsOdd(s0), "NuPowerUpper: level 1 is not supported";
     Delta := 4*form[1]*form[3] - form[2]^2;
-    return N^((e*s0) div 2)*(Delta/(4*form[1]^2))^((e*s0) div 2)*U^s0/L^e;
+    c := Sharp select N^((e*s0) div 2) else ConradConstant(N, 2*e)^s0;
+    return c*(Delta/(4*form[1]^2))^((e*s0) div 2)*U^s0/L^e;
 end function;
 
 // One evaluation at one CM point: value balls, tail factor and eta bound.
@@ -364,13 +398,15 @@ end function;
 // must be a full set of Galois conjugates (one form for a rational point), all
 // of elliptic order e. True means proved; false means not proved, which is
 // not a proof of the opposite.
-function CertifyVanishingAtCM(N, fs, Cs, mvec, forms, e : Prec := 128)
+function CertifyVanishingAtCM(N, fs, Cs, mvec, forms, e : Prec := 128, Sharp := false)
     if exists{f : f in forms | CMStabilizerOrder(f, N) ne e} then return false; end if;
+    xb := ConstantBits(N, e, #forms, Sharp);
+    p := Prec + xb;
     prod := 1/1;
     for form in forms do
-        ok, sums, tail, L := CMEvaluationData(N, fs, form, e, Prec);
+        ok, sums, tail, L := CMEvaluationData(N, fs, form, e, p : TailBits := 48 + xb);
         if not ok then return false; end if;
-        prod *:= NuPowerUpper(N, form, e, LinearFormUpper(mvec, sums, tail, Cs, Prec), L);
+        prod *:= NuPowerUpper(N, form, e, LinearFormUpper(mvec, sums, tail, Cs, p), L : Sharp := Sharp);
     end for;
     return prod lt 1;
 end function;
@@ -378,7 +414,7 @@ end function;
 // Proved bounds b_i with |a_i| <= b_i for the primitive integer coordinates
 // (a_1 : ... : a_g) of a rational CM point. Returns ok = false if the series
 // is too short.
-function CMHeightBounds(N, fs, Cs, form, e : Prec := 128)
+function CMHeightBounds(N, fs, Cs, form, e : Prec := 128, Sharp := false)
     if CMStabilizerOrder(form, N) ne e then return false, []; end if;
     ok, sums, tail, L := CMEvaluationData(N, fs, form, e, Prec);
     if not ok then return false, []; end if;
@@ -387,7 +423,7 @@ function CMHeightBounds(N, fs, Cs, form, e : Prec := 128)
     bounds := [];
     for i in [1..#fs] do
         mvec := unit; mvec[i] := 1;
-        nu := NuPowerUpper(N, form, e, LinearFormUpper(mvec, sums, tail, Cs, Prec), L);
+        nu := NuPowerUpper(N, form, e, LinearFormUpper(mvec, sums, tail, Cs, Prec), L : Sharp := Sharp);
         fl := Floor(nu);
         Append(~bounds, fl eq 0 select 0 else Iroot(fl, s0));
     end for;
@@ -399,34 +435,36 @@ end function;
 // that g-1 independent integral hyperplanes through P contain the image, and
 // that some coordinate form is provably nonzero there, which rules out an
 // elliptic order e that is too small.
-function CertifyRationalCMPoint(N, fs, Cs, P, form, e : Prec := 128)
+function CertifyRationalCMPoint(N, fs, Cs, P, form, e : Prec := 128, Sharp := false)
     if CMStabilizerOrder(form, N) ne e then return false; end if;
     g := #fs;
     den := LCM([Denominator(c) : c in P]);
     a := [Integers() | den*c : c in P];
     a := [c div GCD(a) : c in a];
-    ok, sums, tail, L := CMEvaluationData(N, fs, form, e, Prec);
+    xb := ConstantBits(N, e, 1, Sharp);
+    p := Prec + xb;
+    ok, sums, tail, L := CMEvaluationData(N, fs, form, e, p : TailBits := 48 + xb);
     if not ok then return false; end if;
     K := LLL(KernelMatrix(Transpose(Matrix(Integers(), 1, g, a))));
     error if Nrows(K) ne g - 1, "CertifyRationalCMPoint: kernel has the wrong rank";
     for r in [1..g - 1] do
         mvec := Eltseq(K[r]);
-        if NuPowerUpper(N, form, e, LinearFormUpper(mvec, sums, tail, Cs, Prec), L) ge 1 then
+        if NuPowerUpper(N, form, e, LinearFormUpper(mvec, sums, tail, Cs, p), L : Sharp := Sharp) ge 1 then
             return false;
         end if;
     end for;
     nonzero := false;
     for i in [1..g] do
         if a[i] eq 0 then continue; end if;
-        if CBAbsLower(sums[i], Prec) gt Cs[i]*tail then nonzero := true; break; end if;
+        if CBAbsLower(sums[i], p) gt Cs[i]*tail then nonzero := true; break; end if;
     end for;
     return nonzero;
 end function;
 
 // Discs enclosing F_i^[e](tau) for each basis form, tail included, and the
 // lower bound for the eta product. ok = false if the series is too short.
-function CMValueDiscs(N, fs, Cs, form, e, p)
-    ok, sums, tail, L := CMEvaluationData(N, fs, form, e, p);
+function CMValueDiscs(N, fs, Cs, form, e, p : TailBits := 48)
+    ok, sums, tail, L := CMEvaluationData(N, fs, form, e, p : TailBits := TailBits);
     if not ok then return false, [], 0; end if;
     return true, [<sums[i][1], sums[i][2], sums[i][3] + Cs[i]*tail> : i in [1..#fs]], L;
 end function;
@@ -456,11 +494,14 @@ end function;
 // linear case, with nu^sigma_0 = N^(em s0/2) Im(tau)^(em s0) |P|^s0 / L^(em);
 // a point's bound times the (h-1)-th power of the largest bound in the set
 // bounds the norm, so a product below 1 forces the value to vanish.
-function CertifyPolynomialsVanishAtCM(N, fs, Cs, polys, forms, h, e : Prec := 128)
+function CertifyPolynomialsVanishAtCM(N, fs, Cs, polys, forms, h, e : Prec := 128, Sharp := false)
     if exists{f : f in forms | CMStabilizerOrder(f, N) ne e} then return false; end if;
+    mmax := Maximum([1] cat [TotalDegree(P0) : P0 in polys | P0 ne 0]);
+    xb := ConstantBits(N, e*mmax, h, Sharp);
+    p := Prec + xb;
     data := [* *];
     for form in forms do
-        ok, vals, L := CMValueDiscs(N, fs, Cs, form, e, Prec);
+        ok, vals, L := CMValueDiscs(N, fs, Cs, form, e, p : TailBits := 48 + xb);
         if not ok then return false; end if;
         Append(~data, <form, vals, L>);
     end for;
@@ -469,7 +510,7 @@ function CertifyPolynomialsVanishAtCM(N, fs, Cs, polys, forms, h, e : Prec := 12
         error if not IsHomogeneous(P0), "CertifyPolynomialsVanishAtCM: polynomial is not homogeneous";
         P := P0*LCM([Denominator(c) : c in Coefficients(P0)]);
         m := TotalDegree(P);
-        pows := [NuPowerUpper(N, d[1], e*m, PolyDiscUpper(P, d[2], Prec), d[3]) : d in data];
+        pows := [NuPowerUpper(N, d[1], e*m, PolyDiscUpper(P, d[2], p), d[3] : Sharp := Sharp) : d in data];
         M := Maximum([1] cat pows);
         if exists{x : x in pows | x*M^(h - 1) ge 1} then return false; end if;
     end for;
@@ -496,25 +537,27 @@ end function;
 // coefficient at tau. With F_k = theta^k F(tau), that is F_(e-1) for f and h,
 // and for W it is ((e-1)!)^3 * sum (j - i)/(i! j!) h_i f_j over i + j = 3e - 2
 // with e - 1 <= i, j <= 2e - 1, on the scale where h^3 has h_(e-1)^3.
-function CertifyHyperellipticCMPoints(N, fs, Cs, G, R, chart, forms, hdeg, e : Prec := 128)
+function CertifyHyperellipticCMPoints(N, fs, Cs, G, R, chart, forms, hdeg, e : Prec := 128, Sharp := false)
     error if #fs ne 2, "CertifyHyperellipticCMPoints: genus 2 only";
     if exists{f : f in forms | CMStabilizerOrder(f, N) ne e} then return false; end if;
     G := G*LCM([Denominator(c) : c in Coefficients(G)]);
     G := G/GCD([Integers()!c : c in Coefficients(G)]);
     m := TotalDegree(G);
+    xb := ConstantBits(N, e*m, hdeg, Sharp);
+    p := Prec + xb;
     pows := [];
     for form in forms do
         // v[k][i] encloses 12^k theta^k fs[i] (tau), for k = e-1, ..., 2e-1
         v := AssociativeArray();
         L := 0;
         for k in [e - 1..(R eq 0 select e - 1 else 2*e - 1)] do
-            ok, vals, L0 := CMValueDiscs(N, fs, Cs, form, k + 1, Prec);
+            ok, vals, L0 := CMValueDiscs(N, fs, Cs, form, k + 1, p : TailBits := 48 + xb);
             if not ok then return false; end if;
             v[k] := vals; L := L0;
         end for;
         lead := v[e - 1];
-        Append(~pows, NuPowerUpper(N, form, e*m, PolyDiscUpper(G, lead, Prec), L));
-        if CBAbsLower(lead[chart], Prec) le 0 then return false; end if;
+        Append(~pows, NuPowerUpper(N, form, e*m, PolyDiscUpper(G, lead, p), L : Sharp := Sharp));
+        if CBAbsLower(lead[chart], p) le 0 then return false; end if;
         if R eq 0 then continue; end if;
 
         // 12^(3e-2) times the leading coefficient of W
@@ -523,7 +566,7 @@ function CertifyHyperellipticCMPoints(N, fs, Cs, G, R, chart, forms, hdeg, e : P
             j := 3*e - 2 - i;
             if j eq i then continue; end if;
             c := Factorial(e - 1)^3*(j - i)/(Factorial(i)*Factorial(j));
-            w := CBAdd(w, CBScale(c, CBMul(v[i][2], v[j][1], Prec)));
+            w := CBAdd(w, CBScale(c, CBMul(v[i][2], v[j][1], p)));
         end for;
         // 12^(3e-3) times R(f, h), term by term
         r := <0/1, 0/1, 0/1>;
@@ -532,11 +575,11 @@ function CertifyHyperellipticCMPoints(N, fs, Cs, G, R, chart, forms, hdeg, e : P
             z := <1/1, 0/1, 0/1>;
             ex := Exponents(ms[t]);
             for i in [1..2] do
-                for k in [1..ex[i]] do z := CBMul(z, lead[i], Prec); end for;
+                for k in [1..ex[i]] do z := CBMul(z, lead[i], p); end for;
             end for;
             r := CBAdd(r, CBScale(cs[t], z));
         end for;
-        if CBAbsLower(CBAdd(w, CBScale(12, r)), Prec) le 0 then return false; end if;
+        if CBAbsLower(CBAdd(w, CBScale(12, r)), p) le 0 then return false; end if;
     end for;
     M := Maximum([1] cat pows);
     return forall{x : x in pows | x*M^(hdeg - 1) lt 1};
@@ -544,11 +587,11 @@ end function;
 
 // Proves that the rational point pt = [X, Y, Z] of the genus 2 model is the
 // image of the rational CM point given by `form`, of elliptic order e.
-function CertifyHyperellipticCMPoint(N, fs, Cs, pt, form, e : Prec := 128)
+function CertifyHyperellipticCMPoint(N, fs, Cs, pt, form, e : Prec := 128, Sharp := false)
     X := Rationals()!pt[1]; Y := Rationals()!pt[2]; Z := Rationals()!pt[3];
     S<XX, ZZ> := PolynomialRing(Rationals(), 2);
     if Z ne 0 then
-        return CertifyHyperellipticCMPoints(N, fs, Cs, Z*XX - X*ZZ, (Y/Z^3)*ZZ^3, 2, [form], 1, e : Prec := Prec);
+        return CertifyHyperellipticCMPoints(N, fs, Cs, Z*XX - X*ZZ, (Y/Z^3)*ZZ^3, 2, [form], 1, e : Prec := Prec, Sharp := Sharp);
     end if;
-    return CertifyHyperellipticCMPoints(N, fs, Cs, ZZ, (Y/X^3)*XX^3, 1, [form], 1, e : Prec := Prec);
+    return CertifyHyperellipticCMPoints(N, fs, Cs, ZZ, (Y/X^3)*XX^3, 1, [form], 1, e : Prec := Prec, Sharp := Sharp);
 end function;
