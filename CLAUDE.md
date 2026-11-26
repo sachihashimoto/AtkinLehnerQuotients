@@ -81,22 +81,27 @@ casually: `--slow` is ~43 min, dominated by `test_311_jmap`.
   `make_exceptional_table.m`, `make_plane_multiplicity_table.m`,
   `pointsearch_examples.m`, `pointsearch_g8.m` + `run_pointsearch_g8.sh`,
   `check_automorphisms.m` (verifies the paper tables' Automorphism column),
-  `check_fiber_table.m` (regenerates the paper's CM-fiber table), and the
+  `check_fiber_table.m` (regenerates the paper's CM-fiber table),
+  `make_point_count_table.m` (regenerates `data/x0star_point_counts.txt`) with
+  `plot_point_distribution.py` (draws the by-genus distribution figure from
+  it; Python with matplotlib, not Magma), and the
   one-off `automorphisms_<N|genus g>.m` automorphism checks.
   `cm_terms_overrides.m` is a lookup table `load`ed by two scripts, not a script.
 - `tests/` — one `test_*.m` per topic, `assertions.m` (shared), `run.sh`,
   and `logs/` (transcripts, git-ignored).
 - `data/` — `genus3_models.m`..`genus8_models.m` (one `models[N]` record per
   squarefree level, HNF basis, all curves in one shared `P`),
-  `triple_cover_classification.txt`, and `starmodels/` (cache; all 151 files are
-  git-tracked).
+  `triple_cover_classification.txt`, `x0star_point_counts.txt` (rational cusp
+  and CM point counts for the 523 squarefree levels of genus 5 to 20, one line
+  per level), and `starmodels/` (cache; all 151 files are git-tracked).
 
 Paper artifacts: `scripts/make_exceptional_table.m` reproduces the paper's
 exceptional-points table (~20 min; `fast:=1` for the ~1 min subset).
 `scripts/make_plane_multiplicity_table.m` emits the supplementary
 collinearity-plane table as LaTeX. `data/triple_cover_classification.txt`
 matches the paper's triple-cover table; `tests/test_triple_cover_table.m` pins
-the two against each other.
+the two against each other. `scripts/plot_point_distribution.py` draws the
+by-genus distribution figure into `outputs/` from `data/x0star_point_counts.txt`.
 
 ## Gotchas
 
