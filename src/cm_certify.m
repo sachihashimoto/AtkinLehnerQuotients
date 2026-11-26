@@ -16,6 +16,12 @@
 //       L-functions and the coniveau filtration on Chow groups", Theorem
 //       B.3.2.1 with r = 1).
 //   Sharp := true             c = sqrt(N), from notes/cm_integrality.tex.
+// These are the weight 2 values. At an elliptic point of order e the form
+// tested is F^[e] = 12^(e-1) theta^(e-1) F, and the constants are the weight
+// 2e ones: ConradConstant(N, 2e) and N^(e/2). Conrad's bound applies because
+// F vanishes to order e-1 there, so F^[e](tau) is the value of the iterated
+// Serre derivative 12^(e-1) vartheta^(e-1) F, a form of weight 2e on
+// Gamma_0(N) with integral q-expansion (notes/cm_integrality.tex, section 3).
 // The default constant is larger, so the same proof needs a more accurate
 // evaluation; the certificates raise their working precision to match.
 //
@@ -338,12 +344,13 @@ function ConradConstant(N, k)
     return &*[Integers() | p^Ceiling(k*p/(p - 1)) : p in PrimeDivisors(N)];
 end function;
 
-// Extra bits of accuracy a certificate needs when it uses ConradConstant: the
-// constant multiplies the bound at each of the h conjugate points. E is half
-// the weight of the form tested.
-function ConstantBits(N, E, h, Sharp)
+// Extra bits of accuracy a certificate needs when it uses ConradConstant. The
+// bound at each point is (c*U)^s0 times terms that do not depend on c, so each
+// value U needs about log2(c) more bits, however many conjugate points the
+// certificate multiplies. E is half the weight of the form tested.
+function ConstantBits(N, E, Sharp)
     if Sharp then return 0; end if;
-    return h*(Ilog2(ConradConstant(N, 2*E)) + 1);
+    return Ilog2(ConradConstant(N, 2*E)) + 1;
 end function;
 
 // Rational upper bound for the sigma_0(N)-th power of the quantity in the
@@ -400,7 +407,7 @@ end function;
 // not a proof of the opposite.
 function CertifyVanishingAtCM(N, fs, Cs, mvec, forms, e : Prec := 128, Sharp := false)
     if exists{f : f in forms | CMStabilizerOrder(f, N) ne e} then return false; end if;
-    xb := ConstantBits(N, e, #forms, Sharp);
+    xb := ConstantBits(N, e, Sharp);
     p := Prec + xb;
     prod := 1/1;
     for form in forms do
@@ -441,7 +448,7 @@ function CertifyRationalCMPoint(N, fs, Cs, P, form, e : Prec := 128, Sharp := fa
     den := LCM([Denominator(c) : c in P]);
     a := [Integers() | den*c : c in P];
     a := [c div GCD(a) : c in a];
-    xb := ConstantBits(N, e, 1, Sharp);
+    xb := ConstantBits(N, e, Sharp);
     p := Prec + xb;
     ok, sums, tail, L := CMEvaluationData(N, fs, form, e, p : TailBits := 48 + xb);
     if not ok then return false; end if;
@@ -491,13 +498,14 @@ end function;
 // set of CM points of elliptic order e, each of degree at most h over Q; the
 // pairing into conjugates need not be known. For a homogeneous P of degree m
 // the form P(f_1, ..., f_g) has weight 2m and the same integrality as the
-// linear case, with nu^sigma_0 = N^(em s0/2) Im(tau)^(em s0) |P|^s0 / L^(em);
+// linear case, with nu^sigma_0 = c^s0 Im(tau)^(em s0) |P|^s0 / L^(em) and c as
+// in NuPowerUpper for weight 2em;
 // a point's bound times the (h-1)-th power of the largest bound in the set
 // bounds the norm, so a product below 1 forces the value to vanish.
 function CertifyPolynomialsVanishAtCM(N, fs, Cs, polys, forms, h, e : Prec := 128, Sharp := false)
     if exists{f : f in forms | CMStabilizerOrder(f, N) ne e} then return false; end if;
     mmax := Maximum([1] cat [TotalDegree(P0) : P0 in polys | P0 ne 0]);
-    xb := ConstantBits(N, e*mmax, h, Sharp);
+    xb := ConstantBits(N, e*mmax, Sharp);
     p := Prec + xb;
     data := [* *];
     for form in forms do
@@ -543,7 +551,7 @@ function CertifyHyperellipticCMPoints(N, fs, Cs, G, R, chart, forms, hdeg, e : P
     G := G*LCM([Denominator(c) : c in Coefficients(G)]);
     G := G/GCD([Integers()!c : c in Coefficients(G)]);
     m := TotalDegree(G);
-    xb := ConstantBits(N, e*m, hdeg, Sharp);
+    xb := ConstantBits(N, e*m, Sharp);
     p := Prec + xb;
     pows := [];
     for form in forms do

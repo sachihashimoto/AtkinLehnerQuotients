@@ -47,6 +47,7 @@ for N in [137, 311, 178] do
 end for;
 
 printf "\n=== Rational CM points are proved, level by level ===\n";
+rat_orders := {Integers()|};
 for N in [137, 311, 178] do
     rats, X, fs := point_search_X0Nstar(N, 1000);
     discs := Keys(RationalCMDiscs(N));
@@ -69,6 +70,7 @@ for N in [137, 311, 178] do
     for d in discs do
         forms := CMOrbitForms(d, N);
         e := EllipticOrderOfDisc(d, ell_pts);
+        if #d2i[d] gt 0 then Include(~rat_orders, e); end if;
         for k in [1..#forms] do
             ok, hb := CMHeightBounds(N, fs, Cs, forms[k], e);
             P := Eltseq(rats[d2i[d][k]]);
@@ -90,6 +92,11 @@ for N in [137, 311, 178] do
     printf "N=%o: %o of %o rational points are proved CM; the rest are %o\n", N, #proved, #rats,
         [j : j in [1..#rats] | j notin proved];
 end for;
+
+// The default constant at weight 2e is ConradConstant(N, 2e); a proved point
+// with e >= 2 on a canonical model exercises it.
+AssertEqual(~results, exists{e : e in rat_orders | e ge 2}, true,
+    Sprintf("N=137, 311, 178: a rational CM point with e >= 2 is proved with the default constant (orders %o)", rat_orders));
 
 printf "\n=== A plane through a conjugate pair (N=311, D=-123) ===\n";
 N := 311;
